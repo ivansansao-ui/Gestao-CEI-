@@ -1,0 +1,12 @@
+seu-projeto/
+├── index.html (este arquivo)
+├── nucleos/
+│   ├── nucleo1.html
+│   ├── nucleo2.html
+│   ├── nucleo3.html
+│   ├── nucleo4.html
+│   ├── nucleo5.html
+│   ├── nucleo6.html
+│   └── nucleo7.html
+├── organograma.html
+└── (suas imagens .png)

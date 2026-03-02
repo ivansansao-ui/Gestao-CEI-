@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>II - Apresentação.</title>
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f4f6f8;
+    }
+
+    /* 🔹 MENU FIXO */
+    .top-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #198754;
+      color: white;
+      padding: 12px 20px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .btn-voltar {
+      background: white;
+      color: #198754;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-voltar:hover {
+      background: #e9ecef;
+    }
+
+    main {
+      margin-top: 70px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 180px);
+      padding: 20px;
+    }
+
+    .nucleo-info {
+      max-width: 900px;
+      padding: 40px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      border-left: 4px solid #198754;
+      text-align: center;
+    }
+
+    .nucleo-info p {
+      margin: 15px 0;
+      font-size: 22px;
+      line-height: 1.8;
+      color: #2c3e50;
+    }
+
+    .nucleo-info ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nucleo-info li {
+      text-align: center;
+    }
+
+    .nucleo-info strong {
+      font-size: 1.3em;
+      line-height: 1.8;
+      color: #1e3d59;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #198754;
+      color: white;
+      font-size: 0.9rem;
+      width: 100%;
+    }
+  </style>
+
+  <script>
+    function voltarPaginaPrincipal() {
+      if (window.opener) {
+        window.opener.location.href = "../index.html";
+        window.close();
+      } else {
+        window.location.href = "../index.html";
+      }
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- 🔹 MENU FIXO -->
+  <div class="top-menu">
+    <span>II - Apresentação.</span>
+    <button class="btn-voltar" onclick="voltarPaginaPrincipal()">Voltar</button>
+  </div>
+
+  <main>
+    <div class="nucleo-info">
+      <ul>
+        <li>
+          <strong>
+            O objetivo deste documento é descrever a estrutura organizacional<br>
+            e o funcionamento do Centro de Educação e Inovação em Saúde Maria Carola 
+            Keller Escola Municipal de Saúde da Secretaria de Saúde de Joinville<br>
+            suas áreas e núcleos, bem como os profissionais que atuam em cada área e núcleo.<br>
+          </strong>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>
+    Secretaria Municipal da Saúde – Joinville
+  </footer>
+
+</body>
+</html>
