@@ -425,10 +425,10 @@
             }
         }
 
-        /* NOVO: Espaçamento entre os botões e os quadros */
-        .quadros-wrapper {
-            padding: 80px 0 40px 0;
-            background: linear-gradient(to bottom, var(--white) 0%, var(--off-white) 100%);
+        /* SEÇÃO DOS QUADROS - ESPAÇAMENTO CORRIGIDO */
+        .quadros-section {
+            padding: 80px 0 60px 0;
+            background: var(--white);
         }
 
         .quadros-grid {
@@ -983,6 +983,7 @@
             }
             .quadros-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1075,6 +1076,9 @@
             }
             .section-title {
                 font-size: 2.2rem;
+            }
+            .quadros-section {
+                padding: 50px 0 40px 0;
             }
             .quadros-grid,
             .features-grid,
@@ -1258,8 +1262,8 @@
             </div>
         </section>
 
-        <!-- NOVO WRAPPER COM ESPAÇAMENTO ADICIONAL -->
-        <div class="quadros-wrapper">
+        <!-- SEÇÃO DOS QUADROS COM ESPAÇAMENTO CORRIGIDO -->
+        <section class="quadros-section">
             <div class="container">
                 <div class="quadros-grid">
                     <a href="nucleos/nucleo11.html" target="_blank" class="quadro-link" data-aos="fade-up" data-aos-delay="100">
@@ -1300,7 +1304,7 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </section>
 
         <section class="section" id="sobre">
             <div class="container">
