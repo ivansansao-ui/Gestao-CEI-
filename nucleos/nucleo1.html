@@ -49,7 +49,7 @@
     .layout-container {
       display: flex;
       flex-direction: column;
-      gap: 3rem; /* Espaço de 3 linhas entre as linhas de quadros */
+      gap: 3rem;
       width: 90%;
       max-width: 1200px;
       margin: 30px auto;
@@ -59,11 +59,11 @@
     .linha-tres-colunas {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px; /* Espaço entre os cards na horizontal */
+      gap: 20px;
       align-items: stretch;
     }
 
-    /* Cards de contato (funcionários) - menor padding e fonte */
+    /* Cards de contato (funcionários) */
     .quadro-item {
       background-color: #ffffff;
       border-left: 4px solid #198754;
@@ -82,7 +82,7 @@
       box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     }
 
-    /* Cards de relatório/painel (azuis) - mesmo estilo menor */
+    /* Cards de relatório/painel (azuis) */
     .quadro-relatorio {
       background-color: #e3f2fd;
       border-left: 4px solid #0dcaf0;
@@ -160,6 +160,17 @@
       transform: scale(1.02);
     }
 
+    /* Estilo para link em desenvolvimento (desabilitado visualmente) */
+    .relatorio-link.em-desenvolvimento {
+      background-color: #adb5bd;
+      cursor: not-allowed;
+    }
+
+    .relatorio-link.em-desenvolvimento:hover {
+      background-color: #adb5bd;
+      transform: none;
+    }
+
     footer {
       text-align: center;
       padding: 15px;
@@ -192,6 +203,13 @@
       } else {
         window.location.href = "../index.html";
       }
+    }
+
+    // Função para impedir navegação e exibir alerta de "Em desenvolvimento"
+    function emDesenvolvimento(event) {
+      event.preventDefault();
+      alert("🚧 Em desenvolvimento. Esta funcionalidade estará disponível em breve.");
+      return false;
     }
   </script>
 </head>
@@ -230,14 +248,14 @@
           </a>
         </div>
 
-        <!-- Card 3: Painel de Desempenho -->
+        <!-- Card 3: Painel de Desempenho - Link em desenvolvimento -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📈 Painel de Desempenho.</div>
           <p>Acesse o painel de indicadores de Pesquisa sobre atividades realizadas na APS para atividades de Educação da Agenda Única de 2026.</p>
           <a href="#"
-             target="_blank"
-             class="relatorio-link">
-            Acessar painel →
+             onclick="return emDesenvolvimento(event)"
+             class="relatorio-link em-desenvolvimento">
+            Em desenvolvimento 🚧
           </a>
         </div>
       </div>
@@ -300,14 +318,14 @@
           </a>
         </div>
 
-        <!-- Card 3: Solicitação de pontos -->
+        <!-- Card 3: Solicitação de pontos - Link em desenvolvimento -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Solicitação de pontos.</div>
           <p>Link para pedido de solicitação de pontos. Visualize os indicadores de solicitação de ajuste de pontos.</p>
           <a href="#"
-             target="_blank"
-             class="relatorio-link">
-            Acessar formulário →
+             onclick="return emDesenvolvimento(event)"
+             class="relatorio-link em-desenvolvimento">
+            Em desenvolvimento 🚧
           </a>
         </div>
       </div>
@@ -324,18 +342,18 @@
           </ul>
         </div>
 
-        <!-- Card 2: Assinar o Relatório de Formulário - Acessar relatórios -->
+        <!-- Card 2: Assinar o Relatório de Formulário - Acessar relatórios (em desenvolvimento) -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📋 Assinar o Relatório de Formulário.</div>
           <p>Acesse os relatórios de formulários e documentações.</p>
           <a href="#"
-             target="_blank"
-             class="relatorio-link">
-            Acessar relatórios →
+             onclick="return emDesenvolvimento(event)"
+             class="relatorio-link em-desenvolvimento">
+            Em desenvolvimento 🚧
           </a>
         </div>
 
-        <!-- Card 3: Acessar vagas (segundo link do item 5 da imagem) -->
+        <!-- Card 3: Acessar vagas -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🔍 Acessar vagas</div>
           <p>Visualize vagas disponíveis e processos seletivos.</p>
