@@ -49,9 +49,9 @@
     .layout-container {
       display: flex;
       flex-direction: column;
-      gap: 40px; /* Espaço maior entre as linhas */
+      gap: 3rem; /* Espaço de 3 linhas entre as linhas de quadros */
       width: 90%;
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 30px auto;
     }
 
@@ -59,16 +59,16 @@
     .linha-tres-colunas {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px; /* Espaço pequeno entre os cards na horizontal */
+      gap: 20px; /* Espaço entre os cards na horizontal */
       align-items: stretch;
     }
 
-    /* Cards de contato (funcionários) - mesmo estilo Figura 2 */
+    /* Cards de contato (funcionários) - menor padding e fonte */
     .quadro-item {
       background-color: #ffffff;
       border-left: 4px solid #198754;
       border-radius: 8px;
-      padding: 20px;
+      padding: 14px 16px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.08);
       display: flex;
       flex-direction: column;
@@ -82,7 +82,7 @@
       box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     }
 
-    /* Cards de relatório/painel (azuis) - mesmo estilo Figura 2 */
+    /* Cards de relatório/painel (azuis) - mesmo estilo menor */
     .quadro-relatorio {
       background-color: #e3f2fd;
       border-left: 4px solid #0dcaf0;
@@ -90,14 +90,14 @@
 
     .titulo-texto {
       color: #2c3e50;
-      font-size: 1.1em;
+      font-size: 0.95em;
       font-weight: bold;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       border-bottom: 1px solid #eaeaea;
-      padding-bottom: 8px;
+      padding-bottom: 6px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .quadro-relatorio .titulo-texto {
@@ -112,9 +112,10 @@
     }
 
     .quadro-detalhes li {
-      padding: 8px 0;
+      padding: 5px 0;
       color: #555;
       border-bottom: 1px dashed #f0f0f0;
+      font-size: 0.85em;
     }
 
     .quadro-detalhes li:last-child {
@@ -123,32 +124,35 @@
 
     .quadro-detalhes strong {
       color: #2c3e50;
-      min-width: 60px;
+      min-width: 50px;
       display: inline-block;
+      font-size: 0.85em;
     }
 
     .quadro-relatorio p {
       color: #0b5e7e;
-      margin-bottom: 20px;
-      line-height: 1.5;
+      margin-bottom: 12px;
+      line-height: 1.4;
       flex-grow: 1;
+      font-size: 0.85em;
     }
 
     .relatorio-link {
       display: inline-block;
-      padding: 12px 20px;
+      padding: 8px 12px;
       color: white;
       text-decoration: none;
       border-radius: 6px;
       font-weight: 600;
       text-align: center;
-      margin-top: 10px;
+      margin-top: 8px;
       background-color: #0dcaf0;
       transition: background-color 0.3s ease, transform 0.2s ease;
       border: none;
       cursor: pointer;
       width: 100%;
       box-sizing: border-box;
+      font-size: 0.85em;
     }
 
     .relatorio-link:hover {
@@ -168,14 +172,14 @@
     @media (max-width: 1024px) {
       .linha-tres-colunas {
         grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
+        gap: 20px;
       }
     }
 
     @media (max-width: 768px) {
       .linha-tres-colunas {
         grid-template-columns: 1fr;
-        gap: 18px;
+        gap: 20px;
       }
     }
   </style>
