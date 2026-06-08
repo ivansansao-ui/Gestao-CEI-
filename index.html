@@ -642,6 +642,10 @@
             display: flex;
             border: 1px solid var(--gray-100);
             position: relative;
+            
+            /* PADRONIZAÇÃO DOS CARDS - TODOS COM O MESMO TAMANHO */
+            min-height: 220px;
+            height: auto;
         }
 
         .nucleo-card-large {
@@ -693,6 +697,9 @@
         .nucleo-content {
             padding: 30px;
             flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .nucleo-content h3 {
@@ -708,6 +715,7 @@
             font-size: 0.95rem;
             margin-bottom: 20px;
             line-height: 1.6;
+            flex: 1;
         }
 
         .nucleo-link {
@@ -720,11 +728,7 @@
             transition: var(--transition);
             padding: 8px 0;
             border-bottom: 2px solid transparent;
-        }
-
-        .nucleo-link i {
-            font-size: 0.9rem;
-            transition: var(--transition);
+            margin-top: auto;
         }
 
         .nucleo-card:hover .nucleo-link {
@@ -1114,6 +1118,7 @@
             }
             .nucleo-card {
                 flex-direction: column;
+                min-height: auto;
             }
             .nucleo-number {
                 min-width: 100%;
@@ -1351,8 +1356,8 @@
                         <div class="feature-icon">
                             <i class="fas fa-handshake"></i>
                         </div>
-                        <h3>Núcleo de Formação em Saúde,<h3>
-                        <h3>Cenários de Prática e COAPES</h3>
+                        <h3>Núcleo de Formação em Saúde,</h3>
+                        <h3>Cenários de Prática e COAPES.</h3>
                         <p>Integração ensino-serviço por meio do COAPES e cenários reais de prática.</p>
                     </div>
                     <!-- Card 3 - Núcleo das Residências em Saúde -->
