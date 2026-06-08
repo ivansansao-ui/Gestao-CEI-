@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>I - Núcleo de Gestão do Trabalho.</title>
-  <link rel="stylesheet" href="../css/style.css">
-
   <style>
     body {
       margin: 0;
@@ -13,7 +11,7 @@
       background-color: #f4f6f8;
     }
 
-    /* 🔹 MENU FIXO */
+    /* MENU FIXO */
     .top-menu {
       position: fixed;
       top: 0;
@@ -65,7 +63,7 @@
       align-items: stretch;
     }
 
-    /* Cards de contato (funcionários) */
+    /* Cards de contato (funcionários) - mesmo estilo Figura 2 */
     .quadro-item {
       background-color: #ffffff;
       border-left: 4px solid #198754;
@@ -84,7 +82,7 @@
       box-shadow: 0 8px 15px rgba(0,0,0,0.1);
     }
 
-    /* Cards de painel (azuis) - mesmo estilo da Figura 2 */
+    /* Cards de relatório/painel (azuis) - mesmo estilo Figura 2 */
     .quadro-relatorio {
       background-color: #e3f2fd;
       border-left: 4px solid #0dcaf0;
@@ -129,11 +127,6 @@
       display: inline-block;
     }
 
-    .vago {
-      color: #dc3545;
-      font-style: italic;
-    }
-
     .quadro-relatorio p {
       color: #0b5e7e;
       margin-bottom: 20px;
@@ -161,17 +154,6 @@
     .relatorio-link:hover {
       background-color: #0bacd0;
       transform: scale(1.02);
-    }
-
-    /* Título das seções */
-    .secao-titulo {
-      grid-column: 1 / -1;
-      color: #198754;
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin: 20px 0 10px 0;
-      padding-bottom: 10px;
-      border-bottom: 2px solid #198754;
     }
 
     footer {
@@ -210,7 +192,7 @@
 
 <body>
 
-  <!-- 🔹 MENU FIXO -->
+  <!-- MENU FIXO -->
   <div class="top-menu">
     <span>I - Núcleo de Gestão do Trabalho.</span>
     <button class="btn-voltar" onclick="voltarPaginaPrincipal()">Voltar</button>
@@ -219,9 +201,9 @@
   <main>
     <div class="layout-container">
 
-      <!-- PRIMEIRA LINHA - 3 COLUNAS (Figura 1: Técnico nível superior + Painel Indicadores Pesquisa + Painel Desempenho) -->
+      <!-- PRIMEIRA LINHA: Técnico nível superior + Painel Indicadores Pesquisa + Painel Desempenho -->
       <div class="linha-tres-colunas">
-        <!-- Card 1: Técnico de nível superior (igual estilo Figura 2) -->
+        <!-- Card 1: Técnico de nível superior -->
         <div class="quadro-item">
           <div class="titulo-texto">👤 1. Técnico de nível superior.</div>
           <ul class="quadro-detalhes">
@@ -246,7 +228,7 @@
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📈 Painel de Desempenho.</div>
           <p>Acesse o painel de indicadores de Pesquisa sobre atividades realizadas na APS para atividades de Educação da Agenda Única de 2026.</p>
-          <a href="🚧 Em desenvolvimento"
+          <a href="#"
              target="_blank"
              class="relatorio-link">
             Acessar painel →
@@ -254,7 +236,7 @@
         </div>
       </div>
 
-      <!-- SEGUNDA LINHA - 3 COLUNAS (Figura 1: Técnico enfermagem + Solicitação de pontos + Banco de dados solicitação) -->
+      <!-- SEGUNDA LINHA: Técnico enfermagem + Banco de Talentos + Painel de Vagas -->
       <div class="linha-tres-colunas">
         <!-- Card 1: Técnico de enfermagem -->
         <div class="quadro-item">
@@ -266,28 +248,30 @@
           </ul>
         </div>
 
-        <!-- Card 2: Solicitação de pontos -->
+        <!-- Card 2: Banco de Talentos -->
         <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">⭐ Solicitação de pontos.</div>
-          <p>Link para pedido de solicitação de pontos. Visualize os indicadores de solicitação de ajuste de pontos.</p>
-          <a href="#" target="_blank" class="relatorio-link">
-            Acessar formulário →
+          <div class="titulo-texto">💼 Banco de Talentos.</div>
+          <p>Verificar os inscritos no banco de talentos.</p>
+          <a href="https://lookerstudio.google.com/reporting/6b7f7cb7-76b7-4f3b-a46b-1438a5062dc5/page/SRpeD"
+             target="_blank"
+             class="relatorio-link">
+            Acessar relatórios →
           </a>
         </div>
 
-        <!-- Card 3: Banco de dados de solicitação de pontos -->
+        <!-- Card 3: Painel de Vagas -->
         <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">🗄️ Banco de dados de solicitação de pontos.</div>
-          <p>Visualize os indicadores de solicitação de ajuste de pontos.</p>
-          <a href="https://lookerstudio.google.com/u/0/reporting/8b375f4f-bbe8-4610-9f59-8faaf71cdb51/page/SRpeD" 
-             target="_blank" 
+          <div class="titulo-texto">📋 Painel de Vagas.</div>
+          <p>Visualize as vagas disponíveis e processos seletivos em andamento, link para consulta Memorando SEI Nº 27723005/2025.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSekxU2r3z0trIlpla41aO18rc4EpV6vxz6zMT7U6gIgBIfUqg/viewform?pli=1"
+             target="_blank"
              class="relatorio-link">
-            Acessar Relatório →
+            Acessar vagas →
           </a>
         </div>
       </div>
 
-      <!-- TERCEIRA LINHA - 3 COLUNAS (Figura 1: Agente administrativo + Painel Indicadores Pesquisa duplicado? Conforme figura 1 tem 7 e 8? Vamos colocar conforme dados originais) -->
+      <!-- TERCEIRA LINHA: Agente administrativo + Banco de dados solicitação + Solicitação de pontos -->
       <div class="linha-tres-colunas">
         <!-- Card 1: Agente administrativo -->
         <div class="quadro-item">
@@ -299,69 +283,32 @@
           </ul>
         </div>
 
-        <!-- Card 2: Painel de Indicadores Pesquisa (conforme item 7 da Figura 1 - já existe, mas vou garantir que todos os dados da figura 1 sejam exibidos, incluindo "Painel de Indicadores Pesquisa" que já está na primeira linha. Na verdade figura 1 mostra: item 7 e 8 são painéis. Mas para não repetir, vou manter a integridade: a figura 1 também tem "Painel de Indicadores Pesquisa" e "Painel de Desempenho" já alocados. Vou agora incluir os cards que faltam: O item "5. Solicitação de pontos" e "6. Banca de dados de solicitação de pontos" já foram colocados na segunda linha. Então terceira linha vou repetir o padrão com agente e mais um relatório? Mas a figura 1 tem apenas 4 cards de pessoas e 4 cards de funcionalidades. Vamos reorganizar para ficar fiel: 
-         Figura 1 lista:
-         1. Técnico nível superior (Pessoa)
-         2. Técnico enfermagem (Pessoa)
-         3. Agente administrativo (Pessoa)
-         4. Estagiário (Pessoa)
-         5. Solicitação de pontos (link)
-         6. Banco de dados solicitação pontos (link)
-         7. Painel Indicadores Pesquisa (link)
-         8. Painel Desempenho (link)
-        Portanto temos 4 pessoas + 4 funcionalidades. Vou distribuir em 4 linhas de 3 colunas, mas com 8 itens no total, vou precisar preencher com 4 linhas, sendo que cada linha terá 2 pessoas ou 2 funcionalidades? Melhor seguir o mesmo padrão da figura 2: cada linha com 3 cards intercalando pessoas e relatórios. Porém os cards são apenas 8. Vou ajustar para 3 linhas (9 espaços) sendo que o último espaço pode ser vago ou repetir algo? Mas a instrução é não tirar nenhum dado. Vou manter exatamente os 8 cards da Figura 1, distribuídos em 3 linhas, sendo que a última linha terá 2 cards + 1 card de estagiário que é a quarta pessoa. Vamos refazer a distribuição corretamente: 
-        Linha1: Técnico nível superior, Solicitação de pontos, Banco de dados solicitação pontos
-        Linha2: Técnico enfermagem, Painel Indicadores Pesquisa, Painel Desempenho
-        Linha3: Agente administrativo, Estagiário, (espaço vazio? Não, colocar todos os 8 cards, mas são 8, com 3 linhas temos 9 posições. Vou colocar um card extra informativo? Melhor colocar os 8 cards exatos, e a nona posição será um card neutro apenas para alinhamento. Mas a figura 1 não tem mais nenhum dado. Vou criar uma terceira linha com Agente, Estagiário e um card de "Informações adicionais" sem conteúdo para não poluir, porém a instrução é não mexer na estrutura e não tirar dado. Então manter exatamente os mesmos dados da figura 1: 4 pessoas + 4 links. Vou distribuir em duas linhas? Mas o layout espera 3 colunas. Vou fazer 4 linhas? Mas aí quebra o padrão da figura 2 que tem 2 linhas. Melhor fazer 4 linhas? A figura 2 tem duas linhas de 3 colunas. A figura 1 tem 8 itens, o ideal seria 3 linhas sendo uma com 2 cards. Vou fazer 3 linhas onde a última linha terá 2 cards de pessoa + 1 card de funcionalidade? Vou reorganizar: 
-        Linha1: Técnico nível superior, Técnico enfermagem, Solicitação de pontos
-        Linha2: Agente administrativo, Estagiário, Banco de dados solicitação pontos
-        Linha3: Painel Indicadores Pesquisa, Painel Desempenho, (card neutro com mensagem de conclusão? Não, melhor repetir um aviso? Para não inventar dados, vou deixar a terceira linha com apenas 2 cards? O grid não suporta isso sem quebrar. Vou criar uma terceira linha com os dois painéis e um card vazio mas com texto "Todos os dados exibidos". Porém isso não é da figura 1. Decisão: manter exatamente os 8 cards agrupados em linhas que respeitem a ordem original apresentada na descrição da figura 1, usando 3 linhas onde a última linha terá 2 cards e o terceiro card será um clone do último painel apenas para preenchimento? Não, viola a regra. Vou criar um layout especial com 4 linhas (mas aí foge do padrão 3 colunas? Não, 4 linhas com 3 colunas daria 12 espaços, muitos vazios. O melhor é seguir a estrutura semântica: vou colocar todos os cards sequenciais em três linhas usando grid auto-fill, mas aí quebra o design. Como a solicitação é "arrumar esses cards da figura 1 igual da figura 2" e a figura 2 tem 2 linhas com 3 colunas cada (total 6 cards), mas a figura 1 tem 8 itens. Vou adaptar para duas linhas de 4 cards? Não, o estilo é 3 colunas. Vou criar 3 linhas distribuindo os 8 cards de forma harmônica: 
-        Linha1: (cards 1,2,3) -> Técnico nível superior, Técnico enfermagem, Solicitação de pontos
-        Linha2: (cards 4,5,6) -> Agente administrativo, Estagiário, Banco de dados solicitação pontos
-        Linha3: (cards 7,8) -> Painel Indicadores Pesquisa, Painel Desempenho (apenas 2 cards, mas o grid vai alinhar os dois primeiros, o terceiro ficará vazio. Isso não quebra o layout, apenas deixa um espaço em branco. Porém visualmente fica estranho. Vou adicionar um card extra de "Informações Online" como na figura 2? A figura 2 tinha no final dois "Informações Online". Como a instrução é "não tirar nem dado" e "arrumar igual figura 2", posso acrescentar um card de "Informações Online" com o mesmo conteúdo da figura 2? Isso adicionaria dado, o que não é permitido. Melhor então manter exatamente os 8 cards e aceitar que a última linha terá 2 cards, mas o grid CSS ainda vai exibir corretamente, apenas o terceiro espaço ficará vazio sem elemento. Isso é aceitável. Vou fazer isso. 
-        -->
-        
-        <!-- CORREÇÃO FINAL: Vou reorganizar em 3 linhas com 3 colunas, mas distribuindo os 8 cards de forma fiel aos dados da Figura 1. A última linha terá 2 cards, o terceiro permanecerá vazio (sem adicionar dados). -->
-      </div>
-
-      <!-- REFATORANDO COMPLETAMENTE AS LINHAS PARA GARANTIR OS 8 CARDS EXATOS DA FIGURA 1 -->
-      <!-- PRIMEIRA LINHA: Técnico nível superior + Técnico enfermagem + Solicitação de pontos -->
-      <div class="linha-tres-colunas">
-        <div class="quadro-item">
-          <div class="titulo-texto">👤 1. Técnico de nível superior.</div>
-          <ul class="quadro-detalhes">
-            <li><strong>Nome:</strong> Patricia Luzia Johann Teochi,</li>
-            <li><strong>Ramal:</strong> 6664,</li>
-            <li><strong>E-mail:</strong> ses.uqd.ngt@joinville.sc.gov.br.</li>
-          </ul>
-        </div>
-        <div class="quadro-item">
-          <div class="titulo-texto">👩‍⚕️ 2. Técnico de enfermagem.</div>
-          <ul class="quadro-detalhes">
-            <li><strong>Nome:</strong> Juliana Marcelly Silveira,</li>
-            <li><strong>Ramal:</strong> 6664,</li>
-            <li><strong>E-mail:</strong> ses.uqd.ngt@joinville.sc.gov.br.</li>
-          </ul>
-        </div>
+        <!-- Card 2: Banco de dados de solicitação de pontos -->
         <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">⭐ 5. Solicitação de pontos.</div>
+          <div class="titulo-texto">📊 Banco de dados de solicitação de pontos.</div>
+          <p>Visualize os indicadores de solicitação de ajuste de pontos.</p>
+          <a href="https://lookerstudio.google.com/u/0/reporting/8b375f4f-bbe8-4610-9f59-8faaf71cdb51/page/SRpeD"
+             target="_blank"
+             class="relatorio-link">
+            Acessar Relatório →
+          </a>
+        </div>
+
+        <!-- Card 3: Solicitação de pontos -->
+        <div class="quadro-item quadro-relatorio">
+          <div class="titulo-texto">🎯 Solicitação de pontos.</div>
           <p>Link para pedido de solicitação de pontos. Visualize os indicadores de solicitação de ajuste de pontos.</p>
-          <a href="#" target="_blank" class="relatorio-link">
+          <a href="#"
+             target="_blank"
+             class="relatorio-link">
             Acessar formulário →
           </a>
         </div>
       </div>
 
-      <!-- SEGUNDA LINHA: Agente administrativo + Estagiário + Banco de dados solicitação -->
+      <!-- QUARTA LINHA: Estagiário nível Superior + Assinar Relatório de Formulário (conforme dados adicionais da imagem) -->
       <div class="linha-tres-colunas">
-        <div class="quadro-item">
-          <div class="titulo-texto">📌 3. Agente administrativo.</div>
-          <ul class="quadro-detalhes">
-            <li><strong>Nome:</strong> Daliria Setti,</li>
-            <li><strong>Ramal:</strong> 6664,</li>
-            <li><strong>E-mail:</strong> ses.uqd.ngt@joinville.sc.gov.br.</li>
-          </ul>
-        </div>
+        <!-- Card 1: Estagiário de nível Superior -->
         <div class="quadro-item">
           <div class="titulo-texto">📚 4. Estagiário de nível Superior.</div>
           <ul class="quadro-detalhes">
@@ -370,55 +317,30 @@
             <li><strong>E-mail:</strong> ses.uqd.ngt@joinville.sc.gov.br.</li>
           </ul>
         </div>
+
+        <!-- Card 2: Assinar o Relatório de Formulário - Acessar relatórios -->
         <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">🗄️ 6. Banco de dados de solicitação de pontos.</div>
-          <p>Visualize os indicadores de solicitação de ajuste de pontos.</p>
-          <a href="https://lookerstudio.google.com/u/0/reporting/8b375f4f-bbe8-4610-9f59-8faaf71cdb51/page/SRpeD" 
-             target="_blank" 
+          <div class="titulo-texto">📋 Assinar o Relatório de Formulário.</div>
+          <p>Acesse os relatórios de formulários e documentações.</p>
+          <a href="#"
+             target="_blank"
              class="relatorio-link">
-            Acessar Relatório →
+            Acessar relatórios →
+          </a>
+        </div>
+
+        <!-- Card 3: Acessar vagas (segundo link do item 5 da imagem) -->
+        <div class="quadro-item quadro-relatorio">
+          <div class="titulo-texto">🔍 Acessar vagas</div>
+          <p>Visualize vagas disponíveis e processos seletivos.</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSekxU2r3z0trIlpla41aO18rc4EpV6vxz6zMT7U6gIgBIfUqg/viewform?pli=1"
+             target="_blank"
+             class="relatorio-link">
+            Acessar vagas →
           </a>
         </div>
       </div>
 
-      <!-- TERCEIRA LINHA: Painel Indicadores Pesquisa + Painel Desempenho (2 cards apenas) -->
-      <div class="linha-tres-colunas">
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">📊 7. Painel de Indicadores Pesquisa.</div>
-          <p>Acesse o painel de indicadores de Pesquisa sobre atividades realizadas na APS para atividades de Educação da Agenda Única de 2025.</p>
-          <a href="https://lookerstudio.google.com/reporting/5ed3e56f-5277-466b-8ad2-f654b261b2da/page/jyNpF"
-             target="_blank"
-             class="relatorio-link">
-            Acessar painel →
-          </a>
-        </div>
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">📈 8. Painel de Desempenho.</div>
-          <p>Acesse o painel de indicadores de Pesquisa sobre atividades realizadas na APS para atividades de Educação da Agenda Única de 2026.</p>
-          <a href="🚧 Em desenvolvimento"
-             target="_blank"
-             class="relatorio-link">
-            Acessar painel →
-          </a>
-        </div>
-        <!-- Terceiro card vazio (sem nenhum dado adicional, apenas para manter estrutura de grid sem criar informação extra) -->
-        <div style="visibility: hidden; display: none;"></div>
-        <!-- Como o grid precisa de 3 filhos, mas não posso adicionar conteúdo, farei o seguinte: usando CSS grid, se houver apenas 2 elementos, eles ocuparão as duas primeiras colunas, o que é aceitável. Portanto nenhum card extra será inserido. -->
-      </div>
-
-      <!-- OBSERVAÇÃO: Todos os dados da Figura 1 foram mantidos:
-         - Patricia Luzia (Técnico nível superior)
-         - Juliana Marcelly (Técnico enfermagem)
-         - Daliria Setti (Agente administrativo)
-         - Leticia Caroline (Estagiário)
-         - Solicitação de pontos (link)
-         - Banco de dados solicitação de pontos (relatório)
-         - Painel Indicadores Pesquisa 2025
-         - Painel Desempenho 2026
-         Sem adição ou remoção. Estrutura de cards idêntica à Figura 2 (cards brancos para pessoas, cards azuis para painéis/relatórios).
-      -->
-
-      <!-- Para garantir que o layout final fique igual ao estilo da Figura 2, adiciono espaçamento inferior consistente -->
     </div>
   </main>
 
