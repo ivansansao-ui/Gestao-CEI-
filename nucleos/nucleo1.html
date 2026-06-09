@@ -9,7 +9,7 @@
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       background-color: #f4f6f8;
-      font-size: 16px; /* PADRÃO: 16px */
+      font-size: 16px;
     }
 
     /* MENU FIXO */
@@ -27,7 +27,7 @@
       align-items: center;
       z-index: 1000;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      font-size: 1em; /* 16px */
+      font-size: 1em;
     }
 
     .btn-voltar {
@@ -38,7 +38,7 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
-      font-size: 0.875em; /* 14px */
+      font-size: 0.875em;
     }
 
     .btn-voltar:hover {
@@ -83,12 +83,12 @@
       border-left: 4px solid #0dcaf0;
     }
 
-    /* TÍTULO - 1.1em = ~17.6px */
+    /* TÍTULO - COM ESPAÇO ABAIXO */
     .titulo-texto {
       color: #2c3e50;
-      font-size: 1.1em; /* ~17.6px */
+      font-size: 1.1em;
       font-weight: bold;
-      margin: 0;
+      margin: 0 0 12px 0;
       padding: 0;
       display: block;
     }
@@ -97,34 +97,50 @@
       color: #0b5e7e;
     }
 
-    /* INFORMAÇÕES DO SERVIDOR - 1em = 16px */
+    /* INFORMAÇÕES DO SERVIDOR */
     .info-servidor {
       margin: 0;
       padding: 0;
     }
 
-    .info-servidor p {
-      margin: 8px 0 0 0;
+    .info-servidor .linha {
+      display: block;
+      margin: 0 0 12px 0;
       padding: 0;
-      color: #333;
-      font-size: 1em; /* 16px */
+      font-size: 1em;
       line-height: 1.4;
     }
 
-    .info-servidor strong {
-      color: #198754;
+    /* PRIMEIRA LINHA APÓS O TÍTULO (NOME) - COM ESPAÇO EXTRA */
+    .info-servidor .linha:first-child {
+      margin-top: 12px;
+    }
+
+    /* ÚLTIMA LINHA (E-MAIL) SEM ESPAÇO EXTRA ABAIXO */
+    .info-servidor .linha:last-child {
+      margin-bottom: 0;
+    }
+
+    /* LABELS (Nome:, Ramal:, E-mail:) - COR PRETA */
+    .info-label {
+      color: #000000;
       font-weight: 600;
     }
 
-    /* TEXTOS DOS CARDS AZUIS - 1em = 16px */
+    /* VALORES (nomes, ramais, e-mails) - COR PRETA */
+    .info-value {
+      color: #000000;
+      font-weight: normal;
+    }
+
+    /* PARA OS CARDS DE RELATÓRIO */
     .quadro-relatorio p {
       color: #0b5e7e;
       margin: 0 0 12px 0;
       line-height: 1.4;
-      font-size: 1em; /* 16px */
+      font-size: 1em;
     }
 
-    /* BOTÕES - 1em = 16px */
     .relatorio-link {
       display: inline-block;
       padding: 10px 16px;
@@ -140,14 +156,13 @@
       cursor: pointer;
       width: 100%;
       box-sizing: border-box;
-      font-size: 1em; /* 16px */
+      font-size: 1em;
     }
 
     .relatorio-link:hover {
       background-color: #0bacd0;
     }
 
-    /* Estilo para link em desenvolvimento */
     .relatorio-link.em-desenvolvimento {
       background-color: #adb5bd;
       cursor: not-allowed;
@@ -157,14 +172,13 @@
       background-color: #adb5bd;
     }
 
-    /* FOOTER - 0.9rem = ~14.4px */
     footer {
       text-align: center;
       padding: 15px;
       background: #198754;
       color: white;
       margin-top: 40px;
-      font-size: 0.9rem; /* ~14.4px */
+      font-size: 0.9rem;
     }
 
     @media (max-width: 1024px) {
@@ -213,13 +227,13 @@
 
       <!-- PRIMEIRA LINHA -->
       <div class="linha-tres-colunas">
-        <!-- Card 1: Técnico de nível superior - Patricia -->
+        <!-- Card 1: Técnico de nível superior -->
         <div class="quadro-item">
           <div class="titulo-texto">1. Técnico de nível superior.</div>
           <div class="info-servidor">
-            <p><strong>Nome:</strong> Patricia Luzia Johann Teochi,</p>
-            <p><strong>Ramal:</strong> 6664,</p>
-            <p><strong>E-mail:</strong> ses.uqd.ngt@joinville.sc.gov.br.</p>
+            <div class="linha"><span class="info-label">Nome:</span> <span class="info-value">Patricia Luzia Johann Teochi,</span></div>
+            <div class="linha"><span class="info-label">Ramal:</span> <span class="info-value">6664,</span></div>
+            <div class="linha"><span class="info-label">E-mail:</span> <span class="info-value">ses.uqd.ngt@joinville.sc.gov.br.</span></div>
           </div>
         </div>
 
@@ -227,34 +241,26 @@
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📊 Painel de Indicadores Pesquisa.</div>
           <p>Acesse o painel de indicadores de Pesquisa sobre atividades realizadas na APS para atividades de Educação da Agenda Única de 2025.</p>
-          <a href="https://lookerstudio.google.com/reporting/5ed3e56f-5277-466b-8ad2-f654b261b2da/page/jyNpF"
-             target="_blank"
-             class="relatorio-link">
-            Acessar painel →
-          </a>
+          <a href="https://lookerstudio.google.com/reporting/5ed3e56f-5277-466b-8ad2-f654b261b2da/page/jyNpF" target="_blank" class="relatorio-link">Acessar painel →</a>
         </div>
 
         <!-- Card 3: Painel de Desempenho -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📈 Painel de Desempenho.</div>
           <p>Acesse o painel de indicadores de Pesquisa sobre atividades realizadas na APS para atividades de Educação da Agenda Única de 2026.</p>
-          <a href="#"
-             onclick="return emDesenvolvimento(event)"
-             class="relatorio-link em-desenvolvimento">
-            Em desenvolvimento 🚧
-          </a>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
       </div>
 
       <!-- SEGUNDA LINHA -->
       <div class="linha-tres-colunas">
-        <!-- Card 1: Técnico de enfermagem - Juliana -->
+        <!-- Card 1: Técnico de enfermagem -->
         <div class="quadro-item">
           <div class="titulo-texto">2. Técnico de enfermagem.</div>
           <div class="info-servidor">
-            <p><strong>Nome:</strong> Juliana Marcelly Silveira,</p>
-            <p><strong>Ramal:</strong> 6664,</p>
-            <p><strong>E-mail:</strong> ses.uqd.ngt@joinville.sc.gov.br.</p>
+            <div class="linha"><span class="info-label">Nome:</span> <span class="info-value">Juliana Marcelly Silveira,</span></div>
+            <div class="linha"><span class="info-label">Ramal:</span> <span class="info-value">6664,</span></div>
+            <div class="linha"><span class="info-label">E-mail:</span> <span class="info-value">ses.uqd.ngt@joinville.sc.gov.br.</span></div>
           </div>
         </div>
 
@@ -262,34 +268,26 @@
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">💼 Banco de Talentos.</div>
           <p>Verificar os inscritos no banco de talentos.</p>
-          <a href="https://lookerstudio.google.com/reporting/6b7f7cb7-76b7-4f3b-a46b-1438a5062dc5/page/SRpeD"
-             target="_blank"
-             class="relatorio-link">
-            Acessar relatórios →
-          </a>
+          <a href="https://lookerstudio.google.com/reporting/6b7f7cb7-76b7-4f3b-a46b-1438a5062dc5/page/SRpeD" target="_blank" class="relatorio-link">Acessar relatórios →</a>
         </div>
 
         <!-- Card 3: Painel de Vagas -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📋 Painel de Vagas.</div>
           <p>Visualize as vagas disponíveis e processos seletivos em andamento. O link para consulta encontra-se no Memorando SEI Nº 27723005/2025.</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSekxU2r3z0trIlpla41aO18rc4EpV6vxz6zMT7U6gIgBIfUqg/viewform?pli=1"
-             target="_blank"
-             class="relatorio-link">
-            Acessar vagas →
-          </a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSekxU2r3z0trIlpla41aO18rc4EpV6vxz6zMT7U6gIgBIfUqg/viewform?pli=1" target="_blank" class="relatorio-link">Acessar vagas →</a>
         </div>
       </div>
 
       <!-- TERCEIRA LINHA -->
       <div class="linha-tres-colunas">
-        <!-- Card 1: Agente administrativo - Daliria -->
+        <!-- Card 1: Agente administrativo -->
         <div class="quadro-item">
           <div class="titulo-texto">3. Agente administrativo.</div>
           <div class="info-servidor">
-            <p><strong>Nome:</strong> Daliria Setti,</p>
-            <p><strong>Ramal:</strong> 6664,</p>
-            <p><strong>E-mail:</strong> ses.uqd.ngt@joinville.sc.gov.br.</p>
+            <div class="linha"><span class="info-label">Nome:</span> <span class="info-value">Daliria Setti,</span></div>
+            <div class="linha"><span class="info-label">Ramal:</span> <span class="info-value">6664,</span></div>
+            <div class="linha"><span class="info-label">E-mail:</span> <span class="info-value">ses.uqd.ngt@joinville.sc.gov.br.</span></div>
           </div>
         </div>
 
@@ -297,38 +295,30 @@
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📊 Banco de dados de solicitação de pontos.</div>
           <p>Visualize os indicadores para solicitação de ajuste em pontos.</p>
-          <a href="https://lookerstudio.google.com/u/0/reporting/8b375f4f-bbe8-4610-9f59-8faaf71cdb51/page/SRpeD"
-             target="_blank"
-             class="relatorio-link">
-            Acessar Relatório →
-          </a>
+          <a href="https://lookerstudio.google.com/u/0/reporting/8b375f4f-bbe8-4610-9f59-8faaf71cdb51/page/SRpeD" target="_blank" class="relatorio-link">Acessar Relatório →</a>
         </div>
 
         <!-- Card 3: Solicitação de pontos -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Solicitação de pontos.</div>
           <p>Link para pedido de solicitação de pontos. Visualize os indicadores de solicitação de ajuste de pontos.</p>
-          <a href="#"
-             onclick="return emDesenvolvimento(event)"
-             class="relatorio-link em-desenvolvimento">
-            Em desenvolvimento 🚧
-          </a>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
       </div>
 
       <!-- QUARTA LINHA -->
       <div class="linha-tres-colunas">
-        <!-- Card 1: Estagiário de nível Superior - Leticia -->
+        <!-- Card 1: Estagiário de nível Superior -->
         <div class="quadro-item">
           <div class="titulo-texto">4. Estagiário de nível Superior.</div>
           <div class="info-servidor">
-            <p><strong>Nome:</strong> Leticia Caroline Briesemeister,</p>
-            <p><strong>Ramal:</strong> 6664,</p>
-            <p><strong>E-mail:</strong> ses.uqd.ngt@joinville.sc.gov.br.</p>
+            <div class="linha"><span class="info-label">Nome:</span> <span class="info-value">Leticia Caroline Briesemeister,</span></div>
+            <div class="linha"><span class="info-label">Ramal:</span> <span class="info-value">6664,</span></div>
+            <div class="linha"><span class="info-label">E-mail:</span> <span class="info-value">ses.uqd.ngt@joinville.sc.gov.br.</span></div>
           </div>
         </div>
 
-        <!-- Espaço vazio para manter grid alinhado -->
+        <!-- Espaços vazios para manter grid alinhado -->
         <div></div>
         <div></div>
       </div>
