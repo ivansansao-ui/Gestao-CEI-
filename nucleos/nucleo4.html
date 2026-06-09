@@ -124,6 +124,17 @@
       transform: translateY(-2px);
     }
 
+    /* Estilo para link em desenvolvimento */
+    .relatorio-link.em-desenvolvimento {
+      background-color: #adb5bd;
+      cursor: not-allowed;
+    }
+
+    .relatorio-link.em-desenvolvimento:hover {
+      background-color: #adb5bd;
+      transform: none;
+    }
+
     footer {
       text-align: center;
       padding: 15px;
@@ -148,6 +159,12 @@
       } else {
         window.location.href = "../index.html";
       }
+    }
+
+    function emDesenvolvimento(event) {
+      if (event) event.preventDefault();
+      alert('🚧 Em desenvolvimento. Esta funcionalidade estará disponível em breve.');
+      return false;
     }
   </script>
 </head>
@@ -176,24 +193,16 @@
 
         <div class="quadro-link">
           <div class="quadro-titulo">📊 Relatório.</div>
-          <a href="https://lookerstudio.google.com/reporting/b2dc11e3-4d1b-4910-a54c-7579857bc2dd/page/WSVmF"
-             target="_blank"
-             class="relatorio-link">
-            Acessar
-          </a>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
         <div class="quadro-link">
           <div class="quadro-titulo">📊 Relatório.</div>
-          <a href="https://lookerstudio.google.com/reporting/b2dc11e3-4d1b-4910-a54c-7579857bc2dd/page/WSVmF"
-             target="_blank"
-             class="relatorio-link">
-            Acessar
-          </a>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
       </div>
 
-      <!-- 🔹 LINHA 2 - Técnico em Enfermagem com dois relatórios ao lado. -->
+      <!-- 🔹 LINHA 2 - Técnico em Enfermagem com dois relatórios ao lado -->
       <div class="linha-tres-quadros">
         <div class="quadro-cargo">
           <div class="quadro-titulo">2. Técnico em Enfermagem.</div>
@@ -206,20 +215,12 @@
 
         <div class="quadro-link">
           <div class="quadro-titulo">📊 Relatório.</div>
-          <a href="https://lookerstudio.google.com/reporting/b2dc11e3-4d1b-4910-a54c-7579857bc2dd/page/WSVmF"
-             target="_blank"
-             class="relatorio-link">
-            Acessar
-          </a>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
         <div class="quadro-link">
           <div class="quadro-titulo">📊 Relatório.</div>
-          <a href="https://lookerstudio.google.com/reporting/b2dc11e3-4d1b-4910-a54c-7579857bc2dd/page/WSVmF"
-             target="_blank"
-             class="relatorio-link">
-            Acessar
-          </a>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
       </div>
 
@@ -234,7 +235,14 @@
           </ul>
         </div>
 
-          </a>
+        <div class="quadro-link">
+          <div class="quadro-titulo">📊 Relatório.</div>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+        </div>
+
+        <div class="quadro-link">
+          <div class="quadro-titulo">📊 Relatório.</div>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
       </div>
 
