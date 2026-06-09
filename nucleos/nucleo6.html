@@ -117,11 +117,24 @@
       transition: 0.3s;
       display: inline-block;
       margin-top: 10px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .relatorio-link:hover {
       background-color: #c82333;
       transform: translateY(-2px);
+    }
+
+    /* Estilo para link em desenvolvimento */
+    .relatorio-link.em-desenvolvimento {
+      background-color: #adb5bd;
+      cursor: not-allowed;
+    }
+
+    .relatorio-link.em-desenvolvimento:hover {
+      background-color: #adb5bd;
+      transform: none;
     }
 
     footer {
@@ -149,6 +162,12 @@
         window.location.href = "../index.html";
       }
     }
+
+    function emDesenvolvimento(event) {
+      if (event) event.preventDefault();
+      alert('🚧 Em desenvolvimento. Esta funcionalidade estará disponível em breve.');
+      return false;
+    }
   </script>
 </head>
 
@@ -165,41 +184,32 @@
 
       <!-- LINHA 1 -->
       <div class="linha">
+        <!-- Card 1: Técnico de nível superior -->
         <div class="quadro-cargo">
           <div class="quadro-titulo">1. Técnico de nível superior.</div>
           <ul class="quadro-detalhes">
             <li><strong>Nome:</strong> Lisandra de Almeida Nunes,</li>
+            <li><strong>Ramal:</strong> 6663,</li>
             <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br.</li>
           </ul>
         </div>
 
-       <!-- Card 2: Prêmio de Práticas inovadoras (ALTERADO - Em desenvolvimento) -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">Prêmio de Práticas inovadoras.</div>
-          <p>Acesse o relatórios de premio de Práticas inovadoras.</p>
-          <a href="javascript:void(0)"
-             onclick="emDesenvolvimento()"
-             target="_blank"
-             class="relatorio-link">
-            Acessar Relatório
-          </a>
+        <!-- Card 2: Relatório - Em desenvolvimento -->
+        <div class="quadro-link">
+          <div class="quadro-titulo">📊 Relatório.</div>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
-        <!-- Card 3: Relatório de evento científico (ALTERADO - Em desenvolvimento) -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">Relatório de evento científico.</div>
-          <p>Acesse o relatório de evento científico.</p>
-          <a href="javascript:void(0)"
-             onclick="emDesenvolvimento()"
-             target="_blank"
-             class="relatorio-link">
-            Acessar Relatório
-          </a>
+        <!-- Card 3: Relatório - Em desenvolvimento -->
+        <div class="quadro-link">
+          <div class="quadro-titulo">📊 Relatório.</div>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
       </div>
 
     </div>
   </main>
+
   <footer>
     Secretaria Municipal da Saúde – Joinville
   </footer>
