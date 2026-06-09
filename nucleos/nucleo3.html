@@ -118,6 +118,16 @@
       background-color: #0bacd0;
     }
 
+    /* Estilo para link em desenvolvimento */
+    .relatorio-link.em-desenvolvimento {
+      background-color: #adb5bd;
+      cursor: not-allowed;
+    }
+
+    .relatorio-link.em-desenvolvimento:hover {
+      background-color: #adb5bd;
+    }
+
     footer {
       text-align: center;
       padding: 15px;
@@ -150,8 +160,10 @@
       }
     }
 
-    function emDesenvolvimento() {
+    function emDesenvolvimento(event) {
+      if (event) event.preventDefault();
       alert('Em desenvolvimento.');
+      return false;
     }
   </script>
 </head>
@@ -169,7 +181,7 @@
 
       <!-- 🔹 LINHA 1 - 3 COLUNAS -->
       <div class="linha">
-        <!-- Card 1: Técnico de nível superior (original) -->
+        <!-- Card 1: Técnico de nível superior -->
         <div class="quadro-item">
           <div class="titulo-texto">1. Técnico de nível superior:</div>
           <ul class="quadro-detalhes">
@@ -179,7 +191,7 @@
           </ul>
         </div>
 
-        <!-- Card 2: Pedido de Liberação de ponto (mantido funcionando) -->
+        <!-- Card 2: Pedido de Liberação de ponto -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">Pedido de Liberação de ponto.</div>
           <p>Acesse o pedido de liberação do ponto para qualificação dos profissionais do CEIS.</p>
@@ -190,21 +202,17 @@
           </a>
         </div>
 
-        <!-- Card 3: Banco de dados de solicitação de Ponto (ALTERADO - Em desenvolvimento) -->
+        <!-- Card 3: Banco de dados de solicitação de Ponto -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">Banco de dados de solicitação de Ponto.</div>
           <p>Acesse a planilha de Banco de dados de solicitação de Ponto.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
       </div>
-            Acessar formulário
-          </a>
-        </div>
-      </div>
 
       <!-- 🔹 LINHA 2 - 3 COLUNAS -->
       <div class="linha">
-        <!-- Card 1: Agente Administrativo (original) -->
+        <!-- Card 1: Agente Administrativo -->
         <div class="quadro-item">
           <div class="titulo-texto">2. Agente Administrativo:</div>
           <ul class="quadro-detalhes">
@@ -214,14 +222,18 @@
           </ul>
         </div>
 
-        <!-- Card 2: Calendário da Saúde (mantido funcionando) -->
+        <!-- Card 2: Calendário da Saúde -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">Calendário da Saúde.</div>
           <p>Acesse o calendário completo com as datas e eventos da saúde.</p>
-          <a href="https://drive.google.com/file/d/1tY-vol-PZ11-kREl-XYsnY_xChwoHGoA/view?usp=drive_link" target="_blank" class="relatorio-link">Acessar Relatório.</a>
+          <a href="https://drive.google.com/file/d/1tY-vol-PZ11-kREl-XYsnY_xChwoHGoA/view?usp=drive_link" 
+             target="_blank" 
+             class="relatorio-link">
+            Acessar Relatório.
+          </a>
         </div>
 
-        <!-- Card 3: Relatório de Atividades na Saúde (mantido funcionando) -->
+        <!-- Card 3: Relatório de Atividades na Saúde -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">Relatório de Atividades na Saúde.</div>
           <p>Acesse o registro das atividades realizadas na saúde.</p>
@@ -235,7 +247,7 @@
 
       <!-- 🔹 LINHA 3 - 3 COLUNAS -->
       <div class="linha">
-        <!-- Card 1: Agente Administrativo (original) -->
+        <!-- Card 1: Agente Administrativo -->
         <div class="quadro-item">
           <div class="titulo-texto">3. Agente Administrativo:</div>
           <ul class="quadro-detalhes">
@@ -244,6 +256,25 @@
             <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br.</li>
           </ul>
         </div>
+
+        <!-- Card 2: Prêmio de Práticas inovadoras -->
+        <div class="quadro-item quadro-relatorio">
+          <div class="titulo-texto">Prêmio de Práticas inovadoras.</div>
+          <p>Acesse o relatórios de premio de Práticas inovadoras.</p>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+        </div>
+
+        <!-- Card 3: Relatório de evento científico -->
+        <div class="quadro-item quadro-relatorio">
+          <div class="titulo-texto">Relatório de evento científico.</div>
+          <p>Acesse o relatório de evento científico.</p>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
   <footer>
     Secretaria Municipal da Saúde – Joinville
   </footer>
