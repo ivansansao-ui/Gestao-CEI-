@@ -117,11 +117,24 @@
       transition: 0.3s;
       display: inline-block;
       margin-top: 10px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .relatorio-link:hover {
       background-color: #0bacd0;
       transform: translateY(-2px);
+    }
+
+    /* Estilo para link em desenvolvimento */
+    .relatorio-link.em-desenvolvimento {
+      background-color: #adb5bd;
+      cursor: not-allowed;
+    }
+
+    .relatorio-link.em-desenvolvimento:hover {
+      background-color: #adb5bd;
+      transform: none;
     }
 
     footer {
@@ -148,6 +161,12 @@
       } else {
         window.location.href = "../index.html";
       }
+    }
+
+    function emDesenvolvimento(event) {
+      if (event) event.preventDefault();
+      alert('🚧 Em desenvolvimento. Esta funcionalidade estará disponível em breve.');
+      return false;
     }
   </script>
 </head>
@@ -176,20 +195,12 @@
 
         <div class="quadro-link">
           <div class="quadro-titulo">📊 Relatório</div>
-          <a href="https://lookerstudio.google.com/reporting/b2dc11e3-4d1b-4910-a54c-7579857bc2dd/page/WSVmF"
-             target="_blank"
-             class="relatorio-link">
-            Acessar
-          </a>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
         <div class="quadro-link">
           <div class="quadro-titulo">📊 Relatório</div>
-          <a href="https://lookerstudio.google.com/reporting/b2dc11e3-4d1b-4910-a54c-7579857bc2dd/page/WSVmF"
-             target="_blank"
-             class="relatorio-link">
-            Acessar
-          </a>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
       </div>
 
@@ -200,26 +211,18 @@
           <ul class="quadro-detalhes">
             <li><strong>Nome:</strong> Catia Regina Hodecker,</li>
             <li><strong>Ramal:</strong> 6660,</li>
-            <li><strong>E-mail:</strong> cses.uqd.aps@joinville.sc.gov.br.</li>
+            <li><strong>E-mail:</strong> ses.uqd.aps@joinville.sc.gov.br.</li>
           </ul>
         </div>
 
         <div class="quadro-link">
           <div class="quadro-titulo">📊 Relatório</div>
-          <a href="https://lookerstudio.google.com/reporting/b2dc11e3-4d1b-4910-a54c-7579857bc2dd/page/WSVmF"
-             target="_blank"
-             class="relatorio-link">
-            Acessar
-          </a>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
         <div class="quadro-link">
           <div class="quadro-titulo">📊 Relatório</div>
-          <a href="https://lookerstudio.google.com/reporting/b2dc11e3-4d1b-4910-a54c-7579857bc2dd/page/WSVmF"
-             target="_blank"
-             class="relatorio-link">
-            Acessar
-          </a>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
       </div>
 
@@ -236,20 +239,12 @@
 
         <div class="quadro-link">
           <div class="quadro-titulo">📊 Relatório</div>
-          <a href="https://lookerstudio.google.com/reporting/b2dc11e3-4d1b-4910-a54c-7579857bc2dd/page/WSVmF"
-             target="_blank"
-             class="relatorio-link">
-            Acessar
-          </a>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
         <div class="quadro-link">
           <div class="quadro-titulo">📊 Relatório</div>
-          <a href="https://lookerstudio.google.com/reporting/b2dc11e3-4d1b-4910-a54c-7579857bc2dd/page/WSVmF"
-             target="_blank"
-             class="relatorio-link">
-            Acessar
-          </a>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
       </div>
 
@@ -264,8 +259,14 @@
           </ul>
         </div>
 
-        
-          </a>
+        <div class="quadro-link">
+          <div class="quadro-titulo">📊 Relatório</div>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+        </div>
+
+        <div class="quadro-link">
+          <div class="quadro-titulo">📊 Relatório</div>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
       </div>
 
