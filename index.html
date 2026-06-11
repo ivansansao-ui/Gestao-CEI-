@@ -167,10 +167,16 @@
             align-items: center;
         }
 
+        /* Container do logo e textos centralizados */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
             text-decoration: none;
             position: relative;
             z-index: 2;
@@ -187,23 +193,36 @@
             transform: scale(1.05) rotate(2deg);
         }
 
-        /* Logo duplicada no rodapé - tamanho original */
-        .footer-logo-duplicado {
+        /* Textos ao lado do logo - centralizados */
+        .textos-gestao {
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 20px;
-            margin-bottom: 30px;
+            text-align: center;
         }
-        .footer-logo-img {
-            height: 60px;
-            width: auto;
-            filter: brightness(0) invert(1);
-            transition: var(--transition);
+
+        .diretoria-text {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1rem;
+            line-height: 1.3;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            letter-spacing: 0.5px;
         }
-        .footer-logo-img:hover {
-            transform: scale(1.05);
-            filter: brightness(0) invert(1) drop-shadow(0 4px 15px rgba(230, 177, 46, 0.3));
+
+        /* Espaço de duas linhas */
+        .espaco-duas-linhas {
+            height: 12px;
+        }
+
+        .gerencia-text {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1rem;
+            line-height: 1.3;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            letter-spacing: 0.5px;
         }
 
         .nav-list {
@@ -902,6 +921,31 @@
             z-index: 2;
         }
 
+        /* Logo duplicada no rodapé */
+        .footer-logo-duplicado {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .footer-logo-img {
+            height: 60px;
+            width: auto;
+            filter: brightness(0) invert(1);
+            transition: var(--transition);
+        }
+        .footer-logo-img:hover {
+            transform: scale(1.05);
+            filter: brightness(0) invert(1) drop-shadow(0 4px 15px rgba(230, 177, 46, 0.3));
+        }
+        .footer-text {
+            opacity: 0.8;
+            line-height: 1.8;
+            font-size: 1rem;
+            max-width: 300px;
+        }
+
         [vw] {
             position: fixed;
             bottom: 30px;
@@ -977,11 +1021,20 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 40px;
             }
+            .diretoria-text, .gerencia-text {
+                font-size: 0.85rem;
+            }
         }
 
         @media (max-width: 768px) {
             .header-container {
                 padding: 0 20px;
+            }
+            .logo-container {
+                gap: 12px;
+            }
+            .diretoria-text, .gerencia-text {
+                display: none;
             }
             .mobile-menu-btn {
                 display: block;
@@ -1073,6 +1126,9 @@
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
+            .footer-text {
+                max-width: 100%;
+            }
             .back-to-top {
                 bottom: 80px;
                 right: 20px;
@@ -1140,9 +1196,16 @@
 
     <header class="header" id="header">
         <div class="header-container">
-            <a href="/" class="logo">
-                <img src="Logotipo_Prefeitura_horizontal_negativo (1).png" alt="Prefeitura de Joinville" class="logo-img" onerror="this.src='https://via.placeholder.com/150x50?text=Prefeitura'">
-            </a>
+            <div class="logo-container">
+                <a href="/" class="logo">
+                    <img src="Logotipo_Prefeitura_horizontal_negativo (1).png" alt="Prefeitura de Joinville" class="logo-img" onerror="this.src='https://via.placeholder.com/150x50?text=Prefeitura'">
+                </a>
+                <div class="textos-gestao">
+                    <span class="diretoria-text">Diretoria da Gestão Estratégica</span>
+                    <div class="espaco-duas-linhas"></div>
+                    <span class="gerencia-text">Gerência de Qualidade e Desenvolvimento Institucional</span>
+                </div>
+            </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
@@ -1305,7 +1368,6 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <!-- DUAS IMAGENS DO LOGO DA PREFEITURA - UMA EMBAIXO DA OUTRA -->
                     <div class="footer-logo-duplicado">
                         <img src="Logotipo_Prefeitura_horizontal_negativo (1).png" alt="Prefeitura de Joinville" class="footer-logo-img" onerror="this.src='https://via.placeholder.com/150x50?text=Prefeitura'">
                         <img src="Logotipo_Prefeitura_horizontal_negativo (1).png" alt="Prefeitura de Joinville" class="footer-logo-img" onerror="this.src='https://via.placeholder.com/150x50?text=Prefeitura'">
