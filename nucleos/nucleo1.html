@@ -20,14 +20,14 @@
       width: 100%;
       background: #198754;
       color: white;
-      padding: 12px 20px;
+      padding: 14px 20px;
       font-weight: bold;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      font-size: 1em;
+      font-size: 1.1em;
       box-sizing: border-box;
     }
 
@@ -35,12 +35,11 @@
       background: white;
       color: #198754;
       border: none;
-      padding: 6px 14px;
+      padding: 6px 18px;
       border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
-      font-size: 0.875em;
-      margin-right: 20px;
+      font-size: 0.85em;
     }
 
     .btn-voltar:hover {
@@ -48,123 +47,122 @@
     }
 
     main {
-      margin-top: 70px;
+      margin-top: 80px;
     }
 
     .layout-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      width: 90%;
+      width: 95%;
       max-width: 1400px;
       margin: 30px auto;
     }
 
-    /* TRÊS COLUNAS IGUAIS */
-    .linha-tres-colunas {
+    /* GRID CONTÍNUA */
+    .grid-cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 24px;
       align-items: stretch;
     }
 
-    /* Cards de contato (funcionários) */
+    /* CARD BASE */
     .quadro-item {
       background-color: #ffffff;
-      border-left: 4px solid #198754;
       border-radius: 8px;
-      padding: 16px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       display: flex;
       flex-direction: column;
+      box-sizing: border-box;
     }
 
-    /* Cards de relatório/painel (azuis) */
+    /* CARDS DE CONTATO (VERDE) */
+    .quadro-contato {
+      border-left: 5px solid #198754;
+    }
+
+    /* CARDS DE RELATÓRIO (AZUL) */
     .quadro-relatorio {
-      background-color: #e3f2fd;
-      border-left: 4px solid #0dcaf0;
+      background-color: #e8f4fd;
+      border-left: 5px solid #00c0ef;
     }
 
-    /* TÍTULO - MESMO NEGRITO DOS LABELS (600) */
+    /* TÍTULOS DOS CARDS */
     .titulo-texto {
-      color: #2c3e50;
-      font-size: 1.1em;
-      font-weight: 600; /* MESMO NEGRITO DE Nome:, Ramal:, E-mail: */
-      margin: 0 0 12px 0;
-      padding: 0;
-      display: block;
+      color: #1f2d3d;
+      font-size: 1.15em;
+      font-weight: bold;
+      margin: 0 0 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    /* TÍTULOS DOS CARDS AZUIS - MESMO NEGRITO */
     .quadro-relatorio .titulo-texto {
       color: #0b5e7e;
-      font-weight: 600; /* MESMO NEGRITO */
     }
 
     /* INFORMAÇÕES DO SERVIDOR */
     .info-servidor {
-      margin: 0;
-      padding: 0;
+      display: flex;
+      flex-direction: column;
     }
 
     .info-servidor .linha {
-      display: block;
-      margin: 0 0 12px 0;
-      padding: 0;
-      font-size: 1em;
-      line-height: 1.4;
+      display: flex;
+      justify-content: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px dashed #eaedf1;
+      font-size: 0.95em;
     }
 
-    /* PRIMEIRA LINHA APÓS O TÍTULO (NOME) - COM ESPAÇO EXTRA */
-    .info-servidor .linha:first-child {
-      margin-top: 12px;
-    }
-
-    /* ÚLTIMA LINHA (E-MAIL) SEM ESPAÇO EXTRA ABAIXO */
     .info-servidor .linha:last-child {
-      margin-bottom: 0;
+      border-bottom: none;
+      padding-bottom: 0;
     }
 
-    /* LABELS (Nome:, Ramal:, E-mail:) - NEGRITO 600 */
     .info-label {
-      color: #000000;
-      font-weight: 600; /* NEGRITO PADRÃO */
+      color: #333333;
+      font-weight: bold;
+      width: 70px;
+      flex-shrink: 0;
     }
 
-    /* VALORES (nomes, ramais, e-mails) - SEM NEGRITO */
     .info-value {
-      color: #000000;
+      color: #666666;
       font-weight: normal;
     }
 
-    /* PARA OS CARDS DE RELATÓRIO */
-    .quadro-relatorio p {
-      color: #0b5e7e;
-      margin: 0 0 12px 0;
-      line-height: 1.4;
-      font-size: 1em;
+    .vago {
+      color: #dc3545;
+      font-style: italic;
     }
 
+    /* CORPO DO TEXTO DOS CARDS AZUIS */
+    .quadro-relatorio p {
+      color: #556a7d;
+      margin: 0 0 24px 0;
+      line-height: 1.5;
+      font-size: 0.95em;
+      flex-grow: 1;
+    }
+
+    /* BOTÃO AZUL */
     .relatorio-link {
-      display: inline-block;
-      padding: 10px 16px;
+      display: block;
+      padding: 12px;
       color: white;
       text-decoration: none;
       border-radius: 6px;
-      font-weight: 600;
+      font-weight: bold;
       text-align: center;
-      margin-top: 12px;
-      background-color: #0dcaf0;
-      transition: background-color 0.3s ease;
-      border: none;
-      cursor: pointer;
-      width: 100%;
-      box-sizing: border-box;
+      background-color: #00c0ef;
+      transition: background-color 0.2s ease;
       font-size: 1em;
+      margin-top: auto;
     }
 
     .relatorio-link:hover {
-      background-color: #0bacd0;
+      background-color: #00a6d2;
     }
 
     .relatorio-link.em-desenvolvimento {
@@ -178,24 +176,23 @@
 
     footer {
       text-align: center;
-      padding: 15px;
+      padding: 20px;
       background: #198754;
       color: white;
-      margin-top: 40px;
-      font-size: 0.9rem;
+      margin-top: 60px;
+      font-size: 0.95rem;
     }
 
-    @media (max-width: 1024px) {
-      .linha-tres-colunas {
+    /* RESPONSIVIDADE */
+    @media (max-width: 1100px) {
+      .grid-cards {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
       }
     }
 
     @media (max-width: 768px) {
-      .linha-tres-colunas {
+      .grid-cards {
         grid-template-columns: 1fr;
-        gap: 20px;
       }
     }
   </style>
@@ -220,7 +217,6 @@
 
 <body>
 
-  <!-- MENU FIXO -->
   <div class="top-menu">
     <span>I - Núcleo de Gestão do Trabalho.</span>
     <button class="btn-voltar" onclick="voltarPaginaPrincipal()">Voltar</button>
@@ -228,130 +224,99 @@
 
   <main>
     <div class="layout-container">
+      <div class="grid-cards">
 
-      <!-- PRIMEIRA LINHA -->
-      <div class="linha-tres-colunas">
-        <!-- Card 1: Técnico de nível superior -->
-        <div class="quadro-item">
-          <div class="titulo-texto">1. Técnico de nível superior.</div>
+        <div class="quadro-item quadro-contato">
+          <div class="titulo-texto">👤 1. Técnico de nível superior</div>
           <div class="info-servidor">
-            <div class="linha"><span class="info-label">Nome:</span> <span class="info-value">Patricia Luzia Johann Teochi,</span></div>
-            <div class="linha"><span class="info-label">Ramal:</span> <span class="info-value">6664,</span></div>
-            <div class="linha"><span class="info-label">E-mail:</span> <span class="info-value">ses.uqd.ngt@joinville.sc.gov.br.</span></div>
+            <div class="linha"><span class="info-label">Nome:</span> <span class="info-value vago">Vago</span></div>
+            <div class="linha"><span class="info-label">Ramal:</span> <span class="info-value">6664</span></div>
+            <div class="linha"><span class="info-label">E-mail:</span> <span class="info-value">ses.uqd.ngt@joinville.sc.gov.br</span></div>
           </div>
         </div>
 
-        <!-- Card 2: Painel de Indicadores Pesquisa -->
         <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">📊 Painel de Indicadores Pesquisa.</div>
+          <div class="titulo-texto">📊 Painel de Indicadores Pesquisa</div>
           <p>Acesse o painel de indicadores de Pesquisa sobre atividades realizadas na APS para atividades de Educação da Agenda Única de 2025.</p>
-          <a href="https://lookerstudio.google.com/reporting/5ed3e56f-5277-466b-8ad2-f654b261b2da/page/jyNpF" target="_blank" class="relatorio-link">Acessar painel →</a>
+          <a href="https://lookerstudio.google.com/reporting/5ed3e56f-5277-466b-8ad2-f654b261b2da/page/jyNpF" target="_blank" class="relatorio-link">Acessar painel &nbsp;›</a>
         </div>
 
-        <!-- Card 3: Painel de Desempenho -->
         <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">📈 Painel de Desempenho.</div>
+          <div class="titulo-texto">📈 Painel de Desempenho</div>
           <p>Acesse o painel de indicadores de Pesquisa sobre atividades realizadas na APS para atividades de Educação da Agenda Única de 2026.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
-      </div>
 
-      <!-- SEGUNDA LINHA -->
-      <div class="linha-tres-colunas">
-        <!-- Card 1: Técnico de enfermagem -->
-        <div class="quadro-item">
-          <div class="titulo-texto">2. Técnico de enfermagem.</div>
+        <div class="quadro-item quadro-contato">
+          <div class="titulo-texto">👥 2. Técnico de enfermagem</div>
           <div class="info-servidor">
-            <div class="linha"><span class="info-label">Nome:</span> <span class="info-value">Juliana Marcelly Silveira,</span></div>
-            <div class="linha"><span class="info-label">Ramal:</span> <span class="info-value">6664,</span></div>
-            <div class="linha"><span class="info-label">E-mail:</span> <span class="info-value">ses.uqd.ngt@joinville.sc.gov.br.</span></div>
+            <div class="linha"><span class="info-label">Nome:</span> <span class="info-value">Juliana Marcelly Silveira</span></div>
+            <div class="linha"><span class="info-label">Ramal:</span> <span class="info-value">6664</span></div>
+            <div class="linha"><span class="info-label">E-mail:</span> <span class="info-value">ses.uqd.ngt@joinville.sc.gov.br</span></div>
           </div>
         </div>
 
-        <!-- Card 2: Banco de Talentos -->
         <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">💼 Banco de Talentos.</div>
+          <div class="titulo-texto">💼 Banco de Talentos</div>
           <p>Verificar os inscritos no banco de talentos.</p>
-          <a href="https://lookerstudio.google.com/reporting/6b7f7cb7-76b7-4f3b-a46b-1438a5062dc5/page/SRpeD" target="_blank" class="relatorio-link">Acessar relatórios →</a>
+          <a href="https://lookerstudio.google.com/reporting/6b7f7cb7-76b7-4f3b-a46b-1438a5062dc5/page/SRpeD" target="_blank" class="relatorio-link">Acessar relatórios &nbsp;›</a>
         </div>
 
-        <!-- Card 3: Painel de Vagas -->
         <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">📋 Painel de Vagas.</div>
+          <div class="titulo-texto">📋 Painel de Vagas</div>
           <p>Visualize as vagas disponíveis e processos seletivos em andamento. O link para consulta encontra-se no Memorando SEI Nº 27723005/2025.</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSekxU2r3z0trIlpla41aO18rc4EpV6vxz6zMT7U6gIgBIfUqg/viewform?pli=1" target="_blank" class="relatorio-link">Acessar vagas →</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSekxU2r3z0trIlpla41aO18rc4EpV6vxz6zMT7U6gIgBIfUqg/viewform?pli=1" target="_blank" class="relatorio-link">Acessar vagas &nbsp;›</a>
         </div>
-      </div>
 
-      <!-- TERCEIRA LINHA -->
-      <div class="linha-tres-colunas">
-        <!-- Card 1: Agente administrativo -->
-        <div class="quadro-item">
-          <div class="titulo-texto">3. Agente administrativo.</div>
+        <div class="quadro-item quadro-contato">
+          <div class="titulo-texto">📌 3. Agente administrativo</div>
           <div class="info-servidor">
-            <div class="linha"><span class="info-label">Nome:</span> <span class="info-value">Daliria Setti,</span></div>
-            <div class="linha"><span class="info-label">Ramal:</span> <span class="info-value">6664,</span></div>
-            <div class="linha"><span class="info-label">E-mail:</span> <span class="info-value">ses.uqd.ngt@joinville.sc.gov.br.</span></div>
+            <div class="linha"><span class="info-label">Nome:</span> <span class="info-value">Dalíria Setti</span></div>
+            <div class="linha"><span class="info-label">Ramal:</span> <span class="info-value">6664</span></div>
+            <div class="linha"><span class="info-label">E-mail:</span> <span class="info-value">ses.uqd.ngt@joinville.sc.gov.br</span></div>
           </div>
         </div>
 
-        <!-- Card 2: Banco de dados de solicitação de pontos -->
         <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">📊 Banco de dados de solicitação de pontos.</div>
+          <div class="titulo-texto">📊 Banco de dados de solicitação de pontos</div>
           <p>Visualize os indicadores para solicitação de ajuste em pontos.</p>
-          <a href="https://lookerstudio.google.com/u/0/reporting/8b375f4f-bbe8-4610-9f59-8faaf71cdb51/page/SRpeD" target="_blank" class="relatorio-link">Acessar Relatório →</a>
+          <a href="https://lookerstudio.google.com/u/0/reporting/8b375f4f-bbe8-4610-9f59-8faaf71cdb51/page/SRpeD" target="_blank" class="relatorio-link">Acessar Relatório &nbsp;›</a>
         </div>
 
-        <!-- Card 3: Solicitação de pontos -->
         <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">🎯 Solicitação de pontos.</div>
+          <div class="titulo-texto">🎯 Solicitação de pontos</div>
           <p>Link para pedido de solicitação de pontos. Visualize os indicadores de solicitação de ajuste de pontos.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
-      </div>
 
-      <!-- QUARTA LINHA -->
-      <div class="linha-tres-colunas">
-        <!-- Card 1: Estagiário de nível Superior -->
-        <div class="quadro-item">
-          <div class="titulo-texto">4. Estagiário de nível Superior.</div>
+        <div class="quadro-item quadro-contato">
+          <div class="titulo-texto">🎓 4. Estagiário de nível Superior</div>
           <div class="info-servidor">
-            <div class="linha"><span class="info-label">Nome:</span> <span class="info-value">Leticia Caroline Briesemeister,</span></div>
-            <div class="linha"><span class="info-label">Ramal:</span> <span class="info-value">6664,</span></div>
-            <div class="linha"><span class="info-label">E-mail:</span> <span class="info-value">ses.uqd.ngt@joinville.sc.gov.br.</span></div>
+            <div class="linha"><span class="info-label">Nome:</span> <span class="info-value">Leticia Caroline Briesemeister</span></div>
+            <div class="linha"><span class="info-label">Ramal:</span> <span class="info-value">6664</span></div>
+            <div class="linha"><span class="info-label">E-mail:</span> <span class="info-value">ses.uqd.ngt@joinville.sc.gov.br</span></div>
           </div>
         </div>
         
-        <!-- Card 4: Programa de Reabilitação Profissional -->
         <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">🎯 Programa de Reabilitação Profissional.</div>
+          <div class="titulo-texto">🎯 Programa de Reabilitação Profissional</div>
           <p>Iniciativa dedicada à reintegração de trabalhadores ao ambiente profissional, por meio de orientação, readaptação e desenvolvimento de novas competências.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
-      </div>
 
-       <!-- Card 5: Prêmio de Práticas Inovadoras da Saúde de Joinville -->
         <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">🎯 Prêmio de Práticas Inovadoras da Saúde de Joinville.</div>
+          <div class="titulo-texto">🎯 Prêmio de Práticas Inovadoras da Saúde</div>
           <p>Transformando boas ideias em saúde de excelência: a premiação dos projetos locais que fazem a diferença no cuidado com a nossa gente.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
-      </div>
 
-    <!-- Card 6: Evento Científico da Saúde de Joinville -->
         <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">🎯 Evento Científico da Saúde de Joinville.</div>
+          <div class="titulo-texto">🎯 Evento Científico da Saúde de Joinville</div>
           <p>Conectando ciência, inovação e prática profissional para transformar a saúde de Joinville.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
-      </div>
 
-    
-        <!-- Espaços vazios para manter grid alinhado -->
-        <div></div>
-        <div></div>
-      </div>
-
+        </div>
     </div>
   </main>
 
