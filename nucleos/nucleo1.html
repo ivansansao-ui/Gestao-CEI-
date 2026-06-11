@@ -56,7 +56,7 @@
       margin: 30px auto;
     }
 
-    /* GRID CONTÍNUA */
+    /* GRID CONTÍNUA - CORRIGE O ALINHAMENTO DE TODOS OS CARDS */
     .grid-cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -101,7 +101,7 @@
       color: #0b5e7e;
     }
 
-    /* INFORMAÇÕES DO SERVIDOR */
+    /* INFORMAÇÕES DO SERVIDOR (COM LINHAS DIVISÓRIAS IGUAIS À IMAGEM) */
     .info-servidor {
       display: flex;
       flex-direction: column;
@@ -132,6 +132,7 @@
       font-weight: normal;
     }
 
+    /* TEXTO DE DESTAQUE PARA CAMPOS VAGOS */
     .vago {
       color: #dc3545;
       font-style: italic;
@@ -143,10 +144,10 @@
       margin: 0 0 24px 0;
       line-height: 1.5;
       font-size: 0.95em;
-      flex-grow: 1;
+      flex-grow: 1; /* Garante que o botão vá para o rodapé do card */
     }
 
-    /* BOTÃO AZUL */
+    /* BOTÃO AZUL IGUAL DA IMAGEM */
     .relatorio-link {
       display: block;
       padding: 12px;
@@ -217,6 +218,7 @@
 
 <body>
 
+  <!-- MENU FIXO -->
   <div class="top-menu">
     <span>I - Núcleo de Gestão do Trabalho.</span>
     <button class="btn-voltar" onclick="voltarPaginaPrincipal()">Voltar</button>
@@ -226,6 +228,7 @@
     <div class="layout-container">
       <div class="grid-cards">
 
+        <!-- Card 1: Técnico de nível superior -->
         <div class="quadro-item quadro-contato">
           <div class="titulo-texto">👤 1. Técnico de nível superior</div>
           <div class="info-servidor">
@@ -235,18 +238,21 @@
           </div>
         </div>
 
+        <!-- Card 2: Painel de Indicadores Pesquisa -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📊 Painel de Indicadores Pesquisa</div>
           <p>Acesse o painel de indicadores de Pesquisa sobre atividades realizadas na APS para atividades de Educação da Agenda Única de 2025.</p>
           <a href="https://lookerstudio.google.com/reporting/5ed3e56f-5277-466b-8ad2-f654b261b2da/page/jyNpF" target="_blank" class="relatorio-link">Acessar painel &nbsp;›</a>
         </div>
 
+        <!-- Card 3: Painel de Desempenho -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📈 Painel de Desempenho</div>
           <p>Acesse o painel de indicadores de Pesquisa sobre atividades realizadas na APS para atividades de Educação da Agenda Única de 2026.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
+        <!-- Card 4: Técnico de enfermagem -->
         <div class="quadro-item quadro-contato">
           <div class="titulo-texto">👥 2. Técnico de enfermagem</div>
           <div class="info-servidor">
@@ -256,18 +262,21 @@
           </div>
         </div>
 
+        <!-- Card 5: Banco de Talentos -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">💼 Banco de Talentos</div>
           <p>Verificar os inscritos no banco de talentos.</p>
           <a href="https://lookerstudio.google.com/reporting/6b7f7cb7-76b7-4f3b-a46b-1438a5062dc5/page/SRpeD" target="_blank" class="relatorio-link">Acessar relatórios &nbsp;›</a>
         </div>
 
+        <!-- Card 6: Painel de Vagas -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📋 Painel de Vagas</div>
           <p>Visualize as vagas disponíveis e processos seletivos em andamento. O link para consulta encontra-se no Memorando SEI Nº 27723005/2025.</p>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSekxU2r3z0trIlpla41aO18rc4EpV6vxz6zMT7U6gIgBIfUqg/viewform?pli=1" target="_blank" class="relatorio-link">Acessar vagas &nbsp;›</a>
         </div>
 
+        <!-- Card 7: Agente administrativo -->
         <div class="quadro-item quadro-contato">
           <div class="titulo-texto">📌 3. Agente administrativo</div>
           <div class="info-servidor">
@@ -277,18 +286,21 @@
           </div>
         </div>
 
+        <!-- Card 8: Banco de dados de solicitação de pontos -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📊 Banco de dados de solicitação de pontos</div>
           <p>Visualize os indicadores para solicitação de ajuste em pontos.</p>
           <a href="https://lookerstudio.google.com/u/0/reporting/8b375f4f-bbe8-4610-9f59-8faaf71cdb51/page/SRpeD" target="_blank" class="relatorio-link">Acessar Relatório &nbsp;›</a>
         </div>
 
+        <!-- Card 9: Solicitação de pontos -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Solicitação de pontos</div>
           <p>Link para pedido de solicitação de pontos. Visualize os indicadores de solicitação de ajuste de pontos.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
+        <!-- Card 10: Estagiário de nível Superior -->
         <div class="quadro-item quadro-contato">
           <div class="titulo-texto">🎓 4. Estagiário de nível Superior</div>
           <div class="info-servidor">
@@ -298,25 +310,28 @@
           </div>
         </div>
         
+        <!-- Card 11: Programa de Reabilitação Profissional -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Programa de Reabilitação Profissional</div>
           <p>Iniciativa dedicada à reintegração de trabalhadores ao ambiente profissional, por meio de orientação, readaptação e desenvolvimento de novas competências.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
+        <!-- Card 12: Prêmio de Práticas Inovadoras -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Prêmio de Práticas Inovadoras da Saúde</div>
           <p>Transformando boas ideias em saúde de excelência: a premiação dos projetos locais que fazem a diferença no cuidado com a nossa gente.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
+        <!-- Card 13: Evento Científico -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Evento Científico da Saúde de Joinville</div>
           <p>Conectando ciência, inovação e prática profissional para transformar a saúde de Joinville.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
-        </div>
+      </div>
     </div>
   </main>
 
