@@ -52,18 +52,28 @@
         }
 
         body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    color: var(--white); /* <--- MUDOU AQUI PARA BRANCO */
-    line-height: 1.6;
-    overflow-x: hidden;
-    background-color: var(--primary); /* <--- DICA IMPORTANTE ABAIXO */
-}
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: var(--primary);
         }
 
+        /* ALTERAÇÃO PRINCIPAL: Redução da largura máxima da página */
         .container {
-            max-width: 1280px;
+            max-width: 1100px;  /* Reduzido de 1280px para 1100px */
             margin: 0 auto;
             padding: 0 32px;
+        }
+
+        /* Ajuste para o header também */
+        .header-container {
+            max-width: 1180px;  /* Reduzido proporcionalmente */
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .section {
@@ -157,15 +167,6 @@
             backdrop-filter: blur(12px);
             padding: 16px 0;
             box-shadow: var(--shadow-lg);
-        }
-
-        .header-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .logo {
@@ -944,6 +945,7 @@
             box-shadow: var(--shadow-2xl);
         }
 
+        /* Ajustes responsivos mantendo o layout */
         @media (max-width: 1200px) {
             .hero-title {
                 font-size: 4rem;
@@ -1132,7 +1134,6 @@
             top: 0;
         }
 
-        /* NOVA CLASSE ADICIONADA AQUI */
         .texto-branco-destaque {
             color: var(--white) !important;
         }
@@ -1312,7 +1313,6 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <!-- DUAS IMAGENS DO LOGO DA PREFEITURA - UMA EMBAIXO DA OUTRA -->
                     <div class="footer-logo-duplicado">
                         <img src="Logotipo_Prefeitura_Saude_horizontal_negativo.png" alt="Prefeitura de Joinville" class="footer-logo-img" onerror="this.src='https://via.placeholder.com/150x50?text=Prefeitura'">
                         </div>
