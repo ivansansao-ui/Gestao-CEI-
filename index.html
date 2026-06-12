@@ -582,16 +582,16 @@
         }
 
         .feature-icon {
-            width: 110px;
-            height: 110px;
+            width: 90px;
+            height: 90px;
             background: linear-gradient(145deg, var(--primary), var(--primary-dark));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 32px;
+            margin: 0 auto 28px;
             color: var(--white);
-            font-size: 3rem;
+            font-size: 2.5rem;
             transition: var(--transition);
             box-shadow: var(--shadow-xl);
             position: relative;
@@ -600,7 +600,7 @@
         .feature-icon::before {
             content: '';
             position: absolute;
-            inset: -5px;
+            inset: -4px;
             border-radius: 50%;
             background: linear-gradient(145deg, var(--secondary), transparent);
             opacity: 0;
@@ -608,25 +608,26 @@
         }
 
         .feature-card:hover .feature-icon {
-            transform: scale(1.1) rotate(360deg);
+            transform: scale(1.05) rotate(5deg);
             background: var(--secondary);
         }
 
         .feature-card:hover .feature-icon::before {
-            opacity: 0.5;
+            opacity: 0.4;
         }
 
         .feature-card h3 {
             color: var(--primary);
-            margin-bottom: 16px;
-            font-size: 1.5rem;
+            margin-bottom: 14px;
+            font-size: 1.35rem;
             font-weight: 700;
+            line-height: 1.3;
         }
 
         .feature-card p {
             color: var(--text-light);
-            font-size: 1rem;
-            line-height: 1.7;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .nucleos-grid {
@@ -1248,36 +1249,49 @@
                     <p class="section-description">Conheça as principais áreas de atuação do nosso centro.</p>
                 </div>
                 <div class="features-grid">
+                    <!-- Card 1: Gestão do Trabalho -->
                     <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
                         <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
                         <h3>Gestão do Trabalho</h3>
                         <p>Valorização e desenvolvimento dos profissionais de saúde.</p>
                     </div>
+                    
+                    <!-- Card 2: Núcleo de Formação em Saúde, Cenários de Prática e COAPES -->
                     <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
                         <div class="feature-icon"><i class="fas fa-handshake"></i></div>
                         <h3>Núcleo de Formação em Saúde, Cenários de Prática e COAPES</h3>
                         <p>Integração ensino-serviço por meio do COAPES e cenários reais de prática.</p>
                     </div>
+                    
+                    <!-- Card 3: Núcleo das Residências em Saúde -->
                     <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
                         <div class="feature-icon"><i class="fas fa-user-md"></i></div>
                         <h3>Núcleo das Residências em Saúde</h3>
                         <p>Qualificação profissional através das residências em saúde.</p>
                     </div>
+                    
+                    <!-- Card 4: Educação Permanente -->
                     <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
                         <div class="feature-icon"><i class="fas fa-book-open"></i></div>
                         <h3>Educação Permanente</h3>
                         <p>Formação contínua e qualificação profissional.</p>
                     </div>
+                    
+                    <!-- Card 5: Programa de Universidade gratuita -->
                     <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
                         <div class="feature-icon"><i class="fas fa-university"></i></div>
                         <h3>Programa de Universidade gratuita</h3>
                         <p>Formação universitária gratuita para trabalhadores da saúde.</p>
                     </div>
+                    
+                    <!-- Card 6: Pesquisa e Inovação -->
                     <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
                         <div class="feature-icon"><i class="fas fa-microscope"></i></div>
                         <h3>Pesquisa e Inovação</h3>
                         <p>Desenvolvimento de novas práticas em saúde.</p>
                     </div>
+                    
+                    <!-- Card 7: UNISERVIR -->
                     <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
                         <div class="feature-icon"><i class="fas fa-heartbeat"></i></div>
                         <h3>UNISERVIR</h3>
@@ -1295,7 +1309,6 @@
                     <p class="section-description">Conheça cada um dos núcleos que compõem o Centro de Educação e Inovação em Saúde.</p>
                 </div>
                 <div class="nucleos-grid">
-                    <!-- Núcleo I -->
                     <a href="nucleos/nucleo1.html" class="nucleo-card" data-aos="flip-left" data-aos-delay="100">
                         <div class="nucleo-number">I</div>
                         <div class="nucleo-content">
@@ -1305,7 +1318,6 @@
                         </div>
                     </a>
                     
-                    <!-- Núcleo II -->
                     <a href="nucleos/nucleo2.html" class="nucleo-card" data-aos="flip-left" data-aos-delay="200">
                         <div class="nucleo-number">II</div>
                         <div class="nucleo-content">
@@ -1315,7 +1327,6 @@
                         </div>
                     </a>
                     
-                    <!-- Núcleo III -->
                     <a href="nucleos/nucleo3.html" class="nucleo-card" data-aos="flip-left" data-aos-delay="300">
                         <div class="nucleo-number">III</div>
                         <div class="nucleo-content">
@@ -1325,7 +1336,6 @@
                         </div>
                     </a>
                     
-                    <!-- Núcleo IV -->
                     <a href="nucleos/nucleo4.html" class="nucleo-card" data-aos="flip-left" data-aos-delay="400">
                         <div class="nucleo-number">IV</div>
                         <div class="nucleo-content">
@@ -1335,7 +1345,6 @@
                         </div>
                     </a>
                     
-                    <!-- Núcleo V -->
                     <a href="nucleos/nucleo5.html" class="nucleo-card" data-aos="flip-left" data-aos-delay="500">
                         <div class="nucleo-number">V</div>
                         <div class="nucleo-content">
@@ -1345,7 +1354,6 @@
                         </div>
                     </a>
                     
-                    <!-- Núcleo VI -->
                     <a href="nucleos/nucleo6.html" class="nucleo-card" data-aos="flip-left" data-aos-delay="600">
                         <div class="nucleo-number">VI</div>
                         <div class="nucleo-content">
@@ -1355,7 +1363,6 @@
                         </div>
                     </a>
                     
-                    <!-- Núcleo VII -->
                     <a href="nucleos/nucleo7.html" class="nucleo-card" data-aos="flip-left" data-aos-delay="700">
                         <div class="nucleo-number">VII</div>
                         <div class="nucleo-content">
@@ -1365,7 +1372,6 @@
                         </div>
                     </a>
                     
-                    <!-- Núcleo VIII -->
                     <a href="nucleos/nucleo12.html" class="nucleo-card" data-aos="flip-left" data-aos-delay="800">
                         <div class="nucleo-number">VIII</div>
                         <div class="nucleo-content">
