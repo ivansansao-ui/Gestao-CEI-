@@ -7,7 +7,7 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Plus Jakarta Sans', Arial, Helvetica, sans-serif;
       background-color: #f4f6f8;
       font-size: 16px;
     }
@@ -86,15 +86,16 @@
       border-left: 5px solid #00c0ef;
     }
 
-    /* TÍTULOS DOS CARDS */
+    /* TÍTULOS DOS CARDS - TAMANHO 16px */
     .titulo-texto {
       color: #1f2d3d;
-      font-size: 1.15em;
-      font-weight: bold;
+      font-size: 16px;
+      font-weight: 700;
       margin: 0 0 20px 0;
       display: flex;
       align-items: center;
       gap: 8px;
+      line-height: 1.4;
     }
 
     .quadro-relatorio .titulo-texto {
@@ -112,7 +113,8 @@
       justify-content: flex-start;
       padding: 12px 0;
       border-bottom: 1px dashed #eaedf1;
-      font-size: 0.95em;
+      font-size: 16px;
+      line-height: 1.5;
     }
 
     .info-servidor .linha:last-child {
@@ -122,14 +124,16 @@
 
     .info-label {
       color: #333333;
-      font-weight: bold;
+      font-weight: 600;
       width: 70px;
       flex-shrink: 0;
+      font-size: 16px;
     }
 
     .info-value {
       color: #666666;
-      font-weight: normal;
+      font-weight: 400;
+      font-size: 16px;
     }
 
     /* TEXTO DE DESTAQUE PARA CAMPOS VAGOS */
@@ -138,27 +142,28 @@
       font-style: italic;
     }
 
-    /* CORPO DO TEXTO DOS CARDS AZUIS */
+    /* CORPO DO TEXTO DOS CARDS AZUIS - TAMANHO 16px */
     .quadro-relatorio p {
       color: #556a7d;
       margin: 0 0 24px 0;
       line-height: 1.5;
-      font-size: 0.95em;
-      flex-grow: 1; /* Garante que o botão vá para o rodapé do card */
+      font-size: 16px;
+      font-weight: 400;
+      flex-grow: 1;
     }
 
-    /* BOTÃO AZUL IGUAL DA IMAGEM */
+    /* BOTÃO AZUL IGUAL DA IMAGEM - TAMANHO 16px */
     .relatorio-link {
       display: block;
       padding: 12px;
       color: white;
       text-decoration: none;
       border-radius: 6px;
-      font-weight: bold;
+      font-weight: 600;
       text-align: center;
       background-color: #00c0ef;
       transition: background-color 0.2s ease;
-      font-size: 1em;
+      font-size: 16px;
       margin-top: auto;
     }
 
@@ -181,7 +186,8 @@
       background: #198754;
       color: white;
       margin-top: 60px;
-      font-size: 0.95rem;
+      font-size: 16px;
+      font-weight: 400;
     }
 
     /* RESPONSIVIDADE */
