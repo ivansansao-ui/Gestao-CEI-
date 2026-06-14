@@ -158,6 +158,18 @@
       flex-grow: 1;
     }
 
+    /* ESTILO PARA O LINK DENTRO DO PARÁGRAFO */
+    .link-memorando {
+      color: #0b5e7e;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .link-memorando:hover {
+      color: #00c0ef;
+    }
+
     /* BOTÃO EXATAMENTE IGUAL À IMAGEM 2 - SEM O SÍMBOLO > */
     .relatorio-link {
       display: inline-block;
@@ -228,6 +240,10 @@
       event.preventDefault();
       alert("🚧 Em desenvolvimento. Esta funcionalidade estará disponível em breve.");
       return false;
+    }
+
+    function abrirMemorando() {
+      window.open("https://mail.google.com/mail/u/0/#inbox/QgrcJHrtsvqcLSHXzrpLPqvznxpCvjFTDTL?projector=1&messagePartId=0.1", "_blank");
     }
   </script>
 </head>
@@ -329,7 +345,7 @@
         <!-- Card 11: Programa de Reabilitação Profissional -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Programa de Reabilitação Profissional</div>
-          <p>Iniciativa dedicada à reintegração de trabalhadores ao ambiente profissional, por meio de orientação, readaptação e desenvolvimento de novas competências.</p>
+          <p>Iniciativa dedicada à reintegração de trabalhadores ao ambiente profissional, por meio de orientação, readaptação e desenvolvimento de novas competências. O link para consulta encontra-se no <span class="link-memorando" onclick="abrirMemorando()">Memorando SEI Nº 25.0.286120-3</span>.</p>
           <a href="https://datastudio.google.com/u/0/reporting/b1a3aa10-852f-4d21-9457-cb5d4d7d1459/page/p_7ur17crl4d" target="_blank" class="relatorio-link">Acessar Relatório</a>
         </div>
 
