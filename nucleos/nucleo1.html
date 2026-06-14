@@ -158,7 +158,7 @@
       flex-grow: 1;
     }
 
-    /* ESTILO PARA O LINK DENTRO DO PARÁGRAFO */
+    /* ESTILO PARA O LINK DENTRO DO PARÁGRAFO - SOMENTE A PALAVRA "link" É CLICÁVEL */
     .link-memorando {
       color: #0b5e7e;
       text-decoration: underline;
@@ -167,6 +167,18 @@
     }
 
     .link-memorando:hover {
+      color: #00c0ef;
+    }
+
+    /* ESTILO PARA O LINK DO CARD 6 */
+    .link-sei {
+      color: #0b5e7e;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .link-sei:hover {
       color: #00c0ef;
     }
 
@@ -242,8 +254,12 @@
       return false;
     }
 
-    function abrirMemorando() {
+    function abrirMemorandoPrograma() {
       window.open("https://sei.joinville.sc.gov.br/sei/controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=10000030042710&id_documento=10000031928281&infra_sistema=100000100&infra_unidade_atual=110002534&infra_hash=7b57fcd503ab0dc567d8eb0f3db15504abbbe1a777b951a8fbbdfd30ce206ac4", "_blank");
+    }
+
+    function abrirMemorandoVagas() {
+      window.open("https://sei.joinville.sc.gov.br/sei/controlador.php?acao=arvore_visualizar&acao_origem=procedimento_visualizar&id_procedimento=10000026769599&id_documento=10000030185702&infra_sistema=100000100&infra_unidade_atual=110002534&infra_hash=87c46b382d55a9d0a2f9b3352ca03573b67ac15b3a6a31ebef802910023b4abe", "_blank");
     }
   </script>
 </head>
@@ -304,7 +320,7 @@
         <!-- Card 6: Painel de Vagas -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📋 Painel de Vagas</div>
-          <p>Visualize as vagas disponíveis e processos seletivos em andamento. O link para consulta encontra-se no Memorando SEI Nº 27723005/2025.</p>
+          <p>Visualize as vagas disponíveis e processos seletivos em andamento. O <span class="link-sei" onclick="abrirMemorandoVagas()">link</span> para consulta encontra-se no Memorando SEI Nº 27723005/2025.</p>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSekxU2r3z0trIlpla41aO18rc4EpV6vxz6zMT7U6gIgBIfUqg/viewform?pli=1" target="_blank" class="relatorio-link">Acessar Relatório</a>
         </div>
 
@@ -345,7 +361,7 @@
         <!-- Card 11: Programa de Reabilitação Profissional -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Programa de Reabilitação Profissional</div>
-          <p>Iniciativa dedicada à reintegração de trabalhadores ao ambiente profissional, por meio de orientação, readaptação e desenvolvimento de novas competências. O link para consulta encontra-se no <span class="link-memorando" onclick="abrirMemorando()">Memorando SEI Nº 25.0.286120-3</span>.</p>
+          <p>Iniciativa dedicada à reintegração de trabalhadores ao ambiente profissional, por meio de orientação, readaptação e desenvolvimento de novas competências. O <span class="link-memorando" onclick="abrirMemorandoPrograma()">link</span> para consulta encontra-se no Memorando SEI Nº 25.0.286120-3.</p>
           <a href="https://datastudio.google.com/u/0/reporting/b1a3aa10-852f-4d21-9457-cb5d4d7d1459/page/p_7ur17crl4d" target="_blank" class="relatorio-link">Acessar Relatório</a>
         </div>
 
