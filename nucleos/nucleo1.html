@@ -224,22 +224,22 @@
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.75);
       backdrop-filter: blur(4px);
     }
 
     .modal-conteudo {
       background-color: #fff;
-      margin: 3% auto;
+      margin: 2% auto;
       padding: 0;
-      width: 90%;
-      max-width: 1100px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      width: 92%;
+      max-width: 1200px;
+      border-radius: 16px;
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.4);
       animation: fadeInUp 0.3s ease;
       display: flex;
       flex-direction: column;
-      height: 85vh;
+      height: 88vh;
     }
 
     @keyframes fadeInUp {
@@ -257,16 +257,19 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 20px;
+      padding: 14px 22px;
       background: #198754;
       color: white;
-      border-radius: 12px 12px 0 0;
+      border-radius: 16px 16px 0 0;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
     }
 
     .modal-header span {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .fechar-modal {
@@ -288,8 +291,7 @@
     .iframe-container {
       flex: 1;
       width: 100%;
-      background: #f0f2f5;
-      border-radius: 0 0 12px 12px;
+      background: #eef2f5;
       overflow: hidden;
     }
 
@@ -303,15 +305,15 @@
       display: flex;
       justify-content: flex-end;
       gap: 16px;
-      padding: 16px 20px;
-      background: #f8f9fa;
-      border-top: 1px solid #e9ecef;
-      border-radius: 0 0 12px 12px;
+      padding: 14px 22px;
+      background: #f8f9fc;
+      border-top: 1px solid #e2e6ea;
+      border-radius: 0 0 16px 16px;
     }
 
     .btn-modal {
       padding: 8px 24px;
-      border-radius: 6px;
+      border-radius: 40px;
       font-weight: 600;
       cursor: pointer;
       font-size: 14px;
@@ -327,6 +329,7 @@
 
     .btn-continuar:hover {
       background-color: #146c43;
+      transform: scale(1.02);
     }
 
     .btn-cancelar {
@@ -362,14 +365,18 @@
       .modal-conteudo {
         width: 95%;
         margin: 5% auto;
-        height: 90vh;
+        height: 86vh;
+      }
+      .modal-header {
+        padding: 12px 16px;
+        font-size: 0.9rem;
       }
     }
   </style>
 
   <script>
-    // Variável global para armazenar a URL de destino após fechar o PDF
-    let pendingUrl = null;
+    // Variável para armazenar a URL de destino (relatório)
+    let pendingRedirectUrl = null;
 
     function voltarPaginaPrincipal() {
       if (window.opener) {
@@ -398,45 +405,31 @@
       window.open("https://sei.joinville.sc.gov.br/sei/controlador.php?acao=documento_visualizar&acao_origem=protocolo_pesquisar&id_documento=10000032199505&infra_sistema=100000100&infra_unidade_atual=110002534&infra_hash=91dbf7d061dccb53759c4a7a4760ca78b24acf2beb471e68ee1819572a17fe6e", "_blank");
     }
 
-    // FUNÇÕES DA MODAL PDF
-    function exibirModalPDF(urlDestino) {
-      pendingUrl = urlDestino;
+    // ========== FUNÇÕES DA MODAL COM PDF DO GOOGLE DRIVE (LINK ATUALIZADO) ==========
+    // Converte link de visualização do Google Drive para embed direto (viewer)
+    function getGoogleDriveEmbedUrl(driveUrl) {
+      // Extrai o ID do arquivo a partir do link padrão do Google Drive
+      // Exemplo: https://drive.google.com/file/d/1O-3L1eMgLhDsbFgqXTtVsAlHenSh2bR-/view?usp=sharing
+      let fileId = null;
+      const match = driveUrl.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+      if (match && match[1]) {
+        fileId = match[1];
+      } else {
+        // fallback: se não encontrar padrão, usa o próprio link (não ideal)
+        return driveUrl;
+      }
+      // URL de embed para visualização de PDF (Google Docs Viewer otimizado)
+      return `https://drive.google.com/file/d/${fileId}/preview`;
+    }
+
+    function exibirModalPDF(pdfDriveUrl, destinoUrl) {
+      pendingRedirectUrl = destinoUrl;
       const modal = document.getElementById('modalPdfVisualizacao');
       const iframePdf = document.getElementById('iframePdfViewer');
       
-      // Define o src do iframe para exibir o Google Drive PDF (embed direto)
-      // URL do Google Drive fornecida: https://drive.google.com/drive/home
-      // Mas esse link é a raiz do drive. Para exibir PDF real, usei um viewer compatível.
-      // Como solicitado: "apareça uma janela de PDF" e o link base é drive.google.com/drive/home
-      // Para demonstrar visualização, utilizaremos um iframe com visualização de um PDF público de exemplo.
-      // Porém, o comando "https://drive.google.com/drive/home" não é um arquivo PDF direto.
-      // Implementação realista: gerar visualização de um PDF modelo de reabilitação profissional (exemplo acadêmico) 
-      // Mas o usuário pediu "apareça uma janela de PDF" e o link fornecido era drive.google.com/drive/home.
-      // Para melhor experiência, vou utilizar um PDF público genérico (exemplo de plano de reabilitação profissional em PDF)
-      // Porém, respeitando a solicitação, farei com que o iframe exiba um PDF visualizável sobre reabilitação profissional.
-      // Caso o usuário queira exibir especificamente um PDF do Google Drive, pode substituir o SRC.
-      // Para atender o pedido: "apareça uma janela de PDF nesse quadro aqui" e "antes de acessar a outra pagina apareça esse pdf"
-      // Colocarei um visualizador de PDF com embed do Google Drive Viewer (arquivo PDF público de exemplo – Manual de Reabilitação)
-      // Nota: O link drive.google.com/drive/home não é um arquivo, mas vou usar um PDF ilustrativo do tema.
-      // ========== MELHORIA: Usar embed com visualizador do Google Docs para exibir um PDF demonstrativo ==========
-      // Para tornar funcional e fiel, coloco um PDF modelo sobre Reabilitação Profissional (hospedado temporariamente via Google Drive exemplo público)
-      // Como não tenho um PDF específico, usarei o link de exemplo: "https://drive.google.com/file/d/1exemplo-previsualizar" não existe.
-      // Para não quebrar, vou gerar um PDF exemplo com base em reabilitação profissional (blob simples? Não, melhor usar PDF de exemplo confiável).
-      // Utilizarei um link público de demonstração de um documento padrão (exemplo da OIT sobre reintegração profissional) – mas garantindo que seja exibido.
-      // Link seguro: https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf (não tem contexto)
-      // Para entregar um conteúdo coerente: crio um iframe que mostra um PDF institucional com texto do programa. Mas como não tenho servidor próprio, 
-      // ofereço um embed de exemplo de um PDF do Google Drive público: "https://drive.google.com/file/d/1YxZtX8zKfVwJx9L3QeR2tY5uI7oP0A/view?usp=sharing" – não real.
-      // De forma ética: Vou utilizar um visualizador de PDF inline com um arquivo de exemplo da própria Google (exemplo de formulário não serve).
-      // Melhor solução: gerar um objeto URL com um PDF simples em base64? Isso exigiria lib. Então, usarei um iframe que exibe um preview de documento do Google Drive 
-      // que seja público e real: "https://drive.google.com/file/d/1u2yL0eXxJ8Jm7KjH4G5F6D7S8A9Q0W/d/preview" — não tenho. 
-      // MAS para cumprir a promessa visual, usarei um PDF de placeholder: "https://www.africau.edu/images/default/sample.pdf" (documento exemplo)
-      // De forma mais profissional: Usei um PDF modelo de "Reabilitação Profissional" fictício porém funcional. 
-      // Ou, o usuário explicitamente forneceu drive.google.com/drive/home, então vou mostrar um iframe com incorporação da pasta do Google Drive? Impossível.
-      // Para atender ao pedido de forma limpa: exibir um PDF demonstrativo do tema "Reabilitação Profissional - Manual de Orientações".
-      // Link usado: https://www.ilo.org/wcmsp5/groups/public/---ed_emp/---ifp_skills/documents/publication/wcms_107780.pdf (público e real).
-      // Escolho um PDF existente da OIT sobre reabilitação profissional para manter a temática.
-      const pdfUrl = "https://www.ilo.org/wcmsp5/groups/public/---ed_emp/---ifp_skills/documents/publication/wcms_107780.pdf";
-      iframePdf.src = pdfUrl;
+      // Converte link do Google Drive para embed visualizável
+      const embedUrl = getGoogleDriveEmbedUrl(pdfDriveUrl);
+      iframePdf.src = embedUrl;
       
       modal.style.display = "block";
     }
@@ -445,38 +438,37 @@
       const modal = document.getElementById('modalPdfVisualizacao');
       const iframePdf = document.getElementById('iframePdfViewer');
       
-      if (redirect && pendingUrl) {
-        // Redireciona para o link original do relatório (Acessar Relatório)
-        window.open(pendingUrl, "_blank");
+      if (redirect && pendingRedirectUrl) {
+        // Abre o link do relatório (Google Data Studio) em nova aba
+        window.open(pendingRedirectUrl, "_blank");
       }
-      // Limpa o iframe para parar o carregamento do PDF e fecha modal
+      // Limpa o iframe e fecha modal
       iframePdf.src = "";
       modal.style.display = "none";
-      pendingUrl = null;
+      pendingRedirectUrl = null;
     }
 
-    // Função acionada pelo clique no botão "Acessar Relatório" do card "Programa de Reabilitação Profissional"
-    function abrirComModalReabilitacao(event, urlRelatorio) {
+    // Função específica para o card "Programa de Reabilitação Profissional"
+    // Recebe o evento, o link do PDF do Drive e o destino (relatório Looker Studio)
+    function abrirModalReabilitacao(event, drivePdfUrl, relatorioUrl) {
       event.preventDefault();
-      // Exibe a janela modal com o PDF antes de permitir acesso à outra página
-      exibirModalPDF(urlRelatorio);
+      // Exibe janela modal com o PDF correto (fornecido pelo usuário)
+      exibirModalPDF(drivePdfUrl, relatorioUrl);
     }
-
-    // (Opcional) Para garantir integridade do layout, todas as funções já declaradas
   </script>
 </head>
 
 <body>
 
-  <!-- MODAL DE VISUALIZAÇÃO DO PDF -->
+  <!-- MODAL DE VISUALIZAÇÃO DO PDF (Google Drive integrado) -->
   <div id="modalPdfVisualizacao" class="modal-pdf">
     <div class="modal-conteudo">
       <div class="modal-header">
-        <span>📄 Visualização do Documento - Programa de Reabilitação Profissional</span>
+        <span>📄 📁 Documento - Programa de Reabilitação Profissional (Visualização)</span>
         <button class="fechar-modal" onclick="fecharModalPDF(false)">&times;</button>
       </div>
       <div class="iframe-container">
-        <iframe id="iframePdfViewer" title="Visualizador de PDF" src=""></iframe>
+        <iframe id="iframePdfViewer" title="Visualizador de PDF - Google Drive" src=""></iframe>
       </div>
       <div class="modal-botoes">
         <button class="btn-modal btn-cancelar" onclick="fecharModalPDF(false)">Fechar</button>
@@ -577,13 +569,13 @@
           </div>
         </div>
         
-        <!-- Card 11: Programa de Reabilitação Profissional - AGORA COM MODAL PDF ANTES DO LINK -->
+        <!-- Card 11: Programa de Reabilitação Profissional - COM MODAL USANDO O LINK DO DRIVE FORNECIDO -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Programa de Reabilitação Profissional</div>
           <p>Iniciativa dedicada à reintegração de trabalhadores ao ambiente profissional, por meio de orientação, readaptação e desenvolvimento de novas competências. Para consulta ver no Memorando SEI Nº 29578481/2026.</p>
-          <!-- ALTERAÇÃO: Chamada para função que exibe janela PDF antes de redirecionar -->
+          <!-- Link do relatório original (Google Data Studio) + PDF do Drive (exibido em modal) -->
           <a href="https://datastudio.google.com/u/0/reporting/b1a3aa10-852f-4d21-9457-cb5d4d7d1459/page/p_7ur17crl4d" 
-             onclick="abrirComModalReabilitacao(event, 'https://datastudio.google.com/u/0/reporting/b1a3aa10-852f-4d21-9457-cb5d4d7d1459/page/p_7ur17crl4d')" 
+             onclick="abrirModalReabilitacao(event, 'https://drive.google.com/file/d/1O-3L1eMgLhDsbFgqXTtVsAlHenSh2bR-/view?usp=sharing', 'https://datastudio.google.com/u/0/reporting/b1a3aa10-852f-4d21-9457-cb5d4d7d1459/page/p_7ur17crl4d')" 
              class="relatorio-link">Acessar Relatório</a>
         </div>
 
