@@ -207,11 +207,11 @@
 
     .relatorio-link.em-desenvolvimento {
       background-color: #adb5bd;
-      cursor: pointer;
+      cursor: not-allowed;
     }
 
     .relatorio-link.em-desenvolvimento:hover {
-      background-color: #9aa0a6;
+      background-color: #adb5bd;
     }
 
     /* ESTILOS DA MODAL PDF */
@@ -441,8 +441,20 @@
       pendingRedirectUrl = null;
     }
 
-    // Função específica para o card "Evento Científico da Saúde de Joinville"
+    // Função para o card "Programa de Reabilitação Profissional"
+    function abrirModalReabilitacao(event, drivePdfUrl, relatorioUrl) {
+      event.preventDefault();
+      exibirModalPDF(drivePdfUrl, relatorioUrl);
+    }
+
+    // Função para o card "Evento Científico da Saúde de Joinville"
     function abrirModalEvento(event, drivePdfUrl, destinoUrl) {
+      event.preventDefault();
+      exibirModalPDF(drivePdfUrl, destinoUrl);
+    }
+
+    // Função para o card "Solicitação de pontos"
+    function abrirModalSolicitacao(event, drivePdfUrl, destinoUrl) {
       event.preventDefault();
       exibirModalPDF(drivePdfUrl, destinoUrl);
     }
@@ -455,7 +467,7 @@
   <div id="modalPdfVisualizacao" class="modal-pdf">
     <div class="modal-conteudo">
       <div class="modal-header">
-        <span>📄 Documento - Evento Científico da Saúde de Joinville</span>
+        <span>📄 Visualização de Documento</span>
         <button class="fechar-modal" onclick="fecharModalPDF(false)">&times;</button>
       </div>
       <div class="iframe-container">
@@ -543,11 +555,11 @@
           <a href="https://lookerstudio.google.com/u/0/reporting/8b375f4f-bbe8-4610-9f59-8faaf71cdb51/page/SRpeD" target="_blank" class="relatorio-link">Acessar Relatório</a>
         </div>
 
-        <!-- Card 9: Solicitação de pontos -->
+        <!-- Card 9: Solicitação de pontos - COM PDF E SEM "Em desenvolvimento" -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Solicitação de pontos</div>
           <p>Link para pedido de solicitação de pontos. Visualize os indicadores de solicitação de ajuste de pontos.</p>
-          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+          <a href="#" onclick="abrirModalSolicitacao(event, 'https://drive.google.com/file/d/1tjJlP-pGDTB-wVrYS80DR73t5eD--TRm/view?usp=sharing', 'https://lookerstudio.google.com/reporting/8b375f4f-bbe8-4610-9f59-8faaf71cdb51/page/SRpeD')" class="relatorio-link">Acessar Relatório</a>
         </div>
 
         <!-- Card 10: Estagiário de nível Superior -->
@@ -560,11 +572,13 @@
           </div>
         </div>
         
-        <!-- Card 11: Programa de Reabilitação Profissional -->
+        <!-- Card 11: Programa de Reabilitação Profissional - COM JANELA DE PDF -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Programa de Reabilitação Profissional</div>
           <p>Iniciativa dedicada à reintegração de trabalhadores ao ambiente profissional, por meio de orientação, readaptação e desenvolvimento de novas competências. Para consulta ver no Memorando SEI Nº 29578481/2026.</p>
-          <a href="https://datastudio.google.com/u/0/reporting/b1a3aa10-852f-4d21-9457-cb5d4d7d1459/page/p_7ur17crl4d" target="_blank" class="relatorio-link">Acessar Relatório</a>
+          <a href="https://datastudio.google.com/u/0/reporting/b1a3aa10-852f-4d21-9457-cb5d4d7d1459/page/p_7ur17crl4d" 
+             onclick="abrirModalReabilitacao(event, 'https://drive.google.com/file/d/1O-3L1eMgLhDsbFgqXTtVsAlHenSh2bR-/view?usp=sharing', 'https://datastudio.google.com/u/0/reporting/b1a3aa10-852f-4d21-9457-cb5d4d7d1459/page/p_7ur17crl4d')" 
+             class="relatorio-link">Acessar Relatório</a>
         </div>
 
         <!-- Card 12: Prêmio de Práticas Inovadoras -->
@@ -574,7 +588,7 @@
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
-        <!-- Card 13: Evento Científico - COM JANELA DE PDF ANTES DO ACESSO -->
+        <!-- Card 13: Evento Científico - COM JANELA DE PDF -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Evento Científico da Saúde de Joinville</div>
           <p>Conectando ciência, inovação e prática profissional para transformar a saúde de Joinville.</p>
