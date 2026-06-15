@@ -207,14 +207,14 @@
 
     .relatorio-link.em-desenvolvimento {
       background-color: #adb5bd;
-      cursor: pointer;
+      cursor: not-allowed;
     }
 
     .relatorio-link.em-desenvolvimento:hover {
-      background-color: #9aa0a6;
+      background-color: #adb5bd;
     }
 
-    /* ESTILOS DA MODAL PDF - SUPORTE PARA MÚLTIPLOS PDFS */
+    /* ESTILOS DA MODAL PDF */
     .modal-pdf {
       display: none;
       position: fixed;
@@ -293,7 +293,6 @@
       width: 100%;
       background: #eef2f5;
       overflow: hidden;
-      position: relative;
     }
 
     .iframe-container iframe {
@@ -304,19 +303,12 @@
 
     .modal-botoes {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 22px;
+      justify-content: flex-end;
+      gap: 16px;
+      padding: 14px 22px;
       background: #f8f9fc;
       border-top: 1px solid #e2e6ea;
       border-radius: 0 0 16px 16px;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 12px;
     }
 
     .btn-modal {
@@ -349,25 +341,6 @@
       background-color: #5c636a;
     }
 
-    .btn-nav-pdf {
-      background-color: #0b5e7e;
-      color: white;
-      padding: 8px 20px;
-    }
-
-    .btn-nav-pdf:hover {
-      background-color: #094a63;
-    }
-
-    .indicador-pdf {
-      font-size: 14px;
-      background: #e9ecef;
-      padding: 6px 14px;
-      border-radius: 40px;
-      color: #1f2d3d;
-      font-weight: 500;
-    }
-
     footer {
       text-align: center;
       padding: 20px;
@@ -398,20 +371,11 @@
         padding: 12px 16px;
         font-size: 0.9rem;
       }
-      .modal-botoes {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .btn-group {
-        justify-content: center;
-      }
     }
   </style>
 
   <script>
-    // Variáveis para controlar a visualização de múltiplos PDFs e redirecionamento
-    let listaPdfs = [];          // array de URLs de embed dos PDFs
-    let indiceAtual = 0;
+    // Variável para armazenar a URL de destino (relatório)
     let pendingRedirectUrl = null;
 
     function voltarPaginaPrincipal() {
@@ -424,8 +388,8 @@
     }
 
     function emDesenvolvimento(event) {
-      // Agora essa função será substituída para o card Solicitação de Pontos, mas mantemos para outros cards.
-      // O card 9 será tratado separadamente com abertura de modal.
+      event.preventDefault();
+      alert("🚧 Em desenvolvimento. Esta funcionalidade estará disponível em breve.");
       return false;
     }
 
@@ -448,66 +412,20 @@
       if (match && match[1]) {
         fileId = match[1];
       } else {
-        // fallback: retorna a própria URL se não encontrar padrão
         return driveUrl;
       }
       return `https://drive.google.com/file/d/${fileId}/preview`;
     }
 
-    // Exibe modal com múltiplos PDFs
-    function exibirModalMultiplosPDFs(arrayDriveUrls, destinoUrl) {
-      if (!arrayDriveUrls || arrayDriveUrls.length === 0) return;
-      
-      // Converte cada link para embed
-      listaPdfs = arrayDriveUrls.map(url => getGoogleDriveEmbedUrl(url));
-      indiceAtual = 0;
+    // Exibe modal com PDF
+    function exibirModalPDF(pdfDriveUrl, destinoUrl) {
       pendingRedirectUrl = destinoUrl;
-      
       const modal = document.getElementById('modalPdfVisualizacao');
       const iframePdf = document.getElementById('iframePdfViewer');
-      const contadorTexto = document.getElementById('contadorPdfTexto');
-      const btnAnterior = document.getElementById('btnAnteriorPdf');
-      const btnProximo = document.getElementById('btnProximoPdf');
       
-      // Carrega o primeiro PDF
-      iframePdf.src = listaPdfs[0];
+      const embedUrl = getGoogleDriveEmbedUrl(pdfDriveUrl);
+      iframePdf.src = embedUrl;
       
-      // Atualiza contador e estado dos botões
-      function atualizarNavegacao() {
-        if (contadorTexto) {
-          contadorTexto.textContent = `Documento ${indiceAtual + 1} de ${listaPdfs.length}`;
-        }
-        if (btnAnterior) {
-          btnAnterior.disabled = (indiceAtual === 0);
-          btnAnterior.style.opacity = (indiceAtual === 0) ? "0.5" : "1";
-          btnAnterior.style.cursor = (indiceAtual === 0) ? "not-allowed" : "pointer";
-        }
-        if (btnProximo) {
-          btnProximo.disabled = (indiceAtual === listaPdfs.length - 1);
-          btnProximo.style.opacity = (indiceAtual === listaPdfs.length - 1) ? "0.5" : "1";
-          btnProximo.style.cursor = (indiceAtual === listaPdfs.length - 1) ? "not-allowed" : "pointer";
-        }
-      }
-      
-      // Função para navegar
-      window.navegarPDF = function(direcao) {
-        const novoIndice = indiceAtual + direcao;
-        if (novoIndice >= 0 && novoIndice < listaPdfs.length) {
-          indiceAtual = novoIndice;
-          iframePdf.src = listaPdfs[indiceAtual];
-          atualizarNavegacao();
-        }
-      };
-      
-      // Configurar eventos dos botões dinamicamente (para evitar múltiplos listeners)
-      if (btnAnterior) {
-        btnAnterior.onclick = () => window.navegarPDF(-1);
-      }
-      if (btnProximo) {
-        btnProximo.onclick = () => window.navegarPDF(1);
-      }
-      
-      atualizarNavegacao();
       modal.style.display = "block";
     }
 
@@ -516,151 +434,36 @@
       const iframePdf = document.getElementById('iframePdfViewer');
       
       if (redirect && pendingRedirectUrl) {
-        // Abre o link de destino (pode ser o relatório, formulário, ou página)
         window.open(pendingRedirectUrl, "_blank");
       }
-      // Limpa iframe e esconde modal
       iframePdf.src = "";
       modal.style.display = "none";
       pendingRedirectUrl = null;
-      listaPdfs = [];
-      indiceAtual = 0;
     }
-    
-    // Função específica para o card "Solicitação de pontos" 
-    // Exibe os dois PDFs do Google Drive antes de permitir acesso (nesse caso, o destino é o próprio link do card ou uma página)
-    // Como o card original estava como "Em desenvolvimento", vamos redirecionar para uma mensagem ou página de indicadores.
-    // Mas o pedido: "apareça uma janela de PDFs nesse quadro aqui para que antes de acessar a outra pagina apareça esses pdfs"
-    // Vamos considerar que o link de destino (próxima página) seja a mesma url (ou uma mensagem "Acesso liberado após leitura"). 
-    // Para melhor experiência, definimos destino como a página "Solicitação de pontos" (em desenvolvimento) ou um alerta.
-    // Porém, vou manter coerência: ao clicar em "Acessar Relatório" (antigo botão em desenvolvimento), exibe os PDFs e após clicar em "Continuar" exibe um alerta ou abre um painel futuro.
-    // Como a solicitação original não forneceu URL de destino, vou criar uma ação padrão: mostrar mensagem informando que o acesso será concedido após leitura.
-    // E opcionalmente abrir uma página de indicadores. Dado que o card original tinha apenas "Em desenvolvimento", farei com que após os PDFs, exiba uma mensagem amigável.
-    function abrirModalSolicitacaoPontos(event, urlDestinoCustom = null) {
-      event.preventDefault();
-      // URLs fornecidas pelo usuário (dois PDFs)
-      const pdfs = [
-        "https://drive.google.com/file/d/17JBh03-DTR1ENj7xnibpfoYjARFnExvg/view?usp=sharing",
-        "https://drive.google.com/file/d/10KxbAGX-4aZve4j0Ja1mm3kFp_CRIn2X/view?usp=sharing"
-      ];
-      
-      // Destino: se não for passado, exibe uma mensagem ou mantém em desenvolvimento.
-      // Para seguir a lógica, farei com que após "Continuar" seja exibido um alerta informativo sobre os indicadores.
-      // Ou podemos abrir um link futuro. Vamos criar uma função que redireciona para o lookerstudio ou algo relacionado.
-      // Como não há link específico, mostraremos uma mensagem amigável que os indicadores estarão disponíveis.
-      // Mas mantendo o padrão: ao clicar em "Continuar para o acesso" exibe um aviso construtivo.
-      // Para não quebrar, criamos um destino simbólico que exibe um alerta e futuramente pode ser trocado por URL real.
-      const destino = urlDestinoCustom || "#";
-      
-      // Exibe modal com os dois PDFs. O redirecionamento chamará uma função especial depois.
-      // Passamos um destino que será tratado de forma personalizada: ao invés de abrir link vazio, mostraremos alerta.
-      // Sobrescrevemos lógica para não usar window.open em branco.
-      // Vamos armazenar o destino e usar um comportamento especial.
-      
-      // Armazena a função de callback de redirecionamento personalizada
-      pendingRedirectUrl = "custom_solicitacao";
-      
-      // Exibe modal normalmente, mas no fechamento com redirect=true faremos um tratamento customizado
-      listaPdfs = pdfs.map(url => getGoogleDriveEmbedUrl(url));
-      indiceAtual = 0;
-      
-      const modal = document.getElementById('modalPdfVisualizacao');
-      const iframePdf = document.getElementById('iframePdfViewer');
-      const contadorTexto = document.getElementById('contadorPdfTexto');
-      const btnAnterior = document.getElementById('btnAnteriorPdf');
-      const btnProximo = document.getElementById('btnProximoPdf');
-      
-      iframePdf.src = listaPdfs[0];
-      
-      function atualizarNavegacao() {
-        if (contadorTexto) contadorTexto.textContent = `Documento ${indiceAtual + 1} de ${listaPdfs.length}`;
-        if (btnAnterior) {
-          btnAnterior.disabled = (indiceAtual === 0);
-          btnAnterior.style.opacity = (indiceAtual === 0) ? "0.5" : "1";
-        }
-        if (btnProximo) {
-          btnProximo.disabled = (indiceAtual === listaPdfs.length - 1);
-          btnProximo.style.opacity = (indiceAtual === listaPdfs.length - 1) ? "0.5" : "1";
-        }
-      }
-      
-      window.navegarPDF = function(direcao) {
-        const novoIndice = indiceAtual + direcao;
-        if (novoIndice >= 0 && novoIndice < listaPdfs.length) {
-          indiceAtual = novoIndice;
-          iframePdf.src = listaPdfs[indiceAtual];
-          atualizarNavegacao();
-        }
-      };
-      
-      if (btnAnterior) btnAnterior.onclick = () => window.navegarPDF(-1);
-      if (btnProximo) btnProximo.onclick = () => window.navegarPDF(1);
-      
-      atualizarNavegacao();
-      modal.style.display = "block";
-    }
-    
-    // Sobrescrever o fechamento para tratar custom_solicitacao
-    const originalFecharModal = fecharModalPDF;
-    window.fecharModalPersonalizado = function(redirect = false) {
-      const modal = document.getElementById('modalPdfVisualizacao');
-      const iframePdf = document.getElementById('iframePdfViewer');
-      
-      if (redirect && pendingRedirectUrl === "custom_solicitacao") {
-        // Ação customizada: exibe um alerta ou redireciona para uma página de indicadores
-        alert("✅ Documentos visualizados! Agora você será redirecionado para a área de indicadores de solicitação de pontos (em breve implementação completa).");
-        // Opcional: abrir uma página em nova aba (futuro relatório)
-        // window.open("https://lookerstudio.google.com/reporting/exemplo", "_blank");
-        // Como não foi fornecida URL específica, apenas damos o aviso e podemos futuramente linkar.
-        // Caso deseje redirecionar para algum dashboard, basta alterar aqui.
-        // Por ora mantemos a mensagem educativa.
-      } else if (redirect && pendingRedirectUrl && pendingRedirectUrl !== "custom_solicitacao") {
-        window.open(pendingRedirectUrl, "_blank");
-      }
-      
-      iframePdf.src = "";
-      modal.style.display = "none";
-      pendingRedirectUrl = null;
-      listaPdfs = [];
-      indiceAtual = 0;
-    };
-    
-    // Atribui a nova função ao escopo global para ser chamada pelos botões do modal.
-    window.fecharModalPDF = window.fecharModalPersonalizado;
-    
-    // Para compatibilidade com outros cards, mantemos a função antiga com novo nome.
-    // O card de Reabilitação ainda usará sua lógica própria, mas manteremos.
-    // Reabilitação continua usando exibirModalMultiplosPDFs com um unico PDF.
+
+    // Função específica para o card "Programa de Reabilitação Profissional"
     function abrirModalReabilitacao(event, drivePdfUrl, relatorioUrl) {
       event.preventDefault();
-      exibirModalMultiplosPDFs([drivePdfUrl], relatorioUrl);
+      exibirModalPDF(drivePdfUrl, relatorioUrl);
     }
-    
   </script>
 </head>
 
 <body>
 
-  <!-- MODAL DE VISUALIZAÇÃO DE PDFS (suporta múltiplos documentos) -->
+  <!-- MODAL DE VISUALIZAÇÃO DO PDF -->
   <div id="modalPdfVisualizacao" class="modal-pdf">
     <div class="modal-conteudo">
       <div class="modal-header">
-        <span>📄 📑 Visualização de Documentos - Solicitação de Pontos</span>
+        <span>📄 Documento - Programa de Reabilitação Profissional</span>
         <button class="fechar-modal" onclick="fecharModalPDF(false)">&times;</button>
       </div>
       <div class="iframe-container">
         <iframe id="iframePdfViewer" title="Visualizador de PDF - Google Drive" src=""></iframe>
       </div>
       <div class="modal-botoes">
-        <div class="btn-group">
-          <button id="btnAnteriorPdf" class="btn-modal btn-nav-pdf" style="background-color:#0b5e7e;">◀ Anterior</button>
-          <span id="contadorPdfTexto" class="indicador-pdf">Documento 1 de 1</span>
-          <button id="btnProximoPdf" class="btn-modal btn-nav-pdf" style="background-color:#0b5e7e;">Próximo ▶</button>
-        </div>
-        <div class="btn-group">
-          <button class="btn-modal btn-cancelar" onclick="fecharModalPDF(false)">Fechar</button>
-          <button class="btn-modal btn-continuar" onclick="fecharModalPDF(true)">Continuar para Acesso</button>
-        </div>
+        <button class="btn-modal btn-cancelar" onclick="fecharModalPDF(false)">Fechar</button>
+        <button class="btn-modal btn-continuar" onclick="fecharModalPDF(true)">Continuar para o Relatório</button>
       </div>
     </div>
   </div>
@@ -740,11 +543,11 @@
           <a href="https://lookerstudio.google.com/u/0/reporting/8b375f4f-bbe8-4610-9f59-8faaf71cdb51/page/SRpeD" target="_blank" class="relatorio-link">Acessar Relatório</a>
         </div>
 
-        <!-- Card 9: Solicitação de pontos - MODIFICADO PARA EXIBIR JANELA COM DOIS PDFS -->
+        <!-- Card 9: Solicitação de pontos -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Solicitação de pontos</div>
-          <p>Link para pedido de solicitação de pontos. Visualize os indicadores de solicitação de ajuste de pontos. <strong>Clique no botão para visualizar os documentos obrigatórios antes do acesso.</strong></p>
-          <a href="#" onclick="abrirModalSolicitacaoPontos(event)" class="relatorio-link" style="background-color:#198754;">Acessar Documentos e Seguir</a>
+          <p>Link para pedido de solicitação de pontos. Visualize os indicadores de solicitação de ajuste de pontos.</p>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
         <!-- Card 10: Estagiário de nível Superior -->
@@ -757,17 +560,19 @@
           </div>
         </div>
         
-        <!-- Card 11: Programa de Reabilitação Profissional (mantido original) -->
+        <!-- Card 11: Programa de Reabilitação Profissional - COM JANELA DE PDF ANTES DO ACESSO -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Programa de Reabilitação Profissional</div>
           <p>Iniciativa dedicada à reintegração de trabalhadores ao ambiente profissional, por meio de orientação, readaptação e desenvolvimento de novas competências. Para consulta ver no Memorando SEI Nº 29578481/2026.</p>
-          <a href="https://datastudio.google.com/u/0/reporting/b1a3aa10-852f-4d21-9457-cb5d4d7d1459/page/p_7ur17crl4d" target="_blank" class="relatorio-link">Acessar Relatório</a>
+          <a href="https://datastudio.google.com/u/0/reporting/b1a3aa10-852f-4d21-9457-cb5d4d7d1459/page/p_7ur17crl4d" 
+             onclick="abrirModalReabilitacao(event, 'https://drive.google.com/file/d/1O-3L1eMgLhDsbFgqXTtVsAlHenSh2bR-/view?usp=sharing', 'https://datastudio.google.com/u/0/reporting/b1a3aa10-852f-4d21-9457-cb5d4d7d1459/page/p_7ur17crl4d')" 
+             class="relatorio-link">Acessar Relatório</a>
         </div>
 
         <!-- Card 12: Prêmio de Práticas Inovadoras -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Prêmio de Práticas Inovadoras da Saúde</div>
-          <p>Transformando boas ideias em saúde de excelência: a premiação dos projetos locais que fazem a diferença no cuidado com a nossa gente.(2026 não terá).</p>
+          <p>Transformando boas ideias em saúde de excelência: a premiação dos projetos locais que fazem a diferença no cuidado com a nossa gente.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
