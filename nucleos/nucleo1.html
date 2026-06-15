@@ -470,11 +470,6 @@
       const contadorTexto = document.getElementById('contadorPdfTexto');
       const btnAnterior = document.getElementById('btnAnteriorPdf');
       const btnProximo = document.getElementById('btnProximoPdf');
-      const tituloModal = document.getElementById('tituloModal');
-      
-      if (tituloModal) {
-        tituloModal.innerHTML = '📄 Documentos - Solicitação de pontos (2 PDFs)';
-      }
       
       iframePdf.src = listaPdfs[0];
       
@@ -550,6 +545,39 @@
       event.preventDefault();
       const pdfs = [pdfUrl1, pdfUrl2];
       exibirModalMultiplosPDFs(pdfs, destinoUrl);
+    }
+
+    // Função para o card "Cadastro de Futuros Gestores da SES."
+    function abrirModalGestores(event, drivePdfUrl, destinoUrl) {
+      event.preventDefault();
+      
+      // Armazena a URL de destino (formulário)
+      pendingRedirectUrl = destinoUrl;
+      
+      // Converte o link do Drive para embed
+      const embedUrl = getGoogleDriveEmbedUrl(drivePdfUrl);
+      
+      // Configura o modal para exibir o PDF
+      const modal = document.getElementById('modalPdfVisualizacao');
+      const iframePdf = document.getElementById('iframePdfViewer');
+      const tituloModal = document.getElementById('tituloModal');
+      const contadorTexto = document.getElementById('contadorPdfTexto');
+      const btnAnterior = document.getElementById('btnAnteriorPdf');
+      const btnProximo = document.getElementById('btnProximoPdf');
+      
+      // Define o título específico do memorando
+      if (tituloModal) {
+        tituloModal.innerHTML = '📄 Memorando SEI Nº 27723005/2025 - Banco de Talentos';
+      }
+      
+      // Esconde os botões de navegação (apenas 1 PDF)
+      if (btnAnterior) btnAnterior.style.display = 'none';
+      if (btnProximo) btnProximo.style.display = 'none';
+      if (contadorTexto) contadorTexto.style.display = 'none';
+      
+      // Carrega o PDF
+      iframePdf.src = embedUrl;
+      modal.style.display = "block";
     }
   </script>
 </head>
@@ -631,12 +659,12 @@
           <a href="https://lookerstudio.google.com/reporting/6b7f7cb7-76b7-4f3b-a46b-1438a5062dc5/page/SRpeD" target="_blank" class="relatorio-link">Acessar Relatório</a>
         </div>
 
-   <!-- Card 6: Cadastro de Futuros Gestores da SES. - COM PDF ANTES DO FORMULÁRIO -->
-<div class="quadro-item quadro-relatorio">
-  <div class="titulo-texto">📋 Cadastro de Futuros Gestores da SES.</div>
-  <p>Visualize as vagas disponíveis e processos seletivos em andamento. Para consulta ver no Memorando SEI Nº 27723005/2025.</p>
-  <a href="#" onclick="abrirModalGestores(event, 'https://drive.google.com/file/d/14e5hUpu5tguLzh7H7hKiI9EH_Lcr-gtE/view?usp=sharing', 'https://docs.google.com/forms/d/e/1FAIpQLSekxU2r3z0trIlpla41aO18rc4EpV6vxz6zMT7U6gIgBIfUqg/viewform?pli=1')" class="relatorio-link">Acessar o Formulário</a>
-</div>
+        <!-- Card 6: Cadastro de Futuros Gestores da SES. - COM PDF ANTES DO FORMULÁRIO -->
+        <div class="quadro-item quadro-relatorio">
+          <div class="titulo-texto">📋 Cadastro de Futuros Gestores da SES.</div>
+          <p>Visualize as vagas disponíveis e processos seletivos em andamento. Para consulta ver no Memorando SEI Nº 27723005/2025.</p>
+          <a href="#" onclick="abrirModalGestores(event, 'https://drive.google.com/file/d/14e5hUpu5tguLzh7H7hKiI9EH_Lcr-gtE/view?usp=sharing', 'https://docs.google.com/forms/d/e/1FAIpQLSekxU2r3z0trIlpla41aO18rc4EpV6vxz6zMT7U6gIgBIfUqg/viewform?pli=1')" class="relatorio-link">Acessar o Formulário</a>
+        </div>
 
         <!-- Card 7: Agente administrativo -->
         <div class="quadro-item quadro-contato">
@@ -656,11 +684,11 @@
         </div>
 
         <!-- Card 9: Solicitação de pontos - COM DOIS PDFS E BOTÃO "Acessar Formulário" -->
-<div class="quadro-item quadro-relatorio">
-  <div class="titulo-texto">🎯 Solicitação de pontos</div>
-  <p>Link para pedido de solicitação de pontos. Visualize os indicadores de solicitação de ajuste de pontos.</p>
-  <a href="#" onclick="abrirModalSolicitacao(event, 'https://drive.google.com/file/d/17JBh03-DTR1ENj7xnibpfoYjARFnExvg/view?usp=sharing', 'https://drive.google.com/file/d/10KxbAGX-4aZve4j0Ja1mm3kFp_CRIn2X/view?usp=sharing', 'https://lookerstudio.google.com/reporting/8b375f4f-bbe8-4610-9f59-8faaf71cdb51/page/SRpeD')" class="relatorio-link">Acessar Formulário</a>
-</div>
+        <div class="quadro-item quadro-relatorio">
+          <div class="titulo-texto">🎯 Solicitação de pontos</div>
+          <p>Link para pedido de solicitação de pontos. Visualize os indicadores de solicitação de ajuste de pontos.</p>
+          <a href="#" onclick="abrirModalSolicitacao(event, 'https://drive.google.com/file/d/17JBh03-DTR1ENj7xnibpfoYjARFnExvg/view?usp=sharing', 'https://drive.google.com/file/d/10KxbAGX-4aZve4j0Ja1mm3kFp_CRIn2X/view?usp=sharing', 'https://lookerstudio.google.com/reporting/8b375f4f-bbe8-4610-9f59-8faaf71cdb51/page/SRpeD')" class="relatorio-link">Acessar Formulário</a>
+        </div>
 
         <!-- Card 10: Estagiário de nível Superior -->
         <div class="quadro-item quadro-contato">
