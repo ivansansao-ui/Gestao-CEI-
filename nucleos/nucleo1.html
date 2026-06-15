@@ -207,11 +207,11 @@
 
     .relatorio-link.em-desenvolvimento {
       background-color: #adb5bd;
-      cursor: not-allowed;
+      cursor: pointer;
     }
 
     .relatorio-link.em-desenvolvimento:hover {
-      background-color: #adb5bd;
+      background-color: #9aa0a6;
     }
 
     /* ESTILOS DA MODAL PDF */
@@ -375,7 +375,7 @@
   </style>
 
   <script>
-    // Variável para armazenar a URL de destino (relatório)
+    // Variável para armazenar a URL de destino
     let pendingRedirectUrl = null;
 
     function voltarPaginaPrincipal() {
@@ -441,10 +441,10 @@
       pendingRedirectUrl = null;
     }
 
-    // Função específica para o card "Programa de Reabilitação Profissional"
-    function abrirModalReabilitacao(event, drivePdfUrl, relatorioUrl) {
+    // Função específica para o card "Evento Científico da Saúde de Joinville"
+    function abrirModalEvento(event, drivePdfUrl, destinoUrl) {
       event.preventDefault();
-      exibirModalPDF(drivePdfUrl, relatorioUrl);
+      exibirModalPDF(drivePdfUrl, destinoUrl);
     }
   </script>
 </head>
@@ -455,7 +455,7 @@
   <div id="modalPdfVisualizacao" class="modal-pdf">
     <div class="modal-conteudo">
       <div class="modal-header">
-        <span>📄 Documento - Programa de Reabilitação Profissional</span>
+        <span>📄 Documento - Evento Científico da Saúde de Joinville</span>
         <button class="fechar-modal" onclick="fecharModalPDF(false)">&times;</button>
       </div>
       <div class="iframe-container">
@@ -560,13 +560,11 @@
           </div>
         </div>
         
-        <!-- Card 11: Programa de Reabilitação Profissional - COM JANELA DE PDF ANTES DO ACESSO -->
+        <!-- Card 11: Programa de Reabilitação Profissional -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Programa de Reabilitação Profissional</div>
           <p>Iniciativa dedicada à reintegração de trabalhadores ao ambiente profissional, por meio de orientação, readaptação e desenvolvimento de novas competências. Para consulta ver no Memorando SEI Nº 29578481/2026.</p>
-          <a href="https://datastudio.google.com/u/0/reporting/b1a3aa10-852f-4d21-9457-cb5d4d7d1459/page/p_7ur17crl4d" 
-             onclick="abrirModalReabilitacao(event, 'https://drive.google.com/file/d/1O-3L1eMgLhDsbFgqXTtVsAlHenSh2bR-/view?usp=sharing', 'https://datastudio.google.com/u/0/reporting/b1a3aa10-852f-4d21-9457-cb5d4d7d1459/page/p_7ur17crl4d')" 
-             class="relatorio-link">Acessar Relatório</a>
+          <a href="https://datastudio.google.com/u/0/reporting/b1a3aa10-852f-4d21-9457-cb5d4d7d1459/page/p_7ur17crl4d" target="_blank" class="relatorio-link">Acessar Relatório</a>
         </div>
 
         <!-- Card 12: Prêmio de Práticas Inovadoras -->
@@ -576,11 +574,13 @@
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
-        <!-- Card 13: Evento Científico -->
+        <!-- Card 13: Evento Científico - COM JANELA DE PDF ANTES DO ACESSO -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Evento Científico da Saúde de Joinville</div>
           <p>Conectando ciência, inovação e prática profissional para transformar a saúde de Joinville.</p>
-          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+          <a href="#" 
+             onclick="abrirModalEvento(event, 'https://drive.google.com/file/d/1CTxlWWIunyvslvl8mQpu3AbwJCibHcBZ/view?usp=sharing', '#')" 
+             class="relatorio-link">Acessar Documento do Evento</a>
         </div>
 
       </div>
