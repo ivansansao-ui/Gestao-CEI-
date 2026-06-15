@@ -303,12 +303,19 @@
 
     .modal-botoes {
       display: flex;
-      justify-content: flex-end;
-      gap: 16px;
+      justify-content: space-between;
+      align-items: center;
       padding: 14px 22px;
       background: #f8f9fc;
       border-top: 1px solid #e2e6ea;
       border-radius: 0 0 16px 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 12px;
     }
 
     .btn-modal {
@@ -341,6 +348,30 @@
       background-color: #5c636a;
     }
 
+    .btn-nav-pdf {
+      background-color: #0b5e7e;
+      color: white;
+      padding: 8px 20px;
+    }
+
+    .btn-nav-pdf:hover {
+      background-color: #094a63;
+    }
+
+    .btn-nav-pdf:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .indicador-pdf {
+      font-size: 14px;
+      background: #e9ecef;
+      padding: 6px 14px;
+      border-radius: 40px;
+      color: #1f2d3d;
+      font-weight: 500;
+    }
+
     footer {
       text-align: center;
       padding: 20px;
@@ -371,11 +402,20 @@
         padding: 12px 16px;
         font-size: 0.9rem;
       }
+      .modal-botoes {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-group {
+        justify-content: center;
+      }
     }
   </style>
 
   <script>
-    // Variável para armazenar a URL de destino
+    // Variáveis para controlar múltiplos PDFs
+    let listaPdfs = [];
+    let indiceAtual = 0;
     let pendingRedirectUrl = null;
 
     function voltarPaginaPrincipal() {
@@ -417,21 +457,71 @@
       return `https://drive.google.com/file/d/${fileId}/preview`;
     }
 
-    // Exibe modal com PDF
-    function exibirModalPDF(pdfDriveUrl, destinoUrl) {
+    // Exibe modal com múltiplos PDFs
+    function exibirModalMultiplosPDFs(arrayDriveUrls, destinoUrl) {
+      if (!arrayDriveUrls || arrayDriveUrls.length === 0) return;
+      
+      listaPdfs = arrayDriveUrls.map(url => getGoogleDriveEmbedUrl(url));
+      indiceAtual = 0;
       pendingRedirectUrl = destinoUrl;
+      
       const modal = document.getElementById('modalPdfVisualizacao');
       const iframePdf = document.getElementById('iframePdfViewer');
+      const contadorTexto = document.getElementById('contadorPdfTexto');
+      const btnAnterior = document.getElementById('btnAnteriorPdf');
+      const btnProximo = document.getElementById('btnProximoPdf');
+      const tituloModal = document.getElementById('tituloModal');
       
-      const embedUrl = getGoogleDriveEmbedUrl(pdfDriveUrl);
-      iframePdf.src = embedUrl;
+      if (tituloModal) {
+        tituloModal.innerHTML = '📄 Documentos - Solicitação de pontos (2 PDFs)';
+      }
       
+      iframePdf.src = listaPdfs[0];
+      
+      function atualizarNavegacao() {
+        if (contadorTexto) {
+          contadorTexto.textContent = `Documento ${indiceAtual + 1} de ${listaPdfs.length}`;
+        }
+        if (btnAnterior) {
+          btnAnterior.disabled = (indiceAtual === 0);
+          btnAnterior.style.opacity = (indiceAtual === 0) ? "0.5" : "1";
+          btnAnterior.style.cursor = (indiceAtual === 0) ? "not-allowed" : "pointer";
+        }
+        if (btnProximo) {
+          btnProximo.disabled = (indiceAtual === listaPdfs.length - 1);
+          btnProximo.style.opacity = (indiceAtual === listaPdfs.length - 1) ? "0.5" : "1";
+          btnProximo.style.cursor = (indiceAtual === listaPdfs.length - 1) ? "not-allowed" : "pointer";
+        }
+      }
+      
+      window.navegarPDF = function(direcao) {
+        const novoIndice = indiceAtual + direcao;
+        if (novoIndice >= 0 && novoIndice < listaPdfs.length) {
+          indiceAtual = novoIndice;
+          iframePdf.src = listaPdfs[indiceAtual];
+          atualizarNavegacao();
+        }
+      };
+      
+      if (btnAnterior) {
+        btnAnterior.onclick = () => window.navegarPDF(-1);
+      }
+      if (btnProximo) {
+        btnProximo.onclick = () => window.navegarPDF(1);
+      }
+      
+      atualizarNavegacao();
       modal.style.display = "block";
     }
 
     function fecharModalPDF(redirect = false) {
       const modal = document.getElementById('modalPdfVisualizacao');
       const iframePdf = document.getElementById('iframePdfViewer');
+      const tituloModal = document.getElementById('tituloModal');
+      
+      if (tituloModal) {
+        tituloModal.innerHTML = '📄 Visualização de Documento';
+      }
       
       if (redirect && pendingRedirectUrl) {
         window.open(pendingRedirectUrl, "_blank");
@@ -439,43 +529,53 @@
       iframePdf.src = "";
       modal.style.display = "none";
       pendingRedirectUrl = null;
+      listaPdfs = [];
+      indiceAtual = 0;
     }
 
     // Função para o card "Programa de Reabilitação Profissional"
     function abrirModalReabilitacao(event, drivePdfUrl, relatorioUrl) {
       event.preventDefault();
-      exibirModalPDF(drivePdfUrl, relatorioUrl);
+      exibirModalMultiplosPDFs([drivePdfUrl], relatorioUrl);
     }
 
     // Função para o card "Evento Científico da Saúde de Joinville"
     function abrirModalEvento(event, drivePdfUrl, destinoUrl) {
       event.preventDefault();
-      exibirModalPDF(drivePdfUrl, destinoUrl);
+      exibirModalMultiplosPDFs([drivePdfUrl], destinoUrl);
     }
 
-    // Função para o card "Solicitação de pontos"
-    function abrirModalSolicitacao(event, drivePdfUrl, destinoUrl) {
+    // Função para o card "Solicitação de pontos" - com dois PDFs
+    function abrirModalSolicitacao(event, pdfUrl1, pdfUrl2, destinoUrl) {
       event.preventDefault();
-      exibirModalPDF(drivePdfUrl, destinoUrl);
+      const pdfs = [pdfUrl1, pdfUrl2];
+      exibirModalMultiplosPDFs(pdfs, destinoUrl);
     }
   </script>
 </head>
 
 <body>
 
-  <!-- MODAL DE VISUALIZAÇÃO DO PDF -->
+  <!-- MODAL DE VISUALIZAÇÃO DO PDF (suporta múltiplos documentos) -->
   <div id="modalPdfVisualizacao" class="modal-pdf">
     <div class="modal-conteudo">
       <div class="modal-header">
-        <span>📄 Visualização de Documento</span>
+        <span id="tituloModal">📄 Visualização de Documento</span>
         <button class="fechar-modal" onclick="fecharModalPDF(false)">&times;</button>
       </div>
       <div class="iframe-container">
         <iframe id="iframePdfViewer" title="Visualizador de PDF - Google Drive" src=""></iframe>
       </div>
       <div class="modal-botoes">
-        <button class="btn-modal btn-cancelar" onclick="fecharModalPDF(false)">Fechar</button>
-        <button class="btn-modal btn-continuar" onclick="fecharModalPDF(true)">Continuar para o Relatório</button>
+        <div class="btn-group">
+          <button id="btnAnteriorPdf" class="btn-modal btn-nav-pdf">◀ Anterior</button>
+          <span id="contadorPdfTexto" class="indicador-pdf">Documento 1 de 1</span>
+          <button id="btnProximoPdf" class="btn-modal btn-nav-pdf">Próximo ▶</button>
+        </div>
+        <div class="btn-group">
+          <button class="btn-modal btn-cancelar" onclick="fecharModalPDF(false)">Fechar</button>
+          <button class="btn-modal btn-continuar" onclick="fecharModalPDF(true)">Continuar para o Formulário</button>
+        </div>
       </div>
     </div>
   </div>
@@ -555,12 +655,11 @@
           <a href="https://lookerstudio.google.com/u/0/reporting/8b375f4f-bbe8-4610-9f59-8faaf71cdb51/page/SRpeD" target="_blank" class="relatorio-link">Acessar Relatório</a>
         </div>
 
-        <!-- Card 9: Solicitação de pontos - COM PDF E SEM "Em desenvolvimento" -->
+        <!-- Card 9: Solicitação de pontos - COM DOIS PDFS E BOTÃO "Acessar Formulário" -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Solicitação de pontos</div>
           <p>Link para pedido de solicitação de pontos. Visualize os indicadores de solicitação de ajuste de pontos.</p>
-          <a href="#" onclick="abrirModalSolicitacao(event, 'https:https://drive.google.com/file/d/17JBh03-DTR1ENj7xnibpfoYjARFnExvg/view?usp=sharing',https://drive.google.com/file/d/10KxbAGX-4aZve4j0Ja1mm3kFp_CRIn2X/view?usp=sharing,'https://lookerstudio.google.com/reporting/8b375f4f-bbe8-4610-9f59-8faaf71cdb51/page/SRpeD')" 
-          <div class="relatorio-link">Acessar Formulário.</a>
+          <a href="#" onclick="abrirModalSolicitacao(event, 'https://drive.google.com/file/d/17JBh03-DTR1ENj7xnibpfoYjARFnExvg/view?usp=sharing', 'https://drive.google.com/file/d/10KxbAGX-4aZve4j0Ja1mm3kFp_CRIn2X/view?usp=sharing', 'https://lookerstudio.google.com/reporting/8b375f4f-bbe8-4610-9f59-8faaf71cdb51/page/SRpeD')" class="relatorio-link">Acessar Formulário</a>
         </div>
 
         <!-- Card 10: Estagiário de nível Superior -->
