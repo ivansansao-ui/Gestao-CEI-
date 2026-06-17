@@ -61,38 +61,39 @@
     .layout-container {
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      width: 92%;
-      max-width: 1400px;
+      gap: 25px;
+      width: 95%;
+      max-width: 1500px;
       margin: 30px auto;
     }
 
-    /* TRÊS COLUNAS IGUAIS */
+    /* TRÊS COLUNAS IGUAIS - COM ALTURA MÍNIMA MAIOR */
     .linha {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 20px;
+      gap: 25px;
       align-items: stretch;
     }
 
     .quadro-item {
       background-color: #ffffff;
       border-left: 4px solid #198754;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 28px 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      min-height: 180px;
     }
 
     .titulo-texto {
       color: #2c3e50;
-      font-size: 1em;
+      font-size: 1.1em;
       font-weight: bold;
-      margin-bottom: 10px;
-      border-bottom: 1px solid #eaeaea;
-      padding-bottom: 8px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #eaeaea;
+      padding-bottom: 10px;
     }
 
     .quadro-detalhes {
@@ -102,9 +103,10 @@
     }
 
     .quadro-detalhes li {
-      padding: 4px 0;
-      color: #555;
-      font-size: 0.95rem;
+      padding: 5px 0;
+      color: #444;
+      font-size: 1rem;
+      line-height: 1.5;
     }
 
     .quadro-relatorio {
@@ -113,19 +115,20 @@
     }
 
     .quadro-relatorio .titulo-texto {
-      font-size: 0.95rem;
+      font-size: 1.05rem;
     }
 
     .quadro-relatorio p {
-      color: #555;
-      font-size: 0.9rem;
-      margin: 5px 0 10px 0;
+      color: #444;
+      font-size: 0.95rem;
+      margin: 8px 0 14px 0;
       flex-grow: 1;
+      line-height: 1.5;
     }
 
     .relatorio-link {
       display: inline-block;
-      padding: 10px 16px;
+      padding: 12px 22px;
       color: white;
       text-decoration: none;
       border-radius: 6px;
@@ -133,7 +136,7 @@
       text-align: center;
       background-color: #0dcaf0;
       transition: background-color 0.3s ease;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       align-self: flex-start;
     }
 
@@ -152,11 +155,11 @@
 
     footer {
       text-align: center;
-      padding: 15px;
+      padding: 18px;
       background: #198754;
       color: white;
       margin-top: 40px;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: bold;
     }
 
@@ -174,10 +177,17 @@
 
       .linha {
         grid-template-columns: 1fr;
+        gap: 20px;
       }
 
       .quadro-item {
-        padding: 15px;
+        padding: 20px;
+        min-height: 140px;
+      }
+
+      .layout-container {
+        width: 92%;
+        gap: 20px;
       }
     }
   </style>
@@ -219,30 +229,26 @@
           <ul class="quadro-detalhes">
             <li><strong>Nome:</strong> Rosemeri Aparecida Maciel,</li>
             <li><strong>Ramal:</strong> 6664,</li>
-            <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br.</li>
+            <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
           </ul>
         </div>
 
-        <!-- Card 2: Formulário eletrônico – requisição de cenários de práticas -->
+        <!-- Card 2: Pedido de Liberação de ponto -->
         <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">Formulário eletrônico – requisição de cenários de práticas para formação em saúde.</div>
-          <p>Solicite aqui os cenários de prática para sua equipe de saúde.</p>
-          <a href=https://www.joinville.sc.gov.br/servicos/solicitar-cenarios-de-praticas-para-formacao-em-saude/"
+          <div class="titulo-texto">Pedido de Liberação de ponto.</div>
+          <p>Acesse o pedido de liberação do ponto para qualificação dos profissionais do CEIS.</p>
+          <a href="https://www.joinville.sc.gov.br/servicos/solicitar-cenarios-de-praticas-para-formacao-em-saude/"
              target="_blank"
              class="relatorio-link">
-            Acessar Formulário
+            Solicitar Liberação
           </a>
         </div>
 
-        <!-- Card 3: A aprovação da liberação dos Cenários de Prática -->
+        <!-- Card 3: Banco de dados de solicitação de Ponto -->
         <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">A aprovação da liberação dos Cenários de Prática</div>
-          <p>A liberação dos cenários de prática está condicionada à avaliação e aprovação pela equipe técnica responsável, garantindo alinhamento com os objetivos formativos.</p>
-          <a href="https://sites.google.com/view/ceis-gestao-cenarios-pratica/p%C3%A1gina-inicial"
-             target="_blank"
-             class="relatorio-link">
-            Acessar Consulta
-          </a>
+          <div class="titulo-texto">Banco de dados de solicitação de Ponto.</div>
+          <p>Acesse a planilha de Banco de dados de solicitação de Ponto.</p>
+          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
       </div>
 
@@ -254,7 +260,7 @@
           <ul class="quadro-detalhes">
             <li><strong>Nome:</strong> Alessandra Scheila de Franca,</li>
             <li><strong>Ramal:</strong> 6664,</li>
-            <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br.</li>
+            <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
           </ul>
         </div>
 
@@ -289,7 +295,7 @@
           <ul class="quadro-detalhes">
             <li><strong>Nome:</strong> Vanessa Ramos Mafra da Silva,</li>
             <li><strong>Ramal:</strong> 6664,</li>
-            <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br.</li>
+            <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
           </ul>
         </div>
 
