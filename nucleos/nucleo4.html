@@ -4,11 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IV - Núcleo das Residências em Saúde.</title>
-  <link rel="stylesheet" href="../css/style.css">
 
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: Arial, Helvetica, sans-serif;
       background-color: #f4f6f8;
     }
@@ -28,6 +32,11 @@
       align-items: center;
       z-index: 1000;
       box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      flex-wrap: wrap;
+    }
+
+    .top-menu span {
+      font-size: 0.95rem;
     }
 
     .btn-voltar {
@@ -38,6 +47,7 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
+      font-size: 0.9rem;
     }
 
     .btn-voltar:hover {
@@ -51,49 +61,39 @@
     .layout-container {
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      width: 90%;
-      max-width: 1200px;
+      gap: 25px;
+      width: 95%;
+      max-width: 1500px;
       margin: 30px auto;
     }
 
-    .linha-tres-quadros {
+    /* TRÊS COLUNAS IGUAIS - COM ALTURA MÍNIMA MAIOR */
+    .linha {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 20px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 25px;
       align-items: stretch;
     }
 
-    .quadro-cargo {
+    .quadro-item {
       background-color: #ffffff;
       border-left: 4px solid #198754;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 28px 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.10);
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
+      min-height: 180px;
     }
 
-    .quadro-link {
-      background-color: #e3f2fd;
-      border-left: 4px solid #0dcaf0;
-      border-radius: 8px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-    }
-
-    .quadro-titulo {
-      font-weight: bold;
-      margin-bottom: 10px;
+    .titulo-texto {
       color: #2c3e50;
       font-size: 1.1em;
-      border-bottom: 1px solid #eaeaea;
-      padding-bottom: 8px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      border-bottom: 2px solid #eaeaea;
+      padding-bottom: 10px;
     }
 
     .quadro-detalhes {
@@ -103,28 +103,47 @@
     }
 
     .quadro-detalhes li {
-      padding: 4px 0;
-      color: #555;
+      padding: 5px 0;
+      color: #444;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .quadro-relatorio {
+      background-color: #e3f2fd;
+      border-left: 4px solid #0dcaf0;
+    }
+
+    .quadro-relatorio .titulo-texto {
+      font-size: 1.05rem;
+    }
+
+    .quadro-relatorio p {
+      color: #444;
+      font-size: 0.95rem;
+      margin: 8px 0 14px 0;
+      flex-grow: 1;
+      line-height: 1.5;
     }
 
     .relatorio-link {
-      background-color: #0dcaf0;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.3s;
       display: inline-block;
-      margin-top: 10px;
+      padding: 12px 22px;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      text-align: center;
+      background-color: #0dcaf0;
+      transition: background-color 0.3s ease;
+      font-size: 0.95rem;
+      align-self: flex-start;
     }
 
     .relatorio-link:hover {
       background-color: #0bacd0;
-      transform: translateY(-2px);
     }
 
-    /* Estilo para link em desenvolvimento */
     .relatorio-link.em-desenvolvimento {
       background-color: #adb5bd;
       cursor: not-allowed;
@@ -132,21 +151,43 @@
 
     .relatorio-link.em-desenvolvimento:hover {
       background-color: #adb5bd;
-      transform: none;
     }
 
     footer {
       text-align: center;
-      padding: 15px;
+      padding: 18px;
       background: #198754;
       color: white;
       margin-top: 40px;
       font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    /* 🔹 RESPONSIVIDADE */
+    @media (max-width: 1024px) {
+      .linha {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 768px) {
-      .linha-tres-quadros {
+      .top-menu span {
+        font-size: 0.8rem;
+      }
+
+      .linha {
         grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .quadro-item {
+        padding: 20px;
+        min-height: 140px;
+      }
+
+      .layout-container {
+        width: 92%;
+        gap: 20px;
       }
     }
   </style>
@@ -180,10 +221,11 @@
   <main>
     <div class="layout-container">
 
-      <!-- 🔹 LINHA 1 - Técnico de nível superior com dois relatórios ao lado -->
-      <div class="linha-tres-quadros">
-        <div class="quadro-cargo">
-          <div class="quadro-titulo">1. Técnico de nível superior.</div>
+      <!-- 🔹 LINHA 1 - 3 COLUNAS -->
+      <div class="linha">
+        <!-- Card 1: Técnico de nível superior -->
+        <div class="quadro-item">
+          <div class="titulo-texto">1. Técnico de nível superior.</div>
           <ul class="quadro-detalhes">
             <li><strong>Nome:</strong> Francielly Kleine Maria Amorim,</li>
             <li><strong>Ramal:</strong> 6665,</li>
@@ -191,21 +233,34 @@
           </ul>
         </div>
 
-        <div class="quadro-link">
-          <div class="quadro-titulo">📊 Relatório.</div>
-          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+        <!-- Card 2: Cenários de prática na Secretaria da Saúde para Programas de Residência em Saúde -->
+        <div class="quadro-item quadro-relatorio">
+          <div class="titulo-texto">Cenários de prática na Secretaria da Saúde para Programas de Residência em Saúde.</div>
+          <p>Este serviço orienta profissionais dos hospitais conveniados a solicitarem cenários de práticas para Programas de Residência em Saúde.</p>
+          <a href="https://www.joinville.sc.gov.br/servicos/solicitar-cenarios-de-pratica-na-secretaria-da-saude-para-programas-de-residencia-em-saude/"
+             target="_blank"
+             class="relatorio-link">
+            Acessar Formulário
+          </a>
         </div>
 
-        <div class="quadro-link">
-          <div class="quadro-titulo">📊 Relatório.</div>
-          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+        <!-- Card 3: Painel de liberação dos Cenários de Prática na Residência em saúde -->
+        <div class="quadro-item quadro-relatorio">
+          <div class="titulo-texto">Painel de liberação dos Cenários de Prática na Residência em saúde.</div>
+          <p> Painel de aprovação e liberação de cenários de prática.</p>
+          <a href="https://sites.google.com/view/ceis-gestao-cenarios-pratica/p%C3%A1gina-inicial/agendamento-iep" 
+             target="_blank" 
+             class="relatorio-link">
+            Acessar Relatório
+          </a>
         </div>
       </div>
 
-      <!-- 🔹 LINHA 2 - Técnico em Enfermagem com dois relatórios ao lado -->
-      <div class="linha-tres-quadros">
-        <div class="quadro-cargo">
-          <div class="quadro-titulo">2. Técnico em Enfermagem.</div>
+      <!-- 🔹 LINHA 2 - 3 COLUNAS -->
+      <div class="linha">
+        <!-- Card 1: Técnico em Enfermagem -->
+        <div class="quadro-item">
+          <div class="titulo-texto">2. Técnico em Enfermagem.</div>
           <ul class="quadro-detalhes">
             <li><strong>Nome:</strong> Alexsandra Fabeni de Medeiros,</li>
             <li><strong>Ramal:</strong> 6665,</li>
@@ -213,21 +268,26 @@
           </ul>
         </div>
 
-        <div class="quadro-link">
-          <div class="quadro-titulo">📊 Relatório.</div>
+        <!-- Card 2: Relatório em desenvolvimento -->
+        <div class="quadro-item quadro-relatorio">
+          <div class="titulo-texto">📊 Relatório.</div>
+          <p>Acesse o relatório de atividades.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
-        <div class="quadro-link">
-          <div class="quadro-titulo">📊 Relatório.</div>
+        <!-- Card 3: Relatório em desenvolvimento -->
+        <div class="quadro-item quadro-relatorio">
+          <div class="titulo-texto">📊 Relatório.</div>
+          <p>Acesse o relatório de indicadores.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
       </div>
 
-      <!-- 🔹 LINHA 3 - Estagiário de nível superior com dois relatórios ao lado -->
-      <div class="linha-tres-quadros">
-        <div class="quadro-cargo">
-          <div class="quadro-titulo">3. Estagiário de nível superior.</div>
+      <!-- 🔹 LINHA 3 - 3 COLUNAS -->
+      <div class="linha">
+        <!-- Card 1: Estagiário de nível superior -->
+        <div class="quadro-item">
+          <div class="titulo-texto">3. Estagiário de nível superior.</div>
           <ul class="quadro-detalhes">
             <li><strong>Nome:</strong> Sabrina Krazowski,</li>
             <li><strong>Ramal:</strong> 6665,</li>
@@ -235,13 +295,17 @@
           </ul>
         </div>
 
-        <div class="quadro-link">
-          <div class="quadro-titulo">📊 Relatório.</div>
+        <!-- Card 2: Relatório em desenvolvimento -->
+        <div class="quadro-item quadro-relatorio">
+          <div class="titulo-texto">📊 Relatório.</div>
+          <p>Acesse o relatório de atividades.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
-        <div class="quadro-link">
-          <div class="quadro-titulo">📊 Relatório.</div>
+        <!-- Card 3: Relatório em desenvolvimento -->
+        <div class="quadro-item quadro-relatorio">
+          <div class="titulo-texto">📊 Relatório.</div>
+          <p>Acesse o relatório de indicadores.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
       </div>
