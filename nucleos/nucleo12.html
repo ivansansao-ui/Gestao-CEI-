@@ -126,17 +126,6 @@
       transform: translateY(-2px);
     }
 
-    /* Estilo para link em desenvolvimento */
-    .relatorio-link.em-desenvolvimento {
-      background-color: #adb5bd;
-      cursor: not-allowed;
-    }
-
-    .relatorio-link.em-desenvolvimento:hover {
-      background-color: #adb5bd;
-      transform: none;
-    }
-
     footer {
       text-align: center;
       padding: 15px;
@@ -163,10 +152,8 @@
       }
     }
 
-    function emDesenvolvimento(event) {
-      if (event) event.preventDefault();
-      alert('🚧 Em desenvolvimento. Esta funcionalidade estará disponível em breve.');
-      return false;
+    function abrirLink(url) {
+      window.open(url, '_blank');
     }
   </script>
 </head>
@@ -194,13 +181,29 @@
         </div>
 
         <div class="quadro-link">
-          <div class="quadro-titulo">📊 Relatório</div>
-          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+          <div class="quadro-titulo">📊 Demandas Programa Universidade Gratuita (PUG)</div>
+          <a href="https://docs.google.com/forms/d/1ZBDWbIqnvvsK9tDAQwj25eQZ4yy7jXQGGU2wovxgFx8/preview" target="_blank" class="relatorio-link">Acesse aqui</a>
         </div>
 
         <div class="quadro-link">
-          <div class="quadro-titulo">📊 Relatório</div>
-          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+          <div class="quadro-titulo">📊 Cadastro de egressos PUG</div>
+          <a href="https://docs.google.com/forms/d/16Z-NbpFYYO7FArGm3JFxH391giawCUOOAcmI3P0aGWI/preview" target="_blank" class="relatorio-link">Acesse aqui</a>
+        </div>
+      </div>
+
+      <!-- LINHA 2 - NOVO RELATÓRIO -->
+      <div class="linha">
+        <div class="quadro-cargo" style="visibility: hidden;">
+          <!-- Espaço vazio para manter o grid alinhado -->
+        </div>
+
+        <div class="quadro-link">
+          <div class="quadro-titulo">📊 Registro de Cumprimento de acordo</div>
+          <a href="https://script.google.com/macros/s/AKfycbwPwBvxo8QjsZAVdkXFbyTpQfislVPWD_4T66weAcSA9Y9uybTNMZz41UgTm2DpTviCQQ/exec" target="_blank" class="relatorio-link">Acesse aqui</a>
+        </div>
+
+        <div class="quadro-link" style="visibility: hidden;">
+          <!-- Espaço vazio para manter o grid alinhado -->
         </div>
       </div>
 
