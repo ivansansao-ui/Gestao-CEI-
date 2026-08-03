@@ -1,355 +1,436 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>II - Núcleo de Educação Permanente em Saúde.</title>
-  <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>II - Núcleo de Educação Permanente em Saúde</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: #f4f6f8;
-    }
+    <style>
+        /* --- ESTILOS GERAIS --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* MENU FIXO */
-    .top-menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #198754;
-      color: white;
-      padding: 12px 20px;
-      font-weight: bold;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            line-height: 1.6;
+        }
 
-    .btn-voltar {
-      background: white;
-      color: #198754;
-      border: none;
-      padding: 6px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+        /* --- MENU FIXO --- */
+        .top-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #198754;
+            color: white;
+            padding: 12px 24px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
 
-    .btn-voltar:hover {
-      background: #e9ecef;
-    }
+        .btn-voltar {
+            background: white;
+            color: #198754;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+        .btn-voltar:hover {
+            background: #e9ecef;
+            transform: scale(1.02);
+        }
 
-    main {
-      margin-top: 70px;
-    }
+        /* --- CONTEÚDO PRINCIPAL --- */
+        main {
+            margin-top: 80px;
+            padding: 20px;
+        }
 
-    .layout-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      width: 90%;
-      max-width: 1400px;
-      margin: 30px auto;
-    }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            padding: 30px 30px 10px 30px;
+        }
 
-    /* TRÊS COLUNAS IGUAIS */
-    .linha {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 20px;
-      align-items: stretch;
-    }
+        /* --- LAYOUT VERTICAL (IGUAL À IMAGEM) --- */
+        .profissional-linha {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 30px;
+            padding: 18px 0;
+            border-bottom: 1px solid #e9ecef;
+            align-items: stretch;
+        }
+        .profissional-linha:last-of-type {
+            border-bottom: none;
+        }
 
-    .quadro-item {
-      background-color: #ffffff;
-      border-left: 4px solid #198754;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+        /* Coluna do profissional (cargo, nome, ramal, e-mail) */
+        .profissional-info {
+            flex: 1 1 280px;
+            min-width: 220px;
+        }
 
-    .titulo-texto {
-      color: #2c3e50;
-      font-size: 1.1em;
-      font-weight: bold;
-      margin-bottom: 10px;
-      border-bottom: 1px solid #eaeaea;
-      padding-bottom: 8px;
-    }
+        .profissional-info .cargo {
+            font-weight: 700;
+            color: #198754;
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+        }
 
-    .quadro-detalhes {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+        .profissional-info .detalhes {
+            list-style: none;
+            padding-left: 0;
+        }
+        .profissional-info .detalhes li {
+            padding: 2px 0;
+            color: #444;
+        }
+        .profissional-info .detalhes li strong {
+            font-weight: 600;
+            color: #222;
+        }
 
-    .quadro-detalhes li {
-      padding: 4px 0;
-      color: #555;
-    }
+        /* Container dos cards de relatório (2 por profissional) */
+        .relatorios-group {
+            flex: 2 1 500px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
 
-    .quadro-relatorio {
-      background-color: #e3f2fd;
-      border-left: 4px solid #0dcaf0;
-    }
+        /* Cada card de relatório */
+        .card-relatorio {
+            flex: 1 1 200px;
+            background: #f8faff;
+            border-left: 4px solid #0dcaf0;
+            border-radius: 6px;
+            padding: 16px 18px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: 0.15s;
+        }
+        .card-relatorio:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+        }
 
-    .relatorio-link {
-      display: inline-block;
-      padding: 12px 20px;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      font-weight: 600;
-      text-align: center;
-      margin-top: 10px;
-      background-color: #0dcaf0;
-      transition: background-color 0.3s ease;
-    }
+        .card-relatorio .titulo {
+            font-weight: 700;
+            color: #1e2a3a;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
 
-    .relatorio-link:hover {
-      background-color: #0bacd0;
-    }
+        .card-relatorio .descricao {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 12px;
+            flex: 1;
+        }
 
-    /* Estilo para link em desenvolvimento */
-    .relatorio-link.em-desenvolvimento {
-      background-color: #adb5bd;
-      cursor: not-allowed;
-    }
+        .card-relatorio .link-acao {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #0dcaf0;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            align-self: flex-start;
+            border: none;
+            cursor: pointer;
+        }
+        .card-relatorio .link-acao:hover {
+            background-color: #0bacd0;
+            transform: translateY(-1px);
+        }
 
-    .relatorio-link.em-desenvolvimento:hover {
-      background-color: #adb5bd;
-    }
+        /* Estilo para "Em desenvolvimento" */
+        .card-relatorio .link-acao.em-desenvolvimento {
+            background-color: #adb5bd;
+            cursor: not-allowed;
+            pointer-events: none; /* desabilita clique e hover */
+        }
 
-    footer {
-      text-align: center;
-      padding: 15px;
-      background: #198754;
-      color: white;
-      margin-top: 40px;
-      font-size: 0.9rem;
-    }
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 18px;
+            background: #198754;
+            color: white;
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
 
-    @media (max-width: 1024px) {
-      .linha {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            .profissional-linha {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .relatorios-group {
+                flex-direction: column;
+            }
+            .card-relatorio {
+                flex: 1 1 auto;
+            }
+        }
+    </style>
 
-    @media (max-width: 768px) {
-      .linha {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+    <script>
+        // Função para voltar à página principal
+        function voltarPaginaPrincipal() {
+            if (window.opener) {
+                window.opener.location.href = "../index.html";
+                window.close();
+            } else {
+                window.location.href = "../index.html";
+            }
+        }
 
-  <script>
-    function voltarPaginaPrincipal() {
-      if (window.opener) {
-        window.opener.location.href = "../index.html";
-        window.close();
-      } else {
-        window.location.href = "../index.html";
-      }
-    }
+        // Função para exibir alerta de "Em desenvolvimento"
+        function emDesenvolvimento(event) {
+            event.preventDefault();
+            alert("🚧 Em desenvolvimento. Esta funcionalidade estará disponível em breve.");
+            return false;
+        }
+    </script>
 
-    // Função para impedir navegação e exibir alerta de "Em desenvolvimento"
-    function emDesenvolvimento(event) {
-      event.preventDefault();
-      alert("🚧 Em desenvolvimento. Esta funcionalidade estará disponível em breve.");
-      return false;
-    }
-  </script>
 </head>
-
 <body>
 
-  <!-- MENU FIXO -->
-  <div class="top-menu">
-    <span>II - Núcleo de Educação Permanente em Saúde.</span>
-    <button class="btn-voltar" onclick="voltarPaginaPrincipal()">Voltar</button>
-  </div>
-
-  <main>
-    <div class="layout-container">
-
-      <!-- LINHA 1 - 3 COLUNAS -->
-      <div class="linha">
-        <!-- Card 1: Técnico de nível superior -->
-        <div class="quadro-item">
-          <div class="titulo-texto">1. Técnico de nível superior.</div>
-          <ul class="quadro-detalhes">
-            <li><strong>Nome:</strong> Vanessa Cristina Melo Randig,</li>
-            <li><strong>Ramal:</strong> 6664,</li>
-            <li><strong>E-mail:</strong> ses.uqd.ceis@joinville.sc.gov.br.</li>
-          </ul>
-        </div>
-
-        <!-- Card 2: Relatório – Cursos de Vacina (mantido original com link funcionando) -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">Relatório – Cursos de Vacina.</div>
-          <p>Acesse o relatório completo com dados atualizados sobre a educação permanente em saúde.</p>
-          <a href="https://lookerstudio.google.com/reporting/438ee60f-1366-4607-a507-f0072889edc1/page/SRpeD"
-             target="_blank"
-             class="relatorio-link">
-            Acessar Relatório.
-          </a>
-        </div>
-
-        <!-- Card 3: Informações Online (ALTERADO para Em desenvolvimento) -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">Informações Online.</div>
-          <p>Acesse o relatório completo com dados atualizados sobre a educação permanente em saúde.</p>
-          <a href="#"
-             onclick="return emDesenvolvimento(event)"
-             class="relatorio-link em-desenvolvimento">
-            Em desenvolvimento 🚧
-          </a>
-        </div>
-      </div>
-
-      <!-- LINHA 2 - 3 COLUNAS -->
-      <div class="linha">
-        <!-- Card 1: Técnico de nível superior -->
-        <div class="quadro-item">
-          <div class="titulo-texto">2. Técnico de nível superior.</div>
-          <ul class="quadro-detalhes">
-            <li><strong>Nome:</strong> Viviane Alano da Silva Ruzza,</li>
-            <li><strong>Ramal:</strong> 6664,</li>
-            <li><strong>E-mail:</strong> ses.uqd.ceis@joinville.sc.gov.br.</li>
-          </ul>
-        </div>
-
-        <!-- Card 2: Relatório – Indicadores EPS (ALTERADO para Em desenvolvimento) -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">Relatório – Indicadores EPS.</div>
-          <p>Visualize os indicadores de educação permanente em saúde.</p>
-          <a href="#"
-             onclick="return emDesenvolvimento(event)"
-             class="relatorio-link em-desenvolvimento">
-            Em desenvolvimento 🚧
-          </a>
-        </div>
-
-        <!-- Card 3: Informações Online (ALTERADO para Em desenvolvimento) -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">Informações Online.</div>
-          <p>Acesse o relatório completo com dados atualizados sobre a educação permanente em saúde.</p>
-          <a href="#"
-             onclick="return emDesenvolvimento(event)"
-             class="relatorio-link em-desenvolvimento">
-            Em desenvolvimento 🚧
-          </a>
-        </div>
-      </div>
-
-      <!-- LINHA 3 - 3 COLUNAS -->
-      <div class="linha">
-        <!-- Card 1: Técnico de enfermagem -->
-        <div class="quadro-item">
-          <div class="titulo-texto">3. Técnico de enfermagem.</div>
-          <ul class="quadro-detalhes">
-            <li><strong>Nome:</strong> Estela Maria da Silva,</li>
-            <li><strong>Ramal:</strong> 6664,</li>
-            <li><strong>E-mail:</strong> ses.uqd.ceis@joinville.sc.gov.br.</li>
-          </ul>
-        </div>
-
-        <!-- Card 2: Relatório – Capacitações (ALTERADO para Em desenvolvimento) -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">Relatório – Capacitações</div>
-          <p>Acompanhe os dados das capacitações realizadas.</p>
-          <a href="#"
-             onclick="return emDesenvolvimento(event)"
-             class="relatorio-link em-desenvolvimento">
-            Em desenvolvimento 🚧
-          </a>
-        </div>
-
-        <!-- Card 3: Informações Online (ALTERADO para Em desenvolvimento) -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">Informações Online.</div>
-          <p>Acesse o relatório completo com dados atualizados sobre a educação permanente em saúde.</p>
-          <a href="#"
-             onclick="return emDesenvolvimento(event)"
-             class="relatorio-link em-desenvolvimento">
-            Em desenvolvimento 🚧
-          </a>
-        </div>
-      </div>
-
-      <!-- LINHA 4 - 3 COLUNAS -->
-      <div class="linha">
-        <!-- Card 1: Técnico de enfermagem -->
-        <div class="quadro-item">
-          <div class="titulo-texto">4. Técnico de enfermagem.</div>
-          <ul class="quadro-detalhes">
-            <li><strong>Nome:</strong> Julio Cezar Dominoni,</li>
-            <li><strong>Ramal:</strong> 6664,</li>
-            <li><strong>E-mail:</strong> ses.uqd.ceis@joinville.sc.gov.br.</li>
-          </ul>
-        </div>
-
-        <!-- Card 2: Relatório – Apoio Educacional (ALTERADO para Em desenvolvimento) -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">Relatório – Apoio Educacional.</div>
-          <p>Consulte os dados de apoio educacional.</p>
-          <a href="#"
-             onclick="return emDesenvolvimento(event)"
-             class="relatorio-link em-desenvolvimento">
-            Em desenvolvimento 🚧
-          </a>
-        </div>
-
-        <!-- Card 3: Informações Online (ALTERADO para Em desenvolvimento) -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">Informações Online.</div>
-          <p>Acesse o relatório completo com dados atualizados sobre a educação permanente em saúde.</p>
-          <a href="#"
-             onclick="return emDesenvolvimento(event)"
-             class="relatorio-link em-desenvolvimento">
-            Em desenvolvimento 🚧
-          </a>
-        </div>
-      </div>
-      
-       <!-- LINHA 5 - 3 COLUNAS -->
-      <div class="linha">
-        <!-- Card 1: Agente Adminsitratativo -->
-        <div class="quadro-item">
-          <div class="titulo-texto">5. Agente Admisnistrativo.</div>
-          <ul class="quadro-detalhes">
-            <li><strong>Nome:</strong> Priscila Cordeiro de Souza ,</li>
-            <li><strong>Ramal:</strong> 6664,</li>
-            <li><strong>E-mail:</strong> ses.uqd.ceis@joinville.sc.gov.br.</li>
-          </ul>
-        </div>
-
-      <!-- LINHA 6 - 3 COLUNAS -->
-      <div class="linha">
-        <!-- Card 2: Estagiário de nível Superior -->
-        <div class="quadro-item">
-          <div class="titulo-texto">6. Estagiário de nível Superior.</div>
-          <ul class="quadro-detalhes">
-            <li><strong>Nome:</strong> Maria Eduarda Detroz Medeiros,</li>
-            <li><strong>Ramal:</strong> 6664,</li>
-            <li><strong>E-mail:</strong> ses.uqd.ceis@joinville.sc.gov.br.</li>
-          </ul>
-        </div>
-    
+    <!-- MENU FIXO -->
+    <div class="top-menu">
+        <span>II - Núcleo de Educação Permanente em Saúde.</span>
+        <button class="btn-voltar" onclick="voltarPaginaPrincipal()">Voltar</button>
     </div>
-  </main>
 
-  <footer>
-    Secretaria Municipal da Saúde – Joinville
-  </footer>
+    <main>
+        <div class="container">
+
+            <!-- ========================================================= -->
+            <!-- 1. TÉCNICO DE NÍVEL SUPERIOR – VANESSA                       -->
+            <!-- ========================================================= -->
+            <div class="profissional-linha">
+                <div class="profissional-info">
+                    <div class="cargo">1. Técnico de nível superior.</div>
+                    <ul class="detalhes">
+                        <li><strong>Nome:</strong> Vanessa Cristina Melo Randig,</li>
+                        <li><strong>Ramal:</strong> 6664,</li>
+                        <li><strong>E-mail:</strong> ses.uqd.ceis@joinville.sc.gov.br.</li>
+                    </ul>
+                </div>
+                <div class="relatorios-group">
+                    <!-- Card 1: Relatório – Cursos de Vacina (com link ativo) -->
+                    <div class="card-relatorio">
+                        <div>
+                            <div class="titulo">Relatório – Cursos de Vacina.</div>
+                            <div class="descricao">Acesse o relatório completo com dados atualizados sobre a educação permanente em saúde.</div>
+                        </div>
+                        <a href="https://lookerstudio.google.com/reporting/438ee60f-1366-4607-a507-f0072889edc1/page/SRpeD"
+                           target="_blank"
+                           class="link-acao">
+                            Acessar Relatório.
+                        </a>
+                    </div>
+                    <!-- Card 2: Informações Online (Em desenvolvimento) -->
+                    <div class="card-relatorio">
+                        <div>
+                            <div class="titulo">Informações Online.</div>
+                            <div class="descricao">Acesse o relatório completo com dados atualizados sobre a educação permanente em saúde.</div>
+                        </div>
+                        <a href="#"
+                           onclick="return emDesenvolvimento(event)"
+                           class="link-acao em-desenvolvimento">
+                            Em desenvolvimento 🚧
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- 2. TÉCNICO DE NÍVEL SUPERIOR – VIVIANE                      -->
+            <!-- ========================================================= -->
+            <div class="profissional-linha">
+                <div class="profissional-info">
+                    <div class="cargo">2. Técnico de nível superior.</div>
+                    <ul class="detalhes">
+                        <li><strong>Nome:</strong> Viviane Alano da Silva Ruzza,</li>
+                        <li><strong>Ramal:</strong> 6664,</li>
+                        <li><strong>E-mail:</strong> ses.uqd.ceis@joinville.sc.gov.br.</li>
+                    </ul>
+                </div>
+                <div class="relatorios-group">
+                    <!-- Card 1: Relatório – Indicadores EPS (Em desenvolvimento) -->
+                    <div class="card-relatorio">
+                        <div>
+                            <div class="titulo">Relatório – Indicadores EPS.</div>
+                            <div class="descricao">Visualize os indicadores de educação permanente em saúde.</div>
+                        </div>
+                        <a href="#"
+                           onclick="return emDesenvolvimento(event)"
+                           class="link-acao em-desenvolvimento">
+                            Em desenvolvimento 🚧
+                        </a>
+                    </div>
+                    <!-- Card 2: Informações Online (Em desenvolvimento) -->
+                    <div class="card-relatorio">
+                        <div>
+                            <div class="titulo">Informações Online.</div>
+                            <div class="descricao">Acesse o relatório completo com dados atualizados sobre a educação permanente em saúde.</div>
+                        </div>
+                        <a href="#"
+                           onclick="return emDesenvolvimento(event)"
+                           class="link-acao em-desenvolvimento">
+                            Em desenvolvimento 🚧
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- 3. TÉCNICO DE ENFERMAGEM – ESTELA                           -->
+            <!-- ========================================================= -->
+            <div class="profissional-linha">
+                <div class="profissional-info">
+                    <div class="cargo">3. Técnico de enfermagem.</div>
+                    <ul class="detalhes">
+                        <li><strong>Nome:</strong> Estela Maria da Silva,</li>
+                        <li><strong>Ramal:</strong> 6664,</li>
+                        <li><strong>E-mail:</strong> ses.uqd.ceis@joinville.sc.gov.br.</li>
+                    </ul>
+                </div>
+                <div class="relatorios-group">
+                    <!-- Card 1: Relatório – Capacitações (Em desenvolvimento) -->
+                    <div class="card-relatorio">
+                        <div>
+                            <div class="titulo">Relatório – Capacitações</div>
+                            <div class="descricao">Acompanhe os dados das capacitações realizadas.</div>
+                        </div>
+                        <a href="#"
+                           onclick="return emDesenvolvimento(event)"
+                           class="link-acao em-desenvolvimento">
+                            Em desenvolvimento 🚧
+                        </a>
+                    </div>
+                    <!-- Card 2: Informações Online (Em desenvolvimento) -->
+                    <div class="card-relatorio">
+                        <div>
+                            <div class="titulo">Informações Online.</div>
+                            <div class="descricao">Acesse o relatório completo com dados atualizados sobre a educação permanente em saúde.</div>
+                        </div>
+                        <a href="#"
+                           onclick="return emDesenvolvimento(event)"
+                           class="link-acao em-desenvolvimento">
+                            Em desenvolvimento 🚧
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- 4. TÉCNICO DE ENFERMAGEM – JULIO                            -->
+            <!-- ========================================================= -->
+            <div class="profissional-linha">
+                <div class="profissional-info">
+                    <div class="cargo">4. Técnico de enfermagem.</div>
+                    <ul class="detalhes">
+                        <li><strong>Nome:</strong> Julio Cezar Dominoni,</li>
+                        <li><strong>Ramal:</strong> 6664,</li>
+                        <li><strong>E-mail:</strong> ses.uqd.ceis@joinville.sc.gov.br.</li>
+                    </ul>
+                </div>
+                <div class="relatorios-group">
+                    <!-- Card 1: Relatório – Apoio Educacional (Em desenvolvimento) -->
+                    <div class="card-relatorio">
+                        <div>
+                            <div class="titulo">Relatório – Apoio Educacional.</div>
+                            <div class="descricao">Consulte os dados de apoio educacional.</div>
+                        </div>
+                        <a href="#"
+                           onclick="return emDesenvolvimento(event)"
+                           class="link-acao em-desenvolvimento">
+                            Em desenvolvimento 🚧
+                        </a>
+                    </div>
+                    <!-- Card 2: Informações Online (Em desenvolvimento) -->
+                    <div class="card-relatorio">
+                        <div>
+                            <div class="titulo">Informações Online.</div>
+                            <div class="descricao">Acesse o relatório completo com dados atualizados sobre a educação permanente em saúde.</div>
+                        </div>
+                        <a href="#"
+                           onclick="return emDesenvolvimento(event)"
+                           class="link-acao em-desenvolvimento">
+                            Em desenvolvimento 🚧
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- 5. AGENTE ADMINISTRATIVO – PRISCILA                        -->
+            <!-- ========================================================= -->
+            <div class="profissional-linha">
+                <div class="profissional-info">
+                    <div class="cargo">5. Agente Administrativo.</div>
+                    <ul class="detalhes">
+                        <li><strong>Nome:</strong> Priscila Cordeiro de Souza,</li>
+                        <li><strong>Ramal:</strong> 6664,</li>
+                        <li><strong>E-mail:</strong> ses.uqd.ceis@joinville.sc.gov.br.</li>
+                    </ul>
+                </div>
+                <!-- Espaço vazio para manter alinhamento (não há relatórios para este profissional) -->
+                <div class="relatorios-group" style="flex: 2 1 500px; min-height: 50px;"></div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- 6. ESTAGIÁRIO DE NÍVEL SUPERIOR – MARIA EDUARDA            -->
+            <!-- ========================================================= -->
+            <div class="profissional-linha">
+                <div class="profissional-info">
+                    <div class="cargo">6. Estagiário de nível Superior.</div>
+                    <ul class="detalhes">
+                        <li><strong>Nome:</strong> Maria Eduarda Pedroze Medeiros,</li>
+                        <li><strong>Ramal:</strong> 6664,</li>
+                        <li><strong>E-mail:</strong> ses.uqd.ceis@joinville.sc.gov.br.</li>
+                    </ul>
+                </div>
+                <!-- Espaço vazio para manter alinhamento (não há relatórios para este profissional) -->
+                <div class="relatorios-group" style="flex: 2 1 500px; min-height: 50px;"></div>
+            </div>
+
+        </div> <!-- fim .container -->
+    </main>
+
+    <footer>
+        Secretaria Municipal da Saúde – Joinville
+    </footer>
 
 </body>
 </html>
