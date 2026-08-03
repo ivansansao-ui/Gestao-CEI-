@@ -61,7 +61,7 @@
         }
 
         .container {
-            max-width: 1200px; /* Aumentado para acomodar cards maiores */
+            max-width: 1300px; /* Aumentado para acomodar cards maiores */
             margin: 0 auto;
             background: white;
             border-radius: 12px;
@@ -82,14 +82,14 @@
             border-bottom: none;
         }
 
-        /* Coluna do profissional (cargo, nome, ramal, e-mail) - COM MOLDURA AZUL - AUMENTADA */
+        /* Coluna do profissional (cargo, nome, ramal, e-mail) - COM MOLDURA AZUL - AUMENTADA +3cm */
         .profissional-info {
-            flex: 1 1 320px; /* Aumentado de 280px para 320px */
-            min-width: 260px; /* Aumentado de 220px para 260px */
+            flex: 1 1 380px; /* Aumentado de 320px para 380px (+60px = 3cm) */
+            min-width: 320px; /* Aumentado de 260px para 320px (+60px = 3cm) */
             background: #f8faff;
             border-left: 5px solid #0dcaf0;
             border-radius: 6px;
-            padding: 20px 22px; /* Aumentado o padding interno */
+            padding: 24px 28px; /* Aumentado o padding interno */
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
             transition: 0.15s;
         }
@@ -100,8 +100,8 @@
         .profissional-info .cargo {
             font-weight: 700;
             color: #198754;
-            font-size: 1.05rem;
-            margin-bottom: 6px;
+            font-size: 1.1rem; /* Levemente maior */
+            margin-bottom: 8px;
         }
 
         .profissional-info .detalhes {
@@ -109,8 +109,9 @@
             padding-left: 0;
         }
         .profissional-info .detalhes li {
-            padding: 2px 0;
+            padding: 3px 0;
             color: #444;
+            font-size: 0.95rem; /* Levemente maior */
         }
         .profissional-info .detalhes li strong {
             font-weight: 600;
@@ -119,19 +120,19 @@
 
         /* Container dos cards de relatório (2 por profissional) */
         .relatorios-group {
-            flex: 2 1 560px; /* Aumentado de 500px para 560px */
+            flex: 2 1 680px; /* Aumentado de 560px para 680px (+120px total) */
             display: flex;
             flex-wrap: wrap;
-            gap: 18px; /* Aumentado o espaçamento entre cards */
+            gap: 20px; /* Aumentado o espaçamento entre cards */
         }
 
-        /* Cada card de relatório - COM MOLDURA AZUL - AUMENTADO */
+        /* Cada card de relatório - COM MOLDURA AZUL - AUMENTADO +3cm */
         .card-relatorio {
-            flex: 1 1 240px; /* Aumentado de 200px para 240px */
+            flex: 1 1 300px; /* Aumentado de 240px para 300px (+60px = 3cm) */
             background: #f8faff;
             border-left: 5px solid #0dcaf0;
             border-radius: 6px;
-            padding: 20px 22px; /* Aumentado o padding interno */
+            padding: 24px 28px; /* Aumentado o padding interno */
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
             display: flex;
             flex-direction: column;
@@ -146,13 +147,13 @@
         .card-relatorio .titulo {
             font-weight: 700;
             color: #1e2a3a;
-            font-size: 1.05rem; /* Levemente maior */
+            font-size: 1.1rem; /* Aumentado */
             margin-bottom: 8px;
         }
 
         /* DESCRIÇÃO - TEXTO NORMAL */
         .card-relatorio .descricao {
-            font-size: 0.95rem; /* Levemente maior */
+            font-size: 1rem; /* Aumentado */
             color: #555;
             margin-bottom: 14px;
             flex: 1;
@@ -161,14 +162,14 @@
         /* BOTÃO/LINK */
         .card-relatorio .link-acao {
             display: inline-block;
-            padding: 10px 20px; /* Aumentado o padding do botão */
+            padding: 12px 24px; /* Aumentado o padding do botão */
             background-color: #0dcaf0;
             color: white;
             font-weight: 600;
             text-decoration: none;
             border-radius: 6px;
             text-align: center;
-            font-size: 0.95rem; /* Levemente maior */
+            font-size: 1rem; /* Aumentado */
             transition: 0.2s;
             align-self: flex-start;
             border: none;
@@ -197,13 +198,13 @@
         }
 
         /* --- RESPONSIVIDADE --- */
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .container {
                 padding: 20px 15px;
             }
             .profissional-linha {
                 flex-direction: column;
-                gap: 12px;
+                gap: 15px;
             }
             .relatorios-group {
                 flex-direction: column;
@@ -213,6 +214,19 @@
             }
             .profissional-info {
                 flex: 1 1 auto;
+                min-width: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px 10px;
+            }
+            .profissional-info {
+                padding: 18px 20px;
+            }
+            .card-relatorio {
+                padding: 18px 20px;
             }
         }
     </style>
@@ -421,7 +435,7 @@
                     </ul>
                 </div>
                 <!-- Espaço vazio para manter alinhamento (não há relatórios para este profissional) -->
-                <div class="relatorios-group" style="flex: 2 1 560px; min-height: 50px;"></div>
+                <div class="relatorios-group" style="flex: 2 1 680px; min-height: 50px;"></div>
             </div>
 
             <!-- ========================================================= -->
@@ -437,7 +451,7 @@
                     </ul>
                 </div>
                 <!-- Espaço vazio para manter alinhamento (não há relatórios para este profissional) -->
-                <div class="relatorios-group" style="flex: 2 1 560px; min-height: 50px;"></div>
+                <div class="relatorios-group" style="flex: 2 1 680px; min-height: 50px;"></div>
             </div>
 
         </div> <!-- fim .container -->
