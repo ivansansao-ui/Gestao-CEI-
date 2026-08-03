@@ -82,10 +82,19 @@
             border-bottom: none;
         }
 
-        /* Coluna do profissional (cargo, nome, ramal, e-mail) */
+        /* Coluna do profissional (cargo, nome, ramal, e-mail) - COM MOLDURA AZUL */
         .profissional-info {
             flex: 1 1 280px;
             min-width: 220px;
+            background: #f8faff;
+            border-left: 5px solid #0dcaf0;  /* MOLDURA AZUL IGUAL AOS RELATÓRIOS */
+            border-radius: 6px;
+            padding: 16px 18px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+            transition: 0.15s;
+        }
+        .profissional-info:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
         }
 
         .profissional-info .cargo {
@@ -116,7 +125,7 @@
             gap: 16px;
         }
 
-        /* Cada card de relatório - IGUAL AO EXEMPLO DA IMAGEM */
+        /* Cada card de relatório - COM MOLDURA AZUL */
         .card-relatorio {
             flex: 1 1 200px;
             background: #f8faff;
@@ -149,7 +158,7 @@
             flex: 1;
         }
 
-        /* BOTÃO/LINK - ESTILO IGUAL AO EXEMPLO */
+        /* BOTÃO/LINK */
         .card-relatorio .link-acao {
             display: inline-block;
             padding: 8px 16px;
@@ -170,7 +179,7 @@
             transform: translateY(-1px);
         }
 
-        /* Estilo para "Em desenvolvimento" - IGUAL AO EXEMPLO DA IMAGEM */
+        /* Estilo para "Em desenvolvimento" */
         .card-relatorio .link-acao.em-desenvolvimento {
             background-color: #adb5bd;
             cursor: not-allowed;
