@@ -17,7 +17,7 @@
       background-color: #f4f6f8;
     }
 
-    /* 🔹 MENU FIXO COM DROPDOWN */
+    /* 🔹 MENU FIXO SUPERIOR */
     .top-menu {
       position: fixed;
       top: 0;
@@ -47,115 +47,6 @@
       white-space: nowrap;
     }
 
-    /* DROPDOWN */
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .dropdown-btn {
-      background: transparent;
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      padding: 5px 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      transition: all 0.3s;
-    }
-
-    .dropdown-btn:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.7);
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      top: 110%;
-      left: 0;
-      background: white;
-      min-width: 240px;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-      overflow: hidden;
-      z-index: 1001;
-      padding: 6px 0;
-    }
-
-    .dropdown-content a {
-      color: #333;
-      padding: 10px 16px;
-      text-decoration: none;
-      display: block;
-      font-weight: normal;
-      font-size: 0.9rem;
-      transition: background 0.2s;
-      border-bottom: 1px solid #f5f5f5;
-      cursor: pointer;
-    }
-
-    .dropdown-content a:last-child {
-      border-bottom: none;
-    }
-
-    .dropdown-content a:hover {
-      background: #e8f5e9;
-      color: #198754;
-    }
-
-    .dropdown-content .nome-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .dropdown-content .emoji {
-      font-size: 1.1rem;
-    }
-
-    .dropdown-content .cargo-tag {
-      background: #e8f5e9;
-      color: #198754;
-      font-size: 0.6rem;
-      padding: 2px 8px;
-      border-radius: 10px;
-      font-weight: bold;
-      margin-left: auto;
-      white-space: nowrap;
-    }
-
-    .dropdown:hover .dropdown-content {
-      display: block;
-    }
-
-    /* BOTÃO MOSTRAR TODOS */
-    .btn-mostrar-todos {
-      background: #ff6b00;
-      color: white;
-      border: none;
-      padding: 6px 14px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      font-weight: bold;
-      transition: background 0.3s;
-      margin-bottom: 6px;
-      border-bottom: 2px solid #e0e0e0 !important;
-    }
-
-    .btn-mostrar-todos:hover {
-      background: #cc5500;
-    }
-
-    .dropdown-content .divisor {
-      border-bottom: 2px solid #e0e0e0;
-      margin: 4px 0;
-    }
-
     .btn-voltar {
       background: white;
       color: #198754;
@@ -171,17 +62,115 @@
       background: #e9ecef;
     }
 
-    main {
+    /* 🔹 LAYOUT PRINCIPAL COM MENU LATERAL */
+    .main-wrapper {
+      display: flex;
       margin-top: 70px;
+      min-height: calc(100vh - 130px);
+    }
+
+    /* 🔹 MENU LATERAL */
+    .sidebar {
+      width: 260px;
+      background: #ffffff;
+      border-right: 1px solid #e0e0e0;
+      padding: 20px 0;
+      height: calc(100vh - 70px);
+      position: sticky;
+      top: 70px;
+      overflow-y: auto;
+      flex-shrink: 0;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+    }
+
+    .sidebar::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+      background: #198754;
+      border-radius: 10px;
+    }
+
+    .sidebar .menu-item {
+      padding: 8px 20px;
+      cursor: pointer;
+      color: #333;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+      border-left: 3px solid transparent;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .sidebar .menu-item:hover {
+      background: #f0f8f0;
+      border-left-color: #198754;
+    }
+
+    .sidebar .menu-item.ativo {
+      background: #e8f5e9;
+      border-left-color: #198754;
+      font-weight: bold;
+    }
+
+    .sidebar .menu-item .icone {
+      font-size: 1rem;
+      min-width: 24px;
+    }
+
+    .sidebar .menu-item .badge {
+      background: #ff6b00;
+      color: white;
+      font-size: 0.6rem;
+      padding: 1px 8px;
+      border-radius: 10px;
+      margin-left: auto;
+    }
+
+    .sidebar .menu-item .badge-verde {
+      background: #198754;
+      color: white;
+      font-size: 0.6rem;
+      padding: 1px 8px;
+      border-radius: 10px;
+      margin-left: auto;
+    }
+
+    .sidebar .grupo-titulo {
+      padding: 12px 20px 6px 20px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: #999;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .sidebar .sub-item {
+      padding-left: 48px;
+      font-size: 0.85rem;
+    }
+
+    .sidebar .divisor {
+      border-bottom: 1px solid #f0f0f0;
+      margin: 8px 20px;
+    }
+
+    /* 🔹 CONTEÚDO PRINCIPAL */
+    .content-area {
+      flex: 1;
+      padding: 30px;
+      overflow-x: hidden;
     }
 
     .layout-container {
       display: flex;
       flex-direction: column;
       gap: 25px;
-      width: 95%;
       max-width: 1500px;
-      margin: 30px auto;
+      margin: 0 auto;
     }
 
     .linha {
@@ -205,7 +194,6 @@
       transition: all 0.3s ease;
     }
 
-    /* CARDS DOS PROFISSIONAIS - VISÍVEIS QUANDO ATIVADOS */
     .quadro-item.visivel {
       display: flex;
       animation: fadeIn 0.5s ease;
@@ -294,7 +282,6 @@
       background-color: #adb5bd;
     }
 
-    /* BOTÃO DE FECHAR */
     .btn-fechar {
       margin-top: 12px;
       padding: 6px 14px;
@@ -313,7 +300,6 @@
       background: #c82333;
     }
 
-    /* BOTÃO FECHAR TODOS */
     .btn-fechar-todos {
       margin-top: 12px;
       padding: 8px 20px;
@@ -350,10 +336,121 @@
       font-weight: bold;
     }
 
+    /* 🔹 DROPDOWN DO CABEÇALHO */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-btn {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 5px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.3s;
+    }
+
+    .dropdown-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.7);
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 110%;
+      left: 0;
+      background: white;
+      min-width: 240px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+      overflow: hidden;
+      z-index: 1001;
+      padding: 6px 0;
+    }
+
+    .dropdown-content a {
+      color: #333;
+      padding: 10px 16px;
+      text-decoration: none;
+      display: block;
+      font-weight: normal;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+      border-bottom: 1px solid #f5f5f5;
+      cursor: pointer;
+    }
+
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-content a:hover {
+      background: #e8f5e9;
+      color: #198754;
+    }
+
+    .dropdown-content .nome-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dropdown-content .emoji {
+      font-size: 1.1rem;
+    }
+
+    .dropdown-content .cargo-tag {
+      background: #e8f5e9;
+      color: #198754;
+      font-size: 0.6rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: bold;
+      margin-left: auto;
+      white-space: nowrap;
+    }
+
+    .dropdown-content .divisor {
+      border-bottom: 2px solid #e0e0e0;
+      margin: 4px 0;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .btn-mostrar-todos {
+      background: #ff6b00;
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: bold;
+      transition: background 0.3s;
+      margin-bottom: 6px;
+      border-bottom: 2px solid #e0e0e0 !important;
+    }
+
+    .btn-mostrar-todos:hover {
+      background: #cc5500;
+    }
+
     /* 🔹 RESPONSIVIDADE */
     @media (max-width: 1024px) {
       .linha {
         grid-template-columns: 1fr 1fr;
+      }
+      .sidebar {
+        width: 220px;
       }
     }
 
@@ -376,9 +473,25 @@
         gap: 10px;
       }
 
-      .dropdown-content {
-        left: 0;
-        min-width: 200px;
+      .main-wrapper {
+        flex-direction: column;
+        margin-top: 100px;
+      }
+
+      .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        top: 0;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 10px 0;
+        max-height: 300px;
+        overflow-y: auto;
+      }
+
+      .content-area {
+        padding: 15px;
       }
 
       .linha {
@@ -392,12 +505,17 @@
       }
 
       .layout-container {
-        width: 92%;
+        width: 100%;
         gap: 20px;
       }
 
       .btn-voltar {
         align-self: flex-end;
+      }
+
+      .dropdown-content {
+        left: 0;
+        min-width: 200px;
       }
     }
   </style>
@@ -419,56 +537,92 @@
     }
 
     function mostrarTodosProfissionais() {
-      // Mostra todos os cards de profissionais
       document.querySelectorAll('.quadro-item:not(.quadro-relatorio)').forEach(item => {
         item.classList.add('visivel');
       });
-
-      // Fecha o dropdown
       const dropdown = document.querySelector('.dropdown');
       const content = dropdown.querySelector('.dropdown-content');
       content.style.display = 'none';
-
-      setTimeout(() => {
-        content.style.display = '';
-      }, 300);
-
-      // Scroll para o primeiro card após um pequeno delay
+      setTimeout(() => { content.style.display = ''; }, 300);
       setTimeout(() => {
         const primeiro = document.querySelector('.quadro-item.visivel');
-        if (primeiro) {
-          primeiro.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        if (primeiro) primeiro.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 400);
+      setTimeout(verificarCardsVisiveis, 100);
     }
 
     function fecharTodosProfissionais() {
       document.querySelectorAll('.quadro-item:not(.quadro-relatorio)').forEach(item => {
         item.classList.remove('visivel');
       });
+      setTimeout(verificarCardsVisiveis, 100);
     }
 
     function fecharProfissional(id) {
       const elemento = document.getElementById(id);
+      if (elemento) elemento.classList.remove('visivel');
+      setTimeout(verificarCardsVisiveis, 100);
+    }
+
+    function mostrarProfissional(id) {
+      document.querySelectorAll('.quadro-item:not(.quadro-relatorio)').forEach(item => {
+        item.classList.remove('visivel');
+      });
+      const elemento = document.getElementById(id);
       if (elemento) {
-        elemento.classList.remove('visivel');
+        elemento.classList.add('visivel');
+        setTimeout(() => {
+          elemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+      }
+      const dropdown = document.querySelector('.dropdown');
+      const content = dropdown.querySelector('.dropdown-content');
+      content.style.display = 'none';
+      setTimeout(() => { content.style.display = ''; }, 300);
+      setTimeout(verificarCardsVisiveis, 100);
+    }
+
+    function verificarCardsVisiveis() {
+      const visiveis = document.querySelectorAll('.quadro-item:not(.quadro-relatorio).visivel');
+      const containerFechar = document.getElementById('containerFechar');
+      if (visiveis.length > 0) {
+        containerFechar.style.display = 'flex';
+      } else {
+        containerFechar.style.display = 'none';
       }
     }
+
+    // Ativa item do menu lateral
+    function ativarMenu(id) {
+      document.querySelectorAll('.sidebar .menu-item').forEach(item => {
+        item.classList.remove('ativo');
+      });
+      const el = document.querySelector(`.sidebar .menu-item[data-target="${id}"]`);
+      if (el) el.classList.add('ativo');
+    }
+
+    // Scroll suave para seção
+    function scrollParaSecao(id) {
+      const elemento = document.getElementById(id);
+      if (elemento) {
+        elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        ativarMenu(id);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', verificarCardsVisiveis);
   </script>
 </head>
 
 <body>
 
-  <!-- 🔹 MENU FIXO COM DROPDOWN -->
+  <!-- 🔹 MENU FIXO SUPERIOR -->
   <div class="top-menu">
     <div class="menu-esquerda">
       <span class="titulo">IV - Núcleo das Residências em Saúde.</span>
-
-      <!-- DROPDOWN -->
       <div class="dropdown">
         <button class="dropdown-btn">▼ Profissionais</button>
         <div class="dropdown-content">
-          <!-- Botão para mostrar todos -->
           <a href="#" onclick="mostrarTodosProfissionais(); return false;" style="background: #fff3e0;">
             <div class="nome-item" style="font-weight: bold; color: #ff6b00;">
               <span style="font-size: 1.1rem;">👥</span>
@@ -476,7 +630,6 @@
             </div>
           </a>
           <div class="divisor"></div>
-          <!-- Lista individual -->
           <a href="#" onclick="mostrarProfissional('profissional1'); return false;">
             <div class="nome-item">
               <span class="emoji">👩‍⚕️</span>
@@ -501,187 +654,370 @@
         </div>
       </div>
     </div>
-
     <button class="btn-voltar" onclick="voltarPaginaPrincipal()">Voltar</button>
   </div>
 
-  <main>
-    <div class="layout-container">
+  <!-- 🔹 CORPO COM MENU LATERAL -->
+  <div class="main-wrapper">
 
-      <!-- BOTÃO FECHAR TODOS (aparece quando os cards estão visíveis) -->
-      <div id="containerFechar" style="display: none;" class="container-botoes">
-        <button class="btn-fechar-todos" onclick="fecharTodosProfissionais()">✕ Fechar todos os profissionais</button>
+    <!-- MENU LATERAL -->
+    <nav class="sidebar">
+      <div class="grupo-titulo">NÚCLEO</div>
+      <a class="menu-item" data-target="secao-ceis" onclick="scrollParaSecao('secao-ceis')">
+        <span class="icone">🏛️</span> CEIS, COREMU, COMERE
+      </a>
+      <a class="menu-item" data-target="secao-visao" onclick="scrollParaSecao('secao-visao')">
+        <span class="icone">📊</span> Visão Geral
+      </a>
+      <a class="menu-item" data-target="secao-cenarios" onclick="scrollParaSecao('secao-cenarios')">
+        <span class="icone">📍</span> Cenários
+      </a>
+
+      <div class="grupo-titulo">RESIDENTES</div>
+      <a class="menu-item" data-target="secao-selecao" onclick="scrollParaSecao('secao-selecao')">
+        <span class="icone">📋</span> Seleção
+      </a>
+      <a class="menu-item" data-target="secao-cadastro" onclick="scrollParaSecao('secao-cadastro')">
+        <span class="icone">📝</span> Cadastro
+      </a>
+      <a class="menu-item" data-target="secao-documentos" onclick="scrollParaSecao('secao-documentos')">
+        <span class="icone">📄</span> Documentos
+      </a>
+      <a class="menu-item" data-target="secao-frequencia" onclick="scrollParaSecao('secao-frequencia')">
+        <span class="icone">⏰</span> Frequência | Férias | Afastamentos
+      </a>
+      <a class="menu-item" data-target="secao-avaliacoes" onclick="scrollParaSecao('secao-avaliacoes')">
+        <span class="icone">⭐</span> Avaliações
+      </a>
+      <a class="menu-item" data-target="secao-preceptores" onclick="scrollParaSecao('secao-preceptores')">
+        <span class="icone">👨‍🏫</span> Preceptores e Coordenação
+      </a>
+      <a class="menu-item" data-target="secao-desistencia" onclick="scrollParaSecao('secao-desistencia')">
+        <span class="icone">🚪</span> Desistência
+      </a>
+
+      <div class="grupo-titulo">CONTROLE ACADÊMICO</div>
+      <a class="menu-item" data-target="secao-acompanhamento" onclick="scrollParaSecao('secao-acompanhamento')">
+        <span class="icone">📈</span> Acompanhamento
+      </a>
+      <a class="menu-item" data-target="secao-financeiro" onclick="scrollParaSecao('secao-financeiro')">
+        <span class="icone">💰</span> Financeiro | Sistemas
+      </a>
+      <a class="menu-item" data-target="secao-reunioes" onclick="scrollParaSecao('secao-reunioes')">
+        <span class="icone">🤝</span> Reuniões
+      </a>
+
+      <div class="grupo-titulo">ORGANIZAÇÃO INTERNA</div>
+      <a class="menu-item" data-target="secao-processos" onclick="scrollParaSecao('secao-processos')">
+        <span class="icone">⚙️</span> Processos
+      </a>
+      <a class="menu-item" data-target="secao-pendencias" onclick="scrollParaSecao('secao-pendencias')">
+        <span class="icone">⚠️</span> Pendências
+        <span class="badge">3</span>
+      </a>
+      <a class="menu-item" data-target="secao-relatorios" onclick="scrollParaSecao('secao-relatorios')">
+        <span class="icone">📊</span> Relatórios
+      </a>
+      <a class="menu-item" data-target="secao-notificacoes" onclick="scrollParaSecao('secao-notificacoes')">
+        <span class="icone">🔔</span> Notificações
+        <span class="badge-verde">5</span>
+      </a>
+    </nav>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <div class="content-area">
+      <div class="layout-container">
+
+        <!-- BOTÃO FECHAR TODOS -->
+        <div id="containerFechar" style="display: none;" class="container-botoes">
+          <button class="btn-fechar-todos" onclick="fecharTodosProfissionais()">✕ Fechar todos os profissionais</button>
+        </div>
+
+        <!-- SEÇÃO: CEIS, COREMU, COMERE -->
+        <div id="secao-ceis">
+          <h2 style="color: #198754; margin-bottom: 15px;">🏛️ CEIS, COREMU, COMERE</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">CEIS - Centro de Educação Integrada em Saúde</div>
+              <p>Informações sobre o CEIS.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">COREMU - Comissão de Residência Médica</div>
+              <p>Informações sobre o COREMU.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">COMERE - Comissão de Residência em Saúde</div>
+              <p>Informações sobre o COMERE.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: Visão Geral -->
+        <div id="secao-visao">
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">📊 Visão Geral</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">📊 Visão Geral</div>
+              <p>Painel com informações gerais do Núcleo.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: Cenários -->
+        <div id="secao-cenarios">
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">📍 Cenários</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio">
+              <div class="titulo-texto">Cenários de prática na Secretaria da Saúde para Programas de Residência em Saúde.</div>
+              <p>Este serviço orienta profissionais dos hospitais conveniados a solicitarem cenários de práticas para Programas de Residência em Saúde.</p>
+              <a href="https://www.joinville.sc.gov.br/servicos/solicitar-cenarios-de-pratica-na-secretaria-da-saude-para-programas-de-residencia-em-saude/" target="_blank" class="relatorio-link">Acessar Formulário</a>
+            </div>
+            <div class="quadro-item quadro-relatorio">
+              <div class="titulo-texto">Painel de liberação dos Cenários de Prática na Residência em saúde.</div>
+              <p>Painel de aprovação e liberação de cenários de prática.</p>
+              <a href="https://sites.google.com/view/ceis-gestao-cenarios-pratica/p%C3%A1gina-inicial/agendamento-iep" target="_blank" class="relatorio-link">Acessar Relatório</a>
+            </div>
+            <div class="quadro-item quadro-relatorio">
+              <div class="titulo-texto">📊 Ficha de Visita Técnica em Cenários de Prática.</div>
+              <div class="titulo-texto">Diagnóstico e Acompanhamento das Atividades.</div>
+              <a href="https://script.google.com/macros/s/AKfycbxDjuj7HbVxuA2I7NcGGCt_eHy16Cj3p0AC3RUp9NdvCGTrgvEqBRv1rBeWDnWWn2UVVg/exec" target="_blank" class="relatorio-link">Acessar a Ficha</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: Seleção -->
+        <div id="secao-selecao">
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">📋 Seleção</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">📋 Processo Seletivo</div>
+              <p>Informações sobre o processo seletivo para residências.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: Cadastro -->
+        <div id="secao-cadastro">
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">📝 Cadastro</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">📝 Cadastro de Residentes</div>
+              <p>Cadastro de novos residentes.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: Documentos -->
+        <div id="secao-documentos">
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">📄 Documentos</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">📄 Gestão de Documentos</div>
+              <p>Controle de documentos dos residentes.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: Frequência -->
+        <div id="secao-frequencia">
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">⏰ Frequência | Férias | Afastamentos</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio">
+              <div class="titulo-texto">📊 SPR - Sistema de Ponto da Residência.</div>
+              <div class="titulo-texto">Controle de Hora.</div>
+              <a href="https://script.google.com/a/macros/joinville.sc.gov.br/s/AKfycbwFCLyWMRMFT3o1UuqfRwV8VfBwTSSLWnTXbNRwEP5JSzQIDrPflpAPJRnsjIQ5nS65/exec" target="_blank" class="relatorio-link">Acessar Sistema de Ponto</a>
+            </div>
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">⏰ Férias e Afastamentos</div>
+              <p>Controle de férias e afastamentos.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: Avaliações -->
+        <div id="secao-avaliacoes">
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">⭐ Avaliações</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">⭐ Avaliações dos Residentes</div>
+              <p>Sistema de avaliação de residentes.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: Preceptores -->
+        <div id="secao-preceptores">
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">👨‍🏫 Preceptores e Coordenação</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">👨‍🏫 Preceptores</div>
+              <p>Gestão de preceptores.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">👨‍🏫 Coordenação</div>
+              <p>Gestão da coordenação.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: Desistência -->
+        <div id="secao-desistencia">
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">🚪 Desistência</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">🚪 Controle de Desistências</div>
+              <p>Registro e acompanhamento de desistências.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: Acompanhamento -->
+        <div id="secao-acompanhamento">
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">📈 Acompanhamento</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">📈 Acompanhamento Acadêmico</div>
+              <p>Acompanhamento do desempenho acadêmico.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: Financeiro -->
+        <div id="secao-financeiro">
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">💰 Financeiro | Sistemas</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">💰 Financeiro</div>
+              <p>Controle financeiro do Núcleo.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">💻 Sistemas</div>
+              <p>Integração com sistemas.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: Reuniões -->
+        <div id="secao-reunioes">
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">🤝 Reuniões</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">🤝 Agendamento de Reuniões</div>
+              <p>Controle de reuniões e pautas.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: Processos -->
+        <div id="secao-processos">
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">⚙️ Processos</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">⚙️ Processos Internos</div>
+              <p>Gestão de processos internos.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: Pendências -->
+        <div id="secao-pendencias">
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">⚠️ Pendências</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">⚠️ Pendências</div>
+              <p>Lista de pendências do Núcleo.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: Relatórios -->
+        <div id="secao-relatorios">
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">📊 Relatórios</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio">
+              <div class="titulo-texto">📊 Relatório.</div>
+              <p>Acesse o relatório de atividades.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+            <div class="quadro-item quadro-relatorio">
+              <div class="titulo-texto">📊 Relatório.</div>
+              <p>Acesse o relatório de indicadores.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: Notificações -->
+        <div id="secao-notificacoes">
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">🔔 Notificações</h2>
+          <div class="linha">
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">🔔 Notificações</div>
+              <p>Central de notificações.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARDS DOS PROFISSIONAIS (OCULTOS) -->
+        <div id="secao-profissionais" style="margin-top: 30px;">
+          <h2 style="color: #198754; margin-bottom: 15px;">👨‍⚕️ Profissionais do Núcleo</h2>
+          <div class="linha">
+            <div class="quadro-item" id="profissional1">
+              <div class="titulo-texto">👩‍⚕️ 1. Técnico de nível superior.</div>
+              <ul class="quadro-detalhes">
+                <li><strong>Nome:</strong> Francielly Kleine Maria Amorim</li>
+                <li><strong>Ramal:</strong> 6665</li>
+                <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
+              </ul>
+              <button class="btn-fechar" onclick="fecharProfissional('profissional1')">✕ Fechar</button>
+            </div>
+            <div class="quadro-item" id="profissional2">
+              <div class="titulo-texto">👩‍⚕️ 2. Técnico em Enfermagem.</div>
+              <ul class="quadro-detalhes">
+                <li><strong>Nome:</strong> Alexsandra Fabeni de Medeiros</li>
+                <li><strong>Ramal:</strong> 6665</li>
+                <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
+              </ul>
+              <button class="btn-fechar" onclick="fecharProfissional('profissional2')">✕ Fechar</button>
+            </div>
+            <div class="quadro-item" id="profissional3">
+              <div class="titulo-texto">👩‍🎓 3. Estagiário de nível superior.</div>
+              <ul class="quadro-detalhes">
+                <li><strong>Nome:</strong> Sabrina Krazowski</li>
+                <li><strong>Ramal:</strong> 6665</li>
+                <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
+              </ul>
+              <button class="btn-fechar" onclick="fecharProfissional('profissional3')">✕ Fechar</button>
+            </div>
+          </div>
+        </div>
+
       </div>
-
-      <!-- 🔹 LINHA 1 - 3 COLUNAS -->
-      <div class="linha">
-        <!-- Card 1: Técnico de nível superior (OCULTO POR PADRÃO) -->
-        <div class="quadro-item" id="profissional1">
-          <div class="titulo-texto">👩‍⚕️ 1. Técnico de nível superior.</div>
-          <ul class="quadro-detalhes">
-            <li><strong>Nome:</strong> Francielly Kleine Maria Amorim</li>
-            <li><strong>Ramal:</strong> 6665</li>
-            <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
-          </ul>
-          <button class="btn-fechar" onclick="fecharProfissional('profissional1')">✕ Fechar</button>
-        </div>
-
-        <!-- Card 2: Cenários de prática (SEMPRE VISÍVEL) -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">Cenários de prática na Secretaria da Saúde para Programas de Residência em Saúde.</div>
-          <p>Este serviço orienta profissionais dos hospitais conveniados a solicitarem cenários de práticas para Programas de Residência em Saúde.</p>
-          <a href="https://www.joinville.sc.gov.br/servicos/solicitar-cenarios-de-pratica-na-secretaria-da-saude-para-programas-de-residencia-em-saude/"
-             target="_blank"
-             class="relatorio-link">
-            Acessar Formulário
-          </a>
-        </div>
-
-        <!-- Card 3: Painel de liberação (SEMPRE VISÍVEL) -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">Painel de liberação dos Cenários de Prática na Residência em saúde.</div>
-          <p> Painel de aprovação e liberação de cenários de prática.</p>
-          <a href="https://sites.google.com/view/ceis-gestao-cenarios-pratica/p%C3%A1gina-inicial/agendamento-iep" 
-             target="_blank" 
-             class="relatorio-link">
-            Acessar Relatório
-          </a>
-        </div>
-      </div>
-
-      <!-- 🔹 LINHA 2 - 3 COLUNAS -->
-      <div class="linha">
-        <!-- Card 1: Técnico em Enfermagem (OCULTO POR PADRÃO) -->
-        <div class="quadro-item" id="profissional2">
-          <div class="titulo-texto">👩‍⚕️ 2. Técnico em Enfermagem.</div>
-          <ul class="quadro-detalhes">
-            <li><strong>Nome:</strong> Alexsandra Fabeni de Medeiros</li>
-            <li><strong>Ramal:</strong> 6665</li>
-            <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
-          </ul>
-          <button class="btn-fechar" onclick="fecharProfissional('profissional2')">✕ Fechar</button>
-        </div>
-
-        <!-- Card 2: Ficha de Visita Técnica (SEMPRE VISÍVEL) -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">📊 Ficha de Visita Técnica em Cenários de Prática.</div>   
-          <div class="titulo-texto">Diagnóstico e Acompanhamento das Atividades.</div>
-          <a href="https://script.google.com/macros/s/AKfycbxDjuj7HbVxuA2I7NcGGCt_eHy16Cj3p0AC3RUp9NdvCGTrgvEqBRv1rBeWDnWWn2UVVg/exec" 
-             target="_blank" 
-             class="relatorio-link">
-            Acessar a Ficha
-          </a>
-        </div>
-
-        <!-- Card 3: SPR (SEMPRE VISÍVEL) -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">📊 SPR - Sistema de Ponto da Residência.</div>  
-          <div class="titulo-texto">Controle de Hora.</div>
-          <a href="https://script.google.com/a/macros/joinville.sc.gov.br/s/AKfycbwFCLyWMRMFT3o1UuqfRwV8VfBwTSSLWnTXbNRwEP5JSzQIDrPflpAPJRnsjIQ5nS65/exec" 
-             target="_blank" 
-             class="relatorio-link">
-            Acessar Sistema de Ponto
-          </a>
-        </div>
-      </div>
-
-      <!-- 🔹 LINHA 3 - 3 COLUNAS -->
-      <div class="linha">
-        <!-- Card 1: Estagiário (OCULTO POR PADRÃO) -->
-        <div class="quadro-item" id="profissional3">
-          <div class="titulo-texto">👩‍🎓 3. Estagiário de nível superior.</div>
-          <ul class="quadro-detalhes">
-            <li><strong>Nome:</strong> Sabrina Krazowski</li>
-            <li><strong>Ramal:</strong> 6665</li>
-            <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
-          </ul>
-          <button class="btn-fechar" onclick="fecharProfissional('profissional3')">✕ Fechar</button>
-        </div>
-
-        <!-- Card 2: Relatório em desenvolvimento (SEMPRE VISÍVEL) -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">📊 Relatório.</div>
-          <p>Acesse o relatório de atividades.</p>
-          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
-        </div>
-
-        <!-- Card 3: Relatório em desenvolvimento (SEMPRE VISÍVEL) -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">📊 Relatório.</div>
-          <p>Acesse o relatório de indicadores.</p>
-          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
-        </div>
-      </div>
-
     </div>
-  </main>
+  </div>
 
   <footer>
     Secretaria Municipal da Saúde – Joinville
   </footer>
-
-  <script>
-    // Monitora se há cards visíveis para mostrar/esconder o botão "Fechar todos"
-    function verificarCardsVisiveis() {
-      const visiveis = document.querySelectorAll('.quadro-item:not(.quadro-relatorio).visivel');
-      const containerFechar = document.getElementById('containerFechar');
-      if (visiveis.length > 0) {
-        containerFechar.style.display = 'flex';
-      } else {
-        containerFechar.style.display = 'none';
-      }
-    }
-
-    // Sobrescreve as funções para incluir a verificação
-    const originalMostrarTodos = mostrarTodosProfissionais;
-    mostrarTodosProfissionais = function() {
-      originalMostrarTodos();
-      setTimeout(verificarCardsVisiveis, 100);
-    };
-
-    const originalMostrarProfissional = window.mostrarProfissional || function() {};
-    window.mostrarProfissional = function(id) {
-      // Esconde todos os cards de profissionais
-      document.querySelectorAll('.quadro-item:not(.quadro-relatorio)').forEach(item => {
-        item.classList.remove('visivel');
-      });
-
-      // Mostra o card selecionado
-      const elemento = document.getElementById(id);
-      if (elemento) {
-        elemento.classList.add('visivel');
-        setTimeout(() => {
-          elemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 300);
-      }
-
-      // Fecha o dropdown
-      const dropdown = document.querySelector('.dropdown');
-      const content = dropdown.querySelector('.dropdown-content');
-      content.style.display = 'none';
-
-      setTimeout(() => {
-        content.style.display = '';
-      }, 300);
-
-      setTimeout(verificarCardsVisiveis, 100);
-    };
-
-    const originalFecharProfissional = fecharProfissional;
-    fecharProfissional = function(id) {
-      originalFecharProfissional(id);
-      setTimeout(verificarCardsVisiveis, 100);
-    };
-
-    const originalFecharTodos = fecharTodosProfissionais;
-    fecharTodosProfissionais = function() {
-      originalFecharTodos();
-      setTimeout(verificarCardsVisiveis, 100);
-    };
-
-    // Verifica ao carregar a página
-    document.addEventListener('DOMContentLoaded', verificarCardsVisiveis);
-  </script>
 
 </body>
 </html>
