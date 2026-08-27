@@ -343,6 +343,16 @@
       font-size: 1.5rem;
     }
 
+    /* TODAS AS SEÇÕES OCULTAS POR PADRÃO */
+    .secao-conteudo {
+      display: none;
+    }
+
+    .secao-conteudo.ativa {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
     footer {
       text-align: center;
       padding: 18px;
@@ -608,14 +618,37 @@
     }
 
     function scrollParaSecao(id) {
+      // Esconde todas as seções
+      document.querySelectorAll('.secao-conteudo').forEach(secao => {
+        secao.classList.remove('ativa');
+      });
+
+      // Mostra apenas a seção selecionada
       const elemento = document.getElementById(id);
       if (elemento) {
-        elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        elemento.classList.add('ativa');
+        // Scroll suave até a seção
+        setTimeout(() => {
+          elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
         ativarMenu(id);
       }
     }
 
-    document.addEventListener('DOMContentLoaded', verificarCardsVisiveis);
+    // Ao carregar a página, mostrar a primeira seção (CEIS)
+    document.addEventListener('DOMContentLoaded', function() {
+      // Esconde todas as seções primeiro
+      document.querySelectorAll('.secao-conteudo').forEach(secao => {
+        secao.classList.remove('ativa');
+      });
+      // Mostra a seção CEIS por padrão
+      const primeiraSecao = document.getElementById('secao-ceis');
+      if (primeiraSecao) {
+        primeiraSecao.classList.add('ativa');
+        document.querySelector('.sidebar .menu-item[data-target="secao-ceis"]')?.classList.add('ativo');
+      }
+      verificarCardsVisiveis();
+    });
   </script>
 </head>
 
@@ -668,11 +701,11 @@
     <!-- MENU LATERAL -->
     <nav class="sidebar">
       <div class="grupo-titulo">NÚCLEO</div>
-      <a class="menu-item" data-target="secao-visao" onclick="scrollParaSecao('secao-visao')">
-        <span class="icone">📊</span> Visão Geral
-      </a>
       <a class="menu-item" data-target="secao-ceis" onclick="scrollParaSecao('secao-ceis')">
         <span class="icone">🏛️</span> CEIS, COREMU, COMERE
+      </a>
+      <a class="menu-item" data-target="secao-visao" onclick="scrollParaSecao('secao-visao')">
+        <span class="icone">📊</span> Visão Geral
       </a>
       <a class="menu-item" data-target="secao-cenarios" onclick="scrollParaSecao('secao-cenarios')">
         <span class="icone">📍</span> Cenários
@@ -739,29 +772,10 @@
         </div>
 
         <!-- ============================================================ -->
-        <!-- SEÇÃO: Visão Geral (APENAS 2 CARDS) -->
+        <!-- SEÇÃO: CEIS, COREMU, COMERE (1° LUGAR) -->
         <!-- ============================================================ -->
-        <div id="secao-visao">
-          <h2 class="secao-titulo">📊 Visão Geral</h2>
-          <div class="linha-2col">
-            <div class="quadro-item quadro-relatorio">
-              <div class="titulo-texto">Cenários de prática na Secretaria da Saúde para Programas de Residência em Saúde.</div>
-              <p>Este serviço orienta profissionais dos hospitais conveniados a solicitarem cenários de práticas para Programas de Residência em Saúde.</p>
-              <a href="https://www.joinville.sc.gov.br/servicos/solicitar-cenarios-de-pratica-na-secretaria-da-saude-para-programas-de-residencia-em-saude/" target="_blank" class="relatorio-link">Acessar Formulário</a>
-            </div>
-            <div class="quadro-item quadro-relatorio">
-              <div class="titulo-texto">Painel de liberação dos Cenários de Prática na Residência em saúde.</div>
-              <p>Painel de aprovação e liberação de cenários de prática.</p>
-              <a href="https://sites.google.com/view/ceis-gestao-cenarios-pratica/p%C3%A1gina-inicial/agendamento-iep" target="_blank" class="relatorio-link">Acessar Relatório</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- ============================================================ -->
-        <!-- SEÇÃO: CEIS, COREMU, COMERE -->
-        <!-- ============================================================ -->
-        <div id="secao-ceis">
-          <h2 class="secao-titulo-com-margem">🏛️ CEIS, COREMU, COMERE</h2>
+        <div id="secao-ceis" class="secao-conteudo">
+          <h2 class="secao-titulo">🏛️ CEIS, COREMU, COMERE</h2>
           <div class="linha">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">CEIS - Centro de Educação Integrada em Saúde</div>
@@ -782,10 +796,29 @@
         </div>
 
         <!-- ============================================================ -->
+        <!-- SEÇÃO: Visão Geral (2° LUGAR) -->
+        <!-- ============================================================ -->
+        <div id="secao-visao" class="secao-conteudo">
+          <h2 class="secao-titulo">📊 Visão Geral</h2>
+          <div class="linha-2col">
+            <div class="quadro-item quadro-relatorio">
+              <div class="titulo-texto">Cenários de prática na Secretaria da Saúde para Programas de Residência em Saúde.</div>
+              <p>Este serviço orienta profissionais dos hospitais conveniados a solicitarem cenários de práticas para Programas de Residência em Saúde.</p>
+              <a href="https://www.joinville.sc.gov.br/servicos/solicitar-cenarios-de-pratica-na-secretaria-da-saude-para-programas-de-residencia-em-saude/" target="_blank" class="relatorio-link">Acessar Formulário</a>
+            </div>
+            <div class="quadro-item quadro-relatorio">
+              <div class="titulo-texto">Painel de liberação dos Cenários de Prática na Residência em saúde.</div>
+              <p>Painel de aprovação e liberação de cenários de prática.</p>
+              <a href="https://sites.google.com/view/ceis-gestao-cenarios-pratica/p%C3%A1gina-inicial/agendamento-iep" target="_blank" class="relatorio-link">Acessar Relatório</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================================ -->
         <!-- SEÇÃO: Cenários -->
         <!-- ============================================================ -->
-        <div id="secao-cenarios">
-          <h2 class="secao-titulo-com-margem">📍 Cenários</h2>
+        <div id="secao-cenarios" class="secao-conteudo">
+          <h2 class="secao-titulo">📍 Cenários</h2>
           <div class="linha-1col">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">📍 Cenários de Prática</div>
@@ -798,8 +831,8 @@
         <!-- ============================================================ -->
         <!-- SEÇÃO: Seleção -->
         <!-- ============================================================ -->
-        <div id="secao-selecao">
-          <h2 class="secao-titulo-com-margem">📋 Seleção</h2>
+        <div id="secao-selecao" class="secao-conteudo">
+          <h2 class="secao-titulo">📋 Seleção</h2>
           <div class="linha-1col">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">📋 Processo Seletivo</div>
@@ -812,8 +845,8 @@
         <!-- ============================================================ -->
         <!-- SEÇÃO: Cadastro -->
         <!-- ============================================================ -->
-        <div id="secao-cadastro">
-          <h2 class="secao-titulo-com-margem">📝 Cadastro</h2>
+        <div id="secao-cadastro" class="secao-conteudo">
+          <h2 class="secao-titulo">📝 Cadastro</h2>
           <div class="linha-1col">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">📝 Cadastro de Residentes</div>
@@ -826,8 +859,8 @@
         <!-- ============================================================ -->
         <!-- SEÇÃO: Documentos -->
         <!-- ============================================================ -->
-        <div id="secao-documentos">
-          <h2 class="secao-titulo-com-margem">📄 Documentos</h2>
+        <div id="secao-documentos" class="secao-conteudo">
+          <h2 class="secao-titulo">📄 Documentos</h2>
           <div class="linha-1col">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">📄 Gestão de Documentos</div>
@@ -840,8 +873,8 @@
         <!-- ============================================================ -->
         <!-- SEÇÃO: Frequência -->
         <!-- ============================================================ -->
-        <div id="secao-frequencia">
-          <h2 class="secao-titulo-com-margem">⏰ Frequência | Férias | Afastamentos</h2>
+        <div id="secao-frequencia" class="secao-conteudo">
+          <h2 class="secao-titulo">⏰ Frequência | Férias | Afastamentos</h2>
           <div class="linha">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">⏰ Frequência</div>
@@ -859,8 +892,8 @@
         <!-- ============================================================ -->
         <!-- SEÇÃO: Avaliações -->
         <!-- ============================================================ -->
-        <div id="secao-avaliacoes">
-          <h2 class="secao-titulo-com-margem">⭐ Avaliações</h2>
+        <div id="secao-avaliacoes" class="secao-conteudo">
+          <h2 class="secao-titulo">⭐ Avaliações</h2>
           <div class="linha-1col">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">⭐ Avaliações dos Residentes</div>
@@ -873,8 +906,8 @@
         <!-- ============================================================ -->
         <!-- SEÇÃO: Preceptores -->
         <!-- ============================================================ -->
-        <div id="secao-preceptores">
-          <h2 class="secao-titulo-com-margem">👨‍🏫 Preceptores e Coordenação</h2>
+        <div id="secao-preceptores" class="secao-conteudo">
+          <h2 class="secao-titulo">👨‍🏫 Preceptores e Coordenação</h2>
           <div class="linha">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">👨‍🏫 Preceptores</div>
@@ -892,8 +925,8 @@
         <!-- ============================================================ -->
         <!-- SEÇÃO: Desistência -->
         <!-- ============================================================ -->
-        <div id="secao-desistencia">
-          <h2 class="secao-titulo-com-margem">🚪 Desistência</h2>
+        <div id="secao-desistencia" class="secao-conteudo">
+          <h2 class="secao-titulo">🚪 Desistência</h2>
           <div class="linha-1col">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">🚪 Controle de Desistências</div>
@@ -906,8 +939,8 @@
         <!-- ============================================================ -->
         <!-- SEÇÃO: Acompanhamento -->
         <!-- ============================================================ -->
-        <div id="secao-acompanhamento">
-          <h2 class="secao-titulo-com-margem">📈 Acompanhamento</h2>
+        <div id="secao-acompanhamento" class="secao-conteudo">
+          <h2 class="secao-titulo">📈 Acompanhamento</h2>
           <div class="linha-1col">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">📈 Acompanhamento Acadêmico</div>
@@ -920,8 +953,8 @@
         <!-- ============================================================ -->
         <!-- SEÇÃO: Financeiro -->
         <!-- ============================================================ -->
-        <div id="secao-financeiro">
-          <h2 class="secao-titulo-com-margem">💰 Financeiro | Sistemas</h2>
+        <div id="secao-financeiro" class="secao-conteudo">
+          <h2 class="secao-titulo">💰 Financeiro | Sistemas</h2>
           <div class="linha">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">💰 Financeiro</div>
@@ -939,8 +972,8 @@
         <!-- ============================================================ -->
         <!-- SEÇÃO: Reuniões -->
         <!-- ============================================================ -->
-        <div id="secao-reunioes">
-          <h2 class="secao-titulo-com-margem">🤝 Reuniões</h2>
+        <div id="secao-reunioes" class="secao-conteudo">
+          <h2 class="secao-titulo">🤝 Reuniões</h2>
           <div class="linha-1col">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">🤝 Agendamento de Reuniões</div>
@@ -953,8 +986,8 @@
         <!-- ============================================================ -->
         <!-- SEÇÃO: Processos -->
         <!-- ============================================================ -->
-        <div id="secao-processos">
-          <h2 class="secao-titulo-com-margem">⚙️ Processos</h2>
+        <div id="secao-processos" class="secao-conteudo">
+          <h2 class="secao-titulo">⚙️ Processos</h2>
           <div class="linha-1col">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">⚙️ Processos Internos</div>
@@ -967,8 +1000,8 @@
         <!-- ============================================================ -->
         <!-- SEÇÃO: Pendências -->
         <!-- ============================================================ -->
-        <div id="secao-pendencias">
-          <h2 class="secao-titulo-com-margem">⚠️ Pendências</h2>
+        <div id="secao-pendencias" class="secao-conteudo">
+          <h2 class="secao-titulo">⚠️ Pendências</h2>
           <div class="linha-1col">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">⚠️ Pendências</div>
@@ -981,8 +1014,8 @@
         <!-- ============================================================ -->
         <!-- SEÇÃO: Relatórios -->
         <!-- ============================================================ -->
-        <div id="secao-relatorios">
-          <h2 class="secao-titulo-com-margem">📊 Relatórios</h2>
+        <div id="secao-relatorios" class="secao-conteudo">
+          <h2 class="secao-titulo">📊 Relatórios</h2>
           <div class="linha">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">📊 Relatório.</div>
@@ -1000,8 +1033,8 @@
         <!-- ============================================================ -->
         <!-- SEÇÃO: Notificações -->
         <!-- ============================================================ -->
-        <div id="secao-notificacoes">
-          <h2 class="secao-titulo-com-margem">🔔 Notificações</h2>
+        <div id="secao-notificacoes" class="secao-conteudo">
+          <h2 class="secao-titulo">🔔 Notificações</h2>
           <div class="linha-1col">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">🔔 Notificações</div>
