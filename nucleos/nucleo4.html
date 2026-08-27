@@ -132,6 +132,30 @@
       display: block;
     }
 
+    /* BOTÃO MOSTRAR TODOS */
+    .btn-mostrar-todos {
+      background: #ff6b00;
+      color: white;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: bold;
+      transition: background 0.3s;
+      margin-bottom: 6px;
+      border-bottom: 2px solid #e0e0e0 !important;
+    }
+
+    .btn-mostrar-todos:hover {
+      background: #cc5500;
+    }
+
+    .dropdown-content .divisor {
+      border-bottom: 2px solid #e0e0e0;
+      margin: 4px 0;
+    }
+
     .btn-voltar {
       background: white;
       color: #198754;
@@ -289,6 +313,33 @@
       background: #c82333;
     }
 
+    /* BOTÃO FECHAR TODOS */
+    .btn-fechar-todos {
+      margin-top: 12px;
+      padding: 8px 20px;
+      background: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: bold;
+      transition: background 0.3s;
+      align-self: center;
+    }
+
+    .btn-fechar-todos:hover {
+      background: #c82333;
+    }
+
+    .container-botoes {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin: 10px 0;
+    }
+
     footer {
       text-align: center;
       padding: 18px;
@@ -367,20 +418,11 @@
       return false;
     }
 
-    function mostrarProfissional(id) {
-      // Esconde todos os cards de profissionais
+    function mostrarTodosProfissionais() {
+      // Mostra todos os cards de profissionais
       document.querySelectorAll('.quadro-item:not(.quadro-relatorio)').forEach(item => {
-        item.classList.remove('visivel');
+        item.classList.add('visivel');
       });
-
-      // Mostra o card selecionado
-      const elemento = document.getElementById(id);
-      if (elemento) {
-        elemento.classList.add('visivel');
-        setTimeout(() => {
-          elemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 300);
-      }
 
       // Fecha o dropdown
       const dropdown = document.querySelector('.dropdown');
@@ -390,6 +432,20 @@
       setTimeout(() => {
         content.style.display = '';
       }, 300);
+
+      // Scroll para o primeiro card após um pequeno delay
+      setTimeout(() => {
+        const primeiro = document.querySelector('.quadro-item.visivel');
+        if (primeiro) {
+          primeiro.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 400);
+    }
+
+    function fecharTodosProfissionais() {
+      document.querySelectorAll('.quadro-item:not(.quadro-relatorio)').forEach(item => {
+        item.classList.remove('visivel');
+      });
     }
 
     function fecharProfissional(id) {
@@ -412,6 +468,15 @@
       <div class="dropdown">
         <button class="dropdown-btn">▼ Profissionais</button>
         <div class="dropdown-content">
+          <!-- Botão para mostrar todos -->
+          <a href="#" onclick="mostrarTodosProfissionais(); return false;" style="background: #fff3e0;">
+            <div class="nome-item" style="font-weight: bold; color: #ff6b00;">
+              <span style="font-size: 1.1rem;">👥</span>
+              Mostrar todos os profissionais
+            </div>
+          </a>
+          <div class="divisor"></div>
+          <!-- Lista individual -->
           <a href="#" onclick="mostrarProfissional('profissional1'); return false;">
             <div class="nome-item">
               <span class="emoji">👩‍⚕️</span>
@@ -442,6 +507,11 @@
 
   <main>
     <div class="layout-container">
+
+      <!-- BOTÃO FECHAR TODOS (aparece quando os cards estão visíveis) -->
+      <div id="containerFechar" style="display: none;" class="container-botoes">
+        <button class="btn-fechar-todos" onclick="fecharTodosProfissionais()">✕ Fechar todos os profissionais</button>
+      </div>
 
       <!-- 🔹 LINHA 1 - 3 COLUNAS -->
       <div class="linha">
@@ -549,6 +619,69 @@
   <footer>
     Secretaria Municipal da Saúde – Joinville
   </footer>
+
+  <script>
+    // Monitora se há cards visíveis para mostrar/esconder o botão "Fechar todos"
+    function verificarCardsVisiveis() {
+      const visiveis = document.querySelectorAll('.quadro-item:not(.quadro-relatorio).visivel');
+      const containerFechar = document.getElementById('containerFechar');
+      if (visiveis.length > 0) {
+        containerFechar.style.display = 'flex';
+      } else {
+        containerFechar.style.display = 'none';
+      }
+    }
+
+    // Sobrescreve as funções para incluir a verificação
+    const originalMostrarTodos = mostrarTodosProfissionais;
+    mostrarTodosProfissionais = function() {
+      originalMostrarTodos();
+      setTimeout(verificarCardsVisiveis, 100);
+    };
+
+    const originalMostrarProfissional = window.mostrarProfissional || function() {};
+    window.mostrarProfissional = function(id) {
+      // Esconde todos os cards de profissionais
+      document.querySelectorAll('.quadro-item:not(.quadro-relatorio)').forEach(item => {
+        item.classList.remove('visivel');
+      });
+
+      // Mostra o card selecionado
+      const elemento = document.getElementById(id);
+      if (elemento) {
+        elemento.classList.add('visivel');
+        setTimeout(() => {
+          elemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
+      }
+
+      // Fecha o dropdown
+      const dropdown = document.querySelector('.dropdown');
+      const content = dropdown.querySelector('.dropdown-content');
+      content.style.display = 'none';
+
+      setTimeout(() => {
+        content.style.display = '';
+      }, 300);
+
+      setTimeout(verificarCardsVisiveis, 100);
+    };
+
+    const originalFecharProfissional = fecharProfissional;
+    fecharProfissional = function(id) {
+      originalFecharProfissional(id);
+      setTimeout(verificarCardsVisiveis, 100);
+    };
+
+    const originalFecharTodos = fecharTodosProfissionais;
+    fecharTodosProfissionais = function() {
+      originalFecharTodos();
+      setTimeout(verificarCardsVisiveis, 100);
+    };
+
+    // Verifica ao carregar a página
+    document.addEventListener('DOMContentLoaded', verificarCardsVisiveis);
+  </script>
 
 </body>
 </html>
