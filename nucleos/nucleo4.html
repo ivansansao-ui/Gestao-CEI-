@@ -38,11 +38,13 @@
     .top-menu .menu-esquerda {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 15px;
+      flex-wrap: wrap;
     }
 
-    .top-menu span {
+    .top-menu .titulo {
       font-size: 0.95rem;
+      white-space: nowrap;
     }
 
     /* DROPDOWN */
@@ -52,22 +54,22 @@
     }
 
     .dropdown-btn {
-      background: rgba(255, 255, 255, 0.2);
+      background: transparent;
       color: white;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 6px 14px;
-      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 5px 12px;
+      border-radius: 5px;
       cursor: pointer;
-      font-weight: bold;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       display: flex;
       align-items: center;
-      gap: 6px;
-      transition: background 0.3s;
+      gap: 4px;
+      transition: all 0.3s;
     }
 
     .dropdown-btn:hover {
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.7);
     }
 
     .dropdown-content {
@@ -76,11 +78,12 @@
       top: 110%;
       left: 0;
       background: white;
-      min-width: 220px;
+      min-width: 240px;
       border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
       overflow: hidden;
       z-index: 1001;
+      padding: 6px 0;
     }
 
     .dropdown-content a {
@@ -90,8 +93,8 @@
       display: block;
       font-weight: normal;
       font-size: 0.9rem;
-      border-bottom: 1px solid #f0f0f0;
       transition: background 0.2s;
+      border-bottom: 1px solid #f5f5f5;
     }
 
     .dropdown-content a:last-child {
@@ -99,23 +102,29 @@
     }
 
     .dropdown-content a:hover {
-      background: #f0f8f0;
+      background: #e8f5e9;
       color: #198754;
     }
 
-    .dropdown-content .nome-profissional {
+    .dropdown-content .nome-item {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
-    .dropdown-content .badge-cargo {
-      background: #198754;
-      color: white;
-      font-size: 0.65rem;
+    .dropdown-content .emoji {
+      font-size: 1.1rem;
+    }
+
+    .dropdown-content .cargo-tag {
+      background: #e8f5e9;
+      color: #198754;
+      font-size: 0.6rem;
       padding: 2px 8px;
       border-radius: 10px;
       font-weight: bold;
+      margin-left: auto;
+      white-space: nowrap;
     }
 
     .dropdown:hover .dropdown-content {
@@ -150,7 +159,6 @@
       margin: 30px auto;
     }
 
-    /* TRÊS COLUNAS IGUAIS - COM ALTURA MÍNIMA MAIOR */
     .linha {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -254,20 +262,27 @@
     }
 
     @media (max-width: 768px) {
-      .top-menu span {
-        font-size: 0.8rem;
+      .top-menu .titulo {
+        font-size: 0.75rem;
+        white-space: normal;
       }
 
       .top-menu {
         flex-direction: column;
-        gap: 10px;
-        align-items: flex-start;
+        gap: 8px;
+        align-items: stretch;
       }
 
       .top-menu .menu-esquerda {
         width: 100%;
         justify-content: space-between;
         flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .dropdown-content {
+        left: 0;
+        min-width: 200px;
       }
 
       .linha {
@@ -285,9 +300,8 @@
         gap: 20px;
       }
 
-      .dropdown-content {
-        left: 0;
-        min-width: 200px;
+      .btn-voltar {
+        align-self: flex-end;
       }
     }
   </style>
@@ -322,28 +336,31 @@
   <!-- 🔹 MENU FIXO COM DROPDOWN -->
   <div class="top-menu">
     <div class="menu-esquerda">
-      <span>IV - Núcleo das Residências em Saúde.</span>
+      <span class="titulo">IV - Núcleo das Residências em Saúde.</span>
 
       <!-- DROPDOWN -->
       <div class="dropdown">
         <button class="dropdown-btn">▼ Profissionais</button>
         <div class="dropdown-content">
           <a href="#" onclick="scrollParaProfissional('profissional1'); return false;">
-            <div class="nome-profissional">
-              👩‍⚕️ Francielly Kleine
-              <span class="badge-cargo">Nível Superior</span>
+            <div class="nome-item">
+              <span class="emoji">👩‍⚕️</span>
+              Francielly Kleine
+              <span class="cargo-tag">Nível Superior</span>
             </div>
           </a>
           <a href="#" onclick="scrollParaProfissional('profissional2'); return false;">
-            <div class="nome-profissional">
-              👩‍⚕️ Alexsandra Fabeni
-              <span class="badge-cargo">Téc. Enfermagem</span>
+            <div class="nome-item">
+              <span class="emoji">👩‍⚕️</span>
+              Alexsandra Fabeni
+              <span class="cargo-tag">Téc. Enfermagem</span>
             </div>
           </a>
           <a href="#" onclick="scrollParaProfissional('profissional3'); return false;">
-            <div class="nome-profissional">
-              👩‍🎓 Sabrina Krazowski
-              <span class="badge-cargo">Estagiária</span>
+            <div class="nome-item">
+              <span class="emoji">👩‍🎓</span>
+              Sabrina Krazowski
+              <span class="cargo-tag">Estagiária</span>
             </div>
           </a>
         </div>
@@ -368,7 +385,7 @@
           </ul>
         </div>
 
-        <!-- Card 2: Cenários de prática na Secretaria da Saúde para Programas de Residência em Saúde -->
+        <!-- Card 2: Cenários de prática -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">Cenários de prática na Secretaria da Saúde para Programas de Residência em Saúde.</div>
           <p>Este serviço orienta profissionais dos hospitais conveniados a solicitarem cenários de práticas para Programas de Residência em Saúde.</p>
@@ -379,7 +396,7 @@
           </a>
         </div>
 
-        <!-- Card 3: Painel de liberação dos Cenários de Prática na Residência em saúde -->
+        <!-- Card 3: Painel de liberação -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">Painel de liberação dos Cenários de Prática na Residência em saúde.</div>
           <p> Painel de aprovação e liberação de cenários de prática.</p>
@@ -403,7 +420,7 @@
           </ul>
         </div>
 
-        <!-- Card 2: Ficha de Visita Técnica em Cenários de Prática -->
+        <!-- Card 2: Ficha de Visita Técnica -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📊 Ficha de Visita Técnica em Cenários de Prática.</div>   
           <div class="titulo-texto">Diagnóstico e Acompanhamento das Atividades.</div>
@@ -414,7 +431,7 @@
           </a>
         </div>
 
-        <!-- Card 3: SPR - Sistema de Ponto da Residência -->
+        <!-- Card 3: SPR -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📊 SPR - Sistema de Ponto da Residência.</div>  
           <div class="titulo-texto">Controle de Hora.</div>
@@ -428,7 +445,7 @@
 
       <!-- 🔹 LINHA 3 - 3 COLUNAS -->
       <div class="linha">
-        <!-- Card 1: Estagiário de nível superior -->
+        <!-- Card 1: Estagiário -->
         <div class="quadro-item" id="profissional3">
           <div class="titulo-texto">3. Estagiário de nível superior.</div>
           <ul class="quadro-detalhes">
