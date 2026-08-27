@@ -149,7 +149,7 @@
       letter-spacing: 1px;
     }
 
-    /* 🔹 CONTEÚDO PRINCIPAL - FUNDO BRANCO */
+    /* 🔹 CONTEÚDO PRINCIPAL - COM QUADRO BRANCO */
     .content-area {
       flex: 1;
       padding: 30px;
@@ -346,7 +346,7 @@
       font-size: 1.5rem;
     }
 
-    /* TODAS AS SEÇÕES OCULTAS POR PADRÃO */
+    /* TODAS AS SEÇÕES OCULTAS POR PADRÃO (RECOLHIDAS) */
     .secao-conteudo {
       display: none;
     }
@@ -635,7 +635,6 @@
       const elemento = document.getElementById(id);
       if (elemento) {
         elemento.classList.add('ativa');
-        // Scroll suave até a seção
         setTimeout(() => {
           elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 100);
@@ -645,11 +644,9 @@
 
     // Ao carregar a página, mostrar a primeira seção (CEIS)
     document.addEventListener('DOMContentLoaded', function() {
-      // Esconde todas as seções primeiro
       document.querySelectorAll('.secao-conteudo').forEach(secao => {
         secao.classList.remove('ativa');
       });
-      // Mostra a seção CEIS por padrão
       const primeiraSecao = document.getElementById('secao-ceis');
       if (primeiraSecao) {
         primeiraSecao.classList.add('ativa');
@@ -770,7 +767,7 @@
       </a>
     </nav>
 
-    <!-- CONTEÚDO PRINCIPAL - COM FUNDO BRANCO -->
+    <!-- CONTEÚDO PRINCIPAL - COM QUADRO BRANCO -->
     <div class="content-area">
       <div class="content-wrapper">
         <div class="layout-container">
@@ -781,9 +778,9 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: CEIS, COREMU, COMERE (1° LUGAR) -->
+          <!-- SEÇÃO: CEIS, COREMU, COMERE (ABERTA POR PADRÃO) -->
           <!-- ============================================================ -->
-          <div id="secao-ceis" class="secao-conteudo">
+          <div id="secao-ceis" class="secao-conteudo ativa">
             <h2 class="secao-titulo">🏛️ CEIS, COREMU, COMERE</h2>
             <div class="linha">
               <div class="quadro-item quadro-relatorio">
@@ -805,7 +802,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Visão Geral (2° LUGAR) -->
+          <!-- SEÇÃO: Visão Geral (RECOLHIDA) -->
           <!-- ============================================================ -->
           <div id="secao-visao" class="secao-conteudo">
             <h2 class="secao-titulo">📊 Visão Geral</h2>
@@ -824,7 +821,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Cenários -->
+          <!-- SEÇÃO: Cenários (RECOLHIDA) -->
           <!-- ============================================================ -->
           <div id="secao-cenarios" class="secao-conteudo">
             <h2 class="secao-titulo">📍 Cenários</h2>
@@ -838,7 +835,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Seleção -->
+          <!-- SEÇÃO: Seleção (RECOLHIDA) -->
           <!-- ============================================================ -->
           <div id="secao-selecao" class="secao-conteudo">
             <h2 class="secao-titulo">📋 Seleção</h2>
@@ -852,7 +849,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Cadastro -->
+          <!-- SEÇÃO: Cadastro (RECOLHIDA) -->
           <!-- ============================================================ -->
           <div id="secao-cadastro" class="secao-conteudo">
             <h2 class="secao-titulo">📝 Cadastro</h2>
@@ -866,7 +863,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Documentos -->
+          <!-- SEÇÃO: Documentos (RECOLHIDA) -->
           <!-- ============================================================ -->
           <div id="secao-documentos" class="secao-conteudo">
             <h2 class="secao-titulo">📄 Documentos</h2>
@@ -880,7 +877,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Frequência | Férias | Afastamentos (COM SPR) -->
+          <!-- SEÇÃO: Frequência | Férias | Afastamentos (RECOLHIDA) -->
           <!-- ============================================================ -->
           <div id="secao-frequencia" class="secao-conteudo">
             <h2 class="secao-titulo">⏰ Frequência | Férias | Afastamentos</h2>
@@ -904,7 +901,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Avaliações -->
+          <!-- SEÇÃO: Avaliações (RECOLHIDA) -->
           <!-- ============================================================ -->
           <div id="secao-avaliacoes" class="secao-conteudo">
             <h2 class="secao-titulo">⭐ Avaliações</h2>
@@ -918,7 +915,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Preceptores -->
+          <!-- SEÇÃO: Preceptores (RECOLHIDA) -->
           <!-- ============================================================ -->
           <div id="secao-preceptores" class="secao-conteudo">
             <h2 class="secao-titulo">👨‍🏫 Preceptores e Coordenação</h2>
@@ -937,7 +934,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Desistência -->
+          <!-- SEÇÃO: Desistência (RECOLHIDA) -->
           <!-- ============================================================ -->
           <div id="secao-desistencia" class="secao-conteudo">
             <h2 class="secao-titulo">🚪 Desistência</h2>
@@ -951,7 +948,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Acompanhamento -->
+          <!-- SEÇÃO: Acompanhamento (RECOLHIDA) -->
           <!-- ============================================================ -->
           <div id="secao-acompanhamento" class="secao-conteudo">
             <h2 class="secao-titulo">📈 Acompanhamento</h2>
@@ -965,7 +962,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Financeiro -->
+          <!-- SEÇÃO: Financeiro (RECOLHIDA) -->
           <!-- ============================================================ -->
           <div id="secao-financeiro" class="secao-conteudo">
             <h2 class="secao-titulo">💰 Financeiro | Sistemas</h2>
@@ -984,7 +981,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Reuniões -->
+          <!-- SEÇÃO: Reuniões (RECOLHIDA) -->
           <!-- ============================================================ -->
           <div id="secao-reunioes" class="secao-conteudo">
             <h2 class="secao-titulo">🤝 Reuniões</h2>
@@ -998,7 +995,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Processos -->
+          <!-- SEÇÃO: Processos (RECOLHIDA) -->
           <!-- ============================================================ -->
           <div id="secao-processos" class="secao-conteudo">
             <h2 class="secao-titulo">⚙️ Processos</h2>
@@ -1012,7 +1009,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Pendências -->
+          <!-- SEÇÃO: Pendências (RECOLHIDA) -->
           <!-- ============================================================ -->
           <div id="secao-pendencias" class="secao-conteudo">
             <h2 class="secao-titulo">⚠️ Pendências</h2>
@@ -1026,7 +1023,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Relatórios -->
+          <!-- SEÇÃO: Relatórios (RECOLHIDA) -->
           <!-- ============================================================ -->
           <div id="secao-relatorios" class="secao-conteudo">
             <h2 class="secao-titulo">📊 Relatórios</h2>
@@ -1045,7 +1042,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Notificações -->
+          <!-- SEÇÃO: Notificações (RECOLHIDA) -->
           <!-- ============================================================ -->
           <div id="secao-notificacoes" class="secao-conteudo">
             <h2 class="secao-titulo">🔔 Notificações</h2>
