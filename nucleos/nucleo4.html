@@ -95,6 +95,7 @@
       font-size: 0.9rem;
       transition: background 0.2s;
       border-bottom: 1px solid #f5f5f5;
+      cursor: pointer;
     }
 
     .dropdown-content a:last-child {
@@ -176,6 +177,20 @@
       flex-direction: column;
       justify-content: space-between;
       min-height: 180px;
+      transition: all 0.3s ease;
+    }
+
+    /* DESTAQUE AO SELECIONAR */
+    .quadro-item.destacado {
+      border-left: 6px solid #ff6b00;
+      box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
+      transform: scale(1.02);
+      background-color: #fff8f0;
+    }
+
+    .quadro-item.destacado .titulo-texto {
+      color: #ff6b00;
+      border-bottom-color: #ff6b00;
     }
 
     .titulo-texto {
@@ -185,6 +200,7 @@
       margin-bottom: 12px;
       border-bottom: 2px solid #eaeaea;
       padding-bottom: 10px;
+      transition: color 0.3s;
     }
 
     .quadro-detalhes {
@@ -198,6 +214,10 @@
       color: #444;
       font-size: 1rem;
       line-height: 1.5;
+    }
+
+    .quadro-detalhes li strong {
+      color: #2c3e50;
     }
 
     .quadro-relatorio {
@@ -242,6 +262,30 @@
 
     .relatorio-link.em-desenvolvimento:hover {
       background-color: #adb5bd;
+    }
+
+    /* BOTÃO DE FECHAR DESTAQUE */
+    .btn-fechar-destaque {
+      display: none;
+      margin-top: 12px;
+      padding: 6px 14px;
+      background: #ff6b00;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: bold;
+      align-self: flex-start;
+      transition: background 0.3s;
+    }
+
+    .btn-fechar-destaque:hover {
+      background: #cc5500;
+    }
+
+    .quadro-item.destacado .btn-fechar-destaque {
+      display: inline-block;
     }
 
     footer {
@@ -295,6 +339,10 @@
         min-height: 140px;
       }
 
+      .quadro-item.destacado {
+        transform: scale(1);
+      }
+
       .layout-container {
         width: 92%;
         gap: 20px;
@@ -322,10 +370,34 @@
       return false;
     }
 
-    function scrollParaProfissional(id) {
+    function mostrarProfissional(id) {
+      // Remove destaque de todos
+      document.querySelectorAll('.quadro-item').forEach(item => {
+        item.classList.remove('destacado');
+      });
+
+      // Adiciona destaque ao selecionado
       const elemento = document.getElementById(id);
       if (elemento) {
-        elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        elemento.classList.add('destacado');
+        elemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
+      // Fecha o dropdown
+      const dropdown = document.querySelector('.dropdown');
+      const content = dropdown.querySelector('.dropdown-content');
+      content.style.display = 'none';
+
+      // Reabre o dropdown após um tempo se o mouse sair
+      setTimeout(() => {
+        content.style.display = '';
+      }, 300);
+    }
+
+    function fecharDestaque(id) {
+      const elemento = document.getElementById(id);
+      if (elemento) {
+        elemento.classList.remove('destacado');
       }
     }
   </script>
@@ -342,21 +414,21 @@
       <div class="dropdown">
         <button class="dropdown-btn">▼ Profissionais</button>
         <div class="dropdown-content">
-          <a href="#" onclick="scrollParaProfissional('profissional1'); return false;">
+          <a href="#" onclick="mostrarProfissional('profissional1'); return false;">
             <div class="nome-item">
               <span class="emoji">👩‍⚕️</span>
               Francielly Kleine
               <span class="cargo-tag">Nível Superior</span>
             </div>
           </a>
-          <a href="#" onclick="scrollParaProfissional('profissional2'); return false;">
+          <a href="#" onclick="mostrarProfissional('profissional2'); return false;">
             <div class="nome-item">
               <span class="emoji">👩‍⚕️</span>
               Alexsandra Fabeni
               <span class="cargo-tag">Téc. Enfermagem</span>
             </div>
           </a>
-          <a href="#" onclick="scrollParaProfissional('profissional3'); return false;">
+          <a href="#" onclick="mostrarProfissional('profissional3'); return false;">
             <div class="nome-item">
               <span class="emoji">👩‍🎓</span>
               Sabrina Krazowski
@@ -377,12 +449,13 @@
       <div class="linha">
         <!-- Card 1: Técnico de nível superior -->
         <div class="quadro-item" id="profissional1">
-          <div class="titulo-texto">1. Técnico de nível superior.</div>
+          <div class="titulo-texto">👩‍⚕️ 1. Técnico de nível superior.</div>
           <ul class="quadro-detalhes">
-            <li><strong>Nome:</strong> Francielly Kleine Maria Amorim,</li>
-            <li><strong>Ramal:</strong> 6665,</li>
-            <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br.</li>
+            <li><strong>Nome:</strong> Francielly Kleine Maria Amorim</li>
+            <li><strong>Ramal:</strong> 6665</li>
+            <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
           </ul>
+          <button class="btn-fechar-destaque" onclick="fecharDestaque('profissional1')">✕ Fechar destaque</button>
         </div>
 
         <!-- Card 2: Cenários de prática -->
@@ -412,12 +485,13 @@
       <div class="linha">
         <!-- Card 1: Técnico em Enfermagem -->
         <div class="quadro-item" id="profissional2">
-          <div class="titulo-texto">2. Técnico em Enfermagem.</div>
+          <div class="titulo-texto">👩‍⚕️ 2. Técnico em Enfermagem.</div>
           <ul class="quadro-detalhes">
-            <li><strong>Nome:</strong> Alexsandra Fabeni de Medeiros,</li>
-            <li><strong>Ramal:</strong> 6665,</li>
-            <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br.</li>
+            <li><strong>Nome:</strong> Alexsandra Fabeni de Medeiros</li>
+            <li><strong>Ramal:</strong> 6665</li>
+            <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
           </ul>
+          <button class="btn-fechar-destaque" onclick="fecharDestaque('profissional2')">✕ Fechar destaque</button>
         </div>
 
         <!-- Card 2: Ficha de Visita Técnica -->
@@ -447,12 +521,13 @@
       <div class="linha">
         <!-- Card 1: Estagiário -->
         <div class="quadro-item" id="profissional3">
-          <div class="titulo-texto">3. Estagiário de nível superior.</div>
+          <div class="titulo-texto">👩‍🎓 3. Estagiário de nível superior.</div>
           <ul class="quadro-detalhes">
-            <li><strong>Nome:</strong> Sabrina Krazowski,</li>
-            <li><strong>Ramal:</strong> 6665,</li>
-            <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br.</li>
+            <li><strong>Nome:</strong> Sabrina Krazowski</li>
+            <li><strong>Ramal:</strong> 6665</li>
+            <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
           </ul>
+          <button class="btn-fechar-destaque" onclick="fecharDestaque('profissional3')">✕ Fechar destaque</button>
         </div>
 
         <!-- Card 2: Relatório em desenvolvimento -->
