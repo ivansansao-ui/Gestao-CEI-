@@ -167,30 +167,54 @@
       align-items: stretch;
     }
 
+    /* CARDS DOS PROFISSIONAIS - OCULTOS POR PADRÃO */
     .quadro-item {
       background-color: #ffffff;
       border-left: 4px solid #198754;
       border-radius: 10px;
       padding: 28px 24px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-      display: flex;
+      display: none;
       flex-direction: column;
       justify-content: space-between;
       min-height: 180px;
       transition: all 0.3s ease;
     }
 
-    /* DESTAQUE AO SELECIONAR */
-    .quadro-item.destacado {
-      border-left: 6px solid #ff6b00;
-      box-shadow: 0 4px 20px rgba(255, 107, 0, 0.3);
-      transform: scale(1.02);
-      background-color: #fff8f0;
+    /* CARDS DOS PROFISSIONAIS - VISÍVEIS QUANDO ATIVADOS */
+    .quadro-item.visivel {
+      display: flex;
+      animation: fadeIn 0.5s ease;
     }
 
-    .quadro-item.destacado .titulo-texto {
-      color: #ff6b00;
-      border-bottom-color: #ff6b00;
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* CARDS DOS RELATÓRIOS - SEMPRE VISÍVEIS */
+    .quadro-relatorio {
+      background-color: #e3f2fd;
+      border-left: 4px solid #0dcaf0;
+      display: flex !important;
+    }
+
+    .quadro-relatorio .titulo-texto {
+      font-size: 1.05rem;
+    }
+
+    .quadro-relatorio p {
+      color: #444;
+      font-size: 0.95rem;
+      margin: 8px 0 14px 0;
+      flex-grow: 1;
+      line-height: 1.5;
     }
 
     .titulo-texto {
@@ -200,7 +224,6 @@
       margin-bottom: 12px;
       border-bottom: 2px solid #eaeaea;
       padding-bottom: 10px;
-      transition: color 0.3s;
     }
 
     .quadro-detalhes {
@@ -218,23 +241,6 @@
 
     .quadro-detalhes li strong {
       color: #2c3e50;
-    }
-
-    .quadro-relatorio {
-      background-color: #e3f2fd;
-      border-left: 4px solid #0dcaf0;
-    }
-
-    .quadro-relatorio .titulo-texto {
-      font-size: 1.05rem;
-    }
-
-    .quadro-relatorio p {
-      color: #444;
-      font-size: 0.95rem;
-      margin: 8px 0 14px 0;
-      flex-grow: 1;
-      line-height: 1.5;
     }
 
     .relatorio-link {
@@ -264,12 +270,11 @@
       background-color: #adb5bd;
     }
 
-    /* BOTÃO DE FECHAR DESTAQUE */
-    .btn-fechar-destaque {
-      display: none;
+    /* BOTÃO DE FECHAR */
+    .btn-fechar {
       margin-top: 12px;
       padding: 6px 14px;
-      background: #ff6b00;
+      background: #dc3545;
       color: white;
       border: none;
       border-radius: 5px;
@@ -280,12 +285,8 @@
       transition: background 0.3s;
     }
 
-    .btn-fechar-destaque:hover {
-      background: #cc5500;
-    }
-
-    .quadro-item.destacado .btn-fechar-destaque {
-      display: inline-block;
+    .btn-fechar:hover {
+      background: #c82333;
     }
 
     footer {
@@ -339,10 +340,6 @@
         min-height: 140px;
       }
 
-      .quadro-item.destacado {
-        transform: scale(1);
-      }
-
       .layout-container {
         width: 92%;
         gap: 20px;
@@ -371,16 +368,18 @@
     }
 
     function mostrarProfissional(id) {
-      // Remove destaque de todos
-      document.querySelectorAll('.quadro-item').forEach(item => {
-        item.classList.remove('destacado');
+      // Esconde todos os cards de profissionais
+      document.querySelectorAll('.quadro-item:not(.quadro-relatorio)').forEach(item => {
+        item.classList.remove('visivel');
       });
 
-      // Adiciona destaque ao selecionado
+      // Mostra o card selecionado
       const elemento = document.getElementById(id);
       if (elemento) {
-        elemento.classList.add('destacado');
-        elemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        elemento.classList.add('visivel');
+        setTimeout(() => {
+          elemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 300);
       }
 
       // Fecha o dropdown
@@ -388,16 +387,15 @@
       const content = dropdown.querySelector('.dropdown-content');
       content.style.display = 'none';
 
-      // Reabre o dropdown após um tempo se o mouse sair
       setTimeout(() => {
         content.style.display = '';
       }, 300);
     }
 
-    function fecharDestaque(id) {
+    function fecharProfissional(id) {
       const elemento = document.getElementById(id);
       if (elemento) {
-        elemento.classList.remove('destacado');
+        elemento.classList.remove('visivel');
       }
     }
   </script>
@@ -447,7 +445,7 @@
 
       <!-- 🔹 LINHA 1 - 3 COLUNAS -->
       <div class="linha">
-        <!-- Card 1: Técnico de nível superior -->
+        <!-- Card 1: Técnico de nível superior (OCULTO POR PADRÃO) -->
         <div class="quadro-item" id="profissional1">
           <div class="titulo-texto">👩‍⚕️ 1. Técnico de nível superior.</div>
           <ul class="quadro-detalhes">
@@ -455,10 +453,10 @@
             <li><strong>Ramal:</strong> 6665</li>
             <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
           </ul>
-          <button class="btn-fechar-destaque" onclick="fecharDestaque('profissional1')">✕ Fechar destaque</button>
+          <button class="btn-fechar" onclick="fecharProfissional('profissional1')">✕ Fechar</button>
         </div>
 
-        <!-- Card 2: Cenários de prática -->
+        <!-- Card 2: Cenários de prática (SEMPRE VISÍVEL) -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">Cenários de prática na Secretaria da Saúde para Programas de Residência em Saúde.</div>
           <p>Este serviço orienta profissionais dos hospitais conveniados a solicitarem cenários de práticas para Programas de Residência em Saúde.</p>
@@ -469,7 +467,7 @@
           </a>
         </div>
 
-        <!-- Card 3: Painel de liberação -->
+        <!-- Card 3: Painel de liberação (SEMPRE VISÍVEL) -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">Painel de liberação dos Cenários de Prática na Residência em saúde.</div>
           <p> Painel de aprovação e liberação de cenários de prática.</p>
@@ -483,7 +481,7 @@
 
       <!-- 🔹 LINHA 2 - 3 COLUNAS -->
       <div class="linha">
-        <!-- Card 1: Técnico em Enfermagem -->
+        <!-- Card 1: Técnico em Enfermagem (OCULTO POR PADRÃO) -->
         <div class="quadro-item" id="profissional2">
           <div class="titulo-texto">👩‍⚕️ 2. Técnico em Enfermagem.</div>
           <ul class="quadro-detalhes">
@@ -491,10 +489,10 @@
             <li><strong>Ramal:</strong> 6665</li>
             <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
           </ul>
-          <button class="btn-fechar-destaque" onclick="fecharDestaque('profissional2')">✕ Fechar destaque</button>
+          <button class="btn-fechar" onclick="fecharProfissional('profissional2')">✕ Fechar</button>
         </div>
 
-        <!-- Card 2: Ficha de Visita Técnica -->
+        <!-- Card 2: Ficha de Visita Técnica (SEMPRE VISÍVEL) -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📊 Ficha de Visita Técnica em Cenários de Prática.</div>   
           <div class="titulo-texto">Diagnóstico e Acompanhamento das Atividades.</div>
@@ -505,7 +503,7 @@
           </a>
         </div>
 
-        <!-- Card 3: SPR -->
+        <!-- Card 3: SPR (SEMPRE VISÍVEL) -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📊 SPR - Sistema de Ponto da Residência.</div>  
           <div class="titulo-texto">Controle de Hora.</div>
@@ -519,7 +517,7 @@
 
       <!-- 🔹 LINHA 3 - 3 COLUNAS -->
       <div class="linha">
-        <!-- Card 1: Estagiário -->
+        <!-- Card 1: Estagiário (OCULTO POR PADRÃO) -->
         <div class="quadro-item" id="profissional3">
           <div class="titulo-texto">👩‍🎓 3. Estagiário de nível superior.</div>
           <ul class="quadro-detalhes">
@@ -527,17 +525,17 @@
             <li><strong>Ramal:</strong> 6665</li>
             <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
           </ul>
-          <button class="btn-fechar-destaque" onclick="fecharDestaque('profissional3')">✕ Fechar destaque</button>
+          <button class="btn-fechar" onclick="fecharProfissional('profissional3')">✕ Fechar</button>
         </div>
 
-        <!-- Card 2: Relatório em desenvolvimento -->
+        <!-- Card 2: Relatório em desenvolvimento (SEMPRE VISÍVEL) -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📊 Relatório.</div>
           <p>Acesse o relatório de atividades.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
         </div>
 
-        <!-- Card 3: Relatório em desenvolvimento -->
+        <!-- Card 3: Relatório em desenvolvimento (SEMPRE VISÍVEL) -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📊 Relatório.</div>
           <p>Acesse o relatório de indicadores.</p>
