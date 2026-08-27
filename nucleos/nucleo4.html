@@ -17,7 +17,7 @@
       background-color: #f4f6f8;
     }
 
-    /* 🔹 MENU FIXO */
+    /* 🔹 MENU FIXO COM DROPDOWN */
     .top-menu {
       position: fixed;
       top: 0;
@@ -35,8 +35,76 @@
       flex-wrap: wrap;
     }
 
+    .top-menu .menu-esquerda {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
     .top-menu span {
       font-size: 0.95rem;
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-btn {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.3s;
+    }
+
+    .dropdown-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 110%;
+      left: 0;
+      background: white;
+      min-width: 200px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      overflow: hidden;
+      z-index: 1001;
+    }
+
+    .dropdown-content a {
+      color: #333;
+      padding: 10px 16px;
+      text-decoration: none;
+      display: block;
+      font-weight: normal;
+      font-size: 0.9rem;
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 0.2s;
+    }
+
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-content a:hover {
+      background: #f0f8f0;
+      color: #198754;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
     }
 
     .btn-voltar {
@@ -175,6 +243,18 @@
         font-size: 0.8rem;
       }
 
+      .top-menu {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .top-menu .menu-esquerda {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+
       .linha {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -188,6 +268,11 @@
       .layout-container {
         width: 92%;
         gap: 20px;
+      }
+
+      .dropdown-content {
+        left: 0;
+        min-width: 180px;
       }
     }
   </style>
@@ -212,9 +297,23 @@
 
 <body>
 
-  <!-- 🔹 MENU FIXO -->
+  <!-- 🔹 MENU FIXO COM DROPDOWN -->
   <div class="top-menu">
-    <span>IV - Núcleo das Residências em Saúde.</span>
+    <div class="menu-esquerda">
+      <span>IV - Núcleo das Residências em Saúde.</span>
+
+      <!-- DROPDOWN -->
+      <div class="dropdown">
+        <button class="dropdown-btn">▼ Navegação</button>
+        <div class="dropdown-content">
+          <a href="#linha1">Técnico de nível superior</a>
+          <a href="#linha2">Técnico em Enfermagem</a>
+          <a href="#linha3">Estagiário de nível superior</a>
+          <a href="#relatorios">Relatórios</a>
+        </div>
+      </div>
+    </div>
+
     <button class="btn-voltar" onclick="voltarPaginaPrincipal()">Voltar</button>
   </div>
 
@@ -222,7 +321,7 @@
     <div class="layout-container">
 
       <!-- 🔹 LINHA 1 - 3 COLUNAS -->
-      <div class="linha">
+      <div class="linha" id="linha1">
         <!-- Card 1: Técnico de nível superior -->
         <div class="quadro-item">
           <div class="titulo-texto">1. Técnico de nível superior.</div>
@@ -257,7 +356,7 @@
       </div>
 
       <!-- 🔹 LINHA 2 - 3 COLUNAS -->
-      <div class="linha">
+      <div class="linha" id="linha2">
         <!-- Card 1: Técnico em Enfermagem -->
         <div class="quadro-item">
           <div class="titulo-texto">2. Técnico em Enfermagem.</div>
@@ -270,9 +369,9 @@
 
         <!-- Card 2: Ficha de Visita Técnica em Cenários de Prática -->
         <div class="quadro-item quadro-relatorio">
-       <div class="titulo-texto">📊 Ficha de Visita Técnica em Cenários de Prática.</div>   
-        <div class="titulo-texto">Diagnóstico e Acompanhamento das Atividades.</div>
-        <a href="https://script.google.com/macros/s/AKfycbxDjuj7HbVxuA2I7NcGGCt_eHy16Cj3p0AC3RUp9NdvCGTrgvEqBRv1rBeWDnWWn2UVVg/exec" 
+          <div class="titulo-texto">📊 Ficha de Visita Técnica em Cenários de Prática.</div>   
+          <div class="titulo-texto">Diagnóstico e Acompanhamento das Atividades.</div>
+          <a href="https://script.google.com/macros/s/AKfycbxDjuj7HbVxuA2I7NcGGCt_eHy16Cj3p0AC3RUp9NdvCGTrgvEqBRv1rBeWDnWWn2UVVg/exec" 
              target="_blank" 
              class="relatorio-link">
             Acessar a Ficha
@@ -281,8 +380,8 @@
 
         <!-- Card 3: SPR - Sistema de Ponto da Residência -->
         <div class="quadro-item quadro-relatorio">
-        <div class="titulo-texto">📊 SPR - Sistema de Ponto da Residência.</div>  
-        <div class="titulo-texto">Controle de Hora.</div>
+          <div class="titulo-texto">📊 SPR - Sistema de Ponto da Residência.</div>  
+          <div class="titulo-texto">Controle de Hora.</div>
           <a href="https://script.google.com/a/macros/joinville.sc.gov.br/s/AKfycbwFCLyWMRMFT3o1UuqfRwV8VfBwTSSLWnTXbNRwEP5JSzQIDrPflpAPJRnsjIQ5nS65/exec" 
              target="_blank" 
              class="relatorio-link">
@@ -292,7 +391,7 @@
       </div>
 
       <!-- 🔹 LINHA 3 - 3 COLUNAS -->
-      <div class="linha">
+      <div class="linha" id="linha3">
         <!-- Card 1: Estagiário de nível superior -->
         <div class="quadro-item">
           <div class="titulo-texto">3. Estagiário de nível superior.</div>
@@ -304,7 +403,7 @@
         </div>
 
         <!-- Card 2: Relatório em desenvolvimento -->
-        <div class="quadro-item quadro-relatorio">
+        <div class="quadro-item quadro-relatorio" id="relatorios">
           <div class="titulo-texto">📊 Relatório.</div>
           <p>Acesse o relatório de atividades.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
