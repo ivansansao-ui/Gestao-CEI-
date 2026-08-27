@@ -180,6 +180,13 @@
       align-items: stretch;
     }
 
+    .linha-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      align-items: stretch;
+    }
+
     /* CARDS DOS PROFISSIONAIS - OCULTOS POR PADRÃO */
     .quadro-item {
       background-color: #ffffff;
@@ -449,6 +456,9 @@
       .linha {
         grid-template-columns: 1fr 1fr;
       }
+      .linha-2col {
+        grid-template-columns: 1fr 1fr;
+      }
       .sidebar {
         width: 220px;
       }
@@ -495,6 +505,11 @@
       }
 
       .linha {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .linha-2col {
         grid-template-columns: 1fr;
         gap: 20px;
       }
@@ -592,7 +607,6 @@
       }
     }
 
-    // Ativa item do menu lateral
     function ativarMenu(id) {
       document.querySelectorAll('.sidebar .menu-item').forEach(item => {
         item.classList.remove('ativo');
@@ -601,7 +615,6 @@
       if (el) el.classList.add('ativo');
     }
 
-    // Scroll suave para seção
     function scrollParaSecao(id) {
       const elemento = document.getElementById(id);
       if (elemento) {
@@ -663,11 +676,11 @@
     <!-- MENU LATERAL -->
     <nav class="sidebar">
       <div class="grupo-titulo">NÚCLEO</div>
-      <a class="menu-item" data-target="secao-ceis" onclick="scrollParaSecao('secao-ceis')">
-        <span class="icone">🏛️</span> CEIS, COREMU, COMERE
-      </a>
       <a class="menu-item" data-target="secao-visao" onclick="scrollParaSecao('secao-visao')">
         <span class="icone">📊</span> Visão Geral
+      </a>
+      <a class="menu-item" data-target="secao-ceis" onclick="scrollParaSecao('secao-ceis')">
+        <span class="icone">🏛️</span> CEIS, COREMU, COMERE
       </a>
       <a class="menu-item" data-target="secao-cenarios" onclick="scrollParaSecao('secao-cenarios')">
         <span class="icone">📍</span> Cenários
@@ -733,9 +746,26 @@
           <button class="btn-fechar-todos" onclick="fecharTodosProfissionais()">✕ Fechar todos os profissionais</button>
         </div>
 
-        <!-- SEÇÃO: CEIS, COREMU, COMERE -->
+        <!-- SEÇÃO: Visão Geral (PRIMEIRO) -->
+        <div id="secao-visao">
+          <h2 style="color: #198754; margin-bottom: 15px;">📊 Visão Geral</h2>
+          <div class="linha-2col">
+            <div class="quadro-item quadro-relatorio">
+              <div class="titulo-texto">Cenários de prática na Secretaria da Saúde para Programas de Residência em Saúde.</div>
+              <p>Este serviço orienta profissionais dos hospitais conveniados a solicitarem cenários de práticas para Programas de Residência em Saúde.</p>
+              <a href="https://www.joinville.sc.gov.br/servicos/solicitar-cenarios-de-pratica-na-secretaria-da-saude-para-programas-de-residencia-em-saude/" target="_blank" class="relatorio-link">Acessar Formulário</a>
+            </div>
+            <div class="quadro-item quadro-relatorio">
+              <div class="titulo-texto">Painel de liberação dos Cenários de Prática na Residência em saúde.</div>
+              <p>Painel de aprovação e liberação de cenários de prática.</p>
+              <a href="https://sites.google.com/view/ceis-gestao-cenarios-pratica/p%C3%A1gina-inicial/agendamento-iep" target="_blank" class="relatorio-link">Acessar Relatório</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEÇÃO: CEIS, COREMU, COMERE (SEGUNDO) -->
         <div id="secao-ceis">
-          <h2 style="color: #198754; margin-bottom: 15px;">🏛️ CEIS, COREMU, COMERE</h2>
+          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">🏛️ CEIS, COREMU, COMERE</h2>
           <div class="linha">
             <div class="quadro-item quadro-relatorio" style="display:flex !important;">
               <div class="titulo-texto">CEIS - Centro de Educação Integrada em Saúde</div>
@@ -755,36 +785,14 @@
           </div>
         </div>
 
-        <!-- SEÇÃO: Visão Geral -->
-        <div id="secao-visao">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">📊 Visão Geral</h2>
-          <div class="linha">
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
-              <div class="titulo-texto">📊 Visão Geral</div>
-              <p>Painel com informações gerais do Núcleo.</p>
-              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
-            </div>
-          </div>
-        </div>
-
         <!-- SEÇÃO: Cenários -->
         <div id="secao-cenarios">
           <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">📍 Cenários</h2>
           <div class="linha">
-            <div class="quadro-item quadro-relatorio">
-              <div class="titulo-texto">Cenários de prática na Secretaria da Saúde para Programas de Residência em Saúde.</div>
-              <p>Este serviço orienta profissionais dos hospitais conveniados a solicitarem cenários de práticas para Programas de Residência em Saúde.</p>
-              <a href="https://www.joinville.sc.gov.br/servicos/solicitar-cenarios-de-pratica-na-secretaria-da-saude-para-programas-de-residencia-em-saude/" target="_blank" class="relatorio-link">Acessar Formulário</a>
-            </div>
-            <div class="quadro-item quadro-relatorio">
-              <div class="titulo-texto">Painel de liberação dos Cenários de Prática na Residência em saúde.</div>
-              <p>Painel de aprovação e liberação de cenários de prática.</p>
-              <a href="https://sites.google.com/view/ceis-gestao-cenarios-pratica/p%C3%A1gina-inicial/agendamento-iep" target="_blank" class="relatorio-link">Acessar Relatório</a>
-            </div>
-            <div class="quadro-item quadro-relatorio">
-              <div class="titulo-texto">📊 Ficha de Visita Técnica em Cenários de Prática.</div>
-              <div class="titulo-texto">Diagnóstico e Acompanhamento das Atividades.</div>
-              <a href="https://script.google.com/macros/s/AKfycbxDjuj7HbVxuA2I7NcGGCt_eHy16Cj3p0AC3RUp9NdvCGTrgvEqBRv1rBeWDnWWn2UVVg/exec" target="_blank" class="relatorio-link">Acessar a Ficha</a>
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">📍 Cenários de Prática</div>
+              <p>Gerenciamento de cenários de prática.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
             </div>
           </div>
         </div>
@@ -829,10 +837,10 @@
         <div id="secao-frequencia">
           <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">⏰ Frequência | Férias | Afastamentos</h2>
           <div class="linha">
-            <div class="quadro-item quadro-relatorio">
-              <div class="titulo-texto">📊 SPR - Sistema de Ponto da Residência.</div>
-              <div class="titulo-texto">Controle de Hora.</div>
-              <a href="https://script.google.com/a/macros/joinville.sc.gov.br/s/AKfycbwFCLyWMRMFT3o1UuqfRwV8VfBwTSSLWnTXbNRwEP5JSzQIDrPflpAPJRnsjIQ5nS65/exec" target="_blank" class="relatorio-link">Acessar Sistema de Ponto</a>
+            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+              <div class="titulo-texto">⏰ Frequência</div>
+              <p>Controle de frequência dos residentes.</p>
+              <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
             </div>
             <div class="quadro-item quadro-relatorio" style="display:flex !important;">
               <div class="titulo-texto">⏰ Férias e Afastamentos</div>
