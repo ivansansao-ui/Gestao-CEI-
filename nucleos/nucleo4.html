@@ -148,16 +148,6 @@
       letter-spacing: 1px;
     }
 
-    .sidebar .sub-item {
-      padding-left: 48px;
-      font-size: 0.85rem;
-    }
-
-    .sidebar .divisor {
-      border-bottom: 1px solid #f0f0f0;
-      margin: 8px 20px;
-    }
-
     /* 🔹 CONTEÚDO PRINCIPAL */
     .content-area {
       flex: 1;
@@ -168,7 +158,7 @@
     .layout-container {
       display: flex;
       flex-direction: column;
-      gap: 25px;
+      gap: 35px;
       max-width: 1500px;
       margin: 0 auto;
     }
@@ -183,6 +173,13 @@
     .linha-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      align-items: stretch;
+    }
+
+    .linha-1col {
+      display: grid;
+      grid-template-columns: 1fr;
       gap: 25px;
       align-items: stretch;
     }
@@ -333,6 +330,19 @@
       margin: 10px 0;
     }
 
+    .secao-titulo {
+      color: #198754;
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    .secao-titulo-com-margem {
+      color: #198754;
+      margin-bottom: 15px;
+      margin-top: 30px;
+      font-size: 1.5rem;
+    }
+
     footer {
       text-align: center;
       padding: 18px;
@@ -431,24 +441,6 @@
 
     .dropdown:hover .dropdown-content {
       display: block;
-    }
-
-    .btn-mostrar-todos {
-      background: #ff6b00;
-      color: white;
-      border: none;
-      padding: 6px 14px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 0.8rem;
-      font-weight: bold;
-      transition: background 0.3s;
-      margin-bottom: 6px;
-      border-bottom: 2px solid #e0e0e0 !important;
-    }
-
-    .btn-mostrar-todos:hover {
-      background: #cc5500;
     }
 
     /* 🔹 RESPONSIVIDADE */
@@ -746,9 +738,11 @@
           <button class="btn-fechar-todos" onclick="fecharTodosProfissionais()">✕ Fechar todos os profissionais</button>
         </div>
 
-        <!-- SEÇÃO: Visão Geral (PRIMEIRO) -->
+        <!-- ============================================================ -->
+        <!-- SEÇÃO: Visão Geral (APENAS 2 CARDS) -->
+        <!-- ============================================================ -->
         <div id="secao-visao">
-          <h2 style="color: #198754; margin-bottom: 15px;">📊 Visão Geral</h2>
+          <h2 class="secao-titulo">📊 Visão Geral</h2>
           <div class="linha-2col">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">Cenários de prática na Secretaria da Saúde para Programas de Residência em Saúde.</div>
@@ -763,21 +757,23 @@
           </div>
         </div>
 
-        <!-- SEÇÃO: CEIS, COREMU, COMERE (SEGUNDO) -->
+        <!-- ============================================================ -->
+        <!-- SEÇÃO: CEIS, COREMU, COMERE -->
+        <!-- ============================================================ -->
         <div id="secao-ceis">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">🏛️ CEIS, COREMU, COMERE</h2>
+          <h2 class="secao-titulo-com-margem">🏛️ CEIS, COREMU, COMERE</h2>
           <div class="linha">
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">CEIS - Centro de Educação Integrada em Saúde</div>
               <p>Informações sobre o CEIS.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
             </div>
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">COREMU - Comissão de Residência Médica</div>
               <p>Informações sobre o COREMU.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
             </div>
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">COMERE - Comissão de Residência em Saúde</div>
               <p>Informações sobre o COMERE.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
@@ -785,11 +781,13 @@
           </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- SEÇÃO: Cenários -->
+        <!-- ============================================================ -->
         <div id="secao-cenarios">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">📍 Cenários</h2>
-          <div class="linha">
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+          <h2 class="secao-titulo-com-margem">📍 Cenários</h2>
+          <div class="linha-1col">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">📍 Cenários de Prática</div>
               <p>Gerenciamento de cenários de prática.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
@@ -797,11 +795,13 @@
           </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- SEÇÃO: Seleção -->
+        <!-- ============================================================ -->
         <div id="secao-selecao">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">📋 Seleção</h2>
-          <div class="linha">
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+          <h2 class="secao-titulo-com-margem">📋 Seleção</h2>
+          <div class="linha-1col">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">📋 Processo Seletivo</div>
               <p>Informações sobre o processo seletivo para residências.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
@@ -809,11 +809,13 @@
           </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- SEÇÃO: Cadastro -->
+        <!-- ============================================================ -->
         <div id="secao-cadastro">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">📝 Cadastro</h2>
-          <div class="linha">
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+          <h2 class="secao-titulo-com-margem">📝 Cadastro</h2>
+          <div class="linha-1col">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">📝 Cadastro de Residentes</div>
               <p>Cadastro de novos residentes.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
@@ -821,11 +823,13 @@
           </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- SEÇÃO: Documentos -->
+        <!-- ============================================================ -->
         <div id="secao-documentos">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">📄 Documentos</h2>
-          <div class="linha">
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+          <h2 class="secao-titulo-com-margem">📄 Documentos</h2>
+          <div class="linha-1col">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">📄 Gestão de Documentos</div>
               <p>Controle de documentos dos residentes.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
@@ -833,16 +837,18 @@
           </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- SEÇÃO: Frequência -->
+        <!-- ============================================================ -->
         <div id="secao-frequencia">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">⏰ Frequência | Férias | Afastamentos</h2>
+          <h2 class="secao-titulo-com-margem">⏰ Frequência | Férias | Afastamentos</h2>
           <div class="linha">
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">⏰ Frequência</div>
               <p>Controle de frequência dos residentes.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
             </div>
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">⏰ Férias e Afastamentos</div>
               <p>Controle de férias e afastamentos.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
@@ -850,11 +856,13 @@
           </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- SEÇÃO: Avaliações -->
+        <!-- ============================================================ -->
         <div id="secao-avaliacoes">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">⭐ Avaliações</h2>
-          <div class="linha">
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+          <h2 class="secao-titulo-com-margem">⭐ Avaliações</h2>
+          <div class="linha-1col">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">⭐ Avaliações dos Residentes</div>
               <p>Sistema de avaliação de residentes.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
@@ -862,16 +870,18 @@
           </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- SEÇÃO: Preceptores -->
+        <!-- ============================================================ -->
         <div id="secao-preceptores">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">👨‍🏫 Preceptores e Coordenação</h2>
+          <h2 class="secao-titulo-com-margem">👨‍🏫 Preceptores e Coordenação</h2>
           <div class="linha">
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">👨‍🏫 Preceptores</div>
               <p>Gestão de preceptores.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
             </div>
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">👨‍🏫 Coordenação</div>
               <p>Gestão da coordenação.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
@@ -879,11 +889,13 @@
           </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- SEÇÃO: Desistência -->
+        <!-- ============================================================ -->
         <div id="secao-desistencia">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">🚪 Desistência</h2>
-          <div class="linha">
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+          <h2 class="secao-titulo-com-margem">🚪 Desistência</h2>
+          <div class="linha-1col">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">🚪 Controle de Desistências</div>
               <p>Registro e acompanhamento de desistências.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
@@ -891,11 +903,13 @@
           </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- SEÇÃO: Acompanhamento -->
+        <!-- ============================================================ -->
         <div id="secao-acompanhamento">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">📈 Acompanhamento</h2>
-          <div class="linha">
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+          <h2 class="secao-titulo-com-margem">📈 Acompanhamento</h2>
+          <div class="linha-1col">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">📈 Acompanhamento Acadêmico</div>
               <p>Acompanhamento do desempenho acadêmico.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
@@ -903,16 +917,18 @@
           </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- SEÇÃO: Financeiro -->
+        <!-- ============================================================ -->
         <div id="secao-financeiro">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">💰 Financeiro | Sistemas</h2>
+          <h2 class="secao-titulo-com-margem">💰 Financeiro | Sistemas</h2>
           <div class="linha">
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">💰 Financeiro</div>
               <p>Controle financeiro do Núcleo.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
             </div>
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">💻 Sistemas</div>
               <p>Integração com sistemas.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
@@ -920,11 +936,13 @@
           </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- SEÇÃO: Reuniões -->
+        <!-- ============================================================ -->
         <div id="secao-reunioes">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">🤝 Reuniões</h2>
-          <div class="linha">
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+          <h2 class="secao-titulo-com-margem">🤝 Reuniões</h2>
+          <div class="linha-1col">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">🤝 Agendamento de Reuniões</div>
               <p>Controle de reuniões e pautas.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
@@ -932,11 +950,13 @@
           </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- SEÇÃO: Processos -->
+        <!-- ============================================================ -->
         <div id="secao-processos">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">⚙️ Processos</h2>
-          <div class="linha">
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+          <h2 class="secao-titulo-com-margem">⚙️ Processos</h2>
+          <div class="linha-1col">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">⚙️ Processos Internos</div>
               <p>Gestão de processos internos.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
@@ -944,11 +964,13 @@
           </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- SEÇÃO: Pendências -->
+        <!-- ============================================================ -->
         <div id="secao-pendencias">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">⚠️ Pendências</h2>
-          <div class="linha">
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+          <h2 class="secao-titulo-com-margem">⚠️ Pendências</h2>
+          <div class="linha-1col">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">⚠️ Pendências</div>
               <p>Lista de pendências do Núcleo.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
@@ -956,9 +978,11 @@
           </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- SEÇÃO: Relatórios -->
+        <!-- ============================================================ -->
         <div id="secao-relatorios">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">📊 Relatórios</h2>
+          <h2 class="secao-titulo-com-margem">📊 Relatórios</h2>
           <div class="linha">
             <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">📊 Relatório.</div>
@@ -973,11 +997,13 @@
           </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- SEÇÃO: Notificações -->
+        <!-- ============================================================ -->
         <div id="secao-notificacoes">
-          <h2 style="color: #198754; margin-bottom: 15px; margin-top: 30px;">🔔 Notificações</h2>
-          <div class="linha">
-            <div class="quadro-item quadro-relatorio" style="display:flex !important;">
+          <h2 class="secao-titulo-com-margem">🔔 Notificações</h2>
+          <div class="linha-1col">
+            <div class="quadro-item quadro-relatorio">
               <div class="titulo-texto">🔔 Notificações</div>
               <p>Central de notificações.</p>
               <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
@@ -985,9 +1011,11 @@
           </div>
         </div>
 
+        <!-- ============================================================ -->
         <!-- CARDS DOS PROFISSIONAIS (OCULTOS) -->
+        <!-- ============================================================ -->
         <div id="secao-profissionais" style="margin-top: 30px;">
-          <h2 style="color: #198754; margin-bottom: 15px;">👨‍⚕️ Profissionais do Núcleo</h2>
+          <h2 class="secao-titulo">👨‍⚕️ Profissionais do Núcleo</h2>
           <div class="linha">
             <div class="quadro-item" id="profissional1">
               <div class="titulo-texto">👩‍⚕️ 1. Técnico de nível superior.</div>
