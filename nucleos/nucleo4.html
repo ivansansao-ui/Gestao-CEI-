@@ -76,7 +76,7 @@
       top: 110%;
       left: 0;
       background: white;
-      min-width: 200px;
+      min-width: 220px;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       overflow: hidden;
@@ -101,6 +101,21 @@
     .dropdown-content a:hover {
       background: #f0f8f0;
       color: #198754;
+    }
+
+    .dropdown-content .nome-profissional {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dropdown-content .badge-cargo {
+      background: #198754;
+      color: white;
+      font-size: 0.65rem;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: bold;
     }
 
     .dropdown:hover .dropdown-content {
@@ -272,7 +287,7 @@
 
       .dropdown-content {
         left: 0;
-        min-width: 180px;
+        min-width: 200px;
       }
     }
   </style>
@@ -292,6 +307,13 @@
       alert('🚧 Em desenvolvimento. Esta funcionalidade estará disponível em breve.');
       return false;
     }
+
+    function scrollParaProfissional(id) {
+      const elemento = document.getElementById(id);
+      if (elemento) {
+        elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
   </script>
 </head>
 
@@ -304,12 +326,26 @@
 
       <!-- DROPDOWN -->
       <div class="dropdown">
-        <button class="dropdown-btn">▼ Navegação</button>
+        <button class="dropdown-btn">▼ Profissionais</button>
         <div class="dropdown-content">
-          <a href="#linha1">Técnico de nível superior</a>
-          <a href="#linha2">Técnico em Enfermagem</a>
-          <a href="#linha3">Estagiário de nível superior</a>
-          <a href="#relatorios">Relatórios</a>
+          <a href="#" onclick="scrollParaProfissional('profissional1'); return false;">
+            <div class="nome-profissional">
+              👩‍⚕️ Francielly Kleine
+              <span class="badge-cargo">Nível Superior</span>
+            </div>
+          </a>
+          <a href="#" onclick="scrollParaProfissional('profissional2'); return false;">
+            <div class="nome-profissional">
+              👩‍⚕️ Alexsandra Fabeni
+              <span class="badge-cargo">Téc. Enfermagem</span>
+            </div>
+          </a>
+          <a href="#" onclick="scrollParaProfissional('profissional3'); return false;">
+            <div class="nome-profissional">
+              👩‍🎓 Sabrina Krazowski
+              <span class="badge-cargo">Estagiária</span>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -321,9 +357,9 @@
     <div class="layout-container">
 
       <!-- 🔹 LINHA 1 - 3 COLUNAS -->
-      <div class="linha" id="linha1">
+      <div class="linha">
         <!-- Card 1: Técnico de nível superior -->
-        <div class="quadro-item">
+        <div class="quadro-item" id="profissional1">
           <div class="titulo-texto">1. Técnico de nível superior.</div>
           <ul class="quadro-detalhes">
             <li><strong>Nome:</strong> Francielly Kleine Maria Amorim,</li>
@@ -356,9 +392,9 @@
       </div>
 
       <!-- 🔹 LINHA 2 - 3 COLUNAS -->
-      <div class="linha" id="linha2">
+      <div class="linha">
         <!-- Card 1: Técnico em Enfermagem -->
-        <div class="quadro-item">
+        <div class="quadro-item" id="profissional2">
           <div class="titulo-texto">2. Técnico em Enfermagem.</div>
           <ul class="quadro-detalhes">
             <li><strong>Nome:</strong> Alexsandra Fabeni de Medeiros,</li>
@@ -391,9 +427,9 @@
       </div>
 
       <!-- 🔹 LINHA 3 - 3 COLUNAS -->
-      <div class="linha" id="linha3">
+      <div class="linha">
         <!-- Card 1: Estagiário de nível superior -->
-        <div class="quadro-item">
+        <div class="quadro-item" id="profissional3">
           <div class="titulo-texto">3. Estagiário de nível superior.</div>
           <ul class="quadro-detalhes">
             <li><strong>Nome:</strong> Sabrina Krazowski,</li>
@@ -403,7 +439,7 @@
         </div>
 
         <!-- Card 2: Relatório em desenvolvimento -->
-        <div class="quadro-item quadro-relatorio" id="relatorios">
+        <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">📊 Relatório.</div>
           <p>Acesse o relatório de atividades.</p>
           <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
