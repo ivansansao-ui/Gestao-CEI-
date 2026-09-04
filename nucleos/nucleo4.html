@@ -983,10 +983,10 @@
       document.querySelectorAll('.secao-conteudo').forEach(secao => {
         secao.classList.remove('ativa');
       });
-      const primeiraSecao = document.getElementById('secao-ceis');
+      const primeiraSecao = document.getElementById('secao-dashboard');
       if (primeiraSecao) {
         primeiraSecao.classList.add('ativa');
-        document.querySelector('.sidebar .menu-item[data-target="secao-ceis"]')?.classList.add('ativo');
+        document.querySelector('.sidebar .menu-item[data-target="secao-dashboard"]')?.classList.add('ativo');
       }
       verificarCardsVisiveis();
     });
@@ -1042,7 +1042,10 @@
     <!-- MENU LATERAL -->
     <nav class="sidebar">
       <div class="grupo-titulo">NÚCLEO</div>
-      <a class="menu-item ativo" data-target="secao-ceis" onclick="scrollParaSecao('secao-ceis')">
+      <a class="menu-item ativo" data-target="secao-dashboard" onclick="scrollParaSecao('secao-dashboard')">
+        <span class="icone">🏠</span> Dashboard
+      </a>
+      <a class="menu-item" data-target="secao-ceis" onclick="scrollParaSecao('secao-ceis')">
         <span class="icone">🏛️</span> CEIS, COREMU, COREME
       </a>
       <a class="menu-item" data-target="secao-visao" onclick="scrollParaSecao('secao-visao')">
@@ -1114,12 +1117,105 @@
           </div>
 
           <!-- ============================================================ -->
+          <!-- SEÇÃO: DASHBOARD (PÁGINA INICIAL) -->
+          <!-- ============================================================ -->
+          <div id="secao-dashboard" class="secao-conteudo ativa">
+            <div class="dashboard-titulo">Bem-vindo ao Núcleo das Residências</div>
+            <div class="dashboard-subtitulo">Secretaria da Saúde de Joinville</div>
+
+            <!-- Cards de estatísticas -->
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-number" id="num-residentes">42</div>
+                <div class="stat-label">Residentes</div>
+                <div class="stat-detalhe">Ativos</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number" id="num-programas">5</div>
+                <div class="stat-label">Programas</div>
+                <div class="stat-detalhe">Em andamento</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number" id="num-preceptores">28</div>
+                <div class="stat-label">Preceptores</div>
+                <div class="stat-detalhe">Ativos</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-number" id="num-cenarios">18</div>
+                <div class="stat-label">Cenários</div>
+                <div class="stat-detalhe">Disponíveis</div>
+              </div>
+            </div>
+
+            <!-- Grid 2 colunas: Próximos eventos + Pendências -->
+            <div class="dashboard-grid-2">
+              <!-- Próximos eventos -->
+              <div class="dash-card">
+                <h3>📅 Próximos eventos</h3>
+                <div id="eventos-container">
+                  <div class="event-item">
+                    <div class="event-info">
+                      <span class="event-date">05/09</span>
+                      <span class="event-name">Avaliação</span>
+                    </div>
+                    <span class="event-badge">3 avaliações</span>
+                  </div>
+                  <div class="event-item">
+                    <div class="event-info">
+                      <span class="event-date">10/09</span>
+                      <span class="event-name">Reunião</span>
+                    </div>
+                    <span class="event-badge">2 documentos</span>
+                  </div>
+                  <div class="event-item">
+                    <div class="event-info">
+                      <span class="event-date">15/09</span>
+                      <span class="event-name">Reunião</span>
+                    </div>
+                    <span class="event-badge">1 frequência</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Pendências -->
+              <div class="dash-card">
+                <h3>⚠️ Pendências</h3>
+                <div id="pendencias-container">
+                  <div class="pending-item">
+                    <span class="pending-name">📋 Avaliações pendentes</span>
+                    <span class="pending-count">3</span>
+                  </div>
+                  <div class="pending-item">
+                    <span class="pending-name">📄 Documentos pendentes</span>
+                    <span class="pending-count">2</span>
+                  </div>
+                  <div class="pending-item">
+                    <span class="pending-name">⏰ Frequências pendentes</span>
+                    <span class="pending-count verde">1</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Acompanhamento dos programas -->
+            <div class="progress-section">
+              <h3>📈 Acompanhamento dos programas</h3>
+              <div class="progress-bar-container">
+                <div class="progress-bar-track">
+                  <div class="progress-bar-fill" id="progress-bar" style="width: 92%;"></div>
+                </div>
+                <span class="progress-percent" id="progress-percent">92%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============================================================ -->
           <!-- SEÇÃO: CEIS, COREMU, COMERE -->
           <!-- ============================================================ -->
-          <div id="secao-ceis" class="secao-conteudo ativa">
+          <div id="secao-ceis" class="secao-conteudo">
             <h2 class="secao-titulo">🏛️ CEIS, COREMU, COMERE</h2>
             <div class="linha">
-              <!-- Card 1: CEIS (mantido) -->
+              <!-- Card 1: CEIS -->
               <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">CEIS - Centro de Educação Integrada em Saúde</div>
                 <p>Informações sobre o CEIS.</p>
