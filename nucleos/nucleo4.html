@@ -158,18 +158,6 @@
       font-weight: 600;
     }
 
-    .sidebar .menu-item .contador-item {
-      background: #2c6b9e;
-      color: white;
-      font-size: 0.55rem;
-      padding: 1px 8px;
-      border-radius: 12px;
-      margin-left: auto;
-      font-weight: 600;
-      min-width: 20px;
-      text-align: center;
-    }
-
     .sidebar .grupo-titulo {
       padding: 16px 24px 8px 24px;
       font-size: 0.65rem;
@@ -177,21 +165,6 @@
       color: #8a9aad;
       font-weight: 700;
       letter-spacing: 1.2px;
-    }
-
-    .sidebar .badge-atualizacao {
-      background: #ff6b00;
-      color: white;
-      font-size: 0.5rem;
-      padding: 2px 6px;
-      border-radius: 10px;
-      margin-left: 6px;
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
     }
 
     /* 🔹 CONTEÚDO PRINCIPAL */
@@ -263,11 +236,6 @@
       transition: all 0.3s;
     }
 
-    .stat-card .stat-number.atualizando {
-      color: #2c6b9e;
-      transform: scale(1.1);
-    }
-
     .stat-card .stat-label {
       font-size: 0.8rem;
       color: #6b7a8f;
@@ -305,15 +273,6 @@
       display: flex;
       align-items: center;
       gap: 8px;
-    }
-
-    .dash-card h3 .contador-badge {
-      background: #2c6b9e;
-      color: white;
-      font-size: 0.6rem;
-      padding: 1px 10px;
-      border-radius: 12px;
-      font-weight: 600;
     }
 
     .event-item {
@@ -389,10 +348,6 @@
       background: #e8f5e9;
     }
 
-    .pending-count.atualizando {
-      animation: pulse 0.6s ease;
-    }
-
     .progress-section {
       background: #f8faff;
       border-radius: 12px;
@@ -407,9 +362,6 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .progress-bar-container {
@@ -438,11 +390,6 @@
       font-weight: 700;
       color: #1a2332;
       min-width: 45px;
-      transition: all 0.3s;
-    }
-
-    .progress-percent.atualizando {
-      color: #2c6b9e;
     }
 
     /* ===== SEÇÕES OCULTAS ===== */
@@ -605,43 +552,65 @@
       align-items: stretch;
     }
 
-    /* ===== BOTÃO ATUALIZAR ===== */
-    .btn-atualizar {
-      background: #2c6b9e;
-      color: white;
-      border: none;
-      padding: 6px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.75rem;
+    .quadro-relatorio {
+      display: flex !important;
+      border-top: 3px solid #2c6b9e;
+    }
+
+    .quadro-relatorio .titulo-texto {
+      font-size: 1rem;
       font-weight: 600;
-      transition: all 0.3s;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      color: #1a2332;
+      margin-bottom: 8px;
     }
 
-    .btn-atualizar:hover {
-      background: #1f4f7a;
-      transform: translateY(-1px);
+    .quadro-relatorio p {
+      color: #5a6b7c;
+      font-size: 0.92rem;
+      margin: 6px 0 16px 0;
+      flex-grow: 1;
+      line-height: 1.6;
     }
 
-    .btn-atualizar:active {
-      transform: scale(0.95);
-    }
-
-    .btn-atualizar .spinner {
+    .relatorio-link {
       display: inline-block;
-      width: 14px;
-      height: 14px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-top-color: white;
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
+      padding: 10px 22px;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      text-align: center;
+      background-color: #2c6b9e;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      align-self: flex-start;
+      border: none;
+      cursor: pointer;
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    .relatorio-link:hover {
+      background-color: #1f4f7a;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(44, 107, 158, 0.25);
+    }
+
+    .relatorio-link.em-desenvolvimento {
+      background-color: #a0aec0;
+      cursor: not-allowed;
+    }
+
+    .relatorio-link.em-desenvolvimento:hover {
+      background-color: #a0aec0;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .relatorio-link.visualizar {
+      background-color: #27ae60;
+    }
+
+    .relatorio-link.visualizar:hover {
+      background-color: #1e8449;
     }
 
     /* DROPDOWN */
@@ -734,41 +703,6 @@
 
     .dropdown:hover .dropdown-content {
       display: block;
-    }
-
-    /* ===== TOAST DE NOTIFICAÇÃO ===== */
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      background: #1a2332;
-      color: white;
-      padding: 14px 24px;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-      transform: translateY(100px);
-      opacity: 0;
-      transition: all 0.4s ease;
-      z-index: 9999;
-      max-width: 400px;
-    }
-
-    .toast.mostrar {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .toast .toast-titulo {
-      font-weight: 700;
-      color: #4a90d9;
-    }
-
-    .toast .toast-detalhes {
-      color: #a0aec0;
-      font-size: 0.8rem;
-      margin-top: 4px;
     }
 
     footer {
@@ -913,15 +847,6 @@
       .progress-percent {
         text-align: right;
       }
-
-      .toast {
-        bottom: 20px;
-        right: 20px;
-        left: 20px;
-        max-width: none;
-        padding: 12px 18px;
-        font-size: 0.85rem;
-      }
     }
 
     @media (max-width: 480px) {
@@ -960,199 +885,6 @@
   </style>
 
   <script>
-    // ============================================================
-    // DADOS DO SISTEMA (simulando um banco de dados)
-    // ============================================================
-    const dadosSistema = {
-      residentes: 42,
-      programas: 5,
-      preceptores: 28,
-      cenarios: 18,
-      progresso: 92,
-      eventos: [
-        { data: '05/09', nome: 'Avaliação', badge: '3 avaliações' },
-        { data: '10/09', nome: 'Reunião', badge: '2 documentos' },
-        { data: '15/09', nome: 'Reunião', badge: '1 frequência' }
-      ],
-      pendencias: [
-        { nome: 'Avaliações pendentes', qtd: 3, cor: 'vermelho' },
-        { nome: 'Documentos pendentes', qtd: 2, cor: 'vermelho' },
-        { nome: 'Frequências pendentes', qtd: 1, cor: 'verde' }
-      ]
-    };
-
-    // ============================================================
-    // FUNÇÕES DE ATUALIZAÇÃO DO DASHBOARD
-    // ============================================================
-    function atualizarDashboard(dados) {
-      // Atualiza os números dos cards com animação
-      const numeros = {
-        residentes: document.getElementById('num-residentes'),
-        programas: document.getElementById('num-programas'),
-        preceptores: document.getElementById('num-preceptores'),
-        cenarios: document.getElementById('num-cenarios')
-      };
-
-      // Animação de atualização
-      Object.values(numeros).forEach(el => {
-        el.classList.add('atualizando');
-        setTimeout(() => el.classList.remove('atualizando'), 600);
-      });
-
-      // Atualiza os valores
-      if (dados.residentes !== undefined) {
-        numeros.residentes.textContent = dados.residentes;
-        atualizarContadorMenu('residentes', dados.residentes);
-      }
-      if (dados.programas !== undefined) {
-        numeros.programas.textContent = dados.programas;
-        atualizarContadorMenu('programas', dados.programas);
-      }
-      if (dados.preceptores !== undefined) {
-        numeros.preceptores.textContent = dados.preceptores;
-        atualizarContadorMenu('preceptores', dados.preceptores);
-      }
-      if (dados.cenarios !== undefined) {
-        numeros.cenarios.textContent = dados.cenarios;
-        atualizarContadorMenu('cenarios', dados.cenarios);
-      }
-
-      // Atualiza a barra de progresso
-      if (dados.progresso !== undefined) {
-        const barra = document.getElementById('progress-bar');
-        const percent = document.getElementById('progress-percent');
-        barra.style.width = dados.progresso + '%';
-        percent.textContent = dados.progresso + '%';
-        percent.classList.add('atualizando');
-        setTimeout(() => percent.classList.remove('atualizando'), 600);
-      }
-
-      // Atualiza eventos
-      if (dados.eventos) {
-        const container = document.getElementById('eventos-container');
-        container.innerHTML = '';
-        dados.eventos.forEach(evento => {
-          const div = document.createElement('div');
-          div.className = 'event-item';
-          div.innerHTML = `
-            <div class="event-info">
-              <span class="event-date">${evento.data}</span>
-              <span class="event-name">${evento.nome}</span>
-            </div>
-            <span class="event-badge">${evento.badge}</span>
-          `;
-          container.appendChild(div);
-        });
-      }
-
-      // Atualiza pendências
-      if (dados.pendencias) {
-        const container = document.getElementById('pendencias-container');
-        container.innerHTML = '';
-        dados.pendencias.forEach(pend => {
-          const div = document.createElement('div');
-          div.className = 'pending-item';
-          const corClass = pend.cor === 'verde' ? 'verde' : '';
-          div.innerHTML = `
-            <span class="pending-name">${pend.nome}</span>
-            <span class="pending-count ${corClass}">${pend.qtd}</span>
-          `;
-          container.appendChild(div);
-        });
-      }
-
-      // Mostra toast de confirmação
-      mostrarToast('✅ Dashboard atualizado', 'Dados sincronizados com sucesso!');
-    }
-
-    function atualizarContadorMenu(secao, valor) {
-      // Atualiza os contadores no menu lateral
-      const mapa = {
-        'residentes': 'Seleção',
-        'programas': 'Acompanhamento',
-        'preceptores': 'Preceptores e Coordenação',
-        'cenarios': 'Cenários'
-      };
-
-      const nomeItem = mapa[secao];
-      if (!nomeItem) return;
-
-      // Procura o item do menu com o texto correspondente
-      document.querySelectorAll('.sidebar .menu-item').forEach(item => {
-        if (item.textContent.trim().includes(nomeItem)) {
-          // Remove contador antigo
-          const antigo = item.querySelector('.contador-item');
-          if (antigo) antigo.remove();
-
-          // Adiciona novo contador
-          const badge = document.createElement('span');
-          badge.className = 'contador-item';
-          badge.textContent = valor;
-          item.appendChild(badge);
-
-          // Adiciona indicador de atualização
-          const badgeAtualizacao = document.createElement('span');
-          badgeAtualizacao.className = 'badge-atualizacao';
-          badgeAtualizacao.textContent = '●';
-          item.appendChild(badgeAtualizacao);
-          setTimeout(() => badgeAtualizacao.remove(), 3000);
-        }
-      });
-    }
-
-    function mostrarToast(titulo, detalhes) {
-      const toast = document.getElementById('toast');
-      const tituloEl = toast.querySelector('.toast-titulo');
-      const detalhesEl = toast.querySelector('.toast-detalhes');
-
-      tituloEl.textContent = titulo;
-      detalhesEl.textContent = detalhes || '';
-
-      toast.classList.add('mostrar');
-      clearTimeout(toast._timeout);
-      toast._timeout = setTimeout(() => {
-        toast.classList.remove('mostrar');
-      }, 4000);
-    }
-
-    // ============================================================
-    // SIMULAÇÃO DE ATUALIZAÇÃO DE DADOS
-    // ============================================================
-    function simularAtualizacao() {
-      // Gera números aleatórios para simular mudanças
-      const novosDados = {
-        residentes: 42 + Math.floor(Math.random() * 5) - 2,
-        programas: 5 + Math.floor(Math.random() * 3) - 1,
-        preceptores: 28 + Math.floor(Math.random() * 6) - 3,
-        cenarios: 18 + Math.floor(Math.random() * 4) - 2,
-        progresso: Math.min(98, Math.max(75, 92 + Math.floor(Math.random() * 10) - 5)),
-        eventos: [
-          { data: '05/09', nome: 'Avaliação', badge: Math.floor(Math.random() * 5 + 1) + ' avaliações' },
-          { data: '10/09', nome: 'Reunião', badge: Math.floor(Math.random() * 4 + 1) + ' documentos' },
-          { data: '15/09', nome: 'Reunião', badge: Math.floor(Math.random() * 3 + 1) + ' frequência' }
-        ],
-        pendencias: [
-          { nome: 'Avaliações pendentes', qtd: Math.floor(Math.random() * 5), cor: 'vermelho' },
-          { nome: 'Documentos pendentes', qtd: Math.floor(Math.random() * 4), cor: 'vermelho' },
-          { nome: 'Frequências pendentes', qtd: Math.floor(Math.random() * 3), cor: 'verde' }
-        ]
-      };
-
-      // Garante que os valores não fiquem negativos
-      novosDados.residentes = Math.max(0, novosDados.residentes);
-      novosDados.programas = Math.max(1, novosDados.programas);
-      novosDados.preceptores = Math.max(0, novosDados.preceptores);
-      novosDados.cenarios = Math.max(0, novosDados.cenarios);
-
-      atualizarDashboard(novosDados);
-
-      // Atualiza também os dados globais
-      Object.assign(dadosSistema, novosDados);
-    }
-
-    // ============================================================
-    // FUNÇÕES DO SISTEMA (Voltar, Profissionais, etc)
-    // ============================================================
     function voltarPaginaPrincipal() {
       if (window.opener) {
         window.opener.location.href = "../index.html";
@@ -1160,6 +892,12 @@
       } else {
         window.location.href = "../index.html";
       }
+    }
+
+    function emDesenvolvimento(event) {
+      if (event) event.preventDefault();
+      alert('🚧 Em desenvolvimento. Esta funcionalidade estará disponível em breve.');
+      return false;
     }
 
     function mostrarTodosProfissionais() {
@@ -1241,30 +979,16 @@
       }
     }
 
-    // ============================================================
-    // INICIALIZAÇÃO
-    // ============================================================
     document.addEventListener('DOMContentLoaded', function() {
-      // Mostra o dashboard
       document.querySelectorAll('.secao-conteudo').forEach(secao => {
         secao.classList.remove('ativa');
       });
-      const dashboard = document.getElementById('secao-dashboard');
-      if (dashboard) {
-        dashboard.classList.add('ativa');
-        document.querySelector('.sidebar .menu-item[data-target="secao-dashboard"]')?.classList.add('ativo');
+      const primeiraSecao = document.getElementById('secao-ceis');
+      if (primeiraSecao) {
+        primeiraSecao.classList.add('ativa');
+        document.querySelector('.sidebar .menu-item[data-target="secao-ceis"]')?.classList.add('ativo');
       }
-
-      // Inicializa os contadores do menu
-      atualizarContadorMenu('residentes', dadosSistema.residentes);
-      atualizarContadorMenu('programas', dadosSistema.programas);
-      atualizarContadorMenu('preceptores', dadosSistema.preceptores);
-      atualizarContadorMenu('cenarios', dadosSistema.cenarios);
-
       verificarCardsVisiveis();
-
-      // Atualiza automaticamente a cada 30 segundos
-      setInterval(simularAtualizacao, 30000);
     });
   </script>
 </head>
@@ -1309,12 +1033,7 @@
         </div>
       </div>
     </div>
-    <div style="display: flex; align-items: center; gap: 12px;">
-      <button class="btn-atualizar" onclick="simularAtualizacao()">
-        🔄 Atualizar dados
-      </button>
-      <button class="btn-voltar" onclick="voltarPaginaPrincipal()">← Voltar</button>
-    </div>
+    <button class="btn-voltar" onclick="voltarPaginaPrincipal()">← Voltar</button>
   </div>
 
   <!-- 🔹 CORPO COM MENU LATERAL -->
@@ -1323,10 +1042,7 @@
     <!-- MENU LATERAL -->
     <nav class="sidebar">
       <div class="grupo-titulo">NÚCLEO</div>
-      <a class="menu-item ativo" data-target="secao-dashboard" onclick="scrollParaSecao('secao-dashboard')">
-        <span class="icone">🏠</span> Dashboard
-      </a>
-      <a class="menu-item" data-target="secao-ceis" onclick="scrollParaSecao('secao-ceis')">
+      <a class="menu-item ativo" data-target="secao-ceis" onclick="scrollParaSecao('secao-ceis')">
         <span class="icone">🏛️</span> CEIS, COREMU, COREME
       </a>
       <a class="menu-item" data-target="secao-visao" onclick="scrollParaSecao('secao-visao')">
@@ -1398,125 +1114,30 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: DASHBOARD (PÁGINA INICIAL) -->
-          <!-- ============================================================ -->
-          <div id="secao-dashboard" class="secao-conteudo ativa">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
-              <div>
-                <div class="dashboard-titulo">Bem-vindo ao Núcleo das Residências</div>
-                <div class="dashboard-subtitulo">Secretaria da Saúde de Joinville</div>
-              </div>
-              <button class="btn-atualizar" onclick="simularAtualizacao()" style="font-size: 0.85rem; padding: 8px 20px;">
-                🔄 Atualizar dados
-              </button>
-            </div>
-
-            <!-- Cards de estatísticas -->
-            <div class="stats-grid">
-              <div class="stat-card">
-                <div class="stat-number" id="num-residentes">42</div>
-                <div class="stat-label">Residentes</div>
-                <div class="stat-detalhe" id="detalhe-residentes">Ativos</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-number" id="num-programas">5</div>
-                <div class="stat-label">Programas</div>
-                <div class="stat-detalhe" id="detalhe-programas">Em andamento</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-number" id="num-preceptores">28</div>
-                <div class="stat-label">Preceptores</div>
-                <div class="stat-detalhe" id="detalhe-preceptores">Ativos</div>
-              </div>
-              <div class="stat-card">
-                <div class="stat-number" id="num-cenarios">18</div>
-                <div class="stat-label">Cenários</div>
-                <div class="stat-detalhe" id="detalhe-cenarios">Disponíveis</div>
-              </div>
-            </div>
-
-            <!-- Grid 2 colunas: Próximos eventos + Pendências -->
-            <div class="dashboard-grid-2">
-              <!-- Próximos eventos -->
-              <div class="dash-card">
-                <h3>📅 Próximos eventos</h3>
-                <div id="eventos-container">
-                  <div class="event-item">
-                    <div class="event-info">
-                      <span class="event-date">05/09</span>
-                      <span class="event-name">Avaliação</span>
-                    </div>
-                    <span class="event-badge">3 avaliações</span>
-                  </div>
-                  <div class="event-item">
-                    <div class="event-info">
-                      <span class="event-date">10/09</span>
-                      <span class="event-name">Reunião</span>
-                    </div>
-                    <span class="event-badge">2 documentos</span>
-                  </div>
-                  <div class="event-item">
-                    <div class="event-info">
-                      <span class="event-date">15/09</span>
-                      <span class="event-name">Reunião</span>
-                    </div>
-                    <span class="event-badge">1 frequência</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Pendências -->
-              <div class="dash-card">
-                <h3>⚠️ Pendências</h3>
-                <div id="pendencias-container">
-                  <div class="pending-item">
-                    <span class="pending-name">📋 Avaliações pendentes</span>
-                    <span class="pending-count">3</span>
-                  </div>
-                  <div class="pending-item">
-                    <span class="pending-name">📄 Documentos pendentes</span>
-                    <span class="pending-count">2</span>
-                  </div>
-                  <div class="pending-item">
-                    <span class="pending-name">⏰ Frequências pendentes</span>
-                    <span class="pending-count verde">1</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Acompanhamento dos programas -->
-            <div class="progress-section">
-              <h3>📈 Acompanhamento dos programas</h3>
-              <div class="progress-bar-container">
-                <div class="progress-bar-track">
-                  <div class="progress-bar-fill" id="progress-bar" style="width: 92%;"></div>
-                </div>
-                <span class="progress-percent" id="progress-percent">92%</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- ============================================================ -->
           <!-- SEÇÃO: CEIS, COREMU, COMERE -->
           <!-- ============================================================ -->
-          <div id="secao-ceis" class="secao-conteudo">
+          <div id="secao-ceis" class="secao-conteudo ativa">
             <h2 class="secao-titulo">🏛️ CEIS, COREMU, COMERE</h2>
             <div class="linha">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <!-- Card 1: CEIS (mantido) -->
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">CEIS - Centro de Educação Integrada em Saúde</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Informações sobre o CEIS.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Informações sobre o CEIS.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
-                <div class="titulo-texto">COREMU - Comissão de Residência Médica</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Informações sobre o COREMU.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+
+              <!-- Card 2: COREMU - ALTERADO -->
+              <div class="quadro-item quadro-relatorio">
+                <div class="titulo-texto">Membros da Comissão de Residência Médica</div>
+                <p>Informações do SEI.</p>
+                <a href="https://drive.google.com/file/d/1IjNlZ2QP1mDwInOjOdPw1QNyC5kqdPmU/view?usp=sharing" target="_blank" class="relatorio-link visualizar">📄 Visualizar Documento</a>
               </div>
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
-                <div class="titulo-texto">COMERE - Comissão de Residência em Saúde</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Informações sobre o COMERE.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+
+              <!-- Card 3: COMERE - ALTERADO -->
+              <div class="quadro-item quadro-relatorio">
+                <div class="titulo-texto">Membros da Comissão de Residência Multiprofissional</div>
+                <p>Informações do SEI.</p>
+                <a href="https://drive.google.com/file/d/1h3XiWuVvq19osoFzUyN9wD6qtim_h_RF/view?usp=sharing" target="_blank" class="relatorio-link visualizar">📄 Visualizar Documento</a>
               </div>
             </div>
           </div>
@@ -1527,15 +1148,15 @@
           <div id="secao-visao" class="secao-conteudo">
             <h2 class="secao-titulo">📊 Visão Geral</h2>
             <div class="linha-2col">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">Cenários de prática na Secretaria da Saúde para Programas de Residência em Saúde.</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Este serviço orienta profissionais dos hospitais conveniados a solicitarem cenários de práticas para Programas de Residência em Saúde.</p>
-                <a href="https://www.joinville.sc.gov.br/servicos/solicitar-cenarios-de-pratica-na-secretaria-da-saude-para-programas-de-residencia-em-saude/" target="_blank" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #2c6b9e; transition: all 0.3s ease; font-size: 0.9rem; align-self: flex-start; border: none; cursor: pointer;">Acessar Formulário</a>
+                <p>Este serviço orienta profissionais dos hospitais conveniados a solicitarem cenários de práticas para Programas de Residência em Saúde.</p>
+                <a href="https://www.joinville.sc.gov.br/servicos/solicitar-cenarios-de-pratica-na-secretaria-da-saude-para-programas-de-residencia-em-saude/" target="_blank" class="relatorio-link">Acessar Formulário</a>
               </div>
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">Painel de liberação dos Cenários de Prática na Residência em saúde.</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Painel de aprovação e liberação de cenários de prática.</p>
-                <a href="https://sites.google.com/view/ceis-gestao-cenarios-pratica/p%C3%A1gina-inicial/agendamento-iep" target="_blank" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #2c6b9e; transition: all 0.3s ease; font-size: 0.9rem; align-self: flex-start; border: none; cursor: pointer;">Acessar Relatório</a>
+                <p>Painel de aprovação e liberação de cenários de prática.</p>
+                <a href="https://sites.google.com/view/ceis-gestao-cenarios-pratica/p%C3%A1gina-inicial/agendamento-iep" target="_blank" class="relatorio-link">Acessar Relatório</a>
               </div>
             </div>
           </div>
@@ -1546,10 +1167,10 @@
           <div id="secao-cenarios" class="secao-conteudo">
             <h2 class="secao-titulo">📍 Cenários</h2>
             <div class="linha-1col">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">📍 Cenários de Prática</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Gerenciamento de cenários de prática.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Gerenciamento de cenários de prática.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
             </div>
           </div>
@@ -1560,10 +1181,10 @@
           <div id="secao-selecao" class="secao-conteudo">
             <h2 class="secao-titulo">📋 Seleção</h2>
             <div class="linha-1col">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">📋 Processo Seletivo</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Informações sobre o processo seletivo para residências.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Informações sobre o processo seletivo para residências.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
             </div>
           </div>
@@ -1574,10 +1195,10 @@
           <div id="secao-cadastro" class="secao-conteudo">
             <h2 class="secao-titulo">📝 Cadastro</h2>
             <div class="linha-1col">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">📝 Cadastro de Residentes</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Cadastro de novos residentes.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Cadastro de novos residentes.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
             </div>
           </div>
@@ -1588,10 +1209,10 @@
           <div id="secao-documentos" class="secao-conteudo">
             <h2 class="secao-titulo">📄 Documentos</h2>
             <div class="linha-1col">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">📄 Gestão de Documentos</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Controle de documentos dos residentes.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Controle de documentos dos residentes.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
             </div>
           </div>
@@ -1602,20 +1223,20 @@
           <div id="secao-frequencia" class="secao-conteudo">
             <h2 class="secao-titulo">⏰ Frequência | Férias | Afastamentos</h2>
             <div class="linha">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">📊 SPR - Sistema de Ponto da Residência.</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Controle de horas dos residentes.</p>
-                <a href="https://script.google.com/macros/s/AKfycbyxqQ-DSe63hTcFnmDE4fWGDI9bpENHjMiiI55wzOAudE4MaZoq8NaCuhe_8I9kF6Mb/exec" target="_blank" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #2c6b9e; transition: all 0.3s ease; font-size: 0.9rem; align-self: flex-start; border: none; cursor: pointer;">Acessar Sistema de Ponto</a>
+                <p>Controle de horas dos residentes.</p>
+                <a href="https://script.google.com/macros/s/AKfycbyxqQ-DSe63hTcFnmDE4fWGDI9bpENHjMiiI55wzOAudE4MaZoq8NaCuhe_8I9kF6Mb/exec" target="_blank" class="relatorio-link">Acessar Sistema de Ponto</a>
               </div>
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">⏰ Frequência</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Controle de frequência dos residentes.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Controle de frequência dos residentes.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">⏰ Férias e Afastamentos</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Controle de férias e afastamentos.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Controle de férias e afastamentos.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
             </div>
           </div>
@@ -1626,10 +1247,10 @@
           <div id="secao-avaliacoes" class="secao-conteudo">
             <h2 class="secao-titulo">⭐ Avaliações</h2>
             <div class="linha-1col">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">⭐ Avaliações dos Residentes</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Sistema de avaliação de residentes.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Sistema de avaliação de residentes.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
             </div>
           </div>
@@ -1640,15 +1261,15 @@
           <div id="secao-preceptores" class="secao-conteudo">
             <h2 class="secao-titulo">👨‍🏫 Preceptores e Coordenação</h2>
             <div class="linha">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">👨‍🏫 Preceptores</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Gestão de preceptores.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Gestão de preceptores.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">👨‍🏫 Coordenação</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Gestão da coordenação.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Gestão da coordenação.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
             </div>
           </div>
@@ -1659,10 +1280,10 @@
           <div id="secao-desistencia" class="secao-conteudo">
             <h2 class="secao-titulo">🚪 Desistência</h2>
             <div class="linha-1col">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">🚪 Controle de Desistências</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Registro e acompanhamento de desistências.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Registro e acompanhamento de desistências.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
             </div>
           </div>
@@ -1673,10 +1294,10 @@
           <div id="secao-acompanhamento" class="secao-conteudo">
             <h2 class="secao-titulo">📈 Acompanhamento</h2>
             <div class="linha-1col">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">📈 Acompanhamento Acadêmico</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Acompanhamento do desempenho acadêmico.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Acompanhamento do desempenho acadêmico.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
             </div>
           </div>
@@ -1687,15 +1308,15 @@
           <div id="secao-financeiro" class="secao-conteudo">
             <h2 class="secao-titulo">💰 Financeiro | Sistemas</h2>
             <div class="linha">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">💰 Financeiro</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Controle financeiro do Núcleo.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Controle financeiro do Núcleo.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">💻 Sistemas</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Integração com sistemas.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Integração com sistemas.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
             </div>
           </div>
@@ -1706,10 +1327,10 @@
           <div id="secao-reunioes" class="secao-conteudo">
             <h2 class="secao-titulo">🤝 Reuniões</h2>
             <div class="linha-1col">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">🤝 Agendamento de Reuniões</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Controle de reuniões e pautas.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Controle de reuniões e pautas.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
             </div>
           </div>
@@ -1720,10 +1341,10 @@
           <div id="secao-processos" class="secao-conteudo">
             <h2 class="secao-titulo">⚙️ Processos</h2>
             <div class="linha-1col">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">⚙️ Processos Internos</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Gestão de processos internos.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Gestão de processos internos.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
             </div>
           </div>
@@ -1734,10 +1355,10 @@
           <div id="secao-pendencias" class="secao-conteudo">
             <h2 class="secao-titulo">⚠️ Pendências</h2>
             <div class="linha-1col">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">⚠️ Pendências</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Lista de pendências do Núcleo.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Lista de pendências do Núcleo.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
             </div>
           </div>
@@ -1748,15 +1369,15 @@
           <div id="secao-relatorios" class="secao-conteudo">
             <h2 class="secao-titulo">📊 Relatórios</h2>
             <div class="linha">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">📊 Relatório de Atividades</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Acesse o relatório de atividades.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Acesse o relatório de atividades.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">📊 Relatório de Indicadores</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Acesse o relatório de indicadores.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Acesse o relatório de indicadores.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
             </div>
           </div>
@@ -1767,10 +1388,10 @@
           <div id="secao-notificacoes" class="secao-conteudo">
             <h2 class="secao-titulo">🔔 Notificações</h2>
             <div class="linha-1col">
-              <div class="quadro-item" style="display: flex !important; border-top: 3px solid #2c6b9e;">
+              <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">🔔 Notificações</div>
-                <p style="color: #5a6b7c; font-size: 0.92rem; margin: 10px 0 16px 0; flex-grow: 1; line-height: 1.6;">Central de notificações.</p>
-                <a href="#" onclick="alert('🚧 Em desenvolvimento.'); return false;" style="display: inline-block; padding: 10px 22px; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; text-align: center; background-color: #a0aec0; font-size: 0.9rem; align-self: flex-start; border: none; cursor: not-allowed;">Em desenvolvimento 🚧</a>
+                <p>Central de notificações.</p>
+                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
               </div>
             </div>
           </div>
@@ -1814,12 +1435,6 @@
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- TOAST DE NOTIFICAÇÃO -->
-  <div id="toast" class="toast">
-    <div class="toast-titulo">✅ Atualizado</div>
-    <div class="toast-detalhes">Dados sincronizados com sucesso!</div>
   </div>
 
   <footer>
