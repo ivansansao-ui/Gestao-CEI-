@@ -721,18 +721,23 @@
       .stats-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
       .dashboard-grid-2 {
         grid-template-columns: 1fr;
       }
+
       .linha {
         grid-template-columns: 1fr 1fr;
       }
+
       .linha-2col {
         grid-template-columns: 1fr 1fr;
       }
+
       .sidebar {
         width: 220px;
       }
+
       .content-area {
         padding: 20px;
       }
@@ -853,31 +858,40 @@
       .top-menu .titulo {
         font-size: 0.7rem;
       }
+
       .dropdown-btn {
         font-size: 0.75rem;
         padding: 5px 12px;
       }
+
       .content-area {
         padding: 12px;
       }
+
       .content-wrapper {
         padding: 12px;
       }
+
       .stats-grid {
         grid-template-columns: 1fr 1fr;
         gap: 8px;
       }
+
       .stat-card {
         padding: 10px 12px;
       }
+
       .stat-card .stat-number {
         font-size: 1.2rem;
       }
+
       .quadro-item {
         padding: 14px 16px;
         min-height: 100px;
       }
-      .event-item, .pending-item {
+
+      .event-item,
+      .pending-item {
         flex-wrap: wrap;
         gap: 6px;
       }
@@ -904,14 +918,27 @@
       document.querySelectorAll('.quadro-item').forEach(item => {
         item.classList.add('visivel');
       });
+
       const dropdown = document.querySelector('.dropdown');
       const content = dropdown.querySelector('.dropdown-content');
+
       content.style.display = 'none';
-      setTimeout(() => { content.style.display = ''; }, 300);
+
+      setTimeout(() => {
+        content.style.display = '';
+      }, 300);
+
       setTimeout(() => {
         const primeiro = document.querySelector('.quadro-item.visivel');
-        if (primeiro) primeiro.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        if (primeiro) {
+          primeiro.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
       }, 400);
+
       setTimeout(verificarCardsVisiveis, 100);
     }
 
@@ -919,12 +946,17 @@
       document.querySelectorAll('.quadro-item').forEach(item => {
         item.classList.remove('visivel');
       });
+
       setTimeout(verificarCardsVisiveis, 100);
     }
 
     function fecharProfissional(id) {
       const elemento = document.getElementById(id);
-      if (elemento) elemento.classList.remove('visivel');
+
+      if (elemento) {
+        elemento.classList.remove('visivel');
+      }
+
       setTimeout(verificarCardsVisiveis, 100);
     }
 
@@ -932,23 +964,36 @@
       document.querySelectorAll('.quadro-item').forEach(item => {
         item.classList.remove('visivel');
       });
+
       const elemento = document.getElementById(id);
+
       if (elemento) {
         elemento.classList.add('visivel');
+
         setTimeout(() => {
-          elemento.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          elemento.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+          });
         }, 300);
       }
+
       const dropdown = document.querySelector('.dropdown');
       const content = dropdown.querySelector('.dropdown-content');
+
       content.style.display = 'none';
-      setTimeout(() => { content.style.display = ''; }, 300);
+
+      setTimeout(() => {
+        content.style.display = '';
+      }, 300);
+
       setTimeout(verificarCardsVisiveis, 100);
     }
 
     function verificarCardsVisiveis() {
       const visiveis = document.querySelectorAll('.quadro-item.visivel');
       const containerFechar = document.getElementById('containerFechar');
+
       if (visiveis.length > 0) {
         containerFechar.style.display = 'flex';
       } else {
@@ -960,8 +1005,14 @@
       document.querySelectorAll('.sidebar .menu-item').forEach(item => {
         item.classList.remove('ativo');
       });
-      const el = document.querySelector(`.sidebar .menu-item[data-target="${id}"]`);
-      if (el) el.classList.add('ativo');
+
+      const el = document.querySelector(
+        `.sidebar .menu-item[data-target="${id}"]`
+      );
+
+      if (el) {
+        el.classList.add('ativo');
+      }
     }
 
     function scrollParaSecao(id) {
@@ -970,11 +1021,17 @@
       });
 
       const elemento = document.getElementById(id);
+
       if (elemento) {
         elemento.classList.add('ativa');
+
         setTimeout(() => {
-          elemento.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          elemento.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
         }, 100);
+
         ativarMenu(id);
       }
     }
@@ -983,11 +1040,17 @@
       document.querySelectorAll('.secao-conteudo').forEach(secao => {
         secao.classList.remove('ativa');
       });
+
       const primeiraSecao = document.getElementById('secao-dashboard');
+
       if (primeiraSecao) {
         primeiraSecao.classList.add('ativa');
-        document.querySelector('.sidebar .menu-item[data-target="secao-dashboard"]')?.classList.add('ativo');
+
+        document
+          .querySelector('.sidebar .menu-item[data-target="secao-dashboard"]')
+          ?.classList.add('ativo');
       }
+
       verificarCardsVisiveis();
     });
   </script>
@@ -997,18 +1060,30 @@
 
   <!-- 🔹 MENU FIXO SUPERIOR -->
   <div class="top-menu">
+
     <div class="menu-esquerda">
-      <span class="titulo">IV - <span>Núcleo de Residências em Saúde</span></span>
+
+      <span class="titulo">
+        IV - <span>Núcleo de Residências em Saúde</span>
+      </span>
+
       <div class="dropdown">
-        <button class="dropdown-btn">▼ Profissionais</button>
+
+        <button class="dropdown-btn">
+          ▼ Profissionais
+        </button>
+
         <div class="dropdown-content">
+
           <a href="#" onclick="mostrarTodosProfissionais(); return false;" style="background: #f8faff;">
             <div class="nome-item" style="font-weight: 600; color: #2c6b9e;">
               <span style="font-size: 1.1rem;">👥</span>
               Mostrar todos os profissionais
             </div>
           </a>
+
           <div class="divisor"></div>
+
           <a href="#" onclick="mostrarProfissional('profissional1'); return false;">
             <div class="nome-item">
               <span class="emoji">👩‍⚕️</span>
@@ -1016,6 +1091,7 @@
               <span class="cargo-tag">Nível Superior</span>
             </div>
           </a>
+
           <a href="#" onclick="mostrarProfissional('profissional2'); return false;">
             <div class="nome-item">
               <span class="emoji">👩‍⚕️</span>
@@ -1023,6 +1099,7 @@
               <span class="cargo-tag">Téc. Enfermagem</span>
             </div>
           </a>
+
           <a href="#" onclick="mostrarProfissional('profissional3'); return false;">
             <div class="nome-item">
               <span class="emoji">👩‍🎓</span>
@@ -1030,10 +1107,15 @@
               <span class="cargo-tag">Estagiária</span>
             </div>
           </a>
+
         </div>
       </div>
     </div>
-    <button class="btn-voltar" onclick="voltarPaginaPrincipal()">← Voltar</button>
+
+    <button class="btn-voltar" onclick="voltarPaginaPrincipal()">
+      ← Voltar
+    </button>
+
   </div>
 
   <!-- 🔹 CORPO COM MENU LATERAL -->
@@ -1041,118 +1123,195 @@
 
     <!-- MENU LATERAL -->
     <nav class="sidebar">
+
       <div class="grupo-titulo">NÚCLEO</div>
-      <a class="menu-item ativo" data-target="secao-dashboard" onclick="scrollParaSecao('secao-dashboard')">
+
+      <a class="menu-item ativo"
+         data-target="secao-dashboard"
+         onclick="scrollParaSecao('secao-dashboard')">
         <span class="icone">🏠</span> Dashboard
       </a>
-      <a class="menu-item" data-target="secao-ceis" onclick="scrollParaSecao('secao-ceis')">
+
+      <a class="menu-item"
+         data-target="secao-ceis"
+         onclick="scrollParaSecao('secao-ceis')">
         <span class="icone">🏛️</span> CEIS, COREMU, COREME
       </a>
-      <a class="menu-item" data-target="secao-visao" onclick="scrollParaSecao('secao-visao')">
+
+      <a class="menu-item"
+         data-target="secao-visao"
+         onclick="scrollParaSecao('secao-visao')">
         <span class="icone">📊</span> Visão Geral
       </a>
-      <a class="menu-item" data-target="secao-cenarios" onclick="scrollParaSecao('secao-cenarios')">
+
+      <a class="menu-item"
+         data-target="secao-cenarios"
+         onclick="scrollParaSecao('secao-cenarios')">
         <span class="icone">📍</span> Cenários
       </a>
 
       <div class="grupo-titulo">RESIDENTES</div>
-      <a class="menu-item" data-target="secao-selecao" onclick="scrollParaSecao('secao-selecao')">
+
+      <a class="menu-item"
+         data-target="secao-selecao"
+         onclick="scrollParaSecao('secao-selecao')">
         <span class="icone">📋</span> Seleção
       </a>
-      <a class="menu-item" data-target="secao-cadastro" onclick="scrollParaSecao('secao-cadastro')">
+
+      <a class="menu-item"
+         data-target="secao-cadastro"
+         onclick="scrollParaSecao('secao-cadastro')">
         <span class="icone">📝</span> Cadastro
       </a>
-      <a class="menu-item" data-target="secao-documentos" onclick="scrollParaSecao('secao-documentos')">
+
+      <a class="menu-item"
+         data-target="secao-documentos"
+         onclick="scrollParaSecao('secao-documentos')">
         <span class="icone">📄</span> Documentos
       </a>
-      <a class="menu-item" data-target="secao-frequencia" onclick="scrollParaSecao('secao-frequencia')">
+
+      <a class="menu-item"
+         data-target="secao-frequencia"
+         onclick="scrollParaSecao('secao-frequencia')">
         <span class="icone">⏰</span> Frequência | Férias | Afastamentos
       </a>
-      <a class="menu-item" data-target="secao-avaliacoes" onclick="scrollParaSecao('secao-avaliacoes')">
+
+      <a class="menu-item"
+         data-target="secao-avaliacoes"
+         onclick="scrollParaSecao('secao-avaliacoes')">
         <span class="icone">⭐</span> Avaliações
       </a>
-      <a class="menu-item" data-target="secao-preceptores" onclick="scrollParaSecao('secao-preceptores')">
+
+      <a class="menu-item"
+         data-target="secao-preceptores"
+         onclick="scrollParaSecao('secao-preceptores')">
         <span class="icone">👨‍🏫</span> Preceptores e Coordenação
       </a>
-      <a class="menu-item" data-target="secao-desistencia" onclick="scrollParaSecao('secao-desistencia')">
+
+      <a class="menu-item"
+         data-target="secao-desistencia"
+         onclick="scrollParaSecao('secao-desistencia')">
         <span class="icone">🚪</span> Desistência
       </a>
 
       <div class="grupo-titulo">CONTROLE ACADÊMICO</div>
-      <a class="menu-item" data-target="secao-acompanhamento" onclick="scrollParaSecao('secao-acompanhamento')">
+
+      <a class="menu-item"
+         data-target="secao-acompanhamento"
+         onclick="scrollParaSecao('secao-acompanhamento')">
         <span class="icone">📈</span> Acompanhamento
       </a>
-      <a class="menu-item" data-target="secao-financeiro" onclick="scrollParaSecao('secao-financeiro')">
+
+      <a class="menu-item"
+         data-target="secao-financeiro"
+         onclick="scrollParaSecao('secao-financeiro')">
         <span class="icone">💰</span> Financeiro | Sistemas
       </a>
-      <a class="menu-item" data-target="secao-reunioes" onclick="scrollParaSecao('secao-reunioes')">
+
+      <a class="menu-item"
+         data-target="secao-reunioes"
+         onclick="scrollParaSecao('secao-reunioes')">
         <span class="icone">🤝</span> Reuniões
       </a>
 
       <div class="grupo-titulo">ORGANIZAÇÃO INTERNA</div>
-      <a class="menu-item" data-target="secao-processos" onclick="scrollParaSecao('secao-processos')">
+
+      <a class="menu-item"
+         data-target="secao-processos"
+         onclick="scrollParaSecao('secao-processos')">
         <span class="icone">⚙️</span> Processos
       </a>
-      <a class="menu-item" data-target="secao-pendencias" onclick="scrollParaSecao('secao-pendencias')">
+
+      <a class="menu-item"
+         data-target="secao-pendencias"
+         onclick="scrollParaSecao('secao-pendencias')">
         <span class="icone">⚠️</span> Pendências
         <span class="badge">3</span>
       </a>
-      <a class="menu-item" data-target="secao-relatorios" onclick="scrollParaSecao('secao-relatorios')">
+
+      <a class="menu-item"
+         data-target="secao-relatorios"
+         onclick="scrollParaSecao('secao-relatorios')">
         <span class="icone">📊</span> Relatórios
       </a>
-      <a class="menu-item" data-target="secao-notificacoes" onclick="scrollParaSecao('secao-notificacoes')">
+
+      <a class="menu-item"
+         data-target="secao-notificacoes"
+         onclick="scrollParaSecao('secao-notificacoes')">
         <span class="icone">🔔</span> Notificações
         <span class="badge-verde">5</span>
       </a>
+
     </nav>
 
     <!-- CONTEÚDO PRINCIPAL -->
     <div class="content-area">
+
       <div class="content-wrapper">
+
         <div class="layout-container">
 
           <!-- BOTÃO FECHAR TODOS -->
-          <div id="containerFechar" style="display: none;" class="container-botoes">
-            <button class="btn-fechar-todos" onclick="fecharTodosProfissionais()">✕ Fechar todos os profissionais</button>
+          <div id="containerFechar"
+               style="display: none;"
+               class="container-botoes">
+
+            <button class="btn-fechar-todos"
+                    onclick="fecharTodosProfissionais()">
+              ✕ Fechar todos os profissionais
+            </button>
+
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: DASHBOARD (PÁGINA INICIAL) -->
+          <!-- SEÇÃO: DASHBOARD -->
           <!-- ============================================================ -->
           <div id="secao-dashboard" class="secao-conteudo ativa">
-            <div class="dashboard-titulo">Bem-vindo ao Núcleo de Residências</div>
-            <div class="dashboard-subtitulo">Secretaria da Saúde de Joinville</div>
 
-            <!-- Cards de estatísticas -->
+            <div class="dashboard-titulo">
+              Bem-vindo ao Núcleo de Residências
+            </div>
+
+            <div class="dashboard-subtitulo">
+              Secretaria da Saúde de Joinville
+            </div>
+
             <div class="stats-grid">
+
               <div class="stat-card">
                 <div class="stat-number" id="num-residentes">42</div>
                 <div class="stat-label">Residentes</div>
                 <div class="stat-detalhe">Ativos</div>
               </div>
+
               <div class="stat-card">
                 <div class="stat-number" id="num-programas">5</div>
                 <div class="stat-label">Programas</div>
                 <div class="stat-detalhe">Em andamento</div>
               </div>
+
               <div class="stat-card">
                 <div class="stat-number" id="num-preceptores">28</div>
                 <div class="stat-label">Preceptores</div>
                 <div class="stat-detalhe">Ativos</div>
               </div>
+
               <div class="stat-card">
                 <div class="stat-number" id="num-cenarios">18</div>
                 <div class="stat-label">Cenários</div>
                 <div class="stat-detalhe">Disponíveis</div>
               </div>
+
             </div>
 
-            <!-- Grid 2 colunas: Próximos eventos + Pendências -->
             <div class="dashboard-grid-2">
-              <!-- Próximos eventos -->
+
               <div class="dash-card">
+
                 <h3>📅 Próximos eventos</h3>
+
                 <div id="eventos-container">
+
                   <div class="event-item">
                     <div class="event-info">
                       <span class="event-date">05/09</span>
@@ -1160,6 +1319,7 @@
                     </div>
                     <span class="event-badge">3 avaliações</span>
                   </div>
+
                   <div class="event-item">
                     <div class="event-info">
                       <span class="event-date">10/09</span>
@@ -1167,6 +1327,7 @@
                     </div>
                     <span class="event-badge">2 documentos</span>
                   </div>
+
                   <div class="event-item">
                     <div class="event-info">
                       <span class="event-date">15/09</span>
@@ -1174,67 +1335,116 @@
                     </div>
                     <span class="event-badge">1 frequência</span>
                   </div>
+
                 </div>
               </div>
 
-              <!-- Pendências -->
               <div class="dash-card">
+
                 <h3>⚠️ Pendências</h3>
+
                 <div id="pendencias-container">
+
                   <div class="pending-item">
-                    <span class="pending-name">📋 Avaliações pendentes</span>
+                    <span class="pending-name">
+                      📋 Avaliações pendentes
+                    </span>
                     <span class="pending-count">3</span>
                   </div>
+
                   <div class="pending-item">
-                    <span class="pending-name">📄 Documentos pendentes</span>
+                    <span class="pending-name">
+                      📄 Documentos pendentes
+                    </span>
                     <span class="pending-count">2</span>
                   </div>
+
                   <div class="pending-item">
-                    <span class="pending-name">⏰ Frequências pendentes</span>
+                    <span class="pending-name">
+                      ⏰ Frequências pendentes
+                    </span>
                     <span class="pending-count verde">1</span>
                   </div>
+
                 </div>
               </div>
+
             </div>
 
-            <!-- Acompanhamento dos programas -->
             <div class="progress-section">
+
               <h3>📈 Acompanhamento dos programas</h3>
+
               <div class="progress-bar-container">
+
                 <div class="progress-bar-track">
-                  <div class="progress-bar-fill" id="progress-bar" style="width: 92%;"></div>
+                  <div class="progress-bar-fill"
+                       id="progress-bar"
+                       style="width: 92%;">
+                  </div>
                 </div>
-                <span class="progress-percent" id="progress-percent">92%</span>
+
+                <span class="progress-percent"
+                      id="progress-percent">
+                  92%
+                </span>
+
               </div>
+
             </div>
+
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: CEIS, COREMU, COMERE -->
+          <!-- SEÇÃO: CEIS, COREMU, COREME -->
           <!-- ============================================================ -->
           <div id="secao-ceis" class="secao-conteudo">
-            <h2 class="secao-titulo">🏛️ CEIS, COREMU, COMERE</h2>
+
+            <h2 class="secao-titulo">
+              🏛️ CEIS, COREMU, COREME
+            </h2>
+
             <div class="linha">
-              <!-- Card 1: CEIS -->
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">CEIS - Centro de Educação Integrada em Saúde</div>
+                <div class="titulo-texto">
+                  CEIS - Centro de Educação Integrada em Saúde
+                </div>
                 <p>Informações sobre o CEIS.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
               </div>
 
-              <!-- Card 2: COREMU -->
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">Membros da Comissão de Residência Médica</div>
+                <div class="titulo-texto">
+                  Membros da Comissão de Residência Médica
+                </div>
                 <p>Informações do SEI.</p>
-                <a href="https://drive.google.com/file/d/1IjNlZ2QP1mDwInOjOdPw1QNyC5kqdPmU/view?usp=sharing" target="_blank" class="relatorio-link visualizar">📄 Visualizar Documento</a>
+
+                <a href="https://drive.google.com/file/d/1IjNlZ2QP1mDwInOjOdPw1QNyC5kqdPmU/view?usp=sharing"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📄 Visualizar Documento
+                </a>
               </div>
 
-              <!-- Card 3: COMERE -->
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">Membros da Comissão de Residência Multiprofissional</div>
+                <div class="titulo-texto">
+                  Membros da Comissão de Residência Multiprofissional
+                </div>
                 <p>Informações do SEI.</p>
-                <a href="https://drive.google.com/file/d/1h3XiWuVvq19osoFzUyN9wD6qtim_h_RF/view?usp=sharing" target="_blank" class="relatorio-link visualizar">📄 Visualizar Documento</a>
+
+                <a href="https://drive.google.com/file/d/1h3XiWuVvq19osoFzUyN9wD6qtim_h_RF/view?usp=sharing"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📄 Visualizar Documento
+                </a>
               </div>
+
             </div>
           </div>
 
@@ -1242,18 +1452,49 @@
           <!-- SEÇÃO: Visão Geral -->
           <!-- ============================================================ -->
           <div id="secao-visao" class="secao-conteudo">
+
             <h2 class="secao-titulo">📊 Visão Geral</h2>
+
             <div class="linha-2col">
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">Cenários de prática na Secretaria da Saúde para Programas de Residência em Saúde.</div>
-                <p>Este serviço orienta profissionais dos hospitais conveniados a solicitarem cenários de práticas para Programas de Residência em Saúde.</p>
-                <a href="https://www.joinville.sc.gov.br/servicos/solicitar-cenarios-de-pratica-na-secretaria-da-saude-para-programas-de-residencia-em-saude/" target="_blank" class="relatorio-link">Acessar Formulário</a>
+
+                <div class="titulo-texto">
+                  Cenários de prática na Secretaria da Saúde para Programas de Residência em Saúde.
+                </div>
+
+                <p>
+                  Este serviço orienta profissionais dos hospitais conveniados
+                  a solicitarem cenários de práticas para Programas de
+                  Residência em Saúde.
+                </p>
+
+                <a href="https://www.joinville.sc.gov.br/servicos/solicitar-cenarios-de-pratica-na-secretaria-da-saude-para-programas-de-residencia-em-saude/"
+                   target="_blank"
+                   class="relatorio-link">
+                  Acessar Formulário
+                </a>
+
               </div>
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">Painel de liberação dos Cenários de Prática na Residência em saúde.</div>
-                <p>Painel de aprovação e liberação de cenários de prática.</p>
-                <a href="https://sites.google.com/view/ceis-gestao-cenarios-pratica/p%C3%A1gina-inicial/agendamento-iep" target="_blank" class="relatorio-link">Acessar Relatório</a>
+
+                <div class="titulo-texto">
+                  Painel de liberação dos Cenários de Prática na Residência em saúde.
+                </div>
+
+                <p>
+                  Painel de aprovação e liberação de cenários de prática.
+                </p>
+
+                <a href="https://sites.google.com/view/ceis-gestao-cenarios-pratica/p%C3%A1gina-inicial/agendamento-iep"
+                   target="_blank"
+                   class="relatorio-link">
+                  Acessar Relatório
+                </a>
+
               </div>
+
             </div>
           </div>
 
@@ -1261,124 +1502,488 @@
           <!-- SEÇÃO: Cenários -->
           <!-- ============================================================ -->
           <div id="secao-cenarios" class="secao-conteudo">
+
             <h2 class="secao-titulo">📍 Cenários</h2>
+
             <div class="linha-1col">
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">📍 Cenários de Prática</div>
-                <p>Gerenciamento de cenários de prática.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  📍 Cenários de Prática
+                </div>
+
+                <p>
+                  Gerenciamento de cenários de prática.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
             </div>
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Seleção (ATUALIZADA) -->
+          <!-- SEÇÃO: Seleção -->
           <!-- ============================================================ -->
           <div id="secao-selecao" class="secao-conteudo">
-            <h2 class="secao-titulo">📋 Processo Seletivo</h2>
+
+            <h2 class="secao-titulo">
+              📋 Processo Seletivo
+            </h2>
+
             <div class="linha">
-              <!-- Edital Residência -->
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">📄 Edital Residência</div>
-                <p>Documentos e informações sobre o edital de residência.</p>
-                <a href="https://drive.google.com/drive/u/1/folders/1InZu7KaNpbPYqU9_U01eg5_ono6t1_o_" target="_blank" class="relatorio-link visualizar">📁 Acessar Edital</a>
+
+                <div class="titulo-texto">
+                  📄 Edital Residência
+                </div>
+
+                <p>
+                  Documentos e informações sobre o edital de residência.
+                </p>
+
+                <a href="https://drive.google.com/drive/u/1/folders/1InZu7KaNpbPYqU9_U01eg5_ono6t1_o_"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📁 Acessar Edital
+                </a>
+
               </div>
 
-              <!-- POP para elaboração do Edital do PRM MFC -->
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">📋 POP para elaboração do Edital do PRM MFC</div>
-                <p>Procedimento Operacional Padrão para elaboração do edital do Programa de Residência Médica em Medicina de Família e Comunidade.</p>
-                <a href="https://drive.google.com/drive/u/1/folders/1HNTFlf5i6NO0etClNkJW9uz_Z5esQDIT" target="_blank" class="relatorio-link visualizar">📁 Acessar POP</a>
+
+                <div class="titulo-texto">
+                  📋 POP para elaboração do Edital do PRM MFC
+                </div>
+
+                <p>
+                  Procedimento Operacional Padrão para elaboração do edital
+                  do Programa de Residência Médica em Medicina de Família
+                  e Comunidade.
+                </p>
+
+                <a href="https://drive.google.com/drive/u/1/folders/1HNTFlf5i6NO0etClNkJW9uz_Z5esQDIT"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📁 Acessar POP
+                </a>
+
               </div>
 
-              <!-- Edital Multiprofissional -->
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">📄 Edital Multiprofissional</div>
-                <p>Edital e convocação 2026/2027 para residências multiprofissionais.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  📄 Edital Multiprofissional
+                </div>
+
+                <p>
+                  Edital e convocação 2026/2027 para residências multiprofissionais.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
             </div>
 
-            <!-- Segunda linha de cards -->
             <div class="linha" style="margin-top: 24px;">
-              <!-- Levantamento de classificados -->
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">📊 Levantamento de Classificados</div>
-                <p>POP Levantamento e Publicação da Lista de Classificados.</p>
-                <a href="https://docs.google.com/document/d/1RPg5_6lebXBpJDkb4k0_miF7AJv4qdWA3ueqCuylXhg/edit?tab=t.0" target="_blank" class="relatorio-link visualizar">📄 Acessar POP</a>
+
+                <div class="titulo-texto">
+                  📊 Levantamento de Classificados
+                </div>
+
+                <p>
+                  POP Levantamento e Publicação da Lista de Classificados.
+                </p>
+
+                <a href="https://docs.google.com/document/d/1RPg5_6lebXBpJDkb4k0_miF7AJv4qdWA3ueqCuylXhg/edit?tab=t.0"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📄 Acessar POP
+                </a>
+
               </div>
 
-              <!-- Convocados -->
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">📋 Convocados</div>
-                <p>POP Convocação e lista de convocados.</p>
-                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
-                  <a href="https://docs.google.com/document/d/1PGb-jgBy10DhnhGE38JprRgwjVTToMNpXdCXVe5gLPE/edit?tab=t.0" target="_blank" class="relatorio-link" style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">📄 POP Convocação</a>
-                  <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento" style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">📋 Lista de Convocados 🚧</a>
+
+                <div class="titulo-texto">
+                  📋 Convocados
                 </div>
+
+                <p>
+                  POP Convocação e lista de convocados.
+                </p>
+
+                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+
+                  <a href="https://docs.google.com/document/d/1PGb-jgBy10DhnhGE38JprRgwjVTToMNpXdCXVe5gLPE/edit?tab=t.0"
+                     target="_blank"
+                     class="relatorio-link"
+                     style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">
+                    📄 POP Convocação
+                  </a>
+
+                  <a href="#"
+                     onclick="return emDesenvolvimento(event)"
+                     class="relatorio-link em-desenvolvimento"
+                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                    📋 Lista de Convocados 🚧
+                  </a>
+
+                </div>
+
               </div>
 
-              <!-- Situação -->
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">📊 Situação</div>
-                <p>Modelo de situação e lista de aprovados.</p>
-                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
-                  <a href="https://docs.google.com/spreadsheets/d/1DLwyAbbg5yazbztJtfgl2Hdw1XudDDKv/edit?gid=20108747#gid=20108747" target="_blank" class="relatorio-link" style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">📊 Modelo</a>
-                  <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento" style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">📋 Lista de Aprovados 🚧</a>
+
+                <div class="titulo-texto">
+                  📊 Situação
                 </div>
+
+                <p>
+                  Modelo de situação e lista de aprovados.
+                </p>
+
+                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+
+                  <a href="https://docs.google.com/spreadsheets/d/1DLwyAbbg5yazbztJtfgl2Hdw1XudDDKv/edit?gid=20108747#gid=20108747"
+                     target="_blank"
+                     class="relatorio-link"
+                     style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">
+                    📊 Modelo
+                  </a>
+
+                  <a href="#"
+                     onclick="return emDesenvolvimento(event)"
+                     class="relatorio-link em-desenvolvimento"
+                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                    📋 Lista de Aprovados 🚧
+                  </a>
+
+                </div>
+
               </div>
+
             </div>
+
           </div>
 
           <!-- ============================================================ -->
           <!-- SEÇÃO: Cadastro -->
           <!-- ============================================================ -->
           <div id="secao-cadastro" class="secao-conteudo">
+
             <h2 class="secao-titulo">📝 Cadastro</h2>
+
             <div class="linha-1col">
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">📝 Cadastro de Residentes</div>
-                <p>Cadastro de novos residentes.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  📝 Cadastro de Residentes
+                </div>
+
+                <p>
+                  Cadastro de novos residentes.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
             </div>
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Documentos -->
+          <!-- SEÇÃO: DOCUMENTOS - ATUALIZADA -->
           <!-- ============================================================ -->
           <div id="secao-documentos" class="secao-conteudo">
+
             <h2 class="secao-titulo">📄 Documentos</h2>
-            <div class="linha-1col">
+
+            <!-- LINHA 1 -->
+            <div class="linha">
+
+              <!-- Gestão de Documentos - ORIGINAL -->
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">📄 Gestão de Documentos</div>
-                <p>Controle de documentos dos residentes.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  📄 Gestão de Documentos
+                </div>
+
+                <p>
+                  Controle de documentos dos residentes.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
+              <!-- Regimento e Regulamento Multiprofissional -->
+              <div class="quadro-item quadro-relatorio">
+
+                <div class="titulo-texto">
+                  📋 Regimento e Regulamento Multiprofissional
+                </div>
+
+                <p>
+                  Regimento e Regulamento da Residência Multiprofissional.
+                  Documentos disponíveis no SEI.
+                </p>
+
+                <a href="https://drive.google.com/drive/u/1/folders/178NyTCND39xVpwj7LG5_fhaol5e01iIV"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📁 Acessar SEI
+                </a>
+
+              </div>
+
+              <!-- Estágio Eletivo -->
+              <div class="quadro-item quadro-relatorio">
+
+                <div class="titulo-texto">
+                  🎓 Estágio Eletivo
+                </div>
+
+                <p>
+                  Documentos e orientações referentes ao Estágio Eletivo
+                  dos residentes.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
+              </div>
+
             </div>
+
+            <!-- LINHA 2 -->
+            <div class="linha" style="margin-top: 24px;">
+
+              <!-- Estágio Optativo -->
+              <div class="quadro-item quadro-relatorio">
+
+                <div class="titulo-texto">
+                  🎓 Estágio Optativo
+                </div>
+
+                <p>
+                  Documentação e orientações para solicitação de
+                  Estágio Optativo.
+                </p>
+
+                <a href="https://docs.google.com/document/d/1ZrtXeFdQO6PW3lU_7VuRZ1Iq_KTkl6N-WpAGaQ6RVpE/edit?tab=t.0"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📄 Acessar Documento
+                </a>
+
+              </div>
+
+              <!-- Opções de Estágio Optativo -->
+              <div class="quadro-item quadro-relatorio">
+
+                <div class="titulo-texto">
+                  📚 Opções de Estágio Optativo
+                </div>
+
+                <p>
+                  Consulte as opções disponíveis de locais e unidades
+                  para realização de Estágio Optativo.
+                </p>
+
+                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+
+                  <a href="https://docs.google.com/document/d/1JJbFXmEImy3Zbxjhm-kFOmY6qzlK5sKmDBolQ4Avjy8/edit?tab=t.0"
+                     target="_blank"
+                     class="relatorio-link visualizar"
+                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                    📄 Opções de Estágio
+                  </a>
+
+                  <a href="https://www.saude.sc.gov.br/index.php/pt/ses-sc/unidades-de-saude"
+                     target="_blank"
+                     class="relatorio-link"
+                     style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">
+                    🏥 Site Unidades de Saúde
+                  </a>
+
+                </div>
+
+              </div>
+
+              <!-- Estágio - Solicitação de Congresso -->
+              <div class="quadro-item quadro-relatorio">
+
+                <div class="titulo-texto">
+                  🎤 Estágio | Solicitação de Congresso
+                </div>
+
+                <p>
+                  Orientações e documentação para solicitação de
+                  participação em congressos.
+                </p>
+
+                <a href="https://docs.google.com/document/d/1WxrwlLIGcKSWey03gwH9jLiPZuyFJH2Hbsfms9GqvhE/edit?tab=t.0"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📄 Acessar Congresso
+                </a>
+
+              </div>
+
+            </div>
+
+            <!-- LINHA 3 -->
+            <div class="linha" style="margin-top: 24px;">
+
+              <!-- TCR | Formatura -->
+              <div class="quadro-item quadro-relatorio">
+
+                <div class="titulo-texto">
+                  🎓 TCR | Formatura
+                </div>
+
+                <p>
+                  Documentos e procedimentos relacionados ao Trabalho
+                  de Conclusão de Residência (TCR) e à formatura.
+                </p>
+
+                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+
+                  <a href="https://drive.google.com/drive/u/1/folders/1rnzjBYtas088PqbiDutOyQW0Cox0_0xU"
+                     target="_blank"
+                     class="relatorio-link"
+                     style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">
+                    📄 POP TCR
+                  </a>
+
+                  <a href="https://drive.google.com/drive/u/1/folders/1g5i9Rrmh3aWLZA_8uuwJP_cUyybBWyY5"
+                     target="_blank"
+                     class="relatorio-link"
+                     style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">
+                    🎓 POP Formatura
+                  </a>
+
+                </div>
+
+              </div>
+
+              <!-- Convite, Memorando, Ofício SEI -->
+              <div class="quadro-item quadro-relatorio">
+
+                <div class="titulo-texto">
+                  📄 Convite, Memorando, Ofício SEI
+                </div>
+
+                <p>
+                  Modelos e documentos para elaboração de Convite,
+                  Memorando e Ofício no SEI.
+                  Processo SEI 25.0.282610-6.
+                </p>
+
+                <a href="https://drive.google.com/drive/u/1/folders/1F1-o4ROXeVf87E-a3RPSSkE0MikpXcSC"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📁 Acessar Documentos
+                </a>
+
+              </div>
+
+            </div>
+
           </div>
 
           <!-- ============================================================ -->
           <!-- SEÇÃO: Frequência -->
           <!-- ============================================================ -->
           <div id="secao-frequencia" class="secao-conteudo">
-            <h2 class="secao-titulo">⏰ Frequência | Férias | Afastamentos</h2>
+
+            <h2 class="secao-titulo">
+              ⏰ Frequência | Férias | Afastamentos
+            </h2>
+
             <div class="linha">
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">📊 SPR - Sistema de Ponto da Residência.</div>
-                <p>Controle de horas dos residentes.</p>
-                <a href="https://script.google.com/macros/s/AKfycbw7lJC5hGmTc6X2wZxu_wu5rEIONSQwjHJg3mjRPkFct0mWev_nf32ZcxqtvG-yLIDp/exec" target="_blank" class="relatorio-link">Acessar Sistema de Ponto</a>
+
+                <div class="titulo-texto">
+                  📊 SPR - Sistema de Ponto da Residência.
+                </div>
+
+                <p>
+                  Controle de horas dos residentes.
+                </p>
+
+                <a href="https://script.google.com/macros/s/AKfycbw7lJC5hGmTc6X2wZxu_wu5rEIONSQwjHJg3mjRPkFct0mWev_nf32ZcxqtvG-yLIDp/exec"
+                   target="_blank"
+                   class="relatorio-link">
+                  Acessar Sistema de Ponto
+                </a>
+
               </div>
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">⏰ Frequência</div>
-                <p>Controle de frequência dos residentes.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  ⏰ Frequência
+                </div>
+
+                <p>
+                  Controle de frequência dos residentes.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">⏰ Férias e Afastamentos</div>
-                <p>Controle de férias e afastamentos.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  ⏰ Férias e Afastamentos
+                </div>
+
+                <p>
+                  Controle de férias e afastamentos.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
             </div>
           </div>
 
@@ -1386,13 +1991,29 @@
           <!-- SEÇÃO: Avaliações -->
           <!-- ============================================================ -->
           <div id="secao-avaliacoes" class="secao-conteudo">
+
             <h2 class="secao-titulo">⭐ Avaliações</h2>
+
             <div class="linha-1col">
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">⭐ Avaliações dos Residentes</div>
-                <p>Sistema de avaliação de residentes.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  ⭐ Avaliações dos Residentes
+                </div>
+
+                <p>
+                  Sistema de avaliação de residentes.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
             </div>
           </div>
 
@@ -1400,18 +2021,49 @@
           <!-- SEÇÃO: Preceptores -->
           <!-- ============================================================ -->
           <div id="secao-preceptores" class="secao-conteudo">
-            <h2 class="secao-titulo">👨‍🏫 Preceptores e Coordenação</h2>
+
+            <h2 class="secao-titulo">
+              👨‍🏫 Preceptores e Coordenação
+            </h2>
+
             <div class="linha">
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">👨‍🏫 Preceptores</div>
-                <p>Gestão de preceptores.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  👨‍🏫 Preceptores
+                </div>
+
+                <p>
+                  Gestão de preceptores.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">👨‍🏫 Coordenação</div>
-                <p>Gestão da coordenação.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  👨‍🏫 Coordenação
+                </div>
+
+                <p>
+                  Gestão da coordenação.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
             </div>
           </div>
 
@@ -1419,13 +2071,29 @@
           <!-- SEÇÃO: Desistência -->
           <!-- ============================================================ -->
           <div id="secao-desistencia" class="secao-conteudo">
+
             <h2 class="secao-titulo">🚪 Desistência</h2>
+
             <div class="linha-1col">
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">🚪 Controle de Desistências</div>
-                <p>Registro e acompanhamento de desistências.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  🚪 Controle de Desistências
+                </div>
+
+                <p>
+                  Registro e acompanhamento de desistências.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
             </div>
           </div>
 
@@ -1433,13 +2101,29 @@
           <!-- SEÇÃO: Acompanhamento -->
           <!-- ============================================================ -->
           <div id="secao-acompanhamento" class="secao-conteudo">
+
             <h2 class="secao-titulo">📈 Acompanhamento</h2>
+
             <div class="linha-1col">
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">📈 Acompanhamento Acadêmico</div>
-                <p>Acompanhamento do desempenho acadêmico.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  📈 Acompanhamento Acadêmico
+                </div>
+
+                <p>
+                  Acompanhamento do desempenho acadêmico.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
             </div>
           </div>
 
@@ -1447,18 +2131,49 @@
           <!-- SEÇÃO: Financeiro -->
           <!-- ============================================================ -->
           <div id="secao-financeiro" class="secao-conteudo">
-            <h2 class="secao-titulo">💰 Financeiro | Sistemas</h2>
+
+            <h2 class="secao-titulo">
+              💰 Financeiro | Sistemas
+            </h2>
+
             <div class="linha">
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">💰 Financeiro</div>
-                <p>Controle financeiro do Núcleo.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  💰 Financeiro
+                </div>
+
+                <p>
+                  Controle financeiro do Núcleo.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">💻 Sistemas</div>
-                <p>Integração com sistemas.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  💻 Sistemas
+                </div>
+
+                <p>
+                  Integração com sistemas.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
             </div>
           </div>
 
@@ -1466,24 +2181,80 @@
           <!-- SEÇÃO: Reuniões -->
           <!-- ============================================================ -->
           <div id="secao-reunioes" class="secao-conteudo">
+
             <h2 class="secao-titulo">🤝 Reuniões</h2>
+
             <div class="linha">
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">📅 Agenda Institucional</div>
-                <p>Calendário de reuniões e agendamentos.</p>
-                <a href="https://calendar.google.com/calendar/u/0/r" target="_blank" class="relatorio-link visualizar">📅 Acessar Agenda</a>
-              </div>
-              <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">📄 Pautas | Atas</div>
-                <p>Acesse as pautas e atas das reuniões.</p>
-                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
-                  <a href="https://drive.google.com/drive/folders/1XVEp5dGxiCXzQcLsxjwM3-6P-mFyV5ef" target="_blank" class="relatorio-link" style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">📋 ATAS da COREME</a>
-                  <a href="https://drive.google.com/drive/folders/1-e6C51kYk2V7HKorBb6CDlhDnNJEJ7Iu" target="_blank" class="relatorio-link" style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">📋 ATAS Reuniões Preceptores</a>
-                  <a href="https://drive.google.com/drive/folders/1Asbwf6_izlFvZiM0MJ-JL38bgRi2lELw" target="_blank" class="relatorio-link" style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">📋 ATAS Reunião COREMU</a>
-                  <a href="https://drive.google.com/drive/folders/1J3NunlxpgIf4cv8ICIRk3uj7QOPkMFme" target="_blank" class="relatorio-link" style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">📋 ATAS COAPES</a>
-                  <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento" style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">📋 ATA Reunião Preceptores Multiprofissional 🚧</a>
+
+                <div class="titulo-texto">
+                  📅 Agenda Institucional
                 </div>
+
+                <p>
+                  Calendário de reuniões e agendamentos.
+                </p>
+
+                <a href="https://calendar.google.com/calendar/u/0/r"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📅 Acessar Agenda
+                </a>
+
               </div>
+
+              <div class="quadro-item quadro-relatorio">
+
+                <div class="titulo-texto">
+                  📄 Pautas | Atas
+                </div>
+
+                <p>
+                  Acesse as pautas e atas das reuniões.
+                </p>
+
+                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+
+                  <a href="https://drive.google.com/drive/folders/1XVEp5dGxiCXzQcLsxjwM3-6P-mFyV5ef"
+                     target="_blank"
+                     class="relatorio-link"
+                     style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">
+                    📋 ATAS da COREME
+                  </a>
+
+                  <a href="https://drive.google.com/drive/folders/1-e6C51kYk2V7HKorBb6CDlhDnNJEJ7Iu"
+                     target="_blank"
+                     class="relatorio-link"
+                     style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">
+                    📋 ATAS Reuniões Preceptores
+                  </a>
+
+                  <a href="https://drive.google.com/drive/folders/1Asbwf6_izlFvZiM0MJ-JL38bgRi2lELw"
+                     target="_blank"
+                     class="relatorio-link"
+                     style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">
+                    📋 ATAS Reunião COREMU
+                  </a>
+
+                  <a href="https://drive.google.com/drive/folders/1J3NunlxpgIf4cv8ICIRk3uj7QOPkMFme"
+                     target="_blank"
+                     class="relatorio-link"
+                     style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">
+                    📋 ATAS COAPES
+                  </a>
+
+                  <a href="#"
+                     onclick="return emDesenvolvimento(event)"
+                     class="relatorio-link em-desenvolvimento"
+                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                    📋 ATA Reunião Preceptores Multiprofissional 🚧
+                  </a>
+
+                </div>
+
+              </div>
+
             </div>
           </div>
 
@@ -1491,13 +2262,29 @@
           <!-- SEÇÃO: Processos -->
           <!-- ============================================================ -->
           <div id="secao-processos" class="secao-conteudo">
+
             <h2 class="secao-titulo">⚙️ Processos</h2>
+
             <div class="linha-1col">
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">⚙️ Processos Internos</div>
-                <p>Gestão de processos internos.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  ⚙️ Processos Internos
+                </div>
+
+                <p>
+                  Gestão de processos internos.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
             </div>
           </div>
 
@@ -1505,13 +2292,29 @@
           <!-- SEÇÃO: Pendências -->
           <!-- ============================================================ -->
           <div id="secao-pendencias" class="secao-conteudo">
+
             <h2 class="secao-titulo">⚠️ Pendências</h2>
+
             <div class="linha-1col">
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">⚠️ Pendências</div>
-                <p>Lista de pendências do Núcleo.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  ⚠️ Pendências
+                </div>
+
+                <p>
+                  Lista de pendências do Núcleo.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
             </div>
           </div>
 
@@ -1519,18 +2322,47 @@
           <!-- SEÇÃO: Relatórios -->
           <!-- ============================================================ -->
           <div id="secao-relatorios" class="secao-conteudo">
+
             <h2 class="secao-titulo">📊 Relatórios</h2>
+
             <div class="linha">
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">📊 Relatório de Atividades</div>
-                <p>Acesse o relatório de atividades.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  📊 Relatório de Atividades
+                </div>
+
+                <p>
+                  Acesse o relatório de atividades.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">📊 Relatório de Indicadores</div>
-                <p>Acesse o relatório de indicadores.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  📊 Relatório de Indicadores
+                </div>
+
+                <p>
+                  Acesse o relatório de indicadores.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
             </div>
           </div>
 
@@ -1538,13 +2370,29 @@
           <!-- SEÇÃO: Notificações -->
           <!-- ============================================================ -->
           <div id="secao-notificacoes" class="secao-conteudo">
+
             <h2 class="secao-titulo">🔔 Notificações</h2>
+
             <div class="linha-1col">
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">🔔 Notificações</div>
-                <p>Central de notificações.</p>
-                <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
+
+                <div class="titulo-texto">
+                  🔔 Notificações
+                </div>
+
+                <p>
+                  Central de notificações.
+                </p>
+
+                <a href="#"
+                   onclick="return emDesenvolvimento(event)"
+                   class="relatorio-link em-desenvolvimento">
+                  Em desenvolvimento 🚧
+                </a>
+
               </div>
+
             </div>
           </div>
 
@@ -1552,35 +2400,109 @@
           <!-- CARDS DOS PROFISSIONAIS -->
           <!-- ============================================================ -->
           <div id="secao-profissionais" style="margin-top: 30px;">
-            <h2 class="secao-titulo">👨‍⚕️ Profissionais do Núcleo</h2>
+
+            <h2 class="secao-titulo">
+              👨‍⚕️ Profissionais do Núcleo
+            </h2>
+
             <div class="linha">
+
               <div class="quadro-item" id="profissional1">
-                <div class="titulo-texto">👩‍⚕️ Técnico de Nível Superior</div>
+
+                <div class="titulo-texto">
+                  👩‍⚕️ Técnico de Nível Superior
+                </div>
+
                 <ul class="quadro-detalhes">
-                  <li><strong>Nome:</strong> Francielly Kleine Maria Amorim</li>
-                  <li><strong>Ramal:</strong> 6665</li>
-                  <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
+
+                  <li>
+                    <strong>Nome:</strong>
+                    Francielly Kleine Maria Amorim
+                  </li>
+
+                  <li>
+                    <strong>Ramal:</strong>
+                    6665
+                  </li>
+
+                  <li>
+                    <strong>E-mail:</strong>
+                    ses.uqd.ceis.aps@joinville.sc.gov.br
+                  </li>
+
                 </ul>
-                <button class="btn-fechar" onclick="fecharProfissional('profissional1')">✕ Fechar</button>
+
+                <button class="btn-fechar"
+                        onclick="fecharProfissional('profissional1')">
+                  ✕ Fechar
+                </button>
+
               </div>
+
               <div class="quadro-item" id="profissional2">
-                <div class="titulo-texto">👩‍⚕️ Técnico em Enfermagem</div>
+
+                <div class="titulo-texto">
+                  👩‍⚕️ Técnico em Enfermagem
+                </div>
+
                 <ul class="quadro-detalhes">
-                  <li><strong>Nome:</strong> Alexsandra Fabeni de Medeiros</li>
-                  <li><strong>Ramal:</strong> 6665</li>
-                  <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
+
+                  <li>
+                    <strong>Nome:</strong>
+                    Alexsandra Fabeni de Medeiros
+                  </li>
+
+                  <li>
+                    <strong>Ramal:</strong>
+                    6665
+                  </li>
+
+                  <li>
+                    <strong>E-mail:</strong>
+                    ses.uqd.ceis.aps@joinville.sc.gov.br
+                  </li>
+
                 </ul>
-                <button class="btn-fechar" onclick="fecharProfissional('profissional2')">✕ Fechar</button>
+
+                <button class="btn-fechar"
+                        onclick="fecharProfissional('profissional2')">
+                  ✕ Fechar
+                </button>
+
               </div>
+
               <div class="quadro-item" id="profissional3">
-                <div class="titulo-texto">👩‍🎓 Estagiário de Nível Superior</div>
+
+                <div class="titulo-texto">
+                  👩‍🎓 Estagiário de Nível Superior
+                </div>
+
                 <ul class="quadro-detalhes">
-                  <li><strong>Nome:</strong> Sabrina Krazowski</li>
-                  <li><strong>Ramal:</strong> 6665</li>
-                  <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br</li>
+
+                  <li>
+                    <strong>Nome:</strong>
+                    Sabrina Krazowski
+                  </li>
+
+                  <li>
+                    <strong>Ramal:</strong>
+                    6665
+                  </li>
+
+                  <li>
+                    <strong>E-mail:</strong>
+                    ses.uqd.ceis.aps@joinville.sc.gov.br
+                  </li>
+
                 </ul>
-                <button class="btn-fechar" onclick="fecharProfissional('profissional3')">✕ Fechar</button>
+
+                <button class="btn-fechar"
+                        onclick="fecharProfissional('profissional3')">
+                  ✕ Fechar
+                </button>
+
               </div>
+
             </div>
           </div>
 
