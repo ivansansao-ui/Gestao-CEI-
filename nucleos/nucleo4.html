@@ -632,7 +632,37 @@
     #secao-documentos .quadro-item p {
       flex-grow: 1;
     }
+    /* ===== FIM DO AJUSTE ===== */
 
+    /* ============================================================
+       🔧 AJUSTE DA SEÇÃO FINANCEIRO | SISTEMAS (IGUAL À FOTO)
+       ============================================================ */
+    #secao-financeiro .linha {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 24px;
+    }
+
+    #secao-financeiro .quadro-item {
+      display: flex !important;
+      min-height: auto;
+    }
+
+    #secao-financeiro .quadro-item p {
+      flex-grow: 1;
+    }
+
+    #secao-financeiro .quadro-item > div[style*="display: flex"] {
+      flex-direction: column !important;
+      gap: 8px !important;
+    }
+
+    #secao-financeiro .relatorio-link {
+      align-self: stretch;
+      text-align: center;
+    }
     /* ===== FIM DO AJUSTE ===== */
 
     /* DROPDOWN */
@@ -764,8 +794,11 @@
         padding: 20px;
       }
 
-      /* Ajuste para telas médias */
       #secao-documentos .linha {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      #secao-financeiro .linha {
         grid-template-columns: 1fr 1fr;
       }
     }
@@ -880,8 +913,11 @@
         text-align: right;
       }
 
-      /* Ajuste para telas pequenas */
       #secao-documentos .linha {
+        grid-template-columns: 1fr;
+      }
+
+      #secao-financeiro .linha {
         grid-template-columns: 1fr;
       }
     }
@@ -2382,34 +2418,23 @@
               💰 Financeiro | Sistemas
             </h2>
 
+            <!-- LINHA 1: E-Gestor | SIG-Residências | SisCNRM -->
             <div class="linha">
 
-            </div>
-
-            <div class="linha" style="margin-top: 24px;">
-
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">
-                  🌐 E-Gestor
-                </div>
-
-                <p>
-                  Acesso e gestão do E-Gestor.
-                </p>
-
+                <div class="titulo-texto">🌐 E-Gestor</div>
+                <p>Acesso e gestão do E-Gestor.</p>
                 <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
                   <a href="https://drive.google.com/drive/folders/1xhiWFZOrVxIsKGw8TiQEC2jyIl69F4HQ"
                      target="_blank"
                      class="relatorio-link visualizar">
                     📄 POP e Gestor
                   </a>
-
                   <a href="https://relatorioaps.saude.gov.br/"
                      target="_blank"
                      class="relatorio-link visualizar">
                     📊 Relatório público e-Gestor
                   </a>
-
                   <a href="https://drive.google.com/drive/folders/1t_rlqWfD0gcZG6_kjDc8DT8IZP35WjSW"
                      target="_blank"
                      class="relatorio-link visualizar">
@@ -2419,21 +2444,14 @@
               </div>
 
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">
-                  🖥️ SIG-Residências
-                </div>
-
-                <p>
-                  Sistema SIG-Residências.
-                </p>
-
+                <div class="titulo-texto">🖥️ SIG-Residências</div>
+                <p>Sistema SIG-Residências.</p>
                 <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
                   <a href="https://docs.google.com/document/d/1F4k_i8mS4tRtnHzrqTdrU-Mf26xmasQfxImPWhbGCgA/edit?tab=t.0"
                      target="_blank"
                      class="relatorio-link visualizar">
                     📄 POP SIG-Residência Cadastro
                   </a>
-
                   <a href="https://sigresidencias.saude.gov.br/login"
                      target="_blank"
                      class="relatorio-link visualizar">
@@ -2442,26 +2460,15 @@
                 </div>
               </div>
 
-            </div>
-
-            <div class="linha" style="margin-top: 24px;">
-
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">
-                  🏛️ SisCNRM
-                </div>
-
-                <p>
-                  Sistema SisCNRM.
-                </p>
-
+                <div class="titulo-texto">🏛️ SisCNRM</div>
+                <p>Sistema SisCNRM.</p>
                 <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
                   <a href="https://docs.google.com/document/d/19rxVgXYcHfMBUHBT3nbATNjGSnU5CjN5zcHCLFwwpnQ/edit?tab=t.0"
                      target="_blank"
                      class="relatorio-link visualizar">
                     📄 POP SisCNRM Fluxo R1 e R2
                   </a>
-
                   <a href="https://siscnrm.mec.gov.br/login/login#"
                      target="_blank"
                      class="relatorio-link visualizar">
@@ -2470,15 +2477,14 @@
                 </div>
               </div>
 
+            </div>
+
+            <!-- LINHA 2: CNES | SEI | GLPI -->
+            <div class="linha">
+
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">
-                  🏥 CNES
-                </div>
-
-                <p>
-                  Cadastro Nacional de Estabelecimentos de Saúde.
-                </p>
-
+                <div class="titulo-texto">🏥 CNES</div>
+                <p>Cadastro Nacional de Estabelecimentos de Saúde.</p>
                 <a href="https://cnes.datasus.gov.br/"
                    target="_blank"
                    class="relatorio-link visualizar">
@@ -2486,19 +2492,9 @@
                 </a>
               </div>
 
-            </div>
-
-            <div class="linha" style="margin-top: 24px;">
-
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">
-                  📁 SEI
-                </div>
-
-                <p>
-                  Documentos e processos no SEI.
-                </p>
-
+                <div class="titulo-texto">📁 SEI</div>
+                <p>Documentos e processos no SEI.</p>
                 <a href="https://drive.google.com/drive/u/1/folders/1xhiWFZOrVxIsKGw8TiQEC2jyIl69F4HQ"
                    target="_blank"
                    class="relatorio-link visualizar">
@@ -2507,14 +2503,8 @@
               </div>
 
               <div class="quadro-item quadro-relatorio">
-                <div class="titulo-texto">
-                  🛠️ GLPI
-                </div>
-
-                <p>
-                  Gestão de chamados e suporte.
-                </p>
-
+                <div class="titulo-texto">🛠️ GLPI</div>
+                <p>Gestão de chamados e suporte.</p>
                 <a href="https://drive.google.com/drive/u/1/folders/1Mqxt8aAtdXULeyQRwJmDTmhmsAtZmjc4"
                    target="_blank"
                    class="relatorio-link visualizar">
