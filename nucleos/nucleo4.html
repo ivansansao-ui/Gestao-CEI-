@@ -1062,38 +1062,37 @@
           }
 
           // --- Preencher os 4 cards de estatísticas ---
-          // Coluna A (índice 0) = Residentes Ativos
-          // Coluna B (índice 1) = Cenários disponíveis
-          // Coluna C (índice 2) = Preceptores
-          // Coluna D (índice 3) = Especialidades
-          // A primeira linha (rows[0]) são os cabeçalhos, então os dados começam em rows[1]
+          // Coluna A (índice 0) = Residentes Ativos -> Linha 2
+          // Coluna B (índice 1) = Cenários disponíveis -> Linha 2
+          // Coluna C (índice 2) = Preceptores -> Linha 2
+          // Coluna D (índice 3) = Especialidades -> Linha 2
+          // A primeira linha (rows[0]) são os cabeçalhos, então os dados da LINHA 2 começam em rows[1]
 
-          const dados = rows[1]; // Pega a primeira linha de dados
+          const dadosLinha2 = rows[1]; // Pega a LINHA 2 (índice 1)
 
-          if (dados) {
-            const residentes = dados.c[0] ? dados.c[0].v : '—';
-            const cenarios = dados.c[1] ? dados.c[1].v : '—';
-            const preceptores = dados.c[2] ? dados.c[2].v : '—';
-            const especialidades = dados.c[3] ? dados.c[3].v : '—';
+          if (dadosLinha2) {
+            const residentes = dadosLinha2.c[0] ? dadosLinha2.c[0].v : '—';
+            const cenarios = dadosLinha2.c[1] ? dadosLinha2.c[1].v : '—';
+            const preceptores = dadosLinha2.c[2] ? dadosLinha2.c[2].v : '—';
+            const especialidades = dadosLinha2.c[3] ? dadosLinha2.c[3].v : '—';
 
             // Atualiza os elementos HTML pelos IDs existentes
             document.getElementById('num-residentes').textContent = residentes;
             document.getElementById('num-cenarios').textContent = cenarios;
             document.getElementById('num-preceptores').textContent = preceptores;
-            // O card de especialidades não tem ID, então vamos pelo índice
-            const statEspecialidades = document.querySelectorAll('.stat-card .stat-number')[3];
-            if (statEspecialidades) statEspecialidades.textContent = especialidades;
+            document.getElementById('num-especialidades').textContent = especialidades;
           }
 
           // --- Preencher o card "📅 Próximos eventos" ---
-          // Coluna E (índice 4) = Data
-          // Coluna F (índice 5) = Evento
+          // Coluna E (índice 4) = Data -> Linha 2 até Linha 10
+          // Coluna F (índice 5) = Evento -> Linha 2 até Linha 10
           const eventosContainer = document.getElementById('eventos-container');
           if (eventosContainer) {
             eventosContainer.innerHTML = ''; // Limpa o conteúdo estático
 
-            // Percorre as linhas de dados (a partir da linha 1, ignorando cabeçalho)
-            for (let i = 1; i < rows.length; i++) {
+            // Percorre da LINHA 2 (índice 1) até a LINHA 10 (índice 9)
+            // rows[1] = linha 2, rows[9] = linha 10
+            for (let i = 1; i <= 9; i++) {
               const linha = rows[i];
               if (!linha || !linha.c) continue;
 
@@ -1110,6 +1109,17 @@
                 if (dataEvento) {
                   if (dataEvento instanceof Date) {
                     dataFormatada = dataEvento.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+                  } else if (typeof dataEvento === 'string' && dataEvento.includes('Date(')) {
+                    // Trata datas do Google que vêm como "Date(2026,8,15)" por exemplo
+                    const match = dataEvento.match(/Date\((\d+),(\d+),(\d+)/);
+                    if (match) {
+                      const ano = match[1];
+                      const mes = String(parseInt(match[2]) + 1).padStart(2, '0');
+                      const dia = String(match[3]).padStart(2, '0');
+                      dataFormatada = `${dia}/${mes}`;
+                    } else {
+                      dataFormatada = dataEvento;
+                    }
                   } else {
                     dataFormatada = dataEvento;
                   }
