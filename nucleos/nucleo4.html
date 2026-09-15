@@ -665,6 +665,32 @@
     }
     /* ===== FIM DO AJUSTE ===== */
 
+    /* ============================================================
+       🔧 AJUSTE DA SEÇÃO CADASTRO (INCLUINDO MATRÍCULA)
+       ============================================================ */
+    #secao-cadastro .linha {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 24px;
+    }
+
+    #secao-cadastro .quadro-item {
+      display: flex !important;
+      min-height: auto;
+    }
+
+    #secao-cadastro .quadro-item p {
+      flex-grow: 1;
+    }
+
+    #secao-cadastro .relatorio-link {
+      align-self: stretch;
+      text-align: center;
+    }
+    /* ===== FIM DO AJUSTE ===== */
+
     /* DROPDOWN */
     .dropdown {
       position: relative;
@@ -801,6 +827,10 @@
       #secao-financeiro .linha {
         grid-template-columns: 1fr 1fr;
       }
+
+      #secao-cadastro .linha {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 768px) {
@@ -918,6 +948,10 @@
       }
 
       #secao-financeiro .linha {
+        grid-template-columns: 1fr;
+      }
+
+      #secao-cadastro .linha {
         grid-template-columns: 1fr;
       }
     }
@@ -1978,33 +2012,94 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Cadastro -->
+          <!-- SEÇÃO: Cadastro (INCLUINDO MATRÍCULA) -->
           <!-- ============================================================ -->
           <div id="secao-cadastro" class="secao-conteudo">
 
             <h2 class="secao-titulo">📝 Cadastro</h2>
 
-            <div class="linha-1col">
+            <!-- LINHA 1: Matrícula | Dados pessoais | Termo de compromisso -->
+            <div class="linha">
 
               <div class="quadro-item quadro-relatorio">
-
-                <div class="titulo-texto">
-                  📝 Cadastro de Residentes
-                </div>
-
-                <p>
-                  Cadastro de novos residentes.
-                </p>
-
-                <a href="#"
-                   onclick="return emDesenvolvimento(event)"
-                   class="relatorio-link em-desenvolvimento">
-                  Em desenvolvimento 🚧
+                <div class="titulo-texto">📋 Matrícula</div>
+                <p>POP Matrícula.</p>
+                <a href="https://docs.google.com/document/d/1miEZ4vAsttFgt_ajVTJGGzE6qhhPUIzj7T0nVJRzyBU/edit?tab=t.0"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📄 POP Matrícula
                 </a>
+              </div>
 
+              <div class="quadro-item quadro-relatorio">
+                <div class="titulo-texto">👤 Dados pessoais</div>
+                <p>Dados Pessoais Formulário Matrícula Residência PRM MFC.</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe8NcVJKtS8Haffk46K2evQuvX0aKo1dN1JLpwXAMabqbXNlA/viewform?embedded=true"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📝 Formulário Matrícula
+                </a>
+              </div>
+
+              <div class="quadro-item quadro-relatorio">
+                <div class="titulo-texto">📝 Termo de compromisso</div>
+                <p>Termo de compromisso na Residência SEI 25.0.287374-0.</p>
+                <a href="https://drive.google.com/drive/folders/1eBbi58klOvSXZALzkmz6QrdwORwBkEaW"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📁 Termo de compromisso na Residência
+                </a>
+                <p style="margin-top: 12px;">Termo de compromisso na matrícula.</p>
+                <a href="https://docs.google.com/document/d/109Hq1xIUPNrNHWJlKszKdmJe0Kx9spI5uK-kduSr8wI/edit?tab=t.0"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📄 Termo de compromisso na matrícula
+                </a>
               </div>
 
             </div>
+
+            <!-- LINHA 2: Controle documental | Abertura de conta | Acolhimento -->
+            <div class="linha">
+
+              <div class="quadro-item quadro-relatorio">
+                <div class="titulo-texto">🗂️ Controle documental</div>
+                <p>Checklist de Documentos na matrícula.</p>
+                <a href="https://docs.google.com/document/d/1ZWskocB32WMZv9k4AJGMV3-grWDQVim91iUDngvRdTQ/edit?tab=t.0"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📄 Checklist de Documentos
+                </a>
+              </div>
+
+              <div class="quadro-item quadro-relatorio">
+                <div class="titulo-texto">🏦 Abertura de conta</div>
+                <p>Solicitação Abertura de Conta Salário.</p>
+                <a href="https://docs.google.com/document/d/11PLAojhn7d23dPgOyD8qSz5R5l8H0HNpwQJBBqtktng/edit?tab=t.0"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📄 Solicitação Abertura de Conta Salário
+                </a>
+              </div>
+
+              <div class="quadro-item quadro-relatorio">
+                <div class="titulo-texto">🤝 Acolhimento</div>
+                <p>POP de Acolhimento de PRM MFC.</p>
+                <a href="https://drive.google.com/drive/folders/1WVklNOtXWi4Vta_QY63bcZKSlO6tdpm5"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📁 POP de Acolhimento de PRM MFC
+                </a>
+                <p style="margin-top: 12px;">Acolhimento integrado das Residências SEI 26.0.215820-2.</p>
+                <a href="https://drive.google.com/drive/folders/1UMyzPdhwUHfO3IOnJj5IZdC5HRgt8xII"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📁 Acolhimento integrado das Residências
+                </a>
+              </div>
+
+            </div>
+
           </div>
 
           <!-- ============================================================ -->
