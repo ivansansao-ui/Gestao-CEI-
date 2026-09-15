@@ -613,6 +613,28 @@
       background-color: #1e8449;
     }
 
+    /* ============================================================
+       🔧 AJUSTE DA SEÇÃO DOCUMENTOS (IGUAL À FOTO)
+       ============================================================ */
+    #secao-documentos .linha {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 24px;
+    }
+
+    #secao-documentos .quadro-item {
+      display: flex !important;
+      min-height: auto;
+    }
+
+    #secao-documentos .quadro-item p {
+      flex-grow: 1;
+    }
+
+    /* ===== FIM DO AJUSTE ===== */
+
     /* DROPDOWN */
     .dropdown {
       position: relative;
@@ -741,6 +763,11 @@
       .content-area {
         padding: 20px;
       }
+
+      /* Ajuste para telas médias */
+      #secao-documentos .linha {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 768px) {
@@ -851,6 +878,11 @@
 
       .progress-percent {
         text-align: right;
+      }
+
+      /* Ajuste para telas pequenas */
+      #secao-documentos .linha {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -1946,7 +1978,9 @@
 
             <h2 class="secao-titulo">📄 Documentos</h2>
 
+            <!-- LINHA 1: Regimento PRM MFC | Regimento Multiprofissional | Estágio Eletivo -->
             <div class="linha">
+
               <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">📋 Regimento e Regulamento PRM MFC</div>
                 <p>Regimento Interno e Instrução Normativa do PRM MFC.</p>
@@ -1955,71 +1989,40 @@
                   <a href="https://drive.google.com/drive/folders/1AYEScqPtiKySKA_4n2y8uNbBItntdOZ1" target="_blank" class="relatorio-link visualizar">📄 Instrução Normativa</a>
                 </div>
               </div>
-            </div>
 
-
-            <!-- LINHA 1 -->
-            <div class="linha">
-
-              <!-- Regimento e Regulamento Multiprofissional -->
               <div class="quadro-item quadro-relatorio">
-
-                <div class="titulo-texto">
-                  📋 Regimento e Regulamento Multiprofissional
-                </div>
-
-                <p>
-                  Regimento e Regulamento da Residência Multiprofissional.
-                  Documentos disponíveis no SEI.
-                </p>
-
+                <div class="titulo-texto">📋 Regimento e Regulamento Multiprofissional</div>
+                <p>Regimento e Regulamento da Residência Multiprofissional. Documentos disponíveis no SEI.</p>
                 <a href="https://drive.google.com/drive/folders/1AAZOJSoh7uqw2st59JitwYIjemEYbCu7"
                    target="_blank"
                    class="relatorio-link visualizar">
                   📁 Acessar SEI
                 </a>
-
               </div>
 
-              <!-- Estágio Eletivo -->
               <div class="quadro-item quadro-relatorio">
-
-                <div class="titulo-texto">
-                  🎓 Estágio Eletivo
-                </div>
-
-                <p>
-                  Documentos e orientações referentes ao Estágio Eletivo
-                  dos residentes.
-                </p>
-
+                <div class="titulo-texto">🎓 Estágio Eletivo</div>
+                <p>Documentos e orientações referentes ao Estágio Eletivo dos residentes.</p>
                 <a href="https://docs.google.com/document/d/1ZrtXeFdQO6PW3lU_7VuRZ1Iq_KTkl6N-WpAGaQ6RVpE/edit?tab=t.0"
                    target="_blank"
                    class="relatorio-link visualizar">
                   📄 Acessar Documento
                 </a>
-
               </div>
 
             </div>
 
-            <!-- LINHA 2 -->
-            <div class="linha" style="margin-top: 24px;">
+            <!-- LINHA 2: Estágio Optativo | Solicitação de Congresso | TCR | Formatura -->
+            <div class="linha">
 
-              <!-- Estágio Optativo -->
               <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">🎓 Estágio Optativo</div>
                 <p>Opções de Estágio e informações sobre unidades de saúde.</p>
-                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+                <div style="display: flex; flex-direction: row; gap: 8px; width: 100%; flex-wrap: wrap;">
                   <a href="https://docs.google.com/document/d/1JJbFXmEImy3Zbxjhm-kFOmY6qzlK5sKmDBolQ4Avjy8/edit?tab=t.0" target="_blank" class="relatorio-link visualizar">📚 Opções de Estágio Optativo</a>
                   <a href="https://www.saude.sc.gov.br/index.php/pt/ses-sc/unidades-de-saude" target="_blank" class="relatorio-link visualizar">🏥 Site Unidades de Saúde</a>
                 </div>
               </div>
-
-            </div>
-
-            <!-- Solicitação de Congresso -->
-            <div class="linha" style="margin-top: 24px;">
 
               <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">🎤 Solicitação de Congresso</div>
@@ -2031,11 +2034,10 @@
                 </a>
               </div>
 
-              <!-- TCR | Formatura -->
               <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">🎓 TCR | Formatura</div>
                 <p>Documentos e procedimentos relacionados ao Trabalho de Conclusão de Residência (TCR) e à formatura.</p>
-                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+                <div style="display: flex; flex-direction: row; gap: 8px; width: 100%; flex-wrap: wrap;">
                   <a href="https://drive.google.com/drive/folders/1rnzjBYtas088PqbiDutOyQW0Cox0_0xU"
                      target="_blank" class="relatorio-link visualizar">📄 POP TCR</a>
                   <a href="https://drive.google.com/drive/folders/1g5i9Rrmh3aWLZA_8uuwJP_cUyybBWyY5"
