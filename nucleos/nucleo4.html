@@ -1042,56 +1042,79 @@
     function carregarDadosDashboard() {
       const planilhaId = '1sYZo64AaOjYZct0v-WyXmf3PqAr82TgGXeJFh11V0qk';
       const aba = 'resumo';
-      const url = `https://docs.google.com/spreadsheets/d/${planilhaId}/gviz/tq?tqx=out:json&sheet=${aba}`;
 
-      // Mostra um indicador de carregamento (opcional)
-      const statNumbers = document.querySelectorAll('.stat-number');
-      statNumbers.forEach(el => el.textContent = '...');
+      // URL com headers=0 para que a primeira linha (cabeçalho) NÃO seja ignorada
+      // e cache-busting para forçar atualização
+      const url = `https://docs.google.com/spreadsheets/d/${planilhaId}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(aba)}&headers=0&_=${Date.now()}`;
+
+      console.log('🔍 Buscando dados da planilha:', url);
+
+      // Indicador de carregamento
+      document.getElementById('num-residentes').textContent = '...';
+      document.getElementById('num-cenarios').textContent = '...';
+      document.getElementById('num-preceptores').textContent = '...';
+      document.getElementById('num-especialidades').textContent = '...';
 
       fetch(url)
-        .then(res => res.text())
+        .then(res => {
+          console.log('✅ Resposta recebida, status:', res.status);
+          return res.text();
+        })
         .then(text => {
-          // Remove o wrapper do Google e transforma em JSON
-          const json = JSON.parse(text.substr(47).slice(0, -2));
-          const rows = json.table.rows;
+          console.log('📄 Texto bruto recebido (primeiros 500 caracteres):', text.substring(0, 500));
 
-          if (!rows || rows.length === 0) {
-            console.warn('Nenhum dado encontrado na planilha.');
-            statNumbers.forEach(el => el.textContent = 'N/A');
+          // Remove o wrapper do Google (padrão: "/*O_o*/\ngoogle.visualization.Query.setResponse(...);")
+          const jsonStart = text.indexOf('{');
+          const jsonEnd = text.lastIndexOf('}');
+          const jsonText = text.substring(jsonStart, jsonEnd + 1);
+
+          const json = JSON.parse(jsonText);
+          console.log('📊 JSON parseado:', json);
+
+          if (!json.table || !json.table.rows) {
+            throw new Error('Estrutura de dados inválida na resposta do Google Sheets.');
+          }
+
+          const rows = json.table.rows;
+          console.log(`📋 Total de linhas encontradas: ${rows.length}`);
+
+          if (rows.length === 0) {
+            console.warn('⚠️ Nenhum dado encontrado.');
             return;
           }
 
-          // --- Preencher os 4 cards de estatísticas ---
-          // Coluna A (índice 0) = Residentes Ativos -> Linha 2
-          // Coluna B (índice 1) = Cenários disponíveis -> Linha 2
-          // Coluna C (índice 2) = Preceptores -> Linha 2
-          // Coluna D (índice 3) = Especialidades -> Linha 2
-          // A primeira linha (rows[0]) são os cabeçalhos, então os dados da LINHA 2 começam em rows[1]
+          // --- 1) Preencher os 4 cards de estatísticas com os dados da LINHA 2 ---
+          // rows[0] = Linha 1 (cabeçalhos)
+          // rows[1] = Linha 2 (dados que queremos)
+          const dadosLinha2 = rows[1];
 
-          const dadosLinha2 = rows[1]; // Pega a LINHA 2 (índice 1)
+          if (dadosLinha2 && dadosLinha2.c) {
+            const residentes = (dadosLinha2.c[0] && dadosLinha2.c[0].v != null) ? dadosLinha2.c[0].v : '—';
+            const cenarios = (dadosLinha2.c[1] && dadosLinha2.c[1].v != null) ? dadosLinha2.c[1].v : '—';
+            const preceptores = (dadosLinha2.c[2] && dadosLinha2.c[2].v != null) ? dadosLinha2.c[2].v : '—';
+            const especialidades = (dadosLinha2.c[3] && dadosLinha2.c[3].v != null) ? dadosLinha2.c[3].v : '—';
 
-          if (dadosLinha2) {
-            const residentes = dadosLinha2.c[0] ? dadosLinha2.c[0].v : '—';
-            const cenarios = dadosLinha2.c[1] ? dadosLinha2.c[1].v : '—';
-            const preceptores = dadosLinha2.c[2] ? dadosLinha2.c[2].v : '—';
-            const especialidades = dadosLinha2.c[3] ? dadosLinha2.c[3].v : '—';
+            console.log('📊 Valores extraídos (linha 2):', { residentes, cenarios, preceptores, especialidades });
 
-            // Atualiza os elementos HTML pelos IDs existentes
             document.getElementById('num-residentes').textContent = residentes;
             document.getElementById('num-cenarios').textContent = cenarios;
             document.getElementById('num-preceptores').textContent = preceptores;
             document.getElementById('num-especialidades').textContent = especialidades;
+          } else {
+            console.warn('⚠️ Linha 2 (índice 1) não encontrada ou vazia.');
+            document.getElementById('num-residentes').textContent = '—';
+            document.getElementById('num-cenarios').textContent = '—';
+            document.getElementById('num-preceptores').textContent = '—';
+            document.getElementById('num-especialidades').textContent = '—';
           }
 
-          // --- Preencher o card "📅 Próximos eventos" ---
-          // Coluna E (índice 4) = Data -> Linha 2 até Linha 10
-          // Coluna F (índice 5) = Evento -> Linha 2 até Linha 10
+          // --- 2) Preencher os "Próximos eventos" (Linha 2 até Linha 10 - colunas E e F) ---
           const eventosContainer = document.getElementById('eventos-container');
           if (eventosContainer) {
-            eventosContainer.innerHTML = ''; // Limpa o conteúdo estático
+            eventosContainer.innerHTML = '';
+            let eventosAdicionados = 0;
 
             // Percorre da LINHA 2 (índice 1) até a LINHA 10 (índice 9)
-            // rows[1] = linha 2, rows[9] = linha 10
             for (let i = 1; i <= 9; i++) {
               const linha = rows[i];
               if (!linha || !linha.c) continue;
@@ -1099,21 +1122,20 @@
               const dataEvento = linha.c[4] ? linha.c[4].v : '';
               const nomeEvento = linha.c[5] ? linha.c[5].v : '';
 
-              // Só adiciona se tiver pelo menos o nome do evento
-              if (nomeEvento) {
+              console.log(`📅 Linha ${i + 1}: Data="${dataEvento}" | Evento="${nomeEvento}"`);
+
+              if (nomeEvento && nomeEvento.toString().trim() !== '') {
                 const eventItem = document.createElement('div');
                 eventItem.className = 'event-item';
 
-                // Formata a data se for um objeto Date ou string
+                // Formata a data
                 let dataFormatada = '';
                 if (dataEvento) {
                   if (dataEvento instanceof Date) {
                     dataFormatada = dataEvento.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
                   } else if (typeof dataEvento === 'string' && dataEvento.includes('Date(')) {
-                    // Trata datas do Google que vêm como "Date(2026,8,15)" por exemplo
                     const match = dataEvento.match(/Date\((\d+),(\d+),(\d+)/);
                     if (match) {
-                      const ano = match[1];
                       const mes = String(parseInt(match[2]) + 1).padStart(2, '0');
                       const dia = String(match[3]).padStart(2, '0');
                       dataFormatada = `${dia}/${mes}`;
@@ -1133,21 +1155,26 @@
                   <span class="event-badge"></span>
                 `;
                 eventosContainer.appendChild(eventItem);
+                eventosAdicionados++;
               }
             }
 
-            // Se não houver eventos, mostra uma mensagem
-            if (eventosContainer.children.length === 0) {
+            if (eventosAdicionados === 0) {
               eventosContainer.innerHTML = '<p style="color: #8a9aad; font-size: 0.9rem;">Nenhum evento cadastrado.</p>';
             }
+
+            console.log(`✅ Total de eventos adicionados: ${eventosAdicionados}`);
           }
         })
         .catch(err => {
-          console.error('Erro ao carregar dados da planilha:', err);
-          statNumbers.forEach(el => el.textContent = '—');
+          console.error('❌ Erro ao carregar dados da planilha:', err);
+          document.getElementById('num-residentes').textContent = '—';
+          document.getElementById('num-cenarios').textContent = '—';
+          document.getElementById('num-preceptores').textContent = '—';
+          document.getElementById('num-especialidades').textContent = '—';
           const eventosContainer = document.getElementById('eventos-container');
           if (eventosContainer) {
-            eventosContainer.innerHTML = '<p style="color: #e74c3c; font-size: 0.9rem;">Erro ao carregar eventos.</p>';
+            eventosContainer.innerHTML = '<p style="color: #e74c3c; font-size: 0.9rem;">Erro ao carregar eventos. Verifique o console (F12).</p>';
           }
         });
     }
