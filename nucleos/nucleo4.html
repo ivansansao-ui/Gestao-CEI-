@@ -1036,6 +1036,112 @@
       }
     }
 
+    // ============================================================
+    // 🆕 FUNÇÃO PARA CARREGAR DADOS DA PLANILHA GOOGLE SHEETS
+    // ============================================================
+    function carregarDadosDashboard() {
+      const planilhaId = '1sYZo64AaOjYZct0v-WyXmf3PqAr82TgGXeJFh11V0qk';
+      const aba = 'resumo';
+      const url = `https://docs.google.com/spreadsheets/d/${planilhaId}/gviz/tq?tqx=out:json&sheet=${aba}`;
+
+      // Mostra um indicador de carregamento (opcional)
+      const statNumbers = document.querySelectorAll('.stat-number');
+      statNumbers.forEach(el => el.textContent = '...');
+
+      fetch(url)
+        .then(res => res.text())
+        .then(text => {
+          // Remove o wrapper do Google e transforma em JSON
+          const json = JSON.parse(text.substr(47).slice(0, -2));
+          const rows = json.table.rows;
+
+          if (!rows || rows.length === 0) {
+            console.warn('Nenhum dado encontrado na planilha.');
+            statNumbers.forEach(el => el.textContent = 'N/A');
+            return;
+          }
+
+          // --- Preencher os 4 cards de estatísticas ---
+          // Coluna A (índice 0) = Residentes Ativos
+          // Coluna B (índice 1) = Cenários disponíveis
+          // Coluna C (índice 2) = Preceptores
+          // Coluna D (índice 3) = Especialidades
+          // A primeira linha (rows[0]) são os cabeçalhos, então os dados começam em rows[1]
+
+          const dados = rows[1]; // Pega a primeira linha de dados
+
+          if (dados) {
+            const residentes = dados.c[0] ? dados.c[0].v : '—';
+            const cenarios = dados.c[1] ? dados.c[1].v : '—';
+            const preceptores = dados.c[2] ? dados.c[2].v : '—';
+            const especialidades = dados.c[3] ? dados.c[3].v : '—';
+
+            // Atualiza os elementos HTML pelos IDs existentes
+            document.getElementById('num-residentes').textContent = residentes;
+            document.getElementById('num-cenarios').textContent = cenarios;
+            document.getElementById('num-preceptores').textContent = preceptores;
+            // O card de especialidades não tem ID, então vamos pelo índice
+            const statEspecialidades = document.querySelectorAll('.stat-card .stat-number')[3];
+            if (statEspecialidades) statEspecialidades.textContent = especialidades;
+          }
+
+          // --- Preencher o card "📅 Próximos eventos" ---
+          // Coluna E (índice 4) = Data
+          // Coluna F (índice 5) = Evento
+          const eventosContainer = document.getElementById('eventos-container');
+          if (eventosContainer) {
+            eventosContainer.innerHTML = ''; // Limpa o conteúdo estático
+
+            // Percorre as linhas de dados (a partir da linha 1, ignorando cabeçalho)
+            for (let i = 1; i < rows.length; i++) {
+              const linha = rows[i];
+              if (!linha || !linha.c) continue;
+
+              const dataEvento = linha.c[4] ? linha.c[4].v : '';
+              const nomeEvento = linha.c[5] ? linha.c[5].v : '';
+
+              // Só adiciona se tiver pelo menos o nome do evento
+              if (nomeEvento) {
+                const eventItem = document.createElement('div');
+                eventItem.className = 'event-item';
+
+                // Formata a data se for um objeto Date ou string
+                let dataFormatada = '';
+                if (dataEvento) {
+                  if (dataEvento instanceof Date) {
+                    dataFormatada = dataEvento.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+                  } else {
+                    dataFormatada = dataEvento;
+                  }
+                }
+
+                eventItem.innerHTML = `
+                  <div class="event-info">
+                    <span class="event-date">${dataFormatada || '—'}</span>
+                    <span class="event-name">${nomeEvento}</span>
+                  </div>
+                  <span class="event-badge"></span>
+                `;
+                eventosContainer.appendChild(eventItem);
+              }
+            }
+
+            // Se não houver eventos, mostra uma mensagem
+            if (eventosContainer.children.length === 0) {
+              eventosContainer.innerHTML = '<p style="color: #8a9aad; font-size: 0.9rem;">Nenhum evento cadastrado.</p>';
+            }
+          }
+        })
+        .catch(err => {
+          console.error('Erro ao carregar dados da planilha:', err);
+          statNumbers.forEach(el => el.textContent = '—');
+          const eventosContainer = document.getElementById('eventos-container');
+          if (eventosContainer) {
+            eventosContainer.innerHTML = '<p style="color: #e74c3c; font-size: 0.9rem;">Erro ao carregar eventos.</p>';
+          }
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('.secao-conteudo').forEach(secao => {
         secao.classList.remove('ativa');
@@ -1052,6 +1158,9 @@
       }
 
       verificarCardsVisiveis();
+
+      // 🆕 Chama a função para carregar os dados da planilha
+      carregarDadosDashboard();
     });
   </script>
 </head>
@@ -1088,7 +1197,7 @@
             <div class="nome-item">
               <span class="emoji">👩‍⚕️</span>
               Francielly Kleine
-              <span class="cargo-tag">Nível Superior</span>
+              <span class="cargo-tag">Técnico de Nível Superior</span>
             </div>
           </a>
 
@@ -1129,7 +1238,7 @@
       <a class="menu-item ativo"
          data-target="secao-dashboard"
          onclick="scrollParaSecao('secao-dashboard')">
-        <span class="icone">🏠</span> Dashboard
+        <span class="icone">🏠</span> Página inicial
       </a>
 
       <a class="menu-item"
@@ -1285,8 +1394,8 @@
               </div>
 
               <div class="stat-card">
-                <div class="stat-number" id="num-programas">5</div>
-                <div class="stat-label">Programas</div>
+                <div class="stat-number" id="num-cenarios">5</div>
+                <div class="stat-label">Cenários disponíveis</div>
                 <div class="stat-detalhe">Em andamento</div>
               </div>
 
@@ -1297,8 +1406,8 @@
               </div>
 
               <div class="stat-card">
-                <div class="stat-number" id="num-cenarios">18</div>
-                <div class="stat-label">Cenários</div>
+                <div class="stat-number" id="num-especialidades">18</div>
+                <div class="stat-label">Especialidades</div>
                 <div class="stat-detalhe">Disponíveis</div>
               </div>
 
