@@ -691,6 +691,32 @@
     }
     /* ===== FIM DO AJUSTE ===== */
 
+    /* ============================================================
+       🔧 AJUSTE DA SEÇÃO ACOMPANHAMENTO (NOVOS CARDS)
+       ============================================================ */
+    #secao-acompanhamento .linha {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 24px;
+    }
+
+    #secao-acompanhamento .quadro-item {
+      display: flex !important;
+      min-height: auto;
+    }
+
+    #secao-acompanhamento .quadro-item p {
+      flex-grow: 1;
+    }
+
+    #secao-acompanhamento .relatorio-link {
+      align-self: stretch;
+      text-align: center;
+    }
+    /* ===== FIM DO AJUSTE ===== */
+
     /* DROPDOWN */
     .dropdown {
       position: relative;
@@ -831,6 +857,10 @@
       #secao-cadastro .linha {
         grid-template-columns: 1fr 1fr;
       }
+
+      #secao-acompanhamento .linha {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 768px) {
@@ -952,6 +982,10 @@
       }
 
       #secao-cadastro .linha {
+        grid-template-columns: 1fr;
+      }
+
+      #secao-acompanhamento .linha {
         grid-template-columns: 1fr;
       }
     }
@@ -1844,6 +1878,7 @@
               </div>
 
             </div>
+
           </div>
 
           <!-- ============================================================ -->
@@ -2475,33 +2510,105 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Acompanhamento -->
+          <!-- SEÇÃO: Acompanhamento (CONTROLE ACADÊMICO) -->
           <!-- ============================================================ -->
           <div id="secao-acompanhamento" class="secao-conteudo">
 
             <h2 class="secao-titulo">📈 Acompanhamento</h2>
 
-            <div class="linha-1col">
+            <!-- LINHA 1: Convênio HMSJ | Organização e acompanhamento da CAC COAPES ESTADO -->
+            <div class="linha">
 
               <div class="quadro-item quadro-relatorio">
-
-                <div class="titulo-texto">
-                  📈 Acompanhamento Acadêmico
-                </div>
-
-                <p>
-                  Acompanhamento do desempenho acadêmico.
-                </p>
-
-                <a href="#"
-                   onclick="return emDesenvolvimento(event)"
-                   class="relatorio-link em-desenvolvimento">
-                  Em desenvolvimento 🚧
+                <div class="titulo-texto">🏥 Convênio HMSJ</div>
+                <p>Convênio HMSJ - SEI 240206201-5.</p>
+                <a href="https://drive.google.com/drive/folders/1Nsdl3cwubvw74NE7FwAK5phIgMyClYFV"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📁 Acessar Convênio HMSJ
                 </a>
+                <p style="margin-top: 12px;">SEI 26510881.</p>
+                <a href="https://drive.google.com/drive/folders/1qeQ0-IcgA1njsAOtkdjmhumVR4gaYF0v"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📁 Acessar SEI 26510881
+                </a>
+              </div>
 
+              <div class="quadro-item quadro-relatorio">
+                <div class="titulo-texto">🏛️ Organização e acompanhamento da CAC COAPES ESTADO</div>
+                <p>SEI 26053551.</p>
+                <a href="https://drive.google.com/drive/folders/1gKsuCH8VbbC4dPqPfU9D2qA0H4eYb3p7"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📁 Acessar SEI 26053551
+                </a>
+                <p style="margin-top: 12px;">SEI 25650957.</p>
+                <a href="https://drive.google.com/drive/folders/1aHMk7uXqfDuqgy_q1G4YqjfHxfsff0A7"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📁 Acessar SEI 25650957
+                </a>
               </div>
 
             </div>
+
+            <!-- LINHA 2: Visita Técnica | Programação | Atividades -->
+            <div class="linha">
+
+              <div class="quadro-item quadro-relatorio">
+                <div class="titulo-texto">📋 Ficha de Visita Técnica em Cenários de Prática</div>
+                <p>Ficha de Visita Técnica em Cenários de Prática.</p>
+                <a href="https://script.google.com/a/macros/joinville.sc.gov.br/s/AKfycbxDjuj7HbVxuA2I7NcGGCt_eHy16Cj3p0AC3RUp9NdvCGTrgvEqBRv1rBeWDnWWn2UVVg/exec"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📋 Acessar Ficha de Visita Técnica
+                </a>
+              </div>
+
+              <div class="quadro-item quadro-relatorio">
+                <div class="titulo-texto">📅 Programação</div>
+                <p>Programação SEI 30530304.</p>
+                <a href="https://drive.google.com/drive/folders/1tOStPmZADAZCCHdVsPGxt-R3hXIpsjrK"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📁 Acessar Programação
+                </a>
+              </div>
+
+              <div class="quadro-item quadro-relatorio">
+                <div class="titulo-texto">📝 Atividades</div>
+                <p>Plano de Atividade.</p>
+                <a href="https://docs.google.com/document/d/18MTC8CkvxTDlUKDJ1R5xcZIwjTw97ubB/edit"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📄 Acessar Plano de Atividade
+                </a>
+                <p style="margin-top: 12px;">Modelos de Planos - SEI 22.0.195393-1.</p>
+                <a href="https://drive.google.com/drive/folders/1mfSywAPItLo78aMKhYD3dfB9kjyTSxaV"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📁 Acessar Modelos de Planos
+                </a>
+              </div>
+
+            </div>
+
+            <!-- LINHA 3: Avaliações do Programa -->
+            <div class="linha">
+
+              <div class="quadro-item quadro-relatorio">
+                <div class="titulo-texto">📝 Avaliações do Programa</div>
+                <p>Formulário de Avaliação pelos Residentes.</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScekUzpLSr3z9ChlshWYq1vVgCIMjm2Eaz2x8G1_5myp4RvxA/viewform"
+                   target="_blank"
+                   class="relatorio-link visualizar">
+                  📝 Formulário Avaliação pelos Residentes
+                </a>
+              </div>
+
+            </div>
+
           </div>
 
           <!-- ============================================================ -->
