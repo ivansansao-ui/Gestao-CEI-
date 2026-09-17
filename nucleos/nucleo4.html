@@ -413,7 +413,7 @@
       }
     }
 
-    /* ===== CARDS DOS PROFISSIONAIS ===== */
+    /* ===== CARDS ===== */
     .quadro-item {
       background-color: #ffffff;
       border-radius: 12px;
@@ -614,7 +614,7 @@
     }
 
     /* ============================================================
-       🔧 AJUSTE UNIFICADO — CARDS COM BOTÕES ESTICADOS (IGUAL À FOTO)
+       🔧 AJUSTE UNIFICADO — CARDS IDÊNTICOS À FOTO
        ============================================================ */
     #secao-acompanhamento .linha,
     #secao-financeiro .linha,
@@ -644,6 +644,7 @@
       margin-bottom: 24px;
     }
 
+    /* Card base — flex column, altura 100% para igualar entre si */
     #secao-acompanhamento .quadro-item,
     #secao-financeiro .quadro-item,
     #secao-cadastro .quadro-item,
@@ -658,12 +659,13 @@
     #secao-frequencia .quadro-item,
     #secao-desistencia .quadro-item {
       display: flex !important;
-      flex-direction: column;
+      flex-direction: column !important;
       min-height: auto;
       height: 100%;
+      gap: 8px;
     }
 
-    /* Título no topo */
+    /* Título sem crescer */
     #secao-acompanhamento .quadro-item .titulo-texto,
     #secao-financeiro .quadro-item .titulo-texto,
     #secao-cadastro .quadro-item .titulo-texto,
@@ -678,27 +680,46 @@
     #secao-frequencia .quadro-item .titulo-texto,
     #secao-desistencia .quadro-item .titulo-texto {
       flex-shrink: 0;
+      margin-bottom: 0;
     }
 
-    /* Primeiro parágrafo empurra o conteúdo para baixo */
-    #secao-acompanhamento .quadro-item > p:first-of-type,
-    #secao-financeiro .quadro-item > p:first-of-type,
-    #secao-cadastro .quadro-item > p:first-of-type,
-    #secao-documentos .quadro-item > p:first-of-type,
-    #secao-selecao .quadro-item > p:first-of-type,
-    #secao-preceptores .quadro-item > p:first-of-type,
-    #secao-avaliacoes .quadro-item > p:first-of-type,
-    #secao-reunioes .quadro-item > p:first-of-type,
-    #secao-ceis .quadro-item > p:first-of-type,
-    #secao-visao .quadro-item > p:first-of-type,
-    #secao-cenarios .quadro-item > p:first-of-type,
-    #secao-frequencia .quadro-item > p:first-of-type,
-    #secao-desistencia .quadro-item > p:first-of-type {
+    /* Parágrafos: espaçamento enxuto e sem crescer */
+    #secao-acompanhamento .quadro-item p,
+    #secao-financeiro .quadro-item p,
+    #secao-cadastro .quadro-item p,
+    #secao-documentos .quadro-item p,
+    #secao-selecao .quadro-item p,
+    #secao-preceptores .quadro-item p,
+    #secao-avaliacoes .quadro-item p,
+    #secao-reunioes .quadro-item p,
+    #secao-ceis .quadro-item p,
+    #secao-visao .quadro-item p,
+    #secao-cenarios .quadro-item p,
+    #secao-frequencia .quadro-item p,
+    #secao-desistencia .quadro-item p {
+      flex-shrink: 0;
+      margin: 0 !important;
+      line-height: 1.5;
+    }
+
+    /* O SEGUNDO parágrafo (o que vem depois do 1º botão) cria o "espaço de respiro" */
+    #secao-acompanhamento .quadro-item > p:nth-of-type(2),
+    #secao-financeiro .quadro-item > p:nth-of-type(2),
+    #secao-cadastro .quadro-item > p:nth-of-type(2),
+    #secao-documentos .quadro-item > p:nth-of-type(2),
+    #secao-selecao .quadro-item > p:nth-of-type(2),
+    #secao-preceptores .quadro-item > p:nth-of-type(2),
+    #secao-avaliacoes .quadro-item > p:nth-of-type(2),
+    #secao-reunioes .quadro-item > p:nth-of-type(2),
+    #secao-cenarios .quadro-item > p:nth-of-type(2),
+    #secao-frequencia .quadro-item > p:nth-of-type(2),
+    #secao-desistencia .quadro-item > p:nth-of-type(2) {
       flex-grow: 1;
-      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
     }
 
-    /* Containers internos de botões: coluna + largura total */
+    /* Containers internos: coluna + 100% + espaçamento 8px */
     #secao-acompanhamento .quadro-item > div,
     #secao-financeiro .quadro-item > div,
     #secao-cadastro .quadro-item > div,
@@ -716,7 +737,7 @@
       flex-shrink: 0;
     }
 
-    /* Botões esticados */
+    /* Botões — esticados, centralizados, sem margem lateral */
     #secao-acompanhamento .quadro-item .relatorio-link,
     #secao-financeiro .quadro-item .relatorio-link,
     #secao-cadastro .quadro-item .relatorio-link,
@@ -734,56 +755,43 @@
       width: 100% !important;
       text-align: center !important;
       align-self: stretch !important;
-      margin-top: 8px !important;
+      margin: 0 !important;
       box-sizing: border-box;
-    }
-
-    /* Botões dentro de div não precisam de margin-top extra */
-    #secao-acompanhamento .quadro-item > div > .relatorio-link,
-    #secao-financeiro .quadro-item > div > .relatorio-link,
-    #secao-cadastro .quadro-item > div > .relatorio-link,
-    #secao-documentos .quadro-item > div > .relatorio-link,
-    #secao-selecao .quadro-item > div > .relatorio-link,
-    #secao-preceptores .quadro-item > div > .relatorio-link,
-    #secao-avaliacoes .quadro-item > div > .relatorio-link,
-    #secao-reunioes .quadro-item > div > .relatorio-link,
-    #secao-cenarios .quadro-item > div > .relatorio-link,
-    #secao-frequencia .quadro-item > div > .relatorio-link {
-      margin-top: 0 !important;
-    }
-
-    /* Parágrafos que vêm DEPOIS de um botão (ex: "SEI 26510881.") */
-    #secao-acompanhamento .quadro-item .relatorio-link + p,
-    #secao-financeiro .quadro-item .relatorio-link + p,
-    #secao-cadastro .quadro-item .relatorio-link + p,
-    #secao-documentos .quadro-item .relatorio-link + p,
-    #secao-selecao .quadro-item .relatorio-link + p,
-    #secao-preceptores .quadro-item .relatorio-link + p,
-    #secao-avaliacoes .quadro-item .relatorio-link + p,
-    #secao-reunioes .quadro-item .relatorio-link + p,
-    #secao-cenarios .quadro-item .relatorio-link + p,
-    #secao-frequencia .quadro-item .relatorio-link + p,
-    #secao-desistencia .quadro-item .relatorio-link + p {
-      flex-grow: 0;
-      margin-top: 12px;
-      margin-bottom: 8px;
-    }
-
-    /* Parágrafos extras não crescem */
-    #secao-acompanhamento .quadro-item p:not(:first-of-type),
-    #secao-financeiro .quadro-item p:not(:first-of-type),
-    #secao-cadastro .quadro-item p:not(:first-of-type),
-    #secao-documentos .quadro-item p:not(:first-of-type),
-    #secao-selecao .quadro-item p:not(:first-of-type),
-    #secao-preceptores .quadro-item p:not(:first-of-type),
-    #secao-avaliacoes .quadro-item p:not(:first-of-type),
-    #secao-reunioes .quadro-item p:not(:first-of-type),
-    #secao-ceis .quadro-item p:not(:first-of-type),
-    #secao-visao .quadro-item p:not(:first-of-type),
-    #secao-cenarios .quadro-item p:not(:first-of-type),
-    #secao-frequencia .quadro-item p:not(:first-of-type),
-    #secao-desistencia .quadro-item p:not(:first-of-type) {
       flex-shrink: 0;
+    }
+
+    /* Remove o "empurrão" antigo que causava os buracos */
+    #secao-acompanhamento .quadro-item > p:first-of-type,
+    #secao-financeiro .quadro-item > p:first-of-type,
+    #secao-cadastro .quadro-item > p:first-of-type,
+    #secao-documentos .quadro-item > p:first-of-type,
+    #secao-selecao .quadro-item > p:first-of-type,
+    #secao-preceptores .quadro-item > p:first-of-type,
+    #secao-avaliacoes .quadro-item > p:first-of-type,
+    #secao-reunioes .quadro-item > p:first-of-type,
+    #secao-ceis .quadro-item > p:first-of-type,
+    #secao-visao .quadro-item > p:first-of-type,
+    #secao-cenarios .quadro-item > p:first-of-type,
+    #secao-frequencia .quadro-item > p:first-of-type,
+    #secao-desistencia .quadro-item > p:first-of-type {
+      flex-grow: 0;
+    }
+
+    /* Botão "sozinho" no card fica no rodapé */
+    #secao-acompanhamento .quadro-item > .relatorio-link:last-child,
+    #secao-financeiro .quadro-item > .relatorio-link:last-child,
+    #secao-cadastro .quadro-item > .relatorio-link:last-child,
+    #secao-documentos .quadro-item > .relatorio-link:last-child,
+    #secao-selecao .quadro-item > .relatorio-link:last-child,
+    #secao-preceptores .quadro-item > .relatorio-link:last-child,
+    #secao-avaliacoes .quadro-item > .relatorio-link:last-child,
+    #secao-reunioes .quadro-item > .relatorio-link:last-child,
+    #secao-ceis .quadro-item > .relatorio-link:last-child,
+    #secao-visao .quadro-item > .relatorio-link:last-child,
+    #secao-cenarios .quadro-item > .relatorio-link:last-child,
+    #secao-frequencia .quadro-item > .relatorio-link:last-child,
+    #secao-desistencia .quadro-item > .relatorio-link:last-child {
+      margin-top: auto !important;
     }
     /* ===== FIM DO AJUSTE UNIFICADO ===== */
 
@@ -1243,7 +1251,7 @@
     }
 
     // ============================================================
-    // 🆕 FUNÇÃO PARA CARREGAR DADOS DA PLANILHA GOOGLE SHEETS
+    // 🆕 CARREGAR DADOS DA PLANILHA GOOGLE SHEETS
     // ============================================================
     function carregarDadosDashboard() {
       const planilhaId = '1sYZo64AaOjYZct0v-WyXmf3PqAr82TgGXeJFh11V0qk';
@@ -1812,8 +1820,7 @@
 
                 <a href="https://docs.google.com/spreadsheets/d/1yXf6Oa-PxfBe2ch1n3MhTjMCxnWhwH_DSDy_B4KEcMw/edit?usp=sharing"
                    target="_blank"
-                   class="relatorio-link visualizar"
-                   style="margin-top: 8px;">
+                   class="relatorio-link visualizar">
                   📁 Acessar Locais
                 </a>
 
@@ -1853,8 +1860,7 @@
 
                 <a href="https://drive.google.com/drive/folders/10RhzpLtVcWH45izAMvyLHbdlnS9O7pD2"
                    target="_blank"
-                   class="relatorio-link visualizar"
-                   style="margin-top: 8px;">
+                   class="relatorio-link visualizar">
                   📁 Acessar Documento
                 </a>
 
@@ -2003,15 +2009,13 @@
 
                   <a href="https://drive.google.com/drive/folders/1HNTFlf5i6NO0etClNkJW9uz_Z5esQDIT"
                      target="_blank"
-                     class="relatorio-link visualizar"
-                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                     class="relatorio-link visualizar">
                     📄 Edital Multiprofissional
                   </a>
 
                   <a href="https://drive.google.com/drive/folders/1HNTFlf5i6NO0etClNkJW9uz_Z5esQDIT"
                      target="_blank"
-                     class="relatorio-link visualizar"
-                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                     class="relatorio-link visualizar">
                     📋 Convocação Multiprofissional
                   </a>
 
@@ -2055,15 +2059,13 @@
 
                   <a href="https://docs.google.com/document/d/1PGb-jgBy10DhnhGE38JprRgwjVTToMNpXdCXVe5gLPE/edit?tab=t.0"
                      target="_blank"
-                     class="relatorio-link"
-                     style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">
+                     class="relatorio-link">
                     📄 POP Convocação
                   </a>
 
                   <a href="#"
                      onclick="return emDesenvolvimento(event)"
-                     class="relatorio-link em-desenvolvimento"
-                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                     class="relatorio-link em-desenvolvimento">
                     📋 Lista de Convocados 🚧
                   </a>
 
@@ -2085,15 +2087,13 @@
 
                   <a href="https://docs.google.com/spreadsheets/d/1DLwyAbbg5yazbztJtfgl2Hdw1XudDDKv/edit?gid=20108747#gid=20108747"
                      target="_blank"
-                     class="relatorio-link"
-                     style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">
+                     class="relatorio-link">
                     📊 Modelo
                   </a>
 
                   <a href="#"
                      onclick="return emDesenvolvimento(event)"
-                     class="relatorio-link em-desenvolvimento"
-                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                     class="relatorio-link em-desenvolvimento">
                     📋 Lista de Aprovados 🚧
                   </a>
 
@@ -2106,7 +2106,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Cadastro (INCLUINDO MATRÍCULA) -->
+          <!-- SEÇÃO: Cadastro -->
           <!-- ============================================================ -->
           <div id="secao-cadastro" class="secao-conteudo">
 
@@ -2142,7 +2142,7 @@
                    class="relatorio-link visualizar">
                   📁 Termo de compromisso na Residência
                 </a>
-                <p style="margin-top: 12px;">Termo de compromisso na matrícula.</p>
+                <p>Termo de compromisso na matrícula.</p>
                 <a href="https://docs.google.com/document/d/109Hq1xIUPNrNHWJlKszKdmJe0Kx9spI5uK-kduSr8wI/edit?tab=t.0"
                    target="_blank"
                    class="relatorio-link visualizar">
@@ -2182,7 +2182,7 @@
                    class="relatorio-link visualizar">
                   📁 POP de Acolhimento de PRM MFC
                 </a>
-                <p style="margin-top: 12px;">Acolhimento integrado das Residências SEI 26.0.215820-2.</p>
+                <p>Acolhimento integrado das Residências SEI 26.0.215820-2.</p>
                 <a href="https://drive.google.com/drive/folders/1UMyzPdhwUHfO3IOnJj5IZdC5HRgt8xII"
                    target="_blank"
                    class="relatorio-link visualizar">
@@ -2550,7 +2550,7 @@
           </div>
 
           <!-- ============================================================ -->
-          <!-- SEÇÃO: Acompanhamento (CONTROLE ACADÊMICO) -->
+          <!-- SEÇÃO: Acompanhamento -->
           <!-- ============================================================ -->
           <div id="secao-acompanhamento" class="secao-conteudo">
 
@@ -2566,7 +2566,7 @@
                    class="relatorio-link visualizar">
                   📁 Acessar Convênio HMSJ
                 </a>
-                <p style="margin-top: 12px;">SEI 26510881.</p>
+                <p>SEI 26510881.</p>
                 <a href="https://drive.google.com/drive/folders/1qeQ0-IcgA1njsAOtkdjmhumVR4gaYF0v"
                    target="_blank"
                    class="relatorio-link visualizar">
@@ -2582,7 +2582,7 @@
                    class="relatorio-link visualizar">
                   📁 Acessar SEI 26053551
                 </a>
-                <p style="margin-top: 12px;">SEI 25650957.</p>
+                <p>SEI 25650957.</p>
                 <a href="https://drive.google.com/drive/folders/1aHMk7uXqfDuqgy_q1G4YqjfHxfsff0A7"
                    target="_blank"
                    class="relatorio-link visualizar">
@@ -2622,7 +2622,7 @@
                    class="relatorio-link visualizar">
                   📄 Acessar Plano de Atividade
                 </a>
-                <p style="margin-top: 12px;">Modelos de Planos - SEI 22.0.195393-1.</p>
+                <p>Modelos de Planos - SEI 22.0.195393-1.</p>
                 <a href="https://drive.google.com/drive/folders/1mfSywAPItLo78aMKhYD3dfB9kjyTSxaV"
                    target="_blank"
                    class="relatorio-link visualizar">
@@ -2793,29 +2793,25 @@
 
                   <a href="https://drive.google.com/drive/folders/1ZX-HvX0QLuShj_1GeUc9-YQE20DVG675"
                      target="_blank"
-                     class="relatorio-link"
-                     style="background-color: #2c6b9e;">
+                     class="relatorio-link">
                     📋 ATAS da COREME
                   </a>
 
                   <a href="https://drive.google.com/drive/folders/18vFBdosTjU6d-kSi_jOhTEzX3UfbvISq"
                      target="_blank"
-                     class="relatorio-link"
-                     style="background-color: #2c6b9e;">
+                     class="relatorio-link">
                     📋 ATAS Reuniões Preceptores
                   </a>
 
                   <a href="https://drive.google.com/drive/folders/1ABX7zvnvlqedtMTD8aOsgJ-4ALGKKw8Y"
                      target="_blank"
-                     class="relatorio-link"
-                     style="background-color: #2c6b9e;">
+                     class="relatorio-link">
                     📋 ATAS Reunião COREMU
                   </a>
 
                   <a href="https://drive.google.com/drive/folders/1VL-fIozF4AgLSBfoDsOmmkk0vaycUc5z"
                      target="_blank"
-                     class="relatorio-link"
-                     style="background-color: #2c6b9e;">
+                     class="relatorio-link">
                     📋 ATAS COAPES
                   </a>
 
