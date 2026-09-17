@@ -614,9 +614,25 @@
     }
 
     /* ============================================================
-       🔧 AJUSTE DA SEÇÃO DOCUMENTOS (IGUAL À FOTO)
+       🔧 AJUSTE UNIFICADO — CARDS COM BOTÕES ESTICADOS (IGUAL À FOTO)
+       Aplica em: Acompanhamento, Financeiro, Cadastro, Documentos,
+       Seleção, Preceptores, Avaliações, Reuniões, CEIS, Visão Geral,
+       Cenários, Frequência, Desistência, Profissionais.
        ============================================================ */
-    #secao-documentos .linha {
+    #secao-acompanhamento .linha,
+    #secao-financeiro .linha,
+    #secao-cadastro .linha,
+    #secao-documentos .linha,
+    #secao-selecao .linha,
+    #secao-preceptores .linha,
+    #secao-avaliacoes .linha,
+    #secao-reunioes .linha,
+    #secao-ceis .linha,
+    #secao-visao .linha-2col,
+    #secao-cenarios .linha,
+    #secao-frequencia .linha,
+    #secao-desistencia .linha-2col,
+    #secao-profissionais .linha {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
@@ -624,98 +640,101 @@
       margin-bottom: 24px;
     }
 
-    #secao-documentos .quadro-item {
+    #secao-visao .linha-2col,
+    #secao-desistencia .linha-2col {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    #secao-acompanhamento .quadro-item,
+    #secao-financeiro .quadro-item,
+    #secao-cadastro .quadro-item,
+    #secao-documentos .quadro-item,
+    #secao-selecao .quadro-item,
+    #secao-preceptores .quadro-item,
+    #secao-avaliacoes .quadro-item,
+    #secao-reunioes .quadro-item,
+    #secao-ceis .quadro-item,
+    #secao-visao .quadro-item,
+    #secao-cenarios .quadro-item,
+    #secao-frequencia .quadro-item,
+    #secao-desistencia .quadro-item {
       display: flex !important;
+      flex-direction: column;
       min-height: auto;
     }
 
-    #secao-documentos .quadro-item p {
+    #secao-acompanhamento .quadro-item p,
+    #secao-financeiro .quadro-item p,
+    #secao-cadastro .quadro-item p,
+    #secao-documentos .quadro-item p,
+    #secao-selecao .quadro-item p,
+    #secao-preceptores .quadro-item p,
+    #secao-avaliacoes .quadro-item p,
+    #secao-reunioes .quadro-item p,
+    #secao-ceis .quadro-item p,
+    #secao-visao .quadro-item p,
+    #secao-cenarios .quadro-item p,
+    #secao-frequencia .quadro-item p,
+    #secao-desistencia .quadro-item p {
       flex-grow: 1;
     }
-    /* ===== FIM DO AJUSTE ===== */
 
-    /* ============================================================
-       🔧 AJUSTE DA SEÇÃO FINANCEIRO | SISTEMAS (IGUAL À FOTO)
-       ============================================================ */
-    #secao-financeiro .linha {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      align-items: stretch;
-      margin-bottom: 24px;
-    }
-
-    #secao-financeiro .quadro-item {
+    /* Containers internos de botões: forçar coluna + largura total */
+    #secao-acompanhamento .quadro-item > div[style*="display: flex"],
+    #secao-financeiro .quadro-item > div[style*="display: flex"],
+    #secao-cadastro .quadro-item > div[style*="display: flex"],
+    #secao-documentos .quadro-item > div[style*="display: flex"],
+    #secao-selecao .quadro-item > div[style*="display: flex"],
+    #secao-preceptores .quadro-item > div[style*="display: flex"],
+    #secao-avaliacoes .quadro-item > div[style*="display: flex"],
+    #secao-reunioes .quadro-item > div[style*="display: flex"],
+    #secao-cenarios .quadro-item > div[style*="display: flex"],
+    #secao-frequencia .quadro-item > div[style*="display: flex"] {
       display: flex !important;
-      min-height: auto;
-    }
-
-    #secao-financeiro .quadro-item p {
-      flex-grow: 1;
-    }
-
-    #secao-financeiro .quadro-item > div[style*="display: flex"] {
       flex-direction: column !important;
       gap: 8px !important;
+      width: 100% !important;
+      margin-top: auto;
     }
 
-    #secao-financeiro .relatorio-link {
+    /* Botões verdes/azuis esticados e centralizados */
+    #secao-acompanhamento .relatorio-link,
+    #secao-financeiro .relatorio-link,
+    #secao-cadastro .relatorio-link,
+    #secao-documentos .relatorio-link,
+    #secao-selecao .relatorio-link,
+    #secao-preceptores .relatorio-link,
+    #secao-avaliacoes .relatorio-link,
+    #secao-reunioes .relatorio-link,
+    #secao-ceis .relatorio-link,
+    #secao-visao .relatorio-link,
+    #secao-cenarios .relatorio-link,
+    #secao-frequencia .relatorio-link,
+    #secao-desistencia .relatorio-link {
       align-self: stretch;
       text-align: center;
-    }
-    /* ===== FIM DO AJUSTE ===== */
-
-    /* ============================================================
-       🔧 AJUSTE DA SEÇÃO CADASTRO (INCLUINDO MATRÍCULA)
-       ============================================================ */
-    #secao-cadastro .linha {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      align-items: stretch;
-      margin-bottom: 24px;
+      width: 100%;
+      display: block;
+      margin-top: 8px;
     }
 
-    #secao-cadastro .quadro-item {
-      display: flex !important;
-      min-height: auto;
+    /* Botões soltos (fora de container) também ficam no rodapé */
+    #secao-acompanhamento .quadro-item > .relatorio-link,
+    #secao-financeiro .quadro-item > .relatorio-link,
+    #secao-cadastro .quadro-item > .relatorio-link,
+    #secao-documentos .quadro-item > .relatorio-link,
+    #secao-selecao .quadro-item > .relatorio-link,
+    #secao-preceptores .quadro-item > .relatorio-link,
+    #secao-avaliacoes .quadro-item > .relatorio-link,
+    #secao-reunioes .quadro-item > .relatorio-link,
+    #secao-ceis .quadro-item > .relatorio-link,
+    #secao-visao .quadro-item > .relatorio-link,
+    #secao-cenarios .quadro-item > .relatorio-link,
+    #secao-frequencia .quadro-item > .relatorio-link,
+    #secao-desistencia .quadro-item > .relatorio-link {
+      margin-top: auto;
     }
-
-    #secao-cadastro .quadro-item p {
-      flex-grow: 1;
-    }
-
-    #secao-cadastro .relatorio-link {
-      align-self: stretch;
-      text-align: center;
-    }
-    /* ===== FIM DO AJUSTE ===== */
-
-    /* ============================================================
-       🔧 AJUSTE DA SEÇÃO ACOMPANHAMENTO (NOVOS CARDS)
-       ============================================================ */
-    #secao-acompanhamento .linha {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      align-items: stretch;
-      margin-bottom: 24px;
-    }
-
-    #secao-acompanhamento .quadro-item {
-      display: flex !important;
-      min-height: auto;
-    }
-
-    #secao-acompanhamento .quadro-item p {
-      flex-grow: 1;
-    }
-
-    #secao-acompanhamento .relatorio-link {
-      align-self: stretch;
-      text-align: center;
-    }
-    /* ===== FIM DO AJUSTE ===== */
+    /* ===== FIM DO AJUSTE UNIFICADO ===== */
 
     /* DROPDOWN */
     .dropdown {
@@ -846,19 +865,18 @@
         padding: 20px;
       }
 
-      #secao-documentos .linha {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      #secao-financeiro .linha {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      #secao-cadastro .linha {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      #secao-acompanhamento .linha {
+      #secao-acompanhamento .linha,
+      #secao-financeiro .linha,
+      #secao-cadastro .linha,
+      #secao-documentos .linha,
+      #secao-selecao .linha,
+      #secao-preceptores .linha,
+      #secao-avaliacoes .linha,
+      #secao-reunioes .linha,
+      #secao-ceis .linha,
+      #secao-cenarios .linha,
+      #secao-frequencia .linha,
+      #secao-profissionais .linha {
         grid-template-columns: 1fr 1fr;
       }
     }
@@ -973,19 +991,20 @@
         text-align: right;
       }
 
-      #secao-documentos .linha {
-        grid-template-columns: 1fr;
-      }
-
-      #secao-financeiro .linha {
-        grid-template-columns: 1fr;
-      }
-
-      #secao-cadastro .linha {
-        grid-template-columns: 1fr;
-      }
-
-      #secao-acompanhamento .linha {
+      #secao-acompanhamento .linha,
+      #secao-financeiro .linha,
+      #secao-cadastro .linha,
+      #secao-documentos .linha,
+      #secao-selecao .linha,
+      #secao-preceptores .linha,
+      #secao-avaliacoes .linha,
+      #secao-reunioes .linha,
+      #secao-ceis .linha,
+      #secao-visao .linha-2col,
+      #secao-cenarios .linha,
+      #secao-frequencia .linha,
+      #secao-desistencia .linha-2col,
+      #secao-profissionais .linha {
         grid-template-columns: 1fr;
       }
     }
@@ -1179,13 +1198,10 @@
       const planilhaId = '1sYZo64AaOjYZct0v-WyXmf3PqAr82TgGXeJFh11V0qk';
       const aba = 'resumo';
 
-      // URL com headers=0 para que a primeira linha (cabeçalho) NÃO seja ignorada
-      // e cache-busting para forçar atualização
       const url = `https://docs.google.com/spreadsheets/d/${planilhaId}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(aba)}&headers=0&_=${Date.now()}`;
 
       console.log('🔍 Buscando dados da planilha:', url);
 
-      // Indicador de carregamento
       document.getElementById('num-residentes').textContent = '...';
       document.getElementById('num-cenarios').textContent = '...';
       document.getElementById('num-preceptores').textContent = '...';
@@ -1199,7 +1215,6 @@
         .then(text => {
           console.log('📄 Texto bruto recebido (primeiros 500 caracteres):', text.substring(0, 500));
 
-          // Remove o wrapper do Google (padrão: "/*O_o*/\ngoogle.visualization.Query.setResponse(...);")
           const jsonStart = text.indexOf('{');
           const jsonEnd = text.lastIndexOf('}');
           const jsonText = text.substring(jsonStart, jsonEnd + 1);
@@ -1219,9 +1234,6 @@
             return;
           }
 
-          // --- 1) Preencher os 4 cards de estatísticas com os dados da LINHA 2 ---
-          // rows[0] = Linha 1 (cabeçalhos)
-          // rows[1] = Linha 2 (dados que queremos)
           const dadosLinha2 = rows[1];
 
           if (dadosLinha2 && dadosLinha2.c) {
@@ -1244,13 +1256,11 @@
             document.getElementById('num-especialidades').textContent = '—';
           }
 
-          // --- 2) Preencher os "Próximos eventos" (Linha 2 até Linha 10 - colunas E e F) ---
           const eventosContainer = document.getElementById('eventos-container');
           if (eventosContainer) {
             eventosContainer.innerHTML = '';
             let eventosAdicionados = 0;
 
-            // Percorre da LINHA 2 (índice 1) até a LINHA 10 (índice 9)
             for (let i = 1; i <= 9; i++) {
               const linha = rows[i];
               if (!linha || !linha.c) continue;
@@ -1264,7 +1274,6 @@
                 const eventItem = document.createElement('div');
                 eventItem.className = 'event-item';
 
-                // Formata a data
                 let dataFormatada = '';
                 if (dataEvento) {
                   if (dataEvento instanceof Date) {
@@ -1332,7 +1341,6 @@
 
       verificarCardsVisiveis();
 
-      // 🆕 Chama a função para carregar os dados da planilha
       carregarDadosDashboard();
     });
   </script>
@@ -2053,7 +2061,6 @@
 
             <h2 class="secao-titulo">📝 Cadastro</h2>
 
-            <!-- LINHA 1: Matrícula | Dados pessoais | Termo de compromisso -->
             <div class="linha">
 
               <div class="quadro-item quadro-relatorio">
@@ -2094,7 +2101,6 @@
 
             </div>
 
-            <!-- LINHA 2: Controle documental | Abertura de conta | Acolhimento -->
             <div class="linha">
 
               <div class="quadro-item quadro-relatorio">
@@ -2144,7 +2150,6 @@
 
             <h2 class="secao-titulo">📄 Documentos</h2>
 
-            <!-- LINHA 1: Regimento PRM MFC | Regimento Multiprofissional | Estágio Eletivo -->
             <div class="linha">
 
               <div class="quadro-item quadro-relatorio">
@@ -2178,7 +2183,6 @@
 
             </div>
 
-            <!-- LINHA 2: Estágio Optativo | Solicitação de Congresso | TCR | Formatura -->
             <div class="linha">
 
               <div class="quadro-item quadro-relatorio">
@@ -2334,7 +2338,6 @@
 
             <div class="linha">
 
-              <!-- Mini-Cex -->
               <div class="quadro-item quadro-relatorio">
 
                 <div class="titulo-texto">⭐ Mini-Cex</div>
@@ -2375,7 +2378,6 @@
 
               </div>
 
-              <!-- Quadrimestrais -->
               <div class="quadro-item quadro-relatorio">
 
                 <div class="titulo-texto">📊 Quadrimestrais</div>
@@ -2429,7 +2431,6 @@
 
             <div class="linha">
 
-              <!-- Cadastro -->
               <div class="quadro-item quadro-relatorio">
 
                 <div class="titulo-texto">📝 Cadastro</div>
@@ -2456,7 +2457,6 @@
 
               </div>
 
-              <!-- Nomeações -->
               <div class="quadro-item quadro-relatorio">
 
                 <div class="titulo-texto">📋 Nomeações</div>
@@ -2516,7 +2516,6 @@
 
             <h2 class="secao-titulo">📈 Acompanhamento</h2>
 
-            <!-- LINHA 1: Convênio HMSJ | Organização e acompanhamento da CAC COAPES ESTADO -->
             <div class="linha">
 
               <div class="quadro-item quadro-relatorio">
@@ -2553,7 +2552,6 @@
 
             </div>
 
-            <!-- LINHA 2: Visita Técnica | Programação | Atividades -->
             <div class="linha">
 
               <div class="quadro-item quadro-relatorio">
@@ -2594,7 +2592,6 @@
 
             </div>
 
-            <!-- LINHA 3: Avaliações do Programa -->
             <div class="linha">
 
               <div class="quadro-item quadro-relatorio">
@@ -2620,7 +2617,6 @@
               💰 Financeiro | Sistemas
             </h2>
 
-            <!-- LINHA 1: E-Gestor | SIG-Residências | SisCNRM -->
             <div class="linha">
 
               <div class="quadro-item quadro-relatorio">
@@ -2681,7 +2677,6 @@
 
             </div>
 
-            <!-- LINHA 2: CNES | SEI | GLPI -->
             <div class="linha">
 
               <div class="quadro-item quadro-relatorio">
