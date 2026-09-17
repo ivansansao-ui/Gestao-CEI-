@@ -615,9 +615,6 @@
 
     /* ============================================================
        🔧 AJUSTE UNIFICADO — CARDS COM BOTÕES ESTICADOS (IGUAL À FOTO)
-       Aplica em: Acompanhamento, Financeiro, Cadastro, Documentos,
-       Seleção, Preceptores, Avaliações, Reuniões, CEIS, Visão Geral,
-       Cenários, Frequência, Desistência, Profissionais.
        ============================================================ */
     #secao-acompanhamento .linha,
     #secao-financeiro .linha,
@@ -628,10 +625,8 @@
     #secao-avaliacoes .linha,
     #secao-reunioes .linha,
     #secao-ceis .linha,
-    #secao-visao .linha-2col,
     #secao-cenarios .linha,
     #secao-frequencia .linha,
-    #secao-desistencia .linha-2col,
     #secao-profissionais .linha {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -642,7 +637,11 @@
 
     #secao-visao .linha-2col,
     #secao-desistencia .linha-2col {
+      display: grid;
       grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 24px;
     }
 
     #secao-acompanhamento .quadro-item,
@@ -661,78 +660,130 @@
       display: flex !important;
       flex-direction: column;
       min-height: auto;
+      height: 100%;
     }
 
-    #secao-acompanhamento .quadro-item p,
-    #secao-financeiro .quadro-item p,
-    #secao-cadastro .quadro-item p,
-    #secao-documentos .quadro-item p,
-    #secao-selecao .quadro-item p,
-    #secao-preceptores .quadro-item p,
-    #secao-avaliacoes .quadro-item p,
-    #secao-reunioes .quadro-item p,
-    #secao-ceis .quadro-item p,
-    #secao-visao .quadro-item p,
-    #secao-cenarios .quadro-item p,
-    #secao-frequencia .quadro-item p,
-    #secao-desistencia .quadro-item p {
+    /* Título no topo */
+    #secao-acompanhamento .quadro-item .titulo-texto,
+    #secao-financeiro .quadro-item .titulo-texto,
+    #secao-cadastro .quadro-item .titulo-texto,
+    #secao-documentos .quadro-item .titulo-texto,
+    #secao-selecao .quadro-item .titulo-texto,
+    #secao-preceptores .quadro-item .titulo-texto,
+    #secao-avaliacoes .quadro-item .titulo-texto,
+    #secao-reunioes .quadro-item .titulo-texto,
+    #secao-ceis .quadro-item .titulo-texto,
+    #secao-visao .quadro-item .titulo-texto,
+    #secao-cenarios .quadro-item .titulo-texto,
+    #secao-frequencia .quadro-item .titulo-texto,
+    #secao-desistencia .quadro-item .titulo-texto {
+      flex-shrink: 0;
+    }
+
+    /* Primeiro parágrafo empurra o conteúdo para baixo */
+    #secao-acompanhamento .quadro-item > p:first-of-type,
+    #secao-financeiro .quadro-item > p:first-of-type,
+    #secao-cadastro .quadro-item > p:first-of-type,
+    #secao-documentos .quadro-item > p:first-of-type,
+    #secao-selecao .quadro-item > p:first-of-type,
+    #secao-preceptores .quadro-item > p:first-of-type,
+    #secao-avaliacoes .quadro-item > p:first-of-type,
+    #secao-reunioes .quadro-item > p:first-of-type,
+    #secao-ceis .quadro-item > p:first-of-type,
+    #secao-visao .quadro-item > p:first-of-type,
+    #secao-cenarios .quadro-item > p:first-of-type,
+    #secao-frequencia .quadro-item > p:first-of-type,
+    #secao-desistencia .quadro-item > p:first-of-type {
       flex-grow: 1;
+      margin-bottom: 16px;
     }
 
-    /* Containers internos de botões: forçar coluna + largura total */
-    #secao-acompanhamento .quadro-item > div[style*="display: flex"],
-    #secao-financeiro .quadro-item > div[style*="display: flex"],
-    #secao-cadastro .quadro-item > div[style*="display: flex"],
-    #secao-documentos .quadro-item > div[style*="display: flex"],
-    #secao-selecao .quadro-item > div[style*="display: flex"],
-    #secao-preceptores .quadro-item > div[style*="display: flex"],
-    #secao-avaliacoes .quadro-item > div[style*="display: flex"],
-    #secao-reunioes .quadro-item > div[style*="display: flex"],
-    #secao-cenarios .quadro-item > div[style*="display: flex"],
-    #secao-frequencia .quadro-item > div[style*="display: flex"] {
+    /* Containers internos de botões: coluna + largura total */
+    #secao-acompanhamento .quadro-item > div,
+    #secao-financeiro .quadro-item > div,
+    #secao-cadastro .quadro-item > div,
+    #secao-documentos .quadro-item > div,
+    #secao-selecao .quadro-item > div,
+    #secao-preceptores .quadro-item > div,
+    #secao-avaliacoes .quadro-item > div,
+    #secao-reunioes .quadro-item > div,
+    #secao-cenarios .quadro-item > div,
+    #secao-frequencia .quadro-item > div {
       display: flex !important;
       flex-direction: column !important;
       gap: 8px !important;
       width: 100% !important;
-      margin-top: auto;
+      flex-shrink: 0;
     }
 
-    /* Botões verdes/azuis esticados e centralizados */
-    #secao-acompanhamento .relatorio-link,
-    #secao-financeiro .relatorio-link,
-    #secao-cadastro .relatorio-link,
-    #secao-documentos .relatorio-link,
-    #secao-selecao .relatorio-link,
-    #secao-preceptores .relatorio-link,
-    #secao-avaliacoes .relatorio-link,
-    #secao-reunioes .relatorio-link,
-    #secao-ceis .relatorio-link,
-    #secao-visao .relatorio-link,
-    #secao-cenarios .relatorio-link,
-    #secao-frequencia .relatorio-link,
-    #secao-desistencia .relatorio-link {
-      align-self: stretch;
-      text-align: center;
-      width: 100%;
-      display: block;
-      margin-top: 8px;
+    /* Botões esticados */
+    #secao-acompanhamento .quadro-item .relatorio-link,
+    #secao-financeiro .quadro-item .relatorio-link,
+    #secao-cadastro .quadro-item .relatorio-link,
+    #secao-documentos .quadro-item .relatorio-link,
+    #secao-selecao .quadro-item .relatorio-link,
+    #secao-preceptores .quadro-item .relatorio-link,
+    #secao-avaliacoes .quadro-item .relatorio-link,
+    #secao-reunioes .quadro-item .relatorio-link,
+    #secao-ceis .quadro-item .relatorio-link,
+    #secao-visao .quadro-item .relatorio-link,
+    #secao-cenarios .quadro-item .relatorio-link,
+    #secao-frequencia .quadro-item .relatorio-link,
+    #secao-desistencia .quadro-item .relatorio-link {
+      display: block !important;
+      width: 100% !important;
+      text-align: center !important;
+      align-self: stretch !important;
+      margin-top: 8px !important;
+      box-sizing: border-box;
     }
 
-    /* Botões soltos (fora de container) também ficam no rodapé */
-    #secao-acompanhamento .quadro-item > .relatorio-link,
-    #secao-financeiro .quadro-item > .relatorio-link,
-    #secao-cadastro .quadro-item > .relatorio-link,
-    #secao-documentos .quadro-item > .relatorio-link,
-    #secao-selecao .quadro-item > .relatorio-link,
-    #secao-preceptores .quadro-item > .relatorio-link,
-    #secao-avaliacoes .quadro-item > .relatorio-link,
-    #secao-reunioes .quadro-item > .relatorio-link,
-    #secao-ceis .quadro-item > .relatorio-link,
-    #secao-visao .quadro-item > .relatorio-link,
-    #secao-cenarios .quadro-item > .relatorio-link,
-    #secao-frequencia .quadro-item > .relatorio-link,
-    #secao-desistencia .quadro-item > .relatorio-link {
-      margin-top: auto;
+    /* Botões dentro de div não precisam de margin-top extra */
+    #secao-acompanhamento .quadro-item > div > .relatorio-link,
+    #secao-financeiro .quadro-item > div > .relatorio-link,
+    #secao-cadastro .quadro-item > div > .relatorio-link,
+    #secao-documentos .quadro-item > div > .relatorio-link,
+    #secao-selecao .quadro-item > div > .relatorio-link,
+    #secao-preceptores .quadro-item > div > .relatorio-link,
+    #secao-avaliacoes .quadro-item > div > .relatorio-link,
+    #secao-reunioes .quadro-item > div > .relatorio-link,
+    #secao-cenarios .quadro-item > div > .relatorio-link,
+    #secao-frequencia .quadro-item > div > .relatorio-link {
+      margin-top: 0 !important;
+    }
+
+    /* Parágrafos que vêm DEPOIS de um botão (ex: "SEI 26510881.") */
+    #secao-acompanhamento .quadro-item .relatorio-link + p,
+    #secao-financeiro .quadro-item .relatorio-link + p,
+    #secao-cadastro .quadro-item .relatorio-link + p,
+    #secao-documentos .quadro-item .relatorio-link + p,
+    #secao-selecao .quadro-item .relatorio-link + p,
+    #secao-preceptores .quadro-item .relatorio-link + p,
+    #secao-avaliacoes .quadro-item .relatorio-link + p,
+    #secao-reunioes .quadro-item .relatorio-link + p,
+    #secao-cenarios .quadro-item .relatorio-link + p,
+    #secao-frequencia .quadro-item .relatorio-link + p,
+    #secao-desistencia .quadro-item .relatorio-link + p {
+      flex-grow: 0;
+      margin-top: 12px;
+      margin-bottom: 8px;
+    }
+
+    /* Parágrafos extras não crescem */
+    #secao-acompanhamento .quadro-item p:not(:first-of-type),
+    #secao-financeiro .quadro-item p:not(:first-of-type),
+    #secao-cadastro .quadro-item p:not(:first-of-type),
+    #secao-documentos .quadro-item p:not(:first-of-type),
+    #secao-selecao .quadro-item p:not(:first-of-type),
+    #secao-preceptores .quadro-item p:not(:first-of-type),
+    #secao-avaliacoes .quadro-item p:not(:first-of-type),
+    #secao-reunioes .quadro-item p:not(:first-of-type),
+    #secao-ceis .quadro-item p:not(:first-of-type),
+    #secao-visao .quadro-item p:not(:first-of-type),
+    #secao-cenarios .quadro-item p:not(:first-of-type),
+    #secao-frequencia .quadro-item p:not(:first-of-type),
+    #secao-desistencia .quadro-item p:not(:first-of-type) {
+      flex-shrink: 0;
     }
     /* ===== FIM DO AJUSTE UNIFICADO ===== */
 
@@ -2188,7 +2239,7 @@
               <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">🎓 Estágio Optativo</div>
                 <p>Opções de Estágio e informações sobre unidades de saúde.</p>
-                <div style="display: flex; flex-direction: row; gap: 8px; width: 100%; flex-wrap: wrap;">
+                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
                   <a href="https://docs.google.com/document/d/1JJbFXmEImy3Zbxjhm-kFOmY6qzlK5sKmDBolQ4Avjy8/edit?tab=t.0" target="_blank" class="relatorio-link visualizar">📚 Opções de Estágio Optativo</a>
                   <a href="https://www.saude.sc.gov.br/index.php/pt/ses-sc/unidades-de-saude" target="_blank" class="relatorio-link visualizar">🏥 Site Unidades de Saúde</a>
                 </div>
@@ -2207,7 +2258,7 @@
               <div class="quadro-item quadro-relatorio">
                 <div class="titulo-texto">🎓 TCR | Formatura</div>
                 <p>Documentos e procedimentos relacionados ao Trabalho de Conclusão de Residência (TCR) e à formatura.</p>
-                <div style="display: flex; flex-direction: row; gap: 8px; width: 100%; flex-wrap: wrap;">
+                <div style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
                   <a href="https://drive.google.com/drive/folders/1rnzjBYtas088PqbiDutOyQW0Cox0_0xU"
                      target="_blank" class="relatorio-link visualizar">📄 POP TCR</a>
                   <a href="https://drive.google.com/drive/folders/1g5i9Rrmh3aWLZA_8uuwJP_cUyybBWyY5"
@@ -2348,29 +2399,25 @@
 
                   <a href="https://docs.google.com/document/d/1IuBcuRNWNJ5n8Q8cbL1q20W97qpubiOrnnFUz7Yd7Io/edit?tab=t.0"
                      target="_blank"
-                     class="relatorio-link visualizar"
-                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                     class="relatorio-link visualizar">
                     ⭐ Avaliações
                   </a>
 
                   <a href="https://drive.google.com/drive/folders/1gacOX6vI051-6h92aXPsNc1Do9E85Vlh"
                      target="_blank"
-                     class="relatorio-link visualizar"
-                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                     class="relatorio-link visualizar">
                     📁 SEI
                   </a>
 
                   <a href="https://drive.google.com/drive/folders/14dmnOu2iMWGikDNsJwyQyqQtPAjwzo8K"
                      target="_blank"
-                     class="relatorio-link visualizar"
-                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                     class="relatorio-link visualizar">
                     📂 Bloco Interno SEI 807844
                   </a>
 
                   <a href="#"
                      onclick="return emDesenvolvimento(event)"
-                     class="relatorio-link em-desenvolvimento"
-                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                     class="relatorio-link em-desenvolvimento">
                     📄 CRIAR POP 🚧
                   </a>
 
@@ -2388,29 +2435,25 @@
 
                   <a href="https://docs.google.com/document/d/1IuBcuRNWNJ5n8Q8cbL1q20W97qpubiOrnnFUz7Yd7Io/edit?tab=t.0"
                      target="_blank"
-                     class="relatorio-link visualizar"
-                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                     class="relatorio-link visualizar">
                     📊 Controle Nota Quadrimestre
                   </a>
 
                   <a href="https://drive.google.com/drive/folders/1pb_klyJ2rvgDVArmeyY7thTFPUCmf3f3"
                      target="_blank"
-                     class="relatorio-link visualizar"
-                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                     class="relatorio-link visualizar">
                     📁 SEI
                   </a>
 
                   <a href="https://drive.google.com/drive/folders/14dmnOu2iMWGikDNsJwyQyqQtPAjwzo8K"
                      target="_blank"
-                     class="relatorio-link visualizar"
-                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                     class="relatorio-link visualizar">
                     📂 Bloco Interno SEI 807844
                   </a>
 
                   <a href="#"
                      onclick="return emDesenvolvimento(event)"
-                     class="relatorio-link em-desenvolvimento"
-                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                     class="relatorio-link em-desenvolvimento">
                     📄 CRIAR POP 🚧
                   </a>
 
@@ -2441,15 +2484,13 @@
 
                   <a href="https://docs.google.com/document/d/1X63lL1C9JccZaDKZLdeZX-Zjk7uj_R742zB8syGskls/edit?tab=t.0"
                      target="_blank"
-                     class="relatorio-link visualizar"
-                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                     class="relatorio-link visualizar">
                     👨‍🏫 Controle de preceptores
                   </a>
 
                   <a href="https://docs.google.com/spreadsheets/d/1cxUvL2mgdvd7vaMpFwxW-7oT8SrdG0_TCgr2-JVbTwc/edit?gid=394205027#gid=394205027"
                      target="_blank"
-                     class="relatorio-link visualizar"
-                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                     class="relatorio-link visualizar">
                     📊 Relatório
                   </a>
 
@@ -2465,8 +2506,7 @@
 
                 <a href="https://drive.google.com/drive/folders/1eiWhQy1wxFC5UFSed31YrR2QSfGU9njf"
                    target="_blank"
-                   class="relatorio-link visualizar"
-                   style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                   class="relatorio-link visualizar">
                   📁 Preceptores Designados SEI 21.0.147488-8
                 </a>
 
@@ -2754,35 +2794,34 @@
                   <a href="https://drive.google.com/drive/folders/1ZX-HvX0QLuShj_1GeUc9-YQE20DVG675"
                      target="_blank"
                      class="relatorio-link"
-                     style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">
+                     style="background-color: #2c6b9e;">
                     📋 ATAS da COREME
                   </a>
 
                   <a href="https://drive.google.com/drive/folders/18vFBdosTjU6d-kSi_jOhTEzX3UfbvISq"
                      target="_blank"
                      class="relatorio-link"
-                     style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">
+                     style="background-color: #2c6b9e;">
                     📋 ATAS Reuniões Preceptores
                   </a>
 
                   <a href="https://drive.google.com/drive/folders/1ABX7zvnvlqedtMTD8aOsgJ-4ALGKKw8Y"
                      target="_blank"
                      class="relatorio-link"
-                     style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">
+                     style="background-color: #2c6b9e;">
                     📋 ATAS Reunião COREMU
                   </a>
 
                   <a href="https://drive.google.com/drive/folders/1VL-fIozF4AgLSBfoDsOmmkk0vaycUc5z"
                      target="_blank"
                      class="relatorio-link"
-                     style="font-size: 0.8rem; padding: 6px 14px; background-color: #2c6b9e; text-align: center; width: 100%;">
+                     style="background-color: #2c6b9e;">
                     📋 ATAS COAPES
                   </a>
 
                   <a href="#"
                      onclick="return emDesenvolvimento(event)"
-                     class="relatorio-link em-desenvolvimento"
-                     style="font-size: 0.8rem; padding: 6px 14px; text-align: center; width: 100%;">
+                     class="relatorio-link em-desenvolvimento">
                     📋 ATA Reunião Preceptores Multiprofissional 🚧
                   </a>
 
