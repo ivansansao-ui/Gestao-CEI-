@@ -61,7 +61,7 @@
         }
 
         .container {
-            max-width: 1300px; /* Aumentado para acomodar cards maiores */
+            max-width: 1300px;
             margin: 0 auto;
             background: white;
             border-radius: 12px;
@@ -82,14 +82,14 @@
             border-bottom: none;
         }
 
-        /* Coluna do profissional (cargo, nome, ramal, e-mail) - COM MOLDURA AZUL - AUMENTADA +3cm */
+        /* Coluna do profissional (cargo, nome, ramal, e-mail) - COM MOLDURA AZUL */
         .profissional-info {
-            flex: 1 1 380px; /* Aumentado de 320px para 380px (+60px = 3cm) */
-            min-width: 320px; /* Aumentado de 260px para 320px (+60px = 3cm) */
-            background: #f8faff;
-            border-left: 5px solid #0dcaf0;
+            flex: 1 1 380px;
+            min-width: 320px;
+            background: #e8f4fd; /* ALTERADO: Fundo azul claro padrão */
+            border-left: 5px solid #00c0ef; /* ALTERADO: Borda azul padrão */
             border-radius: 6px;
-            padding: 24px 28px; /* Aumentado o padding interno */
+            padding: 24px 28px;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
             transition: 0.15s;
         }
@@ -99,8 +99,8 @@
 
         .profissional-info .cargo {
             font-weight: 700;
-            color: #198754;
-            font-size: 1.1rem; /* Levemente maior */
+            color: #0b5e7e; /* ALTERADO: Azul escuro padrão */
+            font-size: 1.1rem;
             margin-bottom: 8px;
         }
 
@@ -110,29 +110,29 @@
         }
         .profissional-info .detalhes li {
             padding: 3px 0;
-            color: #444;
-            font-size: 0.95rem; /* Levemente maior */
+            color: #556a7d; /* ALTERADO: Cinza médio padrão */
+            font-size: 0.95rem;
         }
         .profissional-info .detalhes li strong {
             font-weight: 600;
-            color: #222;
+            color: #1f2d3d; /* ALTERADO: Cinza escuro padrão */
         }
 
         /* Container dos cards de relatório (2 por profissional) */
         .relatorios-group {
-            flex: 2 1 680px; /* Aumentado de 560px para 680px (+120px total) */
+            flex: 2 1 680px;
             display: flex;
             flex-wrap: wrap;
-            gap: 20px; /* Aumentado o espaçamento entre cards */
+            gap: 20px;
         }
 
-        /* Cada card de relatório - COM MOLDURA AZUL - AUMENTADO +3cm */
+        /* Cada card de relatório - COM MOLDURA AZUL */
         .card-relatorio {
-            flex: 1 1 300px; /* Aumentado de 240px para 300px (+60px = 3cm) */
-            background: #f8faff;
-            border-left: 5px solid #0dcaf0;
+            flex: 1 1 300px;
+            background: #e8f4fd; /* ALTERADO: Fundo azul claro padrão */
+            border-left: 5px solid #00c0ef; /* ALTERADO: Borda azul padrão */
             border-radius: 6px;
-            padding: 24px 28px; /* Aumentado o padding interno */
+            padding: 24px 28px;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
             display: flex;
             flex-direction: column;
@@ -146,15 +146,15 @@
         /* TÍTULO DO RELATÓRIO - EM NEGRITO */
         .card-relatorio .titulo {
             font-weight: 700;
-            color: #1e2a3a;
-            font-size: 1.1rem; /* Aumentado */
+            color: #0b5e7e; /* ALTERADO: Azul escuro padrão */
+            font-size: 1.1rem;
             margin-bottom: 8px;
         }
 
         /* DESCRIÇÃO - TEXTO NORMAL */
         .card-relatorio .descricao {
-            font-size: 1rem; /* Aumentado */
-            color: #555;
+            font-size: 1rem;
+            color: #556a7d; /* ALTERADO: Cinza médio padrão */
             margin-bottom: 14px;
             flex: 1;
         }
@@ -162,21 +162,21 @@
         /* BOTÃO/LINK */
         .card-relatorio .link-acao {
             display: inline-block;
-            padding: 12px 24px; /* Aumentado o padding do botão */
-            background-color: #0dcaf0;
+            padding: 12px 24px;
+            background-color: #00c0ef; /* ALTERADO: Azul padrão */
             color: white;
             font-weight: 600;
             text-decoration: none;
             border-radius: 6px;
             text-align: center;
-            font-size: 1rem; /* Aumentado */
+            font-size: 1rem;
             transition: 0.2s;
             align-self: flex-start;
             border: none;
             cursor: pointer;
         }
         .card-relatorio .link-acao:hover {
-            background-color: #0bacd0;
+            background-color: #00a6d2; /* ALTERADO: Azul hover padrão */
             transform: translateY(-1px);
         }
 
