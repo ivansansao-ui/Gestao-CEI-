@@ -7,10 +7,17 @@
   <link rel="stylesheet" href="../css/style.css">
 
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
       background-color: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
     }
 
     /* 🔹 MENU FIXO */
@@ -21,134 +28,205 @@
       width: 100%;
       background: #198754;
       color: white;
-      padding: 12px 20px;
+      padding: 12px 24px;
       font-weight: bold;
+      font-size: 1.1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
 
     .btn-voltar {
       background: white;
       color: #198754;
       border: none;
-      padding: 6px 14px;
+      padding: 8px 18px;
       border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
+      font-size: 0.95rem;
+      transition: 0.2s;
     }
-
     .btn-voltar:hover {
       background: #e9ecef;
+      transform: scale(1.02);
     }
 
+    /* --- CONTEÚDO PRINCIPAL --- */
     main {
-      margin-top: 70px;
+      margin-top: 80px;
+      padding: 20px;
     }
 
-    .layout-container {
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      padding: 30px 30px 10px 30px;
+    }
+
+    /* --- LAYOUT VERTICAL (IGUAL À IMAGEM) --- */
+    .profissional-linha {
       display: flex;
-      flex-direction: column;
-      gap: 20px;
-      width: 90%;
-      max-width: 1200px;
-      margin: 30px auto;
-    }
-
-    .linha {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 20px;
+      flex-wrap: wrap;
+      gap: 20px 30px;
+      padding: 18px 0;
+      border-bottom: 1px solid #e9ecef;
       align-items: stretch;
     }
-
-    .quadro-cargo {
-      background-color: #ffffff;
-      border-left: 4px solid #198754;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    .profissional-linha:last-of-type {
+      border-bottom: none;
     }
 
-    .quadro-link {
-      background-color: #e8f4fd;
-      border-left: 4px solid #00c0ef;
-      border-radius: 8px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    /* Coluna do profissional (cargo, nome, ramal, e-mail) - COM MOLDURA AZUL */
+    .profissional-info {
+      flex: 1 1 380px;
+      min-width: 320px;
+      background: #e8f4fd;
+      border-left: 5px solid #00c0ef;
+      border-radius: 6px;
+      padding: 24px 28px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+      transition: 0.15s;
+    }
+    .profissional-info:hover {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
     }
 
-    .quadro-titulo {
-      font-weight: bold;
-      margin-bottom: 10px;
-      color: #1f2d3d;
-      font-size: 1.1em;
-      border-bottom: 1px solid #eaeaea;
-      padding-bottom: 8px;
+    .profissional-info .cargo {
+      font-weight: 700;
+      color: #0b5e7e;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
     }
 
-    .quadro-detalhes {
+    .profissional-info .detalhes {
       list-style: none;
-      padding: 0;
-      margin: 0;
+      padding-left: 0;
     }
-
-    .quadro-detalhes li {
-      padding: 4px 0;
+    .profissional-info .detalhes li {
+      padding: 3px 0;
       color: #556a7d;
+      font-size: 0.95rem;
+    }
+    .profissional-info .detalhes li strong {
+      font-weight: 600;
+      color: #1f2d3d;
     }
 
-    .relatorio-link {
+    /* Container dos cards de relatório (2 por profissional) */
+    .relatorios-group {
+      flex: 2 1 680px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    /* Cada card de relatório - COM MOLDURA AZUL */
+    .card-relatorio {
+      flex: 1 1 300px;
+      background: #e8f4fd;
+      border-left: 5px solid #00c0ef;
+      border-radius: 6px;
+      padding: 24px 28px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: 0.15s;
+    }
+    .card-relatorio:hover {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+    }
+
+    /* TÍTULO DO RELATÓRIO - EM NEGRITO */
+    .card-relatorio .titulo {
+      font-weight: 700;
+      color: #0b5e7e;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    /* DESCRIÇÃO - TEXTO NORMAL */
+    .card-relatorio .descricao {
+      font-size: 1rem;
+      color: #556a7d;
+      margin-bottom: 14px;
+      flex: 1;
+    }
+
+    /* BOTÃO/LINK */
+    .card-relatorio .link-acao {
+      display: inline-block;
+      padding: 12px 24px;
       background-color: #00c0ef;
       color: white;
-      padding: 12px 20px;
-      border-radius: 6px;
-      text-decoration: none;
       font-weight: 600;
-      transition: 0.3s;
-      display: inline-block;
-      margin-top: 10px;
-      width: 100%;
-      box-sizing: border-box;
+      text-decoration: none;
+      border-radius: 6px;
+      text-align: center;
+      font-size: 1rem;
+      transition: 0.2s;
+      align-self: flex-start;
+      border: none;
+      cursor: pointer;
     }
-
-    .relatorio-link:hover {
+    .card-relatorio .link-acao:hover {
       background-color: #00a6d2;
-      transform: translateY(-2px);
+      transform: translateY(-1px);
     }
 
-    /* Estilo para link em desenvolvimento */
-    .relatorio-link.em-desenvolvimento {
+    /* Estilo para "Em desenvolvimento" */
+    .card-relatorio .link-acao.em-desenvolvimento {
       background-color: #adb5bd;
       cursor: not-allowed;
+      pointer-events: none;
     }
 
-    .relatorio-link.em-desenvolvimento:hover {
-      background-color: #adb5bd;
-      transform: none;
-    }
-
+    /* --- FOOTER --- */
     footer {
       text-align: center;
-      padding: 15px;
+      padding: 18px;
       background: #198754;
       color: white;
-      margin-top: 40px;
+      margin-top: 30px;
       font-size: 0.9rem;
     }
 
+    /* --- RESPONSIVIDADE --- */
+    @media (max-width: 992px) {
+      .container {
+        padding: 20px 15px;
+      }
+      .profissional-linha {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .relatorios-group {
+        flex-direction: column;
+      }
+      .card-relatorio {
+        flex: 1 1 auto;
+      }
+      .profissional-info {
+        flex: 1 1 auto;
+        min-width: auto;
+      }
+    }
+
     @media (max-width: 768px) {
-      .linha {
-        grid-template-columns: 1fr;
+      .container {
+        padding: 15px 10px;
+      }
+      .profissional-info {
+        padding: 18px 20px;
+      }
+      .card-relatorio {
+        padding: 18px 20px;
       }
     }
   </style>
@@ -180,40 +258,47 @@
   </div>
 
   <main>
-    <div class="layout-container">
+    <div class="container">
 
-      <!-- LINHA 1 -->
-      <div class="linha">
-        <!-- Card 1: Técnico de nível superior -->
-        <div class="quadro-cargo">
-          <div class="quadro-titulo">1. Técnico de nível superior.</div>
-          <ul class="quadro-detalhes">
+      <!-- ========================================================= -->
+      <!-- 1. TÉCNICO DE NÍVEL SUPERIOR – LISANDRA                     -->
+      <!-- ========================================================= -->
+      <div class="profissional-linha">
+        <div class="profissional-info">
+          <div class="cargo">1. Técnico de nível superior.</div>
+          <ul class="detalhes">
             <li><strong>Nome:</strong> Lisandra de Almeida Nunes,</li>
             <li><strong>Ramal:</strong> 6663,</li>
             <li><strong>E-mail:</strong> ses.uqd.ceis.aps@joinville.sc.gov.br.</li>
           </ul>
         </div>
-
-       <!-- Card 2: Solicitar Termo de Anuência para Pesquisa na área da saúde. -->
-        <div class="quadro-item quadro-relatorio">
-          <div class="titulo-texto">Solicitar Termo de Anuência para Pesquisa na área da saúde.</div>
-          <p>Solicitar Termo de Anuência para Pesquisa na área da saúde.</p>
-          <a href="https://drive.google.com/drive/folders/1ACI-pXghxuhHZTwpbgMK9jHSDXtYTeIj" 
-             target="_blank" 
-             class="relatorio-link">
-            Acessar Relatório
-          </a>
+        <div class="relatorios-group">
+          <!-- Card 1: Formulário Eletrônico (com PDF) -->
+          <div class="card-relatorio">
+            <div>
+              <div class="titulo">📋 Formulário Eletrônico</div>
+              <div class="descricao">Acesse o formulário eletrônico para solicitar o Termo de Anuência para Pesquisa na área da saúde.</div>
+            </div>
+            <a href="https://drive.google.com/file/d/1ACI-pXghxuhHZTwpbgMK9jHSDXtYTeIj/view?usp=sharing" 
+               target="_blank" 
+               class="link-acao">
+              Acessar PDF
+            </a>
+          </div>
+          <!-- Card 2: Relatório - Em desenvolvimento -->
+          <div class="card-relatorio">
+            <div>
+              <div class="titulo">📊 Relatório.</div>
+              <div class="descricao">Acesse o relatório completo com dados atualizados.</div>
+            </div>
+            <a href="#" onclick="return emDesenvolvimento(event)" class="link-acao em-desenvolvimento">
+              Em desenvolvimento 🚧
+            </a>
+          </div>
         </div>
       </div>
 
-        <!-- Card 3: Relatório - Em desenvolvimento -->
-        <div class="quadro-link">
-          <div class="quadro-titulo">📊 Relatório.</div>
-          <a href="#" onclick="return emDesenvolvimento(event)" class="relatorio-link em-desenvolvimento">Em desenvolvimento 🚧</a>
-        </div>
-      </div>
-
-    </div>
+    </div> <!-- fim .container -->
   </main>
 
   <footer>
