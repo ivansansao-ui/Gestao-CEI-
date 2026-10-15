@@ -1,1 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I - Núcleo de Gestão do Trabalho.</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', Arial, Helvetica, sans-serif;
+      background-color: #f4f6f8;
+      font-size: 16px;
+    }
 
+    /* MENU FIXO */
+    .top-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #198754;
+      color: white;
+      padding: 14px 20px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      font-size: 1.1em;
+      box-sizing: border-box;
+    }
+
+    .btn-voltar {
+      background: white;
+      color: #198754;
+      border: none;
+      padding: 6px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.85em;
+    }
+
+    .btn-voltar:hover {
+      background: #e9ecef;
+    }
+
+    main {
+      margin-top: 80px;
+    }
+
+    .layout-container {
+      width: 95%;
+      max-width: 1400px;
+      margin: 30px auto;
+    }
+
+    /* GRID CONTÍNUA - CORRIGE O ALINHAMENTO DE TODOS OS CARDS */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    /* CARD BASE */
+    .quadro-item {
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    /* CARDS DE CONTATO (VERDE) */
+    .quadro-contato {
+      border-left: 5px solid #198754;
+    }
+
+    /* CARDS DE RELATÓRIO (AZUL) */
+    .quadro-relatorio {
+      background-color: #e8f4fd;
+      border-left: 5px solid #00c0ef;
+    }
+
+    /* TÍTULOS DOS CARDS - TAMANHO 16px */
+    .titulo-texto {
+      color: #1f2d3d;
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0 0 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.4;
+    }
+
+    .quadro-relatorio .titulo-texto {
+      color: #0b5e7e;
+    }
+
+    /* INFORMAÇÕES DO SERVIDOR (COM LINHAS DIVISÓRIAS IGUAIS À IMAGEM) */
+    .info-servidor {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-servidor .linha {
+      display: flex;
+      justify-content: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px dashed #eaedf1;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .info-servidor .linha:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .info-label {
+      color: #333333;
+      font-weight: 600;
+      width: 70px;
+      flex-shrink: 0;
+      font-size: 16px;
+    }
+
+    .info-value {
+      color: #666666;
+      font-weight: 400;
+      font-size: 16px;
+    }
+
+    /* CLASSE PARA NOME EM PRETO */
+    .nome-preto {
+      color: #000000 !important;
+      font-weight: 500;
+    }
+
+    /* TEXTO DE DESTAQUE PARA CAMPOS VAGOS */
+    .vago {
+      color: #dc3545;
+      font-style: italic;
+    }
+
+    /* CORPO DO TEXTO DOS CARDS AZUIS - TAMANHO 16px */
+    .quadro-relatorio p {
+      color: #556a7d;
+      margin: 0 0 24px 0;
+      line-height: 1.5;
+      font-size: 16px;
+      font-weight: 400;
+      flex-grow: 1;
+    }
+
+    /* ESTILO PARA O LINK DENTRO DO PARÁGRAFO - SOMENTE A PALAVRA "link" É CLICÁVEL */
+    .link-memorando {
+      color: #0b5e7e;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .link-memorando:hover {
+      color: #00c0ef;
+    }
+
+    /* ESTILO PARA O LINK DO CARD 6 */
+    .link-sei {
+      color: #0b5e7e;
+      text-decoration: underline;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .link-sei:hover {
+      color: #00c0ef;
+    }
+
+    /* BOTÃO EXATAMENTE IGUAL À IMAGEM 2 - SEM O SÍMBOLO > */
+    .relatorio-link {
+      display: inline-block;
+      padding: 10px 20px;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      text-align: center;
+      background-color: #00c0ef;
+      transition: background-color 0.2s ease;
+      font-size: 14px;
+      margin-top: auto;
+      width: fit-content;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+
+    .relatorio-link:hover {
+      background-color: #00a6d2;
+    }
+
+    .relatorio-link.em-desenvolvimento {
+      background-color: #adb5bd;
+      cursor: not-allowed;
+    }
+
+    .relatorio-link.em-desenvolvimento:hover {
+      background-color: #adb5bd;
+    }
+
+    /* ESTILOS DA MODAL PDF */
+    .modal-pdf {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-conteudo {
+      background-color: #fff;
+      margin: 2% auto;
+      padding: 0;
+      width: 92%;
+      max-width: 1200px;
+      border-radius: 16px;
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.4);
+      animation: fadeInUp 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 88vh;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 22px;
+      background: #198754;
+      color: white;
+      border-radius: 16px 16px 0 0;
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+
+    .modal-header span {
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .fechar-modal {
+      background: none;
+      border: none;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+      transition: 0.2s;
+      line-height: 1;
+    }
+
+    .fechar-modal:hover {
+      color: #ddd;
+      transform: scale(1.1);
+    }
+
+    .iframe-container {
+      flex: 1;
+      width: 100%;
+      background: #eef2f5;
+      overflow: hidden;
+    }
+
+    .iframe-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .modal-botoes {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 22px;
+      background: #f8f9fc;
+      border-top: 1px solid #e2e6ea;
+      border-radius: 0 0 16px 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-modal {
+      padding: 8px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+      border: none;
+      font-family: inherit;
+    }
+
+    .btn-continuar {
+      background-color: #198754;
+      color: white;
+    }
+
+    .btn-continuar:hover {
+      background-color: #146c43;
+      transform: scale(1.02);
+    }
+
+    .btn-cancelar {
+      background-color: #6c757d;
+      color: white;
+    }
+
+    .btn-cancelar:hover {
+      background-color: #5c636a;
+    }
+
+    .btn-nav-pdf {
+      background-color: #0b5e7e;
+      color: white;
+      padding: 8px 20px;
+    }
+
+    .btn-nav-pdf:hover {
+      background-color: #094a63;
+    }
+
+    .btn-nav-pdf:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .indicador-pdf {
+      font-size: 14px;
+      background: #e9ecef;
+      padding: 6px 14px;
+      border-radius: 40px;
+      color: #1f2d3d;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #198754;
+      color: white;
+      margin-top: 60px;
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    /* RESPONSIVIDADE */
+    @media (max-width: 1100px) {
+      .grid-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .grid-cards {
+        grid-template-columns: 1fr;
+      }
+      .modal-conteudo {
+        width: 95%;
+        margin: 5% auto;
+        height: 86vh;
+      }
+      .modal-header {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+      }
+      .modal-botoes {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-group {
+        justify-content: center;
+      }
+    }
+  </style>
+
+  <script>
+    // Variáveis para controlar múltiplos PDFs
+    let listaPdfs = [];
+    let indiceAtual = 0;
+    let pendingRedirectUrl = null;
+
+    function voltarPaginaPrincipal() {
+      if (window.opener) {
+        window.opener.location.href = "../index.html";
+        window.close();
+      } else {
+        window.location.href = "../index.html";
+      }
+    }
+
+    function emDesenvolvimento(event) {
+      event.preventDefault();
+      alert("🚧 Em desenvolvimento. Esta funcionalidade estará disponível em breve.");
+      return false;
+    }
+
+    function abrirMemorandoPrograma() {
+      window.open("https://sei.joinville.sc.gov.br/sei/controlador.php?acao=documento_visualizar&acao_origem=protocolo_pesquisar&id_documento=10000032199505&infra_sistema=100000100&infra_unidade_atual=110002534&infra_hash=91dbf7d061dccb53759c4a7a4760ca78b24acf2beb471e68ee1819572a17fe6e", "_blank");
+    }
+
+    function abrirMemorandoVagas() {
+      window.open("https://sei.joinville.sc.gov.br/sei/controlador.php?acao=documento_visualizar&acao_origem=protocolo_pesquisar&id_documento=10000030185702&infra_sistema=100000100&infra_unidade_atual=110002534&infra_hash=34117144ebeb49d737f05f09a40fe5c053fe6045c38f64d6984b2439a8b4409b", "_blank");
+    }
+
+    function abrirMemorandoEvento() {
+      window.open("https://sei.joinville.sc.gov.br/sei/controlador.php?acao=documento_visualizar&acao_origem=protocolo_pesquisar&id_documento=10000032199505&infra_sistema=100000100&infra_unidade_atual=110002534&infra_hash=91dbf7d061dccb53759c4a7a4760ca78b24acf2beb471e68ee1819572a17fe6e", "_blank");
+    }
+
+    // Converte link do Google Drive para embed direto (visualizador)
+    function getGoogleDriveEmbedUrl(driveUrl) {
+      let fileId = null;
+      const match = driveUrl.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+      if (match && match[1]) {
+        fileId = match[1];
+      } else {
+        return driveUrl;
+      }
+      return `https://drive.google.com/file/d/${fileId}/preview`;
+    }
+
+    // Exibe modal com múltiplos PDFs
+    function exibirModalMultiplosPDFs(arrayDriveUrls, destinoUrl) {
+      if (!arrayDriveUrls || arrayDriveUrls.length === 0) return;
+      
+      listaPdfs = arrayDriveUrls.map(url => getGoogleDriveEmbedUrl(url));
+      indiceAtual = 0;
+      pendingRedirectUrl = destinoUrl;
+      
+      const modal = document.getElementById('modalPdfVisualizacao');
+      const iframePdf = document.getElementById('iframePdfViewer');
+      const contadorTexto = document.getElementById('contadorPdfTexto');
+      const btnAnterior = document.getElementById('btnAnteriorPdf');
+      const btnProximo = document.getElementById('btnProximoPdf');
+      
+      iframePdf.src = listaPdfs[0];
+      
+      function atualizarNavegacao() {
+        if (contadorTexto) {
+          contadorTexto.textContent = `Documento ${indiceAtual + 1} de ${listaPdfs.length}`;
+        }
+        if (btnAnterior) {
+          btnAnterior.disabled = (indiceAtual === 0);
+          btnAnterior.style.opacity = (indiceAtual === 0) ? "0.5" : "1";
+          btnAnterior.style.cursor = (indiceAtual === 0) ? "not-allowed" : "pointer";
+        }
+        if (btnProximo) {
+          btnProximo.disabled = (indiceAtual === listaPdfs.length - 1);
+          btnProximo.style.opacity = (indiceAtual === listaPdfs.length - 1) ? "0.5" : "1";
+          btnProximo.style.cursor = (indiceAtual === listaPdfs.length - 1) ? "not-allowed" : "pointer";
+        }
+      }
+      
+      window.navegarPDF = function(direcao) {
+        const novoIndice = indiceAtual + direcao;
+        if (novoIndice >= 0 && novoIndice < listaPdfs.length) {
+          indiceAtual = novoIndice;
+          iframePdf.src = listaPdfs[indiceAtual];
+          atualizarNavegacao();
+        }
+      };
+      
+      if (btnAnterior) {
+        btnAnterior.onclick = () => window.navegarPDF(-1);
+      }
+      if (btnProximo) {
+        btnProximo.onclick = () => window.navegarPDF(1);
+      }
+      
+      atualizarNavegacao();
+      modal.style.display = "block";
+    }
+
+    function fecharModalPDF(redirect = false) {
+      const modal = document.getElementById('modalPdfVisualizacao');
+      const iframePdf = document.getElementById('iframePdfViewer');
+      const tituloModal = document.getElementById('tituloModal');
+      
+      if (tituloModal) {
+        tituloModal.innerHTML = '📄 Visualização de Documento';
+      }
+      
+      if (redirect && pendingRedirectUrl) {
+        window.open(pendingRedirectUrl, "_blank");
+      }
+      iframePdf.src = "";
+      modal.style.display = "none";
+      pendingRedirectUrl = null;
+      listaPdfs = [];
+      indiceAtual = 0;
+    }
+
+    // Função para o card "Programa de Reabilitação Profissional"
+    function abrirModalReabilitacao(event, drivePdfUrl, relatorioUrl) {
+      event.preventDefault();
+      exibirModalMultiplosPDFs([drivePdfUrl], relatorioUrl);
+    }
+
+    // Função para o card "Evento Científico da Saúde de Joinville"
+    function abrirModalEvento(event, drivePdfUrl, destinoUrl) {
+      event.preventDefault();
+      exibirModalMultiplosPDFs([drivePdfUrl], destinoUrl);
+    }
+
+    // Função para o card "Solicitação de pontos" - com dois PDFs
+    function abrirModalSolicitacao(event, pdfUrl1, pdfUrl2, destinoUrl) {
+      event.preventDefault();
+      const pdfs = [pdfUrl1, pdfUrl2];
+      exibirModalMultiplosPDFs(pdfs, destinoUrl);
+    }
+
+    // Função para o card "Cadastro de Futuros Gestores da SES."
+    function abrirModalGestores(event, drivePdfUrl, destinoUrl) {
+      event.preventDefault();
+      
+      // Armazena a URL de destino (formulário)
+      pendingRedirectUrl = destinoUrl;
+      
+      // Converte o link do Drive para embed
+      const embedUrl = getGoogleDriveEmbedUrl(drivePdfUrl);
+      
+      // Configura o modal para exibir o PDF
+      const modal = document.getElementById('modalPdfVisualizacao');
+      const iframePdf = document.getElementById('iframePdfViewer');
+      const tituloModal = document.getElementById('tituloModal');
+      const contadorTexto = document.getElementById('contadorPdfTexto');
+      const btnAnterior = document.getElementById('btnAnteriorPdf');
+      const btnProximo = document.getElementById('btnProximoPdf');
+      
+      // Define o título específico do memorando
+      if (tituloModal) {
+        tituloModal.innerHTML = '📄 Memorando SEI Nº 27723005/2025 - Banco de Talentos';
+      }
+      
+      // Esconde os botões de navegação (apenas 1 PDF)
+      if (btnAnterior) btnAnterior.style.display = 'none';
+      if (btnProximo) btnProximo.style.display = 'none';
+      if (contadorTexto) contadorTexto.style.display = 'none';
+      
+      // Carrega o PDF
+      iframePdf.src = embedUrl;
+      modal.style.display = "block";
+    }
+  </script>
+</head>
+
+<body>
+
+  <!-- MODAL DE VISUALIZAÇÃO DO PDF (suporta múltiplos documentos) -->
+  <div id="modalPdfVisualizacao" class="modal-pdf">
+    <div class="modal-conteudo">
+      <div class="modal-header">
+        <span id="tituloModal">📄 Visualização de Documento</span>
+        <button class="fechar-modal" onclick="fecharModalPDF(false)">&times;</button>
+      </div>
+      <div class="iframe-container">
+        <iframe id="iframePdfViewer" title="Visualizador de PDF - Google Drive" src=""></iframe>
+      </div>
+      <div class="modal-botoes">
+        <div class="btn-group">
+          <button id="btnAnteriorPdf" class="btn-modal btn-nav-pdf">◀ Anterior</button>
+          <span id="contadorPdfTexto" class="indicador-pdf">Documento 1 de 1</span>
+          <button id="btnProximoPdf" class="btn-modal btn-nav-pdf">Próximo ▶</button>
+        </div>
+        <div class="btn-group">
+          <button class="btn-modal btn-cancelar" onclick="fecharModalPDF(false)">Fechar</button>
+          <button class="btn-modal btn-continuar" onclick="fecharModalPDF(true)">Continuar para o Formulário</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MENU FIXO -->
+  <div class="top-menu">
+    <span>I - Núcleo de Gestão do Trabalho.</span>
+    <button class="btn-voltar" onclick="voltarPaginaPrincipal()">Voltar</button>
+  </div>
+
+  <main>
+    <div class="layout-container">
+      <div class="grid-cards">
+
+        <!-- Card 1: Técnico de nível superior. -->
+        <div class="quadro-item quadro-contato">
+          <div class="titulo-texto">👤 1. Técnico de nível superior,</div>
+          <div class="info-servidor">
+            <div class="linha"><span class="info-label">Nome:</span> <span class="info-value nome-preto">Diego José Brand,</span></div>
+            <div class="linha"><span class="info-label">Ramal:</span> <span class="info-value">6664,</span></div>
+            <div class="linha"><span class="info-label">E-mail:</span> <span class="info-value">ses.uqd.ngt@joinville.sc.gov.br.</span></div>
+          </div>
+        </div>
+
+        <!-- Card 2: Painel de Indicadores Pesquisa. -->
+        <div class="quadro-item quadro-relatorio">
+          <div class="titulo-texto">📊 Painel de Indicadores Pesquisa,</div>
+          <p>Acesse o painel de indicadores de Pesquisa sobre atividades realizadas na APS para atividades de Educação da Agenda Única de 2025.</p>
+          <a href="https://lookerstudio.google.com/reporting/5ed3e56f-5277-466b-8ad2-f654b261b2da/page/jyNpF" target="_blank" class="relatorio-link">Acessar Relatório</a>
+        </div>
+
+        <!-- Card 3: Calendário da Saúde -->
+        <div class="quadro-item quadro-relatorio">
+          <div class="titulo-texto">Calendário da Saúde.</div>
+          <p>Acesse o calendário completo com as datas e eventos da saúde.</p>
+          <a href="https://drive.google.com/file/d/1tY-vol-PZ11-kREl-XYsnY_xChwoHGoA/view?usp=drive_link" 
+             target="_blank" 
+             class="relatorio-link">
+            Acessar Relatório
+          </a>
+        </div>
+
+      
+
+      
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Secretaria Municipal da Saúde – Joinville
+  </footer>
+
+</body>
+</html>
