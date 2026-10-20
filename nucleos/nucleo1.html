@@ -537,6 +537,7 @@
     // Função para o card "Evento Científico da Saúde de Joinville"
     function abrirModalEvento(event, drivePdfUrl, destinoUrl) {
       event.preventDefault();
+      // Exibe o PDF no modal e guarda a URL de destino para o botão "Continuar"
       exibirModalMultiplosPDFs([drivePdfUrl], destinoUrl);
     }
 
@@ -727,12 +728,13 @@
           <a href="https://datastudio.google.com/reporting/aef959ef-4325-4ac0-a68c-30a2787f310b"class="relatorio-link">Acessar Relatório</a>
         </div>
 
-       <!-- NOVO CARD 14: Evento Científico da Saúde de Joinville (mantido) -->
+       <!-- NOVO CARD 14: Evento Científico da Saúde de Joinville -->
         <div class="quadro-item quadro-relatorio">
           <div class="titulo-texto">🎯 Evento Científico da Saúde de Joinville</div>
           <p>Conectando ciência, inovação e prática profissional para transformar a saúde de Joinville.</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSdTce_1kc3JntTZFHPaNnCpxI7bLjDBZyp8IawdzYo4S2NhSg/closedform" 
-             onclick="abrirModalEvento(event, 'https://drive.google.com/file/d/1CTxlWWIunyvslvl8mQpu3AbwJCibHcBZ/view?usp=sharing', '#')" 
+          <!-- CORREÇÃO: O terceiro parâmetro agora é o link do formulário, e não '#' -->
+          <a href="#" 
+             onclick="abrirModalEvento(event, 'https://drive.google.com/file/d/1CTxlWWIunyvslvl8mQpu3AbwJCibHcBZ/view?usp=sharing', 'https://docs.google.com/forms/d/e/1FAIpQLSdTce_1kc3JntTZFHPaNnCpxI7bLjDBZyp8IawdzYo4S2NhSg/closedform')" 
              class="relatorio-link">Continuar para o Formulário</a>
         </div>
 
